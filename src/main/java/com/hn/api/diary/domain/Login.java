@@ -1,4 +1,4 @@
-package com.example.api.diary.domain;
+package com.hn.api.diary.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,7 +10,7 @@ public class Login {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long Id;
 
     private String userId;
     private String password;

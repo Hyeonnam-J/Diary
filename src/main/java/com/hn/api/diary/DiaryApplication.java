@@ -1,4 +1,4 @@
-package com.example.api.diary;
+package com.hn.api.diary;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
