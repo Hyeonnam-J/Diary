@@ -36,6 +36,7 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
+// ********** 스프링 부트 프로젝트 빌드 전 리액트 프로젝트 빌드 ↓ **********
 //def reactAppDir = "$projectDir/src/main/react-library"
 //
 //sourceSets {
@@ -80,3 +81,4 @@ tasks.named('test') {
 //	from "$reactAppDir/build"
 //	into "$buildDir/resources/main/static"
 //}
+// ********** 스프링 부트 프로젝트 빌드 전 리액트 프로젝트 빌드 ↑ **********
