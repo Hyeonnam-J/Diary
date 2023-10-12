@@ -3,6 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import DefaultLayout from './templates/DefaultLayout';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from 'react-bootstrap/Button';
+
 function App() {
   // const data = useState(null)[0];
   // const setData = useState(null)[1];
@@ -24,13 +27,11 @@ function App() {
 
   return (
     <div>
-      <h1>Data from Server:</h1>
-      <pre>
-        <DefaultLayout>
-            {data}
-        </DefaultLayout>
-      </pre>
-      <button onClick={hello}>hello</button>
+      <DefaultLayout>
+        <Button variant="warning">bootstrap</Button>
+        <p>테스트 중</p>
+      </DefaultLayout>
+      {/* <button onClick={hello}>hello</button> */}
     </div>
   );
 }
