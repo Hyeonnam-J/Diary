@@ -1,8 +1,7 @@
-import Footer from "./Footer"
 import Header from "./Header"
 import Navi from "./Navi"
+import Footer from "./Footer"
 
-import '../css/common/common.css';
 import '../css/layouts/defaultLayout.css';
 
 const Layout = (props) => {

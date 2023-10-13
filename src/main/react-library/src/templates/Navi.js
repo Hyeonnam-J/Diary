@@ -1,3 +1,5 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../css/common/common.css';
 import '../css/layouts/nav.css';
 
 const Navi = () => {

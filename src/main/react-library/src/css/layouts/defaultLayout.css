@@ -1,11 +1,15 @@
-header{
-  background-color: red;
+@import 'variables.css';
+
+header {
+  height: var(--header-height);
 }
 
-nav{
+nav {
   background-color: grey;
+  height: var(--nav-height);
 }
 
-footer{
-  background-color: yellow;
+footer {
+  background-color: var(--footer-color);
+  height: var(--footer-height);
 }

@@ -1,5 +1,12 @@
+nav{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 nav > ul {
   display: flex;
+  
 }
 
 nav > ul li {
