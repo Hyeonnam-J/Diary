@@ -9,6 +9,11 @@ nav {
   height: var(--nav-height);
 }
 
+section {
+  background-color: red;
+  height: 500px;
+}
+
 footer {
   background-color: var(--footer-color);
   height: var(--footer-height);
