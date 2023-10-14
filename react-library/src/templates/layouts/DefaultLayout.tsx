@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
-import Header from "./Header";
-import Nav from "./Nav";
-import Footer from "./Footer";
+import Header from "../fragments/Header";
+import Nav from "../fragments/Nav";
+import Footer from "../fragments/Footer";
 
 import '../../stylesheets/common/common.css';
 import '../../stylesheets/layouts/defaultLayout.css';

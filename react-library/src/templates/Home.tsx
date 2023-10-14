@@ -30,7 +30,7 @@ function Home() {
     setCount(count + 1);
   };
   */
-
+  
   return (
     <DefaultLayout>
       <section>
