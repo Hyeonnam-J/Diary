@@ -3,8 +3,8 @@ import Header from "./Header";
 import Nav from "./Nav";
 import Footer from "./Footer";
 
-import '../stylesheets/common/common.css';
-import '../stylesheets/layouts/defaultLayout.css';
+import '../../stylesheets/common/common.css';
+import '../../stylesheets/layouts/defaultLayout.css';
 
 interface LayoutProps {
   children: ReactNode;

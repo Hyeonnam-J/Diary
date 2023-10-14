@@ -1,45 +1,17 @@
-import DefaultLayout from './templates/DefaultLayout';
-// import React, { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import routes, { RouteConfig } from './templates/RouteConfig';
 
 function App() {
-  /*
-  // const data = useState(0)[0];
-  // const setData = useState(0)[1];
-  const [count, setCount] = useState(0);
-
-  const [data, setData] = useState('');
-
-  // 의존성 배열 
-  // 비었으면 처음 마운트될 때 동작
-  // 값이 있으면 해당 값이 변경될 때마다 동작
-  useEffect(() => {
-    fetchData();
-    alert('!');
-  }, [count]);
-
-  const fetchData = async (): Promise<void> => {
-    const response = await fetch('http://localhost:8080/hello', {
-        method: 'GET',
-        mode: 'cors'
-    });
-    const result: string = await response.text();
-    setData(result);  // setData를 사용하여 업데이트하는 이유는 옵저버 패턴으로 바뀐 값만 렌더링하여 성능을 최적화하기 위함입니다.
-  };
-
-  const handlePlusClick = () => {
-    setCount(count + 1);
-  };
-  */
-
   return (
-    <DefaultLayout>
-      <section>
-        {/* <p id='count'>{count}</p>
-        <button id='plus' onClick={handlePlusClick}>+</button>
-
-        <p id='data'>{data}</p> */}
-      </section>
-    </DefaultLayout>
+    // URL 변경을 React-Router가 감지.
+    // map 함수로 순회하며 routes 배열의 path와 변경된 URL이 일치하는지 확인.
+    // 일치하면 해당 라우트의 엘리먼트를 렌더링.
+    <Routes>
+      {/* 해시 셋으로 바로 접근해버리면 훨씬 빠르지만 코드의 간편성, 유지보수를 위해 이게 일반적인 방법? */}
+      {routes.map((route: RouteConfig) => (
+        <Route key={route.path} path={route.path} element={route.element} />
+      ))}
+    </Routes>
   );
 }
 

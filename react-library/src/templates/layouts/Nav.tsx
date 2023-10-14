@@ -1,5 +1,5 @@
 import React from 'react';
-import '../stylesheets/layouts/nav.css';
+import '../../stylesheets/layouts/nav.css';
 
 const Nav: React.FC = () => {
   return (
