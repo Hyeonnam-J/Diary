@@ -1,6 +1,7 @@
-import '../css/layouts/header.css';
+import React from 'react';
+import '../stylesheets/layouts/header.css';
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
     <header>
       <div id='info'>
@@ -8,7 +9,7 @@ const Header = () => {
         <button>회원가입</button>
       </div>
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;

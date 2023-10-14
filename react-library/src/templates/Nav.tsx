@@ -1,6 +1,7 @@
-import '../css/layouts/nav.css';
+import React from 'react';
+import '../stylesheets/layouts/nav.css';
 
-const Navi = () => {
+const Nav: React.FC = () => {
   return (
     <nav>
       <ul>
@@ -13,4 +14,4 @@ const Navi = () => {
   );
 }
 
-export default Navi;
+export default Nav;
