@@ -1,9 +1,10 @@
 :root {
-  --header-height: 100px;
-  --nav-height: 50px;
-  --footer-height: 100px;
+  --header-height: 40px;
+  --nav-height: 40px;
 
-  --footer-color: #f5f6f7;
+  --header-background-color: rgba(200, 200, 200, 0.5);
+  --nav-background-color: rgba(200, 200, 200, 0.5);
+  --dropdown-content-background-color: rgba(200, 200, 200, 0.5);
 
   --btn-width: 100px;
   --btn-height: 50px;

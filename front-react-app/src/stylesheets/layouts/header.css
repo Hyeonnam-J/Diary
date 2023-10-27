@@ -1,14 +1,8 @@
+@import '../common/variables.css';
+
 header{
-  display: flex;
-
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-#info{
-  display: flex;
-  justify-content: end;
-
-  gap: 10px;
-  margin: 20px;
+  width: var(--header-height);
+  height: var(--header-height);
+  background-color: var(--header-background-color);
+  border-radius: 50%;
 }

@@ -1,6 +1,6 @@
 import Home from './Home';
-import Login from './Login';
-import Registration from './Registration';
+import SignIn from './SignIn';
+import SignUp from './SignUp';
 
 interface RouteConfig {
   path: string;
@@ -9,8 +9,8 @@ interface RouteConfig {
 
 const routes: RouteConfig[] = [
   { path: '/', element: <Home /> },
-  { path: '/Login', element: <Login /> },
-  { path: '/Registration', element: <Registration /> },
+  { path: '/SignIn', element: <SignIn /> },
+  { path: '/SignUp', element: <SignUp /> },
 ];
 
 export type { RouteConfig };

@@ -1,20 +1,17 @@
 @import '../common/variables.css';
 
 header {
-  height: var(--header-height);
+  position: fixed;
+  top: 5%;
+  right: 5%;
 }
 
 nav {
-  background-color: grey;
-  height: var(--nav-height);
+  position: fixed;
+  top: 5%;
+  left: 5%;
 }
 
 section {
-  background-color: red;
-  height: 500px;
-}
-
-footer {
-  background-color: var(--footer-color);
-  height: var(--footer-height);
+  
 }

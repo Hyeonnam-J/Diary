@@ -1,14 +1,8 @@
+@import '../common/variables.css';
+
 nav{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-nav > ul {
-  display: flex;
-  
-}
-
-nav > ul li {
-  flex: 1;
+  width: var(--nav-height);
+  height: var(--nav-height);
+  background-color: var(--nav-background-color);
+  border-radius: 50%;
 }
