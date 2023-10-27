@@ -1,6 +1,9 @@
 :root {
   --header-height: 40px;
   --nav-height: 40px;
+  --main-width: 1000px;
+  --nav-contents-width: 300px;
+  --nav-contents-width-minus: -300px;
 
   --header-background-color: white;
   --nav-background-color: white;

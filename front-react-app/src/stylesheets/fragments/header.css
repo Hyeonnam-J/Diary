@@ -36,7 +36,7 @@ header{
 
 #header-contents-box{
   position: absolute;
-  top: 120%; /* 부모 요소의 중앙을 기준으로 위로 이동 */
+  top: 120%;
   right: 0;
 
   background-color: var(--header-background-color);

@@ -30,7 +30,3 @@ nav{
 #nav-container:hover{
   cursor: pointer;
 }
-
-#nav-contents{
-  display: none;
-}

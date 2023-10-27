@@ -1,22 +1,30 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import menu from '../../assets/imgs/menu.png'
 
 import '../../stylesheets/common/common.css';
 import '../../stylesheets/fragments/nav.css';
 
-const Nav: React.FC = () => {
+interface NavProps {
+  navClick: () => void;
+}
+
+// Nav 리액트 컴포넌트를 정의하는 변수
+// React.FC 해당 컴포넌트가 함수 컴포넌트임을 나타냄.
+// <NavProps> 컴포넌트에 전달되는 props 타입
+// ({ navClick }) 함수 컴포넌트의 파라미터.
+// FC -> Functional Component
+// props -> properties. 데이터를 전달하는 데 사용되는 객체.
+const Nav: React.FC<NavProps> = ({ navClick }) => {
+
+  const sendNavClickToDefaultLayout = () => {
+    navClick();  // DefaultLayout 제어를 위한 메서드
+  };
+  
   return (
     <nav>
-      <div id='nav-container'>
+      <div id='nav-container' onClick={sendNavClickToDefaultLayout}>
         <img src={menu} alt='menu' />
-        <ul id='nav-contents'>
-          <li><Link to="/Menu1">Menu1</Link></li>
-          <li><Link to="/Menu2">Menu2</Link></li>
-          <li><Link to="/Menu3">Menu3</Link></li>
-          <li><Link to="/Menu4">Menu4</Link></li>
-        </ul>
       </div>
     </nav>
   );

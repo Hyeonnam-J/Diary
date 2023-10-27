@@ -1,17 +1,47 @@
 @import '../common/variables.css';
 
-header {
-  position: fixed;
-  top: 5%;
-  right: 5%;
+#container{
+  width: 100vw;
+  height: 100vh;
+
+  /* 컨테이너 아래 nav-contents와 main 두 개가 있는데 이들 가운데 정렬 */
+  display: flex;
+  justify-content: center;  
+
+  background-color: antiquewhite;
 }
 
-nav {
-  position: fixed;
-  top: 5%;
-  left: 5%;
+main{
+  position: relative;
+  width: var(--main-width);
+  transition: margin-left 1s ease;  /* margin-left 속성이 변경될 때 작동하는 코드 */
+
+  background-color: aqua;
 }
 
-section {
-  
+header{
+  position: absolute;
+  top: 5%;
+  right: -10%;
+}
+
+nav{
+  position: absolute;
+  top: 5%;
+  left: -10%;
+}
+
+section{
+  width: 100%;
+  background-color: blue;
+}
+
+#nav-contents{
+  width: var(--nav-contents-width);
+  height: 100vh;
+  background-color: var(--nav-border-color);
+
+  position: fixed; 
+  left: var(--nav-contents-width-minus);
+  transition: left 1s ease; /* left 속성이 변경될 때 작동하는 코드 */
 }

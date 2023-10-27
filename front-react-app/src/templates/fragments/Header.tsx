@@ -10,6 +10,8 @@ const Header: React.FC = () => {
   // React Hook인 useState를 사용하여 새로운 상태 변수를 생성
   // 변수명 isDropdownVisible, 초깃값 false.
   // 이 변수를 변경하기 위한 함수 setDropdownVisible.
+  // useState를 담은 변수 isDropdownVisible의 상태가 바뀔 때마다 
+  // 해당 값에 의존하는 JSX 코드를 다시 실행하고 화면을 업데이트.
   const [isDropdownVisible, setDropdownVisible] = useState(false);
 
   const toggleDropdown = () => {
