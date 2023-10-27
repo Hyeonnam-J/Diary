@@ -1,8 +1,0 @@
-@import '../common/variables.css';
-
-nav{
-  width: var(--nav-height);
-  height: var(--nav-height);
-  background-color: var(--nav-background-color);
-  border-radius: 50%;
-}
