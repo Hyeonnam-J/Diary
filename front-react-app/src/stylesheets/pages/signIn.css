@@ -1,0 +1,38 @@
+@import '../common/variables.css';
+
+#signInFrame, #signInFrame *{
+  display: flex;
+  flex: 1;
+  
+  flex-direction: column;
+  justify-content: center;
+  
+  padding: 10px;
+  font-size: 1.5rem;
+}
+
+#signInFrame{
+  width: var(--signIn-frame-height);
+  height: var(--signIn-frame-height);
+}
+
+#signInFrame-inputs{
+  background-color: brown;
+}
+
+#signInFrame-inputs *{
+  text-align: left;
+}
+
+#signInFrame-btns{
+  gap: 5px;
+  background-color: blueviolet;
+}
+
+#signInFrame-btns button{
+  width: 100%;
+}
+
+#signInFrame-btns, #signInFrame-btns button{
+  align-items: center;
+}
