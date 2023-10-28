@@ -4,8 +4,8 @@ nav{
   width: var(--nav-height);
   height: var(--nav-height);
 
-  background-color: var(--nav-background-color);
-  border: 1px solid var(--nav-border-color);
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
 
   border-radius: 50%;
 }
