@@ -61,7 +61,3 @@ header{
 #header-contents li{
   margin: 10px 0;
 }
-
-#header-contents li:hover{
-  text-decoration: underline;
-}
