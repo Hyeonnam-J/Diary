@@ -1,8 +1,8 @@
 @import '../common/variables.css';
 
 nav{
-  width: var(--nav-height);
-  height: var(--nav-height);
+  width: var(--fixed-button-height);
+  height: var(--fixed-button-height);
 
   background-color: var(--nav-background-color);
   border: 1px solid var(--nav-border-color);
