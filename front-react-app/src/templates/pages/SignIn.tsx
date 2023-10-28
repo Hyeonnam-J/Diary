@@ -6,7 +6,7 @@ import Button from "../../stylesheets/modules/button.module.css";
 const SignIn = () => {
   return (
     <SignLayout>
-      <div id='signInFrame' className={Layout.centerFrame}>
+      <main id='signInFrame' className={Layout.centerFrame}>
 
         <div id="signInFrame-inputs">
           <p>ID</p>
@@ -21,7 +21,7 @@ const SignIn = () => {
           <button className={ Button.primaryOutline }>Kakao</button>
         </div>
 
-      </div>
+      </main>
     </SignLayout>
   )
 }
