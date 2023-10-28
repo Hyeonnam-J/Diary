@@ -23,6 +23,9 @@ const Layout: React.FC<LayoutProps> = (props) => {
 
   return (
     <div id='container'>
+      {/* 헤더는 종속 없이 늘 그자리에. 속성 absolute. */}
+      <Header />
+
       {/* nav-contents html 요소를 Nav.tsx에서 제어하기에는 코드가 복잡해짐
       DefaultLayout에 html 요소를 넣고 display 요소를 제어하는 것이 간편 */}
       <ul id='nav-contents' style={{ left: isNavOpen ? '0' : navWidthMinus }}>
@@ -32,8 +35,10 @@ const Layout: React.FC<LayoutProps> = (props) => {
         <li><Link to="/Menu4">Menu4</Link></li>
       </ul>
 
-      <main style={{ marginLeft: isNavOpen ? navWidth : '0' }}>
-        <Header />
+      {/* <main style={{ marginLeft: isNavOpen ? navWidth : '0' }}> */}
+      <main style={{ left: isNavOpen ? navWidth : '0' }}>
+        
+        {/* nav는 main 뷰에 상대적 위치로 종속. */}
         <Nav navClick={receiveNavClick} />
 
         <section>
