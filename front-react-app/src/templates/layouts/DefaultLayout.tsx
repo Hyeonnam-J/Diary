@@ -15,7 +15,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
   const [isNavOpen, setNavOpen] = useState(false);
 
   const receiveNavClick = () => {
-    setNavOpen(!isNavOpen);
+    setNavOpen(prevState => !prevState);  // setNavOpen(!isNavOpen);
   };
 
   const navWidth = 'var(--nav-contents-width)'

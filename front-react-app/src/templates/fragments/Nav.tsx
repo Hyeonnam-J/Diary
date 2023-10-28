@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import menu from '../../assets/imgs/menu.png'
+import exit from '../../assets/imgs/exit.png'
 
 import '../../stylesheets/common/common.css';
 import '../../stylesheets/fragments/nav.css';
@@ -16,15 +17,17 @@ interface NavProps {
 // FC -> Functional Component
 // props -> properties. 데이터를 전달하는 데 사용되는 객체.
 const Nav: React.FC<NavProps> = ({ navClick }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const sendNavClickToDefaultLayout = () => {
     navClick();  // DefaultLayout 제어를 위한 메서드
+    setIsMenuOpen(prevState => !prevState); // setIsMenuOpen(!isMenuOpen);
   };
   
   return (
     <nav>
       <div id='nav-container' onClick={sendNavClickToDefaultLayout}>
-        <img src={menu} alt='menu' />
+        <img src={ isMenuOpen ? exit : menu } alt='menu' />
       </div>
     </nav>
   );
