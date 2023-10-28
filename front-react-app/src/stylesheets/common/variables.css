@@ -5,10 +5,11 @@
   --nav-contents-width: 300px;
   --nav-contents-width-minus: -300px;
 
-  --header-background-color: white;
-  --nav-background-color: white;
-  --header-border-color: rgba(200, 200, 200, 0.5);
-  --nav-border-color: rgba(200, 200, 200, 0.5);
+  --signIn-frame-height: 500px;
+
+  --background-color: white;
+  --border-color: rgba(200, 200, 200, 0.5);
+  --shadow-color: rgba(200, 200, 200, 0.5);
 
   --btn-width: 100px;
   --btn-height: 50px;
