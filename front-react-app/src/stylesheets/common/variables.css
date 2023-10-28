@@ -6,6 +6,8 @@
   --nav-contents-width-minus: -300px;
 
   --signIn-frame-height: 500px;
+  --signUp-frame-width: 300px;
+  --signUp-frame-height: 1200px;
 
   --background-color: white;
   --border-color: rgba(200, 200, 200, 0.5);

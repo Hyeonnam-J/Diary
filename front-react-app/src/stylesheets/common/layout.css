@@ -4,11 +4,14 @@
   width: 100vw;
   height: 100vh;
 
+  /* 자신의 영역보다 더 큰 수치의 자식 요소가 들어올 때 부모의 영역도 같이 넓어짐 */
+  overflow: auto; 
+
   /* 컨테이너 아래 (nav-contents-box), main 가운데 정렬 */
   display: flex;
   justify-content: center;
 
-  position: relative;
+  /* position: relative; */
 
   background-color: antiquewhite;
 }
@@ -44,7 +47,7 @@ header{
   font-size: 2rem;
 }
 
-main{
+.main-default{
   /* main의 left 값은 0.
   지금 main의 position은 absolute가 아니다.
   main이 가운데 정렬인 것은 부모 요소에 flex, justify-content 때문.
