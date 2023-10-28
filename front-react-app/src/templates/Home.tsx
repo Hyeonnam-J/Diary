@@ -33,12 +33,11 @@ function Home() {
   
   return (
     <DefaultLayout>
-      <section>
+      <button>버튼 입니다</button>
         {/* <p id='count'>{count}</p>
         <button id='plus' onClick={handlePlusClick}>+</button>
 
         <p id='data'>{data}</p> */}
-      </section>
     </DefaultLayout>
   );
 }

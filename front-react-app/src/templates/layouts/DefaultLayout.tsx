@@ -5,7 +5,7 @@ import Header from "../fragments/Header";
 import Nav from "../fragments/Nav";
 
 import '../../stylesheets/common/common.css';
-import '../../stylesheets/layouts/defaultLayout.css';
+import '../../stylesheets/common/layout.css';
 
 interface LayoutProps {
   children: ReactNode;
@@ -22,7 +22,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
   const navWidthMinus = 'var(--nav-contents-width-minus)'
 
   return (
-    <div id='container'>
+    <div className='container'>
       {/* 헤더는 종속 없이 늘 그자리에. 속성 absolute. */}
       <Header />
 
@@ -41,13 +41,11 @@ const Layout: React.FC<LayoutProps> = (props) => {
       {/* <main style={{ marginLeft: isNavOpen ? navWidth : '0' }}> */}
       <main style={{ left: isNavOpen ? navWidth : '0' }}>
         
-        {/* nav는 main 뷰에 상대적 위치로 종속. */}
+        {/* nav는 상대적 위치로 종속. */}
         <Nav navClick={receiveNavClick} />
 
-        <section>
-          <button>버튼 입니다</button>
-          {props.children}
-        </section>
+        {props.children}
+
       </main>
 
     </div>

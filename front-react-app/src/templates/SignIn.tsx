@@ -1,6 +1,10 @@
+import SignLayout from "./layouts/SignLayout";
+
 const SignIn = () => {
   return (
-    <div>로그인</div>
+    <SignLayout>
+      <div>로그인</div>
+    </SignLayout>
   )
 }
 

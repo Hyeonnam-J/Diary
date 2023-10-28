@@ -1,10 +1,10 @@
 @import '../common/variables.css';
 
-#container{
+.container{
   width: 100vw;
   height: 100vh;
 
-  /* 컨테이너 아래 nav-contents와 main 두 개가 있는데 이들 가운데 정렬 */
+  /* 컨테이너 아래 (nav-contents-box), main 가운데 정렬 */
   display: flex;
   justify-content: center;
 
@@ -56,9 +56,4 @@ nav{
   position: absolute;
   top: 5%;
   left: -10%;
-}
-
-section{
-  width: 100%;
-  background-color: blue;
 }
