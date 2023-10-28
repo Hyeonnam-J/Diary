@@ -24,7 +24,7 @@ header{
 #nav-contents-box{
   width: var(--nav-contents-width);
   height: 100vh;
-  background-color: var(--nav-border-color);
+  background-color: var(--border-color);
 
   position: absolute; 
   left: var(--nav-contents-width-minus);
