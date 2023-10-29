@@ -39,14 +39,31 @@
   background-color: wheat;
 }
 
+#submitList > label *{
+  text-align: left;
+}
+
+#submitList > label span{
+  font-size: 0.8rem;
+  color: var(--text-ref-color);
+}
+
+#submitList p, #submitList span{
+  background-color: coral;
+}
+
 #terms{
   background-color: chocolate;
 }
 
-#submit-btn-box{
-  background-color: chartreuse;
+#submit-btn-box, #submit-btn-box > button{
+  align-items: center;
 }
 
-span{
-  background-color: white;
+#submit-btn-box > button{
+  width: 70%;
+}
+
+#submit-btn-box{
+  background-color: chartreuse;
 }
