@@ -1,0 +1,296 @@
+15:15:48.608 [background-preinit] INFO  o.h.validator.internal.util.Version -- HV000001: Hibernate Validator 8.0.1.Final
+15:15:48.773 [main] INFO  c.hn.api.diary.DiaryApiApplication -- Starting DiaryApiApplication using Java 17.0.6 with PID 3208 (D:\SpringProject\diary-api\out\production\classes started by nami0 in D:\SpringProject\diary-api)
+15:15:48.777 [main] INFO  c.hn.api.diary.DiaryApiApplication -- No active profile set, falling back to 1 default profile: "default"
+15:15:50.885 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+15:15:51.120 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Finished Spring Data repository scanning in 209 ms. Found 3 JPA repository interfaces.
+15:15:51.888 [main] INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor -- Post-processing PropertySource instances
+15:15:51.891 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+15:15:51.892 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+15:15:51.892 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+15:15:51.895 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+15:15:51.896 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+15:15:51.897 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+15:15:51.898 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+15:15:53.547 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -- Tomcat initialized with port(s): 8080 (http)
+15:15:53.564 [main] INFO  o.a.coyote.http11.Http11NioProtocol -- Initializing ProtocolHandler ["http-nio-8080"]
+15:15:53.569 [main] INFO  o.a.catalina.core.StandardService -- Starting service [Tomcat]
+15:15:53.570 [main] INFO  o.a.catalina.core.StandardEngine -- Starting Servlet engine: [Apache Tomcat/10.1.13]
+15:15:53.839 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -- Initializing Spring embedded WebApplicationContext
+15:15:53.841 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -- Root WebApplicationContext: initialization completed in 4871 ms
+15:15:53.926 [main] INFO  c.u.j.f.DefaultLazyPropertyFilter -- Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+15:15:53.947 [main] INFO  c.u.j.r.DefaultLazyPropertyResolver -- Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+15:15:53.952 [main] INFO  c.u.j.d.DefaultLazyPropertyDetector -- Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+15:15:54.144 [main] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Starting...
+15:15:54.606 [main] INFO  com.zaxxer.hikari.pool.HikariPool -- HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:diary user=SA
+15:15:54.609 [main] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Start completed.
+15:15:54.693 [main] INFO  o.h.jpa.internal.util.LogHelper -- HHH000204: Processing PersistenceUnitInfo [name: default]
+15:15:54.833 [main] INFO  org.hibernate.Version -- HHH000412: Hibernate ORM core version 6.2.9.Final
+15:15:54.840 [main] INFO  org.hibernate.cfg.Environment -- HHH000406: Using bytecode reflection optimizer
+15:15:55.181 [main] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+15:15:55.542 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -- No LoadTimeWeaver setup: ignoring JPA class transformer
+15:15:56.126 [main] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+15:15:57.468 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -- HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+15:15:57.599 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Initialized JPA EntityManagerFactory for persistence unit 'default'
+15:15:58.046 [main] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer -- Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.hn.api.diary.repository.MemberRepository
+15:15:58.299 [main] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration -- H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:diary'
+15:15:58.440 [main] INFO  o.s.b.web.servlet.RegistrationBean -- Filter registration was not registered (disabled)
+15:15:58.632 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory -- Hibernate is in classpath; If applicable, HQL parser will be used.
+15:15:59.403 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -- spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+15:15:59.640 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2f7e2481, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5f745970, org.springframework.security.web.context.SecurityContextHolderFilter@3e3b41cb, org.springframework.security.web.header.HeaderWriterFilter@5b7e2a88, org.springframework.web.filter.CorsFilter@57cd77e1, org.springframework.security.web.authentication.logout.LogoutFilter@7ae5f795, com.hn.api.diary.filter.AccessFilter@5b3c11ce, com.hn.api.diary.filter.SignInFilter@5d24703e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5acf51d7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4ceac22d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@35f59dfe, org.springframework.security.web.access.ExceptionTranslationFilter@7b3db079, org.springframework.security.web.access.intercept.AuthorizationFilter@276ae21c]
+15:15:59.646 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/favicon.ico']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+15:15:59.646 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/favicon.ico']
+15:15:59.647 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/error']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+15:15:59.647 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/error']
+15:15:59.647 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/test']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+15:15:59.647 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/test']
+15:15:59.647 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/profile']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+15:15:59.647 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/profile']
+15:15:59.648 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@2a45c6f0. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+15:15:59.648 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@2a45c6f0
+15:15:59.880 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping -- Adding welcome page: class path resource [static/index.html]
+15:16:00.197 [main] INFO  o.a.coyote.http11.Http11NioProtocol -- Starting ProtocolHandler ["http-nio-8080"]
+15:16:00.244 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -- Tomcat started on port(s): 8080 (http) with context path ''
+15:16:00.246 [main] INFO  c.u.j.c.RefreshScopeRefreshedEventListener -- Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+15:16:00.247 [main] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource -- Property Source systemProperties refreshed
+15:16:00.247 [main] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource -- Property Source systemEnvironment refreshed
+15:16:00.247 [main] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource -- Property Source random refreshed
+15:16:00.247 [main] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource -- Property Source Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' refreshed
+15:16:00.247 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+15:16:00.247 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+15:16:00.247 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+15:16:00.258 [main] INFO  c.hn.api.diary.DiaryApiApplication -- Started DiaryApiApplication in 12.965 seconds (process running for 14.947)
+15:16:15.411 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -- Initializing Spring DispatcherServlet 'dispatcherServlet'
+15:16:15.411 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet -- Initializing Servlet 'dispatcherServlet'
+15:16:15.413 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet -- Completed initialization in 1 ms
+15:16:15.438 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+15:16:15.439 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /
+15:16:15.572 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, jws IllegalArgumentException
+15:16:24.768 [http-nio-8080-exec-4] INFO  com.hn.api.diary.controller.Test -- jhn test class...
+15:16:24.768 [http-nio-8080-exec-4] INFO  c.h.a.d.controller.TestController -- jhn test controller class ...
+15:27:16.510 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Closing JPA EntityManagerFactory for persistence unit 'default'
+15:27:16.663 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown initiated...
+15:27:16.673 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown completed.
+15:27:27.555 [background-preinit] INFO  o.h.validator.internal.util.Version -- HV000001: Hibernate Validator 8.0.1.Final
+15:27:27.662 [main] INFO  c.hn.api.diary.DiaryApiApplication -- Starting DiaryApiApplication using Java 17.0.6 with PID 14596 (D:\SpringProject\diary-api\out\production\classes started by nami0 in D:\SpringProject\diary-api)
+15:27:27.666 [main] INFO  c.hn.api.diary.DiaryApiApplication -- No active profile set, falling back to 1 default profile: "default"
+15:27:29.700 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+15:27:30.029 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Finished Spring Data repository scanning in 293 ms. Found 3 JPA repository interfaces.
+15:27:31.020 [main] INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor -- Post-processing PropertySource instances
+15:27:31.024 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+15:27:31.025 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+15:27:31.026 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+15:27:31.030 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+15:27:31.031 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+15:27:31.032 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+15:27:31.033 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+15:27:34.293 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -- Tomcat initialized with port(s): 8080 (http)
+15:27:34.317 [main] INFO  o.a.coyote.http11.Http11NioProtocol -- Initializing ProtocolHandler ["http-nio-8080"]
+15:27:34.325 [main] INFO  o.a.catalina.core.StandardService -- Starting service [Tomcat]
+15:27:34.326 [main] INFO  o.a.catalina.core.StandardEngine -- Starting Servlet engine: [Apache Tomcat/10.1.13]
+15:27:34.912 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -- Initializing Spring embedded WebApplicationContext
+15:27:34.914 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -- Root WebApplicationContext: initialization completed in 7105 ms
+15:27:35.058 [main] INFO  c.u.j.f.DefaultLazyPropertyFilter -- Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+15:27:35.098 [main] INFO  c.u.j.r.DefaultLazyPropertyResolver -- Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+15:27:35.107 [main] INFO  c.u.j.d.DefaultLazyPropertyDetector -- Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+15:27:35.446 [main] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Starting...
+15:27:36.170 [main] INFO  com.zaxxer.hikari.pool.HikariPool -- HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:diary user=SA
+15:27:36.175 [main] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Start completed.
+15:27:36.351 [main] INFO  o.h.jpa.internal.util.LogHelper -- HHH000204: Processing PersistenceUnitInfo [name: default]
+15:27:36.608 [main] INFO  org.hibernate.Version -- HHH000412: Hibernate ORM core version 6.2.9.Final
+15:27:36.626 [main] INFO  org.hibernate.cfg.Environment -- HHH000406: Using bytecode reflection optimizer
+15:27:37.274 [main] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+15:27:37.694 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -- No LoadTimeWeaver setup: ignoring JPA class transformer
+15:27:38.630 [main] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+15:27:40.936 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -- HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+15:27:41.080 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Initialized JPA EntityManagerFactory for persistence unit 'default'
+15:27:41.890 [main] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer -- Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.hn.api.diary.repository.MemberRepository
+15:27:42.306 [main] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration -- H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:diary'
+15:27:42.512 [main] INFO  o.s.b.web.servlet.RegistrationBean -- Filter registration was not registered (disabled)
+15:27:42.905 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory -- Hibernate is in classpath; If applicable, HQL parser will be used.
+15:27:44.304 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -- spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+15:27:44.665 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@57cd77e1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@35f59dfe, org.springframework.security.web.context.SecurityContextHolderFilter@5acf51d7, org.springframework.security.web.header.HeaderWriterFilter@7fac3ce0, org.springframework.web.filter.CorsFilter@6b71fded, org.springframework.security.web.authentication.logout.LogoutFilter@3e94a6f6, com.hn.api.diary.filter.AccessFilter@4daead88, com.hn.api.diary.filter.SignInFilter@7878459f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@204b1903, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@21f48f6c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1633962a, org.springframework.security.web.access.ExceptionTranslationFilter@5b7e2a88, org.springframework.security.web.access.intercept.AuthorizationFilter@2408ca4c]
+15:27:44.679 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/favicon.ico']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+15:27:44.680 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/favicon.ico']
+15:27:44.682 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/error']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+15:27:44.683 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/error']
+15:27:44.684 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/test']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+15:27:44.685 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/test']
+15:27:44.686 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/profile']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+15:27:44.686 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/profile']
+15:27:44.687 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@792a9cb1. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+15:27:44.687 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@792a9cb1
+15:27:45.143 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping -- Adding welcome page: class path resource [static/index.html]
+15:27:45.685 [main] INFO  o.a.coyote.http11.Http11NioProtocol -- Starting ProtocolHandler ["http-nio-8080"]
+15:27:45.779 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -- Tomcat started on port(s): 8080 (http) with context path ''
+15:27:45.783 [main] INFO  c.u.j.c.RefreshScopeRefreshedEventListener -- Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+15:27:45.785 [main] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource -- Property Source systemProperties refreshed
+15:27:45.786 [main] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource -- Property Source systemEnvironment refreshed
+15:27:45.787 [main] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource -- Property Source random refreshed
+15:27:45.787 [main] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource -- Property Source Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' refreshed
+15:27:45.787 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+15:27:45.788 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+15:27:45.788 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+15:27:45.810 [main] INFO  c.hn.api.diary.DiaryApiApplication -- Started DiaryApiApplication in 18.798 seconds (process running for 20.275)
+15:35:49.953 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Closing JPA EntityManagerFactory for persistence unit 'default'
+15:35:50.109 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown initiated...
+15:35:50.118 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown completed.
+17:26:07.972 [background-preinit] INFO  o.h.validator.internal.util.Version -- HV000001: Hibernate Validator 8.0.1.Final
+17:26:08.095 [main] INFO  c.hn.api.diary.DiaryApiApplication -- Starting DiaryApiApplication using Java 17.0.6 with PID 1036 (D:\SpringProject\diary-api\out\production\classes started by nami0 in D:\SpringProject\diary-api)
+17:26:08.097 [main] INFO  c.hn.api.diary.DiaryApiApplication -- No active profile set, falling back to 1 default profile: "default"
+17:26:09.634 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+17:26:09.813 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Finished Spring Data repository scanning in 165 ms. Found 3 JPA repository interfaces.
+17:26:10.255 [main] INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor -- Post-processing PropertySource instances
+17:26:10.256 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+17:26:10.256 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+17:26:10.257 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+17:26:10.259 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+17:26:10.259 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+17:26:10.259 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+17:26:10.260 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+17:26:11.461 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -- Tomcat initialized with port(s): 8080 (http)
+17:26:11.480 [main] INFO  o.a.coyote.http11.Http11NioProtocol -- Initializing ProtocolHandler ["http-nio-8080"]
+17:26:11.484 [main] INFO  o.a.catalina.core.StandardService -- Starting service [Tomcat]
+17:26:11.485 [main] INFO  o.a.catalina.core.StandardEngine -- Starting Servlet engine: [Apache Tomcat/10.1.13]
+17:26:11.696 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -- Initializing Spring embedded WebApplicationContext
+17:26:11.700 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -- Root WebApplicationContext: initialization completed in 3450 ms
+17:26:11.785 [main] INFO  c.u.j.f.DefaultLazyPropertyFilter -- Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+17:26:11.799 [main] INFO  c.u.j.r.DefaultLazyPropertyResolver -- Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+17:26:11.802 [main] INFO  c.u.j.d.DefaultLazyPropertyDetector -- Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+17:26:11.930 [main] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Starting...
+17:26:12.309 [main] INFO  com.zaxxer.hikari.pool.HikariPool -- HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:diary user=SA
+17:26:12.312 [main] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Start completed.
+17:26:12.397 [main] INFO  o.h.jpa.internal.util.LogHelper -- HHH000204: Processing PersistenceUnitInfo [name: default]
+17:26:12.571 [main] INFO  org.hibernate.Version -- HHH000412: Hibernate ORM core version 6.2.9.Final
+17:26:12.580 [main] INFO  org.hibernate.cfg.Environment -- HHH000406: Using bytecode reflection optimizer
+17:26:12.894 [main] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+17:26:13.163 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -- No LoadTimeWeaver setup: ignoring JPA class transformer
+17:26:13.666 [main] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+17:26:14.838 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -- HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+17:26:14.951 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Initialized JPA EntityManagerFactory for persistence unit 'default'
+17:26:15.325 [main] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer -- Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.hn.api.diary.repository.MemberRepository
+17:26:15.686 [main] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration -- H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:diary'
+17:26:15.781 [main] INFO  o.s.b.web.servlet.RegistrationBean -- Filter registration was not registered (disabled)
+17:26:15.968 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory -- Hibernate is in classpath; If applicable, HQL parser will be used.
+17:26:16.660 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -- spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+17:26:16.827 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@57cd77e1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@35f59dfe, org.springframework.security.web.context.SecurityContextHolderFilter@5acf51d7, org.springframework.security.web.header.HeaderWriterFilter@7fac3ce0, org.springframework.web.filter.CorsFilter@6b71fded, org.springframework.security.web.authentication.logout.LogoutFilter@3e94a6f6, com.hn.api.diary.filter.AccessFilter@7ead0b51, com.hn.api.diary.filter.SignInFilter@749ffdc7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@204b1903, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@21f48f6c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1633962a, org.springframework.security.web.access.ExceptionTranslationFilter@5b7e2a88, org.springframework.security.web.access.intercept.AuthorizationFilter@2408ca4c]
+17:26:16.832 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/favicon.ico']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+17:26:16.832 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/favicon.ico']
+17:26:16.833 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/error']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+17:26:16.833 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/error']
+17:26:16.834 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/test']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+17:26:16.834 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/test']
+17:26:16.834 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/profile']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+17:26:16.834 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/profile']
+17:26:16.834 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@792a9cb1. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+17:26:16.834 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@792a9cb1
+17:26:17.047 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping -- Adding welcome page: class path resource [static/index.html]
+17:26:17.273 [main] INFO  o.a.coyote.http11.Http11NioProtocol -- Starting ProtocolHandler ["http-nio-8080"]
+17:26:17.313 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -- Tomcat started on port(s): 8080 (http) with context path ''
+17:26:17.315 [main] INFO  c.u.j.c.RefreshScopeRefreshedEventListener -- Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+17:26:17.316 [main] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource -- Property Source systemProperties refreshed
+17:26:17.316 [main] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource -- Property Source systemEnvironment refreshed
+17:26:17.316 [main] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource -- Property Source random refreshed
+17:26:17.316 [main] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource -- Property Source Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' refreshed
+17:26:17.316 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+17:26:17.316 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+17:26:17.316 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+17:26:17.334 [main] INFO  c.hn.api.diary.DiaryApiApplication -- Started DiaryApiApplication in 10.236 seconds (process running for 12.022)
+17:26:29.099 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -- Initializing Spring DispatcherServlet 'dispatcherServlet'
+17:26:29.100 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet -- Initializing Servlet 'dispatcherServlet'
+17:26:29.101 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet -- Completed initialization in 1 ms
+17:26:29.192 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+17:26:29.193 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signIn
+17:26:34.551 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+17:26:34.551 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signIn
+17:27:23.055 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+17:27:23.055 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signIn
+17:29:50.255 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+17:29:50.256 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signIn
+17:29:55.525 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+17:29:55.526 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signIn
+17:31:07.681 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+17:31:07.681 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signIn
+17:32:02.317 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+17:32:02.317 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts/totalCount
+17:32:02.323 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+17:32:02.324 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts
+17:32:02.338 [http-nio-8080-exec-3] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer -- Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.hn.api.diary.controller.FreeBoardPostController
+17:32:05.077 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+17:32:05.077 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/1
+17:32:05.077 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+17:32:05.077 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/1
+17:32:05.078 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+17:32:05.078 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/1
+17:32:05.085 [http-nio-8080-exec-5] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer -- Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.hn.api.diary.controller.FreeBoardCommentController
+17:33:07.248 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Closing JPA EntityManagerFactory for persistence unit 'default'
+17:33:07.417 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown initiated...
+17:33:07.433 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown completed.
+17:33:15.453 [background-preinit] INFO  o.h.validator.internal.util.Version -- HV000001: Hibernate Validator 8.0.1.Final
+17:33:15.721 [main] INFO  c.hn.api.diary.DiaryApiApplication -- Starting DiaryApiApplication using Java 17.0.6 with PID 15632 (D:\SpringProject\diary-api\out\production\classes started by nami0 in D:\SpringProject\diary-api)
+17:33:15.727 [main] INFO  c.hn.api.diary.DiaryApiApplication -- No active profile set, falling back to 1 default profile: "default"
+17:33:19.781 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+17:33:20.195 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Finished Spring Data repository scanning in 371 ms. Found 3 JPA repository interfaces.
+17:33:21.341 [main] INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor -- Post-processing PropertySource instances
+17:33:21.344 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+17:33:21.345 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+17:33:21.346 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+17:33:21.350 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+17:33:21.352 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+17:33:21.353 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+17:33:21.353 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+17:33:23.726 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -- Tomcat initialized with port(s): 8080 (http)
+17:33:23.747 [main] INFO  o.a.coyote.http11.Http11NioProtocol -- Initializing ProtocolHandler ["http-nio-8080"]
+17:33:23.754 [main] INFO  o.a.catalina.core.StandardService -- Starting service [Tomcat]
+17:33:23.754 [main] INFO  o.a.catalina.core.StandardEngine -- Starting Servlet engine: [Apache Tomcat/10.1.13]
+17:33:24.109 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -- Initializing Spring embedded WebApplicationContext
+17:33:24.112 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -- Root WebApplicationContext: initialization completed in 8102 ms
+17:33:24.245 [main] INFO  c.u.j.f.DefaultLazyPropertyFilter -- Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+17:33:24.274 [main] INFO  c.u.j.r.DefaultLazyPropertyResolver -- Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+17:33:24.281 [main] INFO  c.u.j.d.DefaultLazyPropertyDetector -- Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+17:33:24.538 [main] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Starting...
+17:33:25.323 [main] INFO  com.zaxxer.hikari.pool.HikariPool -- HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:diary user=SA
+17:33:25.328 [main] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Start completed.
+17:33:25.468 [main] INFO  o.h.jpa.internal.util.LogHelper -- HHH000204: Processing PersistenceUnitInfo [name: default]
+17:33:25.703 [main] INFO  org.hibernate.Version -- HHH000412: Hibernate ORM core version 6.2.9.Final
+17:33:25.713 [main] INFO  org.hibernate.cfg.Environment -- HHH000406: Using bytecode reflection optimizer
+17:33:26.290 [main] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+17:33:26.757 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -- No LoadTimeWeaver setup: ignoring JPA class transformer
+17:33:27.611 [main] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+17:33:29.396 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -- HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+17:33:29.525 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Initialized JPA EntityManagerFactory for persistence unit 'default'
+17:33:30.248 [main] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer -- Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.hn.api.diary.repository.MemberRepository
+17:33:30.571 [main] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration -- H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:diary'
+17:33:30.729 [main] INFO  o.s.b.web.servlet.RegistrationBean -- Filter registration was not registered (disabled)
+17:33:31.078 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory -- Hibernate is in classpath; If applicable, HQL parser will be used.
+17:33:32.250 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -- spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+17:33:32.541 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@57cd77e1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@35f59dfe, org.springframework.security.web.context.SecurityContextHolderFilter@5acf51d7, org.springframework.security.web.header.HeaderWriterFilter@7fac3ce0, org.springframework.web.filter.CorsFilter@6b71fded, org.springframework.security.web.authentication.logout.LogoutFilter@3e94a6f6, com.hn.api.diary.filter.AccessFilter@7ead0b51, com.hn.api.diary.filter.SignInFilter@749ffdc7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@204b1903, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@21f48f6c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1633962a, org.springframework.security.web.access.ExceptionTranslationFilter@5b7e2a88, org.springframework.security.web.access.intercept.AuthorizationFilter@2408ca4c]
+17:33:32.551 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/favicon.ico']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+17:33:32.551 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/favicon.ico']
+17:33:32.552 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/error']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+17:33:32.552 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/error']
+17:33:32.552 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/test']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+17:33:32.552 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/test']
+17:33:32.552 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/profile']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+17:33:32.553 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/profile']
+17:33:32.553 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@792a9cb1. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+17:33:32.553 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@792a9cb1
+17:33:32.926 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping -- Adding welcome page: class path resource [static/index.html]
+17:33:33.361 [main] INFO  o.a.coyote.http11.Http11NioProtocol -- Starting ProtocolHandler ["http-nio-8080"]
+17:33:33.420 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -- Tomcat started on port(s): 8080 (http) with context path ''
+17:33:33.424 [main] INFO  c.u.j.c.RefreshScopeRefreshedEventListener -- Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+17:33:33.425 [main] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource -- Property Source systemProperties refreshed
+17:33:33.425 [main] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource -- Property Source systemEnvironment refreshed
+17:33:33.426 [main] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource -- Property Source random refreshed
+17:33:33.426 [main] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource -- Property Source Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' refreshed
+17:33:33.426 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+17:33:33.426 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+17:33:33.427 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+17:33:33.447 [main] INFO  c.hn.api.diary.DiaryApiApplication -- Started DiaryApiApplication in 19.276 seconds (process running for 20.674)
+17:33:40.210 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -- Initializing Spring DispatcherServlet 'dispatcherServlet'
+17:33:40.210 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet -- Initializing Servlet 'dispatcherServlet'
+17:33:40.212 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet -- Completed initialization in 2 ms
+17:33:40.262 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+17:33:40.262 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signIn
+18:18:46.819 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Closing JPA EntityManagerFactory for persistence unit 'default'
+18:18:46.980 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown initiated...
+18:18:46.985 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown completed.

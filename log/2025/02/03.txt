@@ -1,0 +1,353 @@
+20:40:01.394 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.DiaryApiApplicationTests]: DiaryApiApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:40:01.615 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.DiaryApiApplicationTests
+20:40:02.550 [background-preinit] INFO  o.h.validator.internal.util.Version -- HV000001: Hibernate Validator 8.0.1.Final
+20:40:02.624 [Test worker] INFO  c.h.a.diary.DiaryApiApplicationTests -- Starting DiaryApiApplicationTests using Java 17.0.6 with PID 15876 (started by nami0 in D:\SpringProject\diary-api)
+20:40:02.629 [Test worker] INFO  c.h.a.diary.DiaryApiApplicationTests -- No active profile set, falling back to 1 default profile: "default"
+20:40:04.633 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+20:40:04.797 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Finished Spring Data repository scanning in 147 ms. Found 3 JPA repository interfaces.
+20:40:05.463 [Test worker] INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor -- Post-processing PropertySource instances
+20:40:05.465 [Test worker] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+20:40:05.467 [Test worker] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource test [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+20:40:05.468 [Test worker] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource Inlined Test Properties [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+20:40:05.468 [Test worker] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+20:40:05.469 [Test worker] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+20:40:05.469 [Test worker] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+20:40:05.470 [Test worker] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+20:40:05.470 [Test worker] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+20:40:05.470 [Test worker] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+20:40:05.850 [Test worker] INFO  c.u.j.f.DefaultLazyPropertyFilter -- Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+20:40:05.886 [Test worker] INFO  c.u.j.r.DefaultLazyPropertyResolver -- Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+20:40:05.891 [Test worker] INFO  c.u.j.d.DefaultLazyPropertyDetector -- Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+20:40:06.102 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Starting...
+20:40:06.598 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool -- HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:diary user=SA
+20:40:06.602 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Start completed.
+20:40:06.707 [Test worker] INFO  o.h.jpa.internal.util.LogHelper -- HHH000204: Processing PersistenceUnitInfo [name: default]
+20:40:06.897 [Test worker] INFO  org.hibernate.Version -- HHH000412: Hibernate ORM core version 6.2.9.Final
+20:40:06.905 [Test worker] INFO  org.hibernate.cfg.Environment -- HHH000406: Using bytecode reflection optimizer
+20:40:07.269 [Test worker] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+20:40:07.596 [Test worker] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -- No LoadTimeWeaver setup: ignoring JPA class transformer
+20:40:08.167 [Test worker] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+20:40:09.554 [Test worker] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -- HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+20:40:09.658 [Test worker] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Initialized JPA EntityManagerFactory for persistence unit 'default'
+20:40:10.461 [Test worker] INFO  o.s.d.j.r.query.QueryEnhancerFactory -- Hibernate is in classpath; If applicable, HQL parser will be used.
+20:40:11.463 [Test worker] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -- spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+20:40:11.929 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@20bc72af, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@36f2bfe6, org.springframework.security.web.context.SecurityContextHolderFilter@3c9e82a6, org.springframework.security.web.header.HeaderWriterFilter@54d5500e, org.springframework.web.filter.CorsFilter@bf2aa3f, org.springframework.security.web.authentication.logout.LogoutFilter@663d59ed, com.hn.api.diary.filter.AccessFilter@19b6b7e7, com.hn.api.diary.filter.SignInFilter@28cfbcc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4ed096cc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@64934acd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7f0977d6, org.springframework.security.web.access.ExceptionTranslationFilter@1ca876b7, org.springframework.security.web.access.intercept.AuthorizationFilter@2116e9cf]
+20:40:11.938 [Test worker] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/favicon.ico']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:40:11.938 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/favicon.ico']
+20:40:11.939 [Test worker] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/error']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:40:11.940 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/error']
+20:40:11.941 [Test worker] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/test']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:40:11.941 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/test']
+20:40:11.941 [Test worker] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/profile']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:40:11.941 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/profile']
+20:40:11.941 [Test worker] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@1009a9b4. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:40:11.942 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@1009a9b4
+20:40:12.526 [Test worker] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping -- Adding welcome page: class path resource [static/index.html]
+20:40:12.827 [Test worker] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration -- H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:diary'
+20:40:12.950 [Test worker] INFO  c.h.a.diary.DiaryApiApplicationTests -- Started DiaryApiApplicationTests in 10.971 seconds (process running for 15.187)
+20:40:14.759 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.controller.AuthControllerTest]: AuthControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:40:14.816 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.controller.AuthControllerTest
+20:40:14.864 [Test worker] INFO  c.h.a.d.c.AuthControllerTest -- Starting AuthControllerTest using Java 17.0.6 with PID 15876 (started by nami0 in D:\SpringProject\diary-api)
+20:40:14.864 [Test worker] INFO  c.h.a.d.c.AuthControllerTest -- No active profile set, falling back to 1 default profile: "default"
+20:40:15.344 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+20:40:15.391 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Finished Spring Data repository scanning in 46 ms. Found 3 JPA repository interfaces.
+20:40:15.518 [Test worker] INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor -- Post-processing PropertySource instances
+20:40:15.519 [Test worker] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource Annotations [org.springframework.boot.test.autoconfigure.properties.AnnotationsPropertySource] to EncryptableEnumerablePropertySourceWrapper
+20:40:15.519 [Test worker] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+20:40:15.520 [Test worker] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource test [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+20:40:15.520 [Test worker] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource Inlined Test Properties [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+20:40:15.520 [Test worker] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+20:40:15.520 [Test worker] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+20:40:15.520 [Test worker] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+20:40:15.520 [Test worker] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+20:40:15.522 [Test worker] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+20:40:15.522 [Test worker] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+20:40:15.579 [Test worker] INFO  c.u.j.f.DefaultLazyPropertyFilter -- Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+20:40:15.592 [Test worker] INFO  c.u.j.r.DefaultLazyPropertyResolver -- Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+20:40:15.592 [Test worker] INFO  c.u.j.d.DefaultLazyPropertyDetector -- Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+20:40:15.703 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-2 - Starting...
+20:40:15.705 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool -- HikariPool-2 - Added connection conn10: url=jdbc:h2:mem:diary user=SA
+20:40:15.706 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-2 - Start completed.
+20:40:15.710 [Test worker] INFO  o.h.jpa.internal.util.LogHelper -- HHH000204: Processing PersistenceUnitInfo [name: default]
+20:40:15.732 [Test worker] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+20:40:15.733 [Test worker] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -- No LoadTimeWeaver setup: ignoring JPA class transformer
+20:40:15.767 [Test worker] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+20:40:15.936 [Test worker] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -- HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+20:40:15.969 [Test worker] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Initialized JPA EntityManagerFactory for persistence unit 'default'
+20:40:16.507 [Test worker] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -- spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+20:40:16.664 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4d9dd8cc, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@10d1f6da, org.springframework.security.web.context.SecurityContextHolderFilter@23243385, org.springframework.security.web.header.HeaderWriterFilter@2095e085, org.springframework.web.filter.CorsFilter@6ced9545, org.springframework.security.web.authentication.logout.LogoutFilter@7065ae93, com.hn.api.diary.filter.AccessFilter@ee395c, com.hn.api.diary.filter.SignInFilter@286cd3ad, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5f83fdf6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7dc155b3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3adb46b5, org.springframework.security.web.access.ExceptionTranslationFilter@7d7be366, org.springframework.security.web.access.intercept.AuthorizationFilter@47523643]
+20:40:16.668 [Test worker] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/favicon.ico']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:40:16.669 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/favicon.ico']
+20:40:16.669 [Test worker] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/error']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:40:16.670 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/error']
+20:40:16.670 [Test worker] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/test']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:40:16.670 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/test']
+20:40:16.670 [Test worker] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/profile']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:40:16.670 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/profile']
+20:40:16.672 [Test worker] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@62a153d3. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:40:16.672 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@62a153d3
+20:40:16.800 [Test worker] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping -- Adding welcome page: class path resource [static/index.html]
+20:40:16.927 [Test worker] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration -- H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:diary'
+20:40:17.023 [Test worker] INFO  o.s.b.t.m.w.SpringBootMockServletContext -- Initializing Spring TestDispatcherServlet ''
+20:40:17.024 [Test worker] INFO  o.s.t.w.s.TestDispatcherServlet -- Initializing Servlet ''
+20:40:17.026 [Test worker] INFO  o.s.t.w.s.TestDispatcherServlet -- Completed initialization in 2 ms
+20:40:17.045 [Test worker] INFO  c.h.a.d.c.AuthControllerTest -- Started AuthControllerTest in 2.221 seconds (process running for 19.28)
+20:40:17.592 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:17.592 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signIn
+20:40:18.087 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:18.088 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signIn
+20:40:18.102 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:18.102 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /user
+20:40:18.280 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:18.280 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /user
+20:40:18.313 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:18.313 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signIn
+20:40:18.320 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:18.320 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signIn
+20:40:18.327 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:18.328 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /admin
+20:40:18.337 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:18.338 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /admin
+20:40:18.348 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.controller.FreeBoardCommentControllerTest]: FreeBoardCommentControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:40:18.353 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.controller.FreeBoardCommentControllerTest
+20:40:18.516 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:18.517 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signIn
+20:40:18.538 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:18.539 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comment/delete/4
+20:40:18.599 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:18.600 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comment/delete/5
+20:40:18.615 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:18.616 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comment/delete/7
+20:40:18.626 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:18.626 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comment/delete/8
+20:40:18.748 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:18.748 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/11
+20:40:18.854 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:18.855 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signIn
+20:40:18.877 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:18.878 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comment/update
+20:40:18.900 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:18.900 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comment/update
+20:40:19.025 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:19.025 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signIn
+20:40:19.042 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:19.042 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comment/reply
+20:40:19.150 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:19.150 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signIn
+20:40:19.165 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:19.165 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comment/write
+20:40:19.276 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:19.276 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/39
+20:40:19.409 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.controller.FreeBoardPostControllerTest]: FreeBoardPostControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:40:19.413 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.controller.FreeBoardPostControllerTest
+20:40:19.503 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:19.503 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signIn
+20:40:19.515 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:19.516 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/delete/40
+20:40:19.523 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:19.524 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/delete/41
+20:40:19.538 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:19.539 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/delete/42
+20:40:19.546 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:19.547 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/delete/44
+20:40:19.557 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:19.557 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/delete/45
+20:40:19.640 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:19.640 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts/totalCount
+20:40:19.723 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:19.724 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/57
+20:40:19.901 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:19.902 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signIn
+20:40:19.917 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:19.917 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/update
+20:40:19.991 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:19.992 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/update
+20:40:20.076 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:20.076 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/67
+20:40:20.162 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:20.163 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signIn
+20:40:20.172 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:20.172 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/reply
+20:40:20.267 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:20.267 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signIn
+20:40:20.277 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:20.278 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/write
+20:40:20.356 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:20.356 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts
+20:40:20.375 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.controller.MemberControllerTest]: MemberControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:40:20.386 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.controller.MemberControllerTest
+20:40:20.412 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:20.412 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signUp/checkDuplication
+20:40:20.440 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:20.440 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signUp
+20:40:20.500 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:20.500 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signUp/checkDuplication
+20:40:20.526 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:20.526 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signIn
+20:40:20.533 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:20.534 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signIn
+20:40:20.536 [Test worker] ERROR c.hn.api.diary.filter.SignInFilter -- An internal error occurred while trying to authenticate the user.
+org.springframework.security.authentication.InternalAuthenticationServiceException: invalid value
+	at org.springframework.security.authentication.dao.DaoAuthenticationProvider.retrieveUser(DaoAuthenticationProvider.java:118)
+	at org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider.authenticate(AbstractUserDetailsAuthenticationProvider.java:133)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:182)
+	at com.hn.api.diary.filter.SignInFilter.attemptAuthentication(SignInFilter.java:52)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:231)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:221)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at com.hn.api.diary.filter.AccessFilter.doFilterInternal(AccessFilter.java:57)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:201)
+	at com.hn.api.diary.controller.MemberControllerTest.fail_signIn(MemberControllerTest.java:279)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:727)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:110)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:90)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:85)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:62)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
+	at jdk.proxy1/jdk.proxy1.$Proxy2.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:193)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:129)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:100)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:60)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:113)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:65)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+Caused by: com.hn.api.diary.exception.InvalidValue: invalid value
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+	at com.hn.api.diary.config.SecurityConfig$1.loadUserByUsername(SecurityConfig.java:140)
+	at org.springframework.security.authentication.dao.DaoAuthenticationProvider.retrieveUser(DaoAuthenticationProvider.java:103)
+	... 128 common frames omitted
+20:40:20.550 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:20.551 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signIn
+20:40:20.584 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:20.584 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signIn
+20:40:20.617 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:20.618 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signUp/checkDuplication
+20:40:20.645 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 127.0.0.1
+20:40:20.645 [Test worker] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signUp/checkDuplication
+20:40:20.664 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.controller.TestControllerTest]: TestControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:40:20.670 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.controller.TestControllerTest
+20:40:20.682 [Test worker] INFO  com.hn.api.diary.controller.Test -- jhn test class...
+20:40:20.682 [Test worker] INFO  c.h.a.d.controller.TestController -- jhn test controller class ...
+20:40:20.692 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.service.FreeBoardCommentServiceTest]: FreeBoardCommentServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:40:20.741 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.service.FreeBoardCommentServiceTest
+20:40:21.256 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.service.FreeBoardPostServiceTest]: FreeBoardPostServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:40:21.260 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.service.FreeBoardPostServiceTest
+20:40:21.872 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.service.MemberTestServiceTest]: MemberTestServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:40:21.875 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.service.MemberTestServiceTest
+20:40:21.970 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Closing JPA EntityManagerFactory for persistence unit 'default'
+20:40:21.975 [SpringApplicationShutdownHook] WARN  o.h.e.jdbc.spi.SqlExceptionHelper -- SQL Error: 90121, SQLState: 90121
+20:40:21.975 [SpringApplicationShutdownHook] ERROR o.h.e.jdbc.spi.SqlExceptionHelper -- Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+20:40:21.977 [SpringApplicationShutdownHook] WARN  o.h.e.jdbc.spi.SqlExceptionHelper -- SQL Error: 90121, SQLState: 90121
+20:40:21.978 [SpringApplicationShutdownHook] ERROR o.h.e.jdbc.spi.SqlExceptionHelper -- Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+20:40:21.980 [SpringApplicationShutdownHook] WARN  o.s.b.f.s.DisposableBeanAdapter -- Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution [Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]] [n/a]
+20:40:21.981 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown initiated...
+20:40:21.984 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown completed.
+20:40:21.990 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Closing JPA EntityManagerFactory for persistence unit 'default'
+20:40:22.184 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-2 - Shutdown initiated...
+20:40:22.191 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-2 - Shutdown completed.

@@ -1,0 +1,299 @@
+20:35:21.399 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.DiaryApiApplicationTests]: DiaryApiApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:35:21.671 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.DiaryApiApplicationTests
+20:35:22.868 [Test worker] INFO  c.h.a.diary.DiaryApiApplicationTests -- Starting DiaryApiApplicationTests using Java 17.0.6 with PID 11984 (started by nami0 in D:\JavaProject\diary-api)
+20:35:22.870 [Test worker] INFO  c.h.a.diary.DiaryApiApplicationTests -- No active profile set, falling back to 1 default profile: "default"
+20:35:24.855 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+20:35:25.031 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Finished Spring Data repository scanning in 159 ms. Found 3 JPA repository interfaces.
+20:35:26.379 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Starting...
+20:35:26.839 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool -- HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:diary member=SA
+20:35:26.845 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Start completed.
+20:35:26.979 [Test worker] INFO  o.h.jpa.internal.util.LogHelper -- HHH000204: Processing PersistenceUnitInfo [name: default]
+20:35:27.226 [Test worker] INFO  org.hibernate.Version -- HHH000412: Hibernate ORM core version 6.2.9.Final
+20:35:27.236 [Test worker] INFO  org.hibernate.cfg.Environment -- HHH000406: Using bytecode reflection optimizer
+20:35:27.657 [Test worker] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+20:35:28.076 [Test worker] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -- No LoadTimeWeaver setup: ignoring JPA class transformer
+20:35:29.069 [Test worker] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+20:35:31.008 [Test worker] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -- HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+20:35:31.177 [Test worker] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Initialized JPA EntityManagerFactory for persistence unit 'default'
+20:35:31.813 [Test worker] INFO  o.s.d.j.r.query.QueryEnhancerFactory -- Hibernate is in classpath; If applicable, HQL parser will be used.
+20:35:32.603 [Test worker] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -- spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+20:35:32.982 [Test worker] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping -- Adding welcome page: class path resource [static/index.html]
+20:35:33.203 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@18d6ac02, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@73c25e8, org.springframework.security.web.context.SecurityContextHolderFilter@35307365, org.springframework.security.web.header.HeaderWriterFilter@7d4bb16b, org.springframework.web.filter.CorsFilter@3545bfea, org.springframework.security.web.authentication.logout.LogoutFilter@57642552, com.hn.api.diary.filter.AccessFilter@6bb2dae6, com.hn.api.diary.filter.SignInFilter@2ab91b65, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2968d3c0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@c310aa3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@55a8f92d, org.springframework.security.web.access.ExceptionTranslationFilter@565b77ba, org.springframework.security.web.access.intercept.AuthorizationFilter@734d870f]
+20:35:33.211 [Test worker] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/favicon.ico']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:35:33.211 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/favicon.ico']
+20:35:33.213 [Test worker] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/error']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:35:33.213 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/error']
+20:35:33.214 [Test worker] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@4602fa2f. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:35:33.214 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@4602fa2f
+20:35:33.658 [Test worker] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration -- H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:diary'
+20:35:33.769 [Test worker] INFO  c.h.a.diary.DiaryApiApplicationTests -- Started DiaryApiApplicationTests in 11.654 seconds (process running for 16.19)
+20:35:35.527 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.controller.AuthControllerTest]: AuthControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:35:35.597 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.controller.AuthControllerTest
+20:35:35.668 [Test worker] INFO  c.h.a.d.c.AuthControllerTest -- Starting AuthControllerTest using Java 17.0.6 with PID 11984 (started by nami0 in D:\JavaProject\diary-api)
+20:35:35.669 [Test worker] INFO  c.h.a.d.c.AuthControllerTest -- No active profile set, falling back to 1 default profile: "default"
+20:35:36.304 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+20:35:36.373 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Finished Spring Data repository scanning in 65 ms. Found 3 JPA repository interfaces.
+20:35:36.671 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-2 - Starting...
+20:35:36.674 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool -- HikariPool-2 - Added connection conn10: url=jdbc:h2:mem:diary member=SA
+20:35:36.675 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-2 - Start completed.
+20:35:36.680 [Test worker] INFO  o.h.jpa.internal.util.LogHelper -- HHH000204: Processing PersistenceUnitInfo [name: default]
+20:35:36.699 [Test worker] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+20:35:36.699 [Test worker] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -- No LoadTimeWeaver setup: ignoring JPA class transformer
+20:35:36.753 [Test worker] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+20:35:36.862 [Test worker] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -- HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+20:35:36.920 [Test worker] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Initialized JPA EntityManagerFactory for persistence unit 'default'
+20:35:37.279 [Test worker] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -- spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+20:35:37.372 [Test worker] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping -- Adding welcome page: class path resource [static/index.html]
+20:35:37.428 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@428b5b3f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@687749d1, org.springframework.security.web.context.SecurityContextHolderFilter@5c39ec34, org.springframework.security.web.header.HeaderWriterFilter@5d066f, org.springframework.web.filter.CorsFilter@19a5cfb8, org.springframework.security.web.authentication.logout.LogoutFilter@6d0e242f, com.hn.api.diary.filter.AccessFilter@ad7d724, com.hn.api.diary.filter.SignInFilter@22265a8d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@362aa318, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@16433d56, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2dad6fc9, org.springframework.security.web.access.ExceptionTranslationFilter@3cc3914a, org.springframework.security.web.access.intercept.AuthorizationFilter@6465f4a]
+20:35:37.436 [Test worker] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/favicon.ico']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:35:37.436 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/favicon.ico']
+20:35:37.440 [Test worker] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/error']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:35:37.440 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/error']
+20:35:37.441 [Test worker] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@1f47e14d. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:35:37.441 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@1f47e14d
+20:35:37.551 [Test worker] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration -- H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:diary'
+20:35:37.659 [Test worker] INFO  o.s.b.t.m.w.SpringBootMockServletContext -- Initializing Spring TestDispatcherServlet ''
+20:35:37.659 [Test worker] INFO  o.s.t.w.s.TestDispatcherServlet -- Initializing Servlet ''
+20:35:37.663 [Test worker] INFO  o.s.t.w.s.TestDispatcherServlet -- Completed initialization in 2 ms
+20:35:37.680 [Test worker] INFO  c.h.a.d.c.AuthControllerTest -- Started AuthControllerTest in 2.074 seconds (process running for 20.099)
+20:35:39.737 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.controller.FreeBoardCommentControllerTest]: FreeBoardCommentControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:35:39.742 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.controller.FreeBoardCommentControllerTest
+20:35:42.281 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.controller.FreeBoardPostControllerTest]: FreeBoardPostControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:35:42.288 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.controller.FreeBoardPostControllerTest
+20:35:43.979 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.controller.TestControllerTest]: TestControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:35:43.987 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.controller.TestControllerTest
+20:35:44.005 [Test worker] INFO  com.hn.api.diary.controller.Test -- jhn test class...
+20:35:44.006 [Test worker] INFO  c.h.a.d.controller.TestController -- jhn test controller class ...
+20:35:44.022 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.controller.MemberControllerTest]: UserControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:35:44.027 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.controller.MemberControllerTest
+20:35:44.282 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.service.FreeBoardCommentServiceTest]: FreeBoardCommentServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:35:44.455 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.service.FreeBoardCommentServiceTest
+20:35:45.342 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.service.FreeBoardPostServiceTest]: FreeBoardPostServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:35:45.345 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.service.FreeBoardPostServiceTest
+20:35:46.299 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.service.MemberTestServiceTest]: UserTestServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:35:46.303 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.service.MemberTestServiceTest
+20:35:46.417 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Closing JPA EntityManagerFactory for persistence unit 'default'
+20:35:46.424 [SpringApplicationShutdownHook] WARN  o.h.e.jdbc.spi.SqlExceptionHelper -- SQL Error: 90121, SQLState: 90121
+20:35:46.424 [SpringApplicationShutdownHook] ERROR o.h.e.jdbc.spi.SqlExceptionHelper -- Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+20:35:46.427 [SpringApplicationShutdownHook] WARN  o.h.e.jdbc.spi.SqlExceptionHelper -- SQL Error: 90121, SQLState: 90121
+20:35:46.427 [SpringApplicationShutdownHook] ERROR o.h.e.jdbc.spi.SqlExceptionHelper -- Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+20:35:46.428 [SpringApplicationShutdownHook] WARN  o.s.b.f.s.DisposableBeanAdapter -- Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution [Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]] [n/a]
+20:35:46.429 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown initiated...
+20:35:46.433 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown completed.
+20:35:46.438 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Closing JPA EntityManagerFactory for persistence unit 'default'
+20:35:46.638 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-2 - Shutdown initiated...
+20:35:46.644 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-2 - Shutdown completed.
+20:37:05.984 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.DiaryApiApplicationTests]: DiaryApiApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:37:06.226 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.DiaryApiApplicationTests
+20:37:07.036 [Test worker] INFO  c.h.a.diary.DiaryApiApplicationTests -- Starting DiaryApiApplicationTests using Java 17.0.6 with PID 10112 (started by nami0 in D:\JavaProject\diary-api)
+20:37:07.038 [Test worker] INFO  c.h.a.diary.DiaryApiApplicationTests -- No active profile set, falling back to 1 default profile: "default"
+20:37:08.668 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+20:37:08.826 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Finished Spring Data repository scanning in 141 ms. Found 3 JPA repository interfaces.
+20:37:09.752 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Starting...
+20:37:10.201 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool -- HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:diary member=SA
+20:37:10.205 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Start completed.
+20:37:10.345 [Test worker] INFO  o.h.jpa.internal.util.LogHelper -- HHH000204: Processing PersistenceUnitInfo [name: default]
+20:37:10.533 [Test worker] INFO  org.hibernate.Version -- HHH000412: Hibernate ORM core version 6.2.9.Final
+20:37:10.547 [Test worker] INFO  org.hibernate.cfg.Environment -- HHH000406: Using bytecode reflection optimizer
+20:37:11.079 [Test worker] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+20:37:11.550 [Test worker] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -- No LoadTimeWeaver setup: ignoring JPA class transformer
+20:37:12.449 [Test worker] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+20:37:14.307 [Test worker] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -- HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+20:37:14.512 [Test worker] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Initialized JPA EntityManagerFactory for persistence unit 'default'
+20:37:15.513 [Test worker] INFO  o.s.d.j.r.query.QueryEnhancerFactory -- Hibernate is in classpath; If applicable, HQL parser will be used.
+20:37:16.754 [Test worker] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -- spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+20:37:17.282 [Test worker] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping -- Adding welcome page: class path resource [static/index.html]
+20:37:17.710 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2d63534d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6316b9e3, org.springframework.security.web.context.SecurityContextHolderFilter@5d8edf2, org.springframework.security.web.header.HeaderWriterFilter@6000ca67, org.springframework.web.filter.CorsFilter@186f7553, org.springframework.security.web.authentication.logout.LogoutFilter@6f10082e, com.hn.api.diary.filter.AccessFilter@21f8aa9c, com.hn.api.diary.filter.SignInFilter@68893394, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@565b77ba, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@79224636, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@44835de9, org.springframework.security.web.access.ExceptionTranslationFilter@18bd3135, org.springframework.security.web.access.intercept.AuthorizationFilter@251d64d6]
+20:37:17.723 [Test worker] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/favicon.ico']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:37:17.724 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/favicon.ico']
+20:37:17.725 [Test worker] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/error']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:37:17.726 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/error']
+20:37:17.727 [Test worker] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@7a90796c. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:37:17.727 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@7a90796c
+20:37:18.389 [Test worker] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration -- H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:diary'
+20:37:18.537 [Test worker] INFO  c.h.a.diary.DiaryApiApplicationTests -- Started DiaryApiApplicationTests in 12.009 seconds (process running for 16.24)
+20:37:19.904 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.controller.AuthControllerTest]: AuthControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:37:19.967 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.controller.AuthControllerTest
+20:37:20.030 [Test worker] INFO  c.h.a.d.c.AuthControllerTest -- Starting AuthControllerTest using Java 17.0.6 with PID 10112 (started by nami0 in D:\JavaProject\diary-api)
+20:37:20.031 [Test worker] INFO  c.h.a.d.c.AuthControllerTest -- No active profile set, falling back to 1 default profile: "default"
+20:37:20.600 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+20:37:20.645 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Finished Spring Data repository scanning in 44 ms. Found 3 JPA repository interfaces.
+20:37:20.883 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-2 - Starting...
+20:37:20.886 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool -- HikariPool-2 - Added connection conn10: url=jdbc:h2:mem:diary member=SA
+20:37:20.886 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-2 - Start completed.
+20:37:20.889 [Test worker] INFO  o.h.jpa.internal.util.LogHelper -- HHH000204: Processing PersistenceUnitInfo [name: default]
+20:37:20.905 [Test worker] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+20:37:20.905 [Test worker] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -- No LoadTimeWeaver setup: ignoring JPA class transformer
+20:37:20.942 [Test worker] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+20:37:21.055 [Test worker] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -- HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+20:37:21.107 [Test worker] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Initialized JPA EntityManagerFactory for persistence unit 'default'
+20:37:21.521 [Test worker] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -- spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+20:37:21.632 [Test worker] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping -- Adding welcome page: class path resource [static/index.html]
+20:37:21.703 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5b1378cf, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@49925329, org.springframework.security.web.context.SecurityContextHolderFilter@e8acdfc, org.springframework.security.web.header.HeaderWriterFilter@ad7d724, org.springframework.web.filter.CorsFilter@16adf66f, org.springframework.security.web.authentication.logout.LogoutFilter@62910d16, com.hn.api.diary.filter.AccessFilter@53466b67, com.hn.api.diary.filter.SignInFilter@4bdc0fb0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1e680c92, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@ef64a8f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@64e41da0, org.springframework.security.web.access.ExceptionTranslationFilter@492939b, org.springframework.security.web.access.intercept.AuthorizationFilter@1a2d02d8]
+20:37:21.707 [Test worker] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/favicon.ico']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:37:21.708 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/favicon.ico']
+20:37:21.708 [Test worker] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/error']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:37:21.708 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/error']
+20:37:21.709 [Test worker] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@687749d1. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:37:21.709 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@687749d1
+20:37:21.825 [Test worker] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration -- H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:diary'
+20:37:21.934 [Test worker] INFO  o.s.b.t.m.w.SpringBootMockServletContext -- Initializing Spring TestDispatcherServlet ''
+20:37:21.935 [Test worker] INFO  o.s.t.w.s.TestDispatcherServlet -- Initializing Servlet ''
+20:37:21.938 [Test worker] INFO  o.s.t.w.s.TestDispatcherServlet -- Completed initialization in 2 ms
+20:37:21.958 [Test worker] INFO  c.h.a.d.c.AuthControllerTest -- Started AuthControllerTest in 1.981 seconds (process running for 19.661)
+20:37:23.530 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.controller.FreeBoardCommentControllerTest]: FreeBoardCommentControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:37:23.537 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.controller.FreeBoardCommentControllerTest
+20:37:26.710 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.controller.FreeBoardPostControllerTest]: FreeBoardPostControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:37:26.719 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.controller.FreeBoardPostControllerTest
+20:37:29.367 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.controller.TestControllerTest]: TestControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:37:29.375 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.controller.TestControllerTest
+20:37:29.416 [Test worker] INFO  com.hn.api.diary.controller.Test -- jhn test class...
+20:37:29.416 [Test worker] INFO  c.h.a.d.controller.TestController -- jhn test controller class ...
+20:37:29.432 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.controller.MemberControllerTest]: UserControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:37:29.439 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.controller.MemberControllerTest
+20:37:29.917 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.service.FreeBoardCommentServiceTest]: FreeBoardCommentServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:37:29.973 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.service.FreeBoardCommentServiceTest
+20:37:31.164 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.service.FreeBoardPostServiceTest]: FreeBoardPostServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:37:31.167 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.service.FreeBoardPostServiceTest
+20:37:32.285 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hn.api.diary.service.MemberTestServiceTest]: UserTestServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:37:32.288 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hn.api.diary.DiaryApiApplication for test class com.hn.api.diary.service.MemberTestServiceTest
+20:37:32.444 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Closing JPA EntityManagerFactory for persistence unit 'default'
+20:37:32.457 [SpringApplicationShutdownHook] WARN  o.h.e.jdbc.spi.SqlExceptionHelper -- SQL Error: 90121, SQLState: 90121
+20:37:32.458 [SpringApplicationShutdownHook] ERROR o.h.e.jdbc.spi.SqlExceptionHelper -- Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+20:37:32.463 [SpringApplicationShutdownHook] WARN  o.h.e.jdbc.spi.SqlExceptionHelper -- SQL Error: 90121, SQLState: 90121
+20:37:32.463 [SpringApplicationShutdownHook] ERROR o.h.e.jdbc.spi.SqlExceptionHelper -- Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+20:37:32.465 [SpringApplicationShutdownHook] WARN  o.s.b.f.s.DisposableBeanAdapter -- Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution [Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]] [n/a]
+20:37:32.466 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown initiated...
+20:37:32.492 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown completed.
+20:37:32.502 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Closing JPA EntityManagerFactory for persistence unit 'default'
+20:37:32.693 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-2 - Shutdown initiated...
+20:37:32.722 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-2 - Shutdown completed.
+20:41:01.921 [main] INFO  c.hn.api.diary.DiaryApiApplication -- Starting DiaryApiApplication using Java 17.0.6 with PID 15996 (D:\JavaProject\diary-api\out\production\classes started by nami0 in D:\JavaProject\diary-api)
+20:41:01.927 [main] INFO  c.hn.api.diary.DiaryApiApplication -- No active profile set, falling back to 1 default profile: "default"
+20:41:03.546 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+20:41:03.708 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Finished Spring Data repository scanning in 146 ms. Found 3 JPA repository interfaces.
+20:41:05.200 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -- Tomcat initialized with port(s): 8080 (http)
+20:41:05.215 [main] INFO  o.a.coyote.http11.Http11NioProtocol -- Initializing ProtocolHandler ["http-nio-8080"]
+20:41:05.220 [main] INFO  o.a.catalina.core.StandardService -- Starting service [Tomcat]
+20:41:05.220 [main] INFO  o.a.catalina.core.StandardEngine -- Starting Servlet engine: [Apache Tomcat/10.1.13]
+20:41:05.422 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -- Initializing Spring embedded WebApplicationContext
+20:41:05.424 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -- Root WebApplicationContext: initialization completed in 3338 ms
+20:41:05.589 [main] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Starting...
+20:41:06.046 [main] INFO  com.zaxxer.hikari.pool.HikariPool -- HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:diary member=SA
+20:41:06.052 [main] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Start completed.
+20:41:06.146 [main] INFO  o.h.jpa.internal.util.LogHelper -- HHH000204: Processing PersistenceUnitInfo [name: default]
+20:41:06.294 [main] INFO  org.hibernate.Version -- HHH000412: Hibernate ORM core version 6.2.9.Final
+20:41:06.300 [main] INFO  org.hibernate.cfg.Environment -- HHH000406: Using bytecode reflection optimizer
+20:41:06.634 [main] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+20:41:06.926 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -- No LoadTimeWeaver setup: ignoring JPA class transformer
+20:41:07.465 [main] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+20:41:08.615 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -- HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+20:41:08.725 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Initialized JPA EntityManagerFactory for persistence unit 'default'
+20:41:09.121 [main] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer -- Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.hn.api.diary.repository.MemberRepository
+20:41:09.331 [main] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration -- H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:diary'
+20:41:09.449 [main] INFO  o.s.b.web.servlet.RegistrationBean -- Filter registration was not registered (disabled)
+20:41:09.626 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory -- Hibernate is in classpath; If applicable, HQL parser will be used.
+20:41:10.355 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -- spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+20:41:10.529 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping -- Adding welcome page: class path resource [static/index.html]
+20:41:10.679 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7e383712, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2330c5c5, org.springframework.security.web.context.SecurityContextHolderFilter@466c39de, org.springframework.security.web.header.HeaderWriterFilter@70a81b4e, org.springframework.web.filter.CorsFilter@2e587292, org.springframework.security.web.authentication.logout.LogoutFilter@144caca6, com.hn.api.diary.filter.AccessFilter@65294247, com.hn.api.diary.filter.SignInFilter@44d6f9cf, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@15d2c2ca, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@17c7cc93, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@36c763cd, org.springframework.security.web.access.ExceptionTranslationFilter@46aa5294, org.springframework.security.web.access.intercept.AuthorizationFilter@7e147828]
+20:41:10.686 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/favicon.ico']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:41:10.686 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/favicon.ico']
+20:41:10.686 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/error']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:41:10.687 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/error']
+20:41:10.687 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@3695e4f2. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:41:10.687 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@3695e4f2
+20:41:10.992 [main] INFO  o.a.coyote.http11.Http11NioProtocol -- Starting ProtocolHandler ["http-nio-8080"]
+20:41:11.030 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -- Tomcat started on port(s): 8080 (http) with context path ''
+20:41:11.042 [main] INFO  c.hn.api.diary.DiaryApiApplication -- Started DiaryApiApplication in 10.055 seconds (process running for 11.528)
+20:49:23.283 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -- Initializing Spring DispatcherServlet 'dispatcherServlet'
+20:49:23.284 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet -- Initializing Servlet 'dispatcherServlet'
+20:49:23.287 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet -- Completed initialization in 3 ms
+20:52:07.714 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Closing JPA EntityManagerFactory for persistence unit 'default'
+20:52:07.813 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown initiated...
+20:52:07.833 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown completed.
+20:52:15.542 [main] INFO  c.hn.api.diary.DiaryApiApplication -- Starting DiaryApiApplication using Java 17.0.6 with PID 2052 (D:\JavaProject\diary-api\out\production\classes started by nami0 in D:\JavaProject\diary-api)
+20:52:15.548 [main] INFO  c.hn.api.diary.DiaryApiApplication -- No active profile set, falling back to 1 default profile: "default"
+20:52:17.443 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+20:52:17.761 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Finished Spring Data repository scanning in 284 ms. Found 3 JPA repository interfaces.
+20:52:20.174 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -- Tomcat initialized with port(s): 8080 (http)
+20:52:20.187 [main] INFO  o.a.coyote.http11.Http11NioProtocol -- Initializing ProtocolHandler ["http-nio-8080"]
+20:52:20.191 [main] INFO  o.a.catalina.core.StandardService -- Starting service [Tomcat]
+20:52:20.191 [main] INFO  o.a.catalina.core.StandardEngine -- Starting Servlet engine: [Apache Tomcat/10.1.13]
+20:52:20.355 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -- Initializing Spring embedded WebApplicationContext
+20:52:20.356 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -- Root WebApplicationContext: initialization completed in 4654 ms
+20:52:20.592 [main] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Starting...
+20:52:21.110 [main] INFO  com.zaxxer.hikari.pool.HikariPool -- HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:diary member=SA
+20:52:21.115 [main] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Start completed.
+20:52:21.254 [main] INFO  o.h.jpa.internal.util.LogHelper -- HHH000204: Processing PersistenceUnitInfo [name: default]
+20:52:21.446 [main] INFO  org.hibernate.Version -- HHH000412: Hibernate ORM core version 6.2.9.Final
+20:52:21.454 [main] INFO  org.hibernate.cfg.Environment -- HHH000406: Using bytecode reflection optimizer
+20:52:21.901 [main] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+20:52:22.246 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -- No LoadTimeWeaver setup: ignoring JPA class transformer
+20:52:22.855 [main] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+20:52:24.131 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -- HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+20:52:24.245 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Initialized JPA EntityManagerFactory for persistence unit 'default'
+20:52:24.807 [main] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer -- Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.hn.api.diary.repository.MemberRepository
+20:52:25.064 [main] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration -- H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:diary'
+20:52:25.193 [main] INFO  o.s.b.web.servlet.RegistrationBean -- Filter registration was not registered (disabled)
+20:52:25.426 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory -- Hibernate is in classpath; If applicable, HQL parser will be used.
+20:52:26.318 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -- spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+20:52:26.569 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping -- Adding welcome page: class path resource [static/index.html]
+20:52:26.753 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@e36a4c1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3986b56, org.springframework.security.web.context.SecurityContextHolderFilter@23471f48, org.springframework.security.web.header.HeaderWriterFilter@3647b274, org.springframework.web.filter.CorsFilter@7d90d4c6, org.springframework.security.web.authentication.logout.LogoutFilter@50c442a5, com.hn.api.diary.filter.AccessFilter@66576bd2, com.hn.api.diary.filter.SignInFilter@75559cd9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7ebf5bf, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@70a81b4e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@453fcce2, org.springframework.security.web.access.ExceptionTranslationFilter@4ca6f587, org.springframework.security.web.access.intercept.AuthorizationFilter@5d4a1d2c]
+20:52:26.759 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/favicon.ico']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:52:26.759 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/favicon.ico']
+20:52:26.760 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/error']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:52:26.760 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/error']
+20:52:26.760 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@74307afd. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:52:26.760 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@74307afd
+20:52:27.121 [main] INFO  o.a.coyote.http11.Http11NioProtocol -- Starting ProtocolHandler ["http-nio-8080"]
+20:52:27.178 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -- Tomcat started on port(s): 8080 (http) with context path ''
+20:52:27.189 [main] INFO  c.hn.api.diary.DiaryApiApplication -- Started DiaryApiApplication in 12.509 seconds (process running for 13.878)
+20:52:40.320 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -- Initializing Spring DispatcherServlet 'dispatcherServlet'
+20:52:40.321 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet -- Initializing Servlet 'dispatcherServlet'
+20:52:40.324 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet -- Completed initialization in 3 ms
+20:53:10.979 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Closing JPA EntityManagerFactory for persistence unit 'default'
+20:53:11.115 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown initiated...
+20:53:11.125 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown completed.
+20:53:19.500 [main] INFO  c.hn.api.diary.DiaryApiApplication -- Starting DiaryApiApplication using Java 17.0.6 with PID 14920 (D:\JavaProject\diary-api\out\production\classes started by nami0 in D:\JavaProject\diary-api)
+20:53:19.504 [main] INFO  c.hn.api.diary.DiaryApiApplication -- No active profile set, falling back to 1 default profile: "default"
+20:53:21.404 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+20:53:21.590 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Finished Spring Data repository scanning in 170 ms. Found 3 JPA repository interfaces.
+20:53:23.719 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -- Tomcat initialized with port(s): 8080 (http)
+20:53:23.729 [main] INFO  o.a.coyote.http11.Http11NioProtocol -- Initializing ProtocolHandler ["http-nio-8080"]
+20:53:23.732 [main] INFO  o.a.catalina.core.StandardService -- Starting service [Tomcat]
+20:53:23.732 [main] INFO  o.a.catalina.core.StandardEngine -- Starting Servlet engine: [Apache Tomcat/10.1.13]
+20:53:23.994 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -- Initializing Spring embedded WebApplicationContext
+20:53:23.996 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -- Root WebApplicationContext: initialization completed in 4308 ms
+20:53:24.243 [main] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Starting...
+20:53:24.629 [main] INFO  com.zaxxer.hikari.pool.HikariPool -- HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:diary member=SA
+20:53:24.634 [main] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Start completed.
+20:53:24.737 [main] INFO  o.h.jpa.internal.util.LogHelper -- HHH000204: Processing PersistenceUnitInfo [name: default]
+20:53:24.873 [main] INFO  org.hibernate.Version -- HHH000412: Hibernate ORM core version 6.2.9.Final
+20:53:24.880 [main] INFO  org.hibernate.cfg.Environment -- HHH000406: Using bytecode reflection optimizer
+20:53:25.296 [main] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+20:53:25.616 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -- No LoadTimeWeaver setup: ignoring JPA class transformer
+20:53:26.204 [main] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+20:53:27.632 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -- HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+20:53:27.718 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Initialized JPA EntityManagerFactory for persistence unit 'default'
+20:53:28.251 [main] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer -- Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.hn.api.diary.repository.MemberRepository
+20:53:28.551 [main] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration -- H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:diary'
+20:53:28.719 [main] INFO  o.s.b.web.servlet.RegistrationBean -- Filter registration was not registered (disabled)
+20:53:28.954 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory -- Hibernate is in classpath; If applicable, HQL parser will be used.
+20:53:29.920 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -- spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+20:53:30.150 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping -- Adding welcome page: class path resource [static/index.html]
+20:53:30.320 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3e966e67, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@45dbbb97, org.springframework.security.web.context.SecurityContextHolderFilter@283645fa, org.springframework.security.web.header.HeaderWriterFilter@7ebf5bf, org.springframework.web.filter.CorsFilter@7e383712, org.springframework.security.web.authentication.logout.LogoutFilter@4781bb01, com.hn.api.diary.filter.AccessFilter@531b1778, com.hn.api.diary.filter.SignInFilter@626ff077, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@48c56b42, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@15d2c2ca, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2330c5c5, org.springframework.security.web.access.ExceptionTranslationFilter@23471f48, org.springframework.security.web.access.intercept.AuthorizationFilter@7d90d4c6]
+20:53:30.328 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/favicon.ico']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:53:30.329 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/favicon.ico']
+20:53:30.329 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/error']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:53:30.330 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/error']
+20:53:30.330 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@6f2f4b9e. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+20:53:30.330 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@6f2f4b9e
+20:53:30.708 [main] INFO  o.a.coyote.http11.Http11NioProtocol -- Starting ProtocolHandler ["http-nio-8080"]
+20:53:30.760 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -- Tomcat started on port(s): 8080 (http) with context path ''
+20:53:30.779 [main] INFO  c.hn.api.diary.DiaryApiApplication -- Started DiaryApiApplication in 12.0 seconds (process running for 13.784)
+20:53:43.020 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -- Initializing Spring DispatcherServlet 'dispatcherServlet'
+20:53:43.022 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet -- Initializing Servlet 'dispatcherServlet'
+20:53:43.024 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet -- Completed initialization in 2 ms
+20:54:37.764 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Closing JPA EntityManagerFactory for persistence unit 'default'
+20:54:37.911 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown initiated...
+20:54:37.921 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown completed.

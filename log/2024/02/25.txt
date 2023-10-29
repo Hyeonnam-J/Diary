@@ -1,0 +1,448 @@
+00:01:17.267 [background-preinit] INFO  o.h.validator.internal.util.Version -- HV000001: Hibernate Validator 8.0.1.Final
+00:01:17.858 [main] INFO  c.hn.api.diary.DiaryApiApplication -- Starting DiaryApiApplication using Java 17.0.6 with PID 19732 (D:\SpringProject\diary-api\out\production\classes started by nami0 in D:\SpringProject\diary-api)
+00:01:17.866 [main] INFO  c.hn.api.diary.DiaryApiApplication -- No active profile set, falling back to 1 default profile: "default"
+00:01:30.318 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+00:01:31.778 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Finished Spring Data repository scanning in 1394 ms. Found 3 JPA repository interfaces.
+00:01:33.949 [main] INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor -- Post-processing PropertySource instances
+00:01:33.953 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+00:01:33.954 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+00:01:33.954 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+00:01:33.957 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+00:01:33.958 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+00:01:33.959 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+00:01:33.960 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+00:01:38.709 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -- Tomcat initialized with port(s): 8080 (http)
+00:01:39.111 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -- Root WebApplicationContext: initialization completed in 20471 ms
+00:01:39.193 [main] INFO  c.u.j.f.DefaultLazyPropertyFilter -- Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+00:01:39.217 [main] INFO  c.u.j.r.DefaultLazyPropertyResolver -- Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+00:01:39.221 [main] INFO  c.u.j.d.DefaultLazyPropertyDetector -- Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+00:01:39.444 [main] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Starting...
+00:01:39.960 [main] INFO  com.zaxxer.hikari.pool.HikariPool -- HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:diary user=SA
+00:01:39.964 [main] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Start completed.
+00:01:40.068 [main] INFO  o.h.jpa.internal.util.LogHelper -- HHH000204: Processing PersistenceUnitInfo [name: default]
+00:01:40.244 [main] INFO  org.hibernate.Version -- HHH000412: Hibernate ORM core version 6.2.9.Final
+00:01:40.251 [main] INFO  org.hibernate.cfg.Environment -- HHH000406: Using bytecode reflection optimizer
+00:01:40.682 [main] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+00:01:41.468 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -- No LoadTimeWeaver setup: ignoring JPA class transformer
+00:01:42.541 [main] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+00:01:45.922 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -- HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+00:01:46.063 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Initialized JPA EntityManagerFactory for persistence unit 'default'
+00:01:46.791 [main] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer -- Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.hn.api.diary.repository.MemberRepository
+00:01:47.234 [main] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration -- H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:diary'
+00:01:47.408 [main] INFO  o.s.b.web.servlet.RegistrationBean -- Filter registration was not registered (disabled)
+00:01:47.714 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory -- Hibernate is in classpath; If applicable, HQL parser will be used.
+00:01:48.854 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -- spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+00:01:49.120 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2f7e2481, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5f745970, org.springframework.security.web.context.SecurityContextHolderFilter@3e3b41cb, org.springframework.security.web.header.HeaderWriterFilter@5b7e2a88, org.springframework.web.filter.CorsFilter@57cd77e1, org.springframework.security.web.authentication.logout.LogoutFilter@7ae5f795, com.hn.api.diary.filter.AccessFilter@7ead0b51, com.hn.api.diary.filter.SignInFilter@749ffdc7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5acf51d7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4ceac22d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@35f59dfe, org.springframework.security.web.access.ExceptionTranslationFilter@7b3db079, org.springframework.security.web.access.intercept.AuthorizationFilter@276ae21c]
+00:01:49.130 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/favicon.ico']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+00:01:49.131 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/favicon.ico']
+00:01:49.132 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/error']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+00:01:49.132 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/error']
+00:01:49.132 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/test']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+00:01:49.132 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/test']
+00:01:49.132 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/profile']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+00:01:49.132 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/profile']
+00:01:49.133 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@2a45c6f0. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+00:01:49.133 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@2a45c6f0
+00:01:49.462 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping -- Adding welcome page: class path resource [static/index.html]
+00:01:49.947 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -- Tomcat started on port(s): 8080 (http) with context path ''
+00:01:49.951 [main] INFO  c.u.j.c.RefreshScopeRefreshedEventListener -- Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+00:01:49.952 [main] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource -- Property Source systemProperties refreshed
+00:01:49.953 [main] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource -- Property Source systemEnvironment refreshed
+00:01:49.953 [main] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource -- Property Source random refreshed
+00:01:49.953 [main] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource -- Property Source Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' refreshed
+00:01:49.953 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+00:01:49.953 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+00:01:49.954 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+00:01:49.970 [main] INFO  c.hn.api.diary.DiaryApiApplication -- Started DiaryApiApplication in 36.82 seconds (process running for 38.595)
+00:01:50.057 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Closing JPA EntityManagerFactory for persistence unit 'default'
+00:01:50.066 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown initiated...
+00:01:50.070 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown completed.
+00:02:17.853 [background-preinit] INFO  o.h.validator.internal.util.Version -- HV000001: Hibernate Validator 8.0.1.Final
+00:02:17.974 [main] INFO  c.hn.api.diary.DiaryApiApplication -- Starting DiaryApiApplication using Java 17.0.6 with PID 5516 (D:\SpringProject\diary-api\out\production\classes started by nami0 in D:\SpringProject\diary-api)
+00:02:17.978 [main] INFO  c.hn.api.diary.DiaryApiApplication -- No active profile set, falling back to 1 default profile: "default"
+00:02:19.949 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+00:02:20.120 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -- Finished Spring Data repository scanning in 158 ms. Found 3 JPA repository interfaces.
+00:02:20.767 [main] INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor -- Post-processing PropertySource instances
+00:02:20.769 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+00:02:20.769 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+00:02:20.769 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource servletContextInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+00:02:20.771 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+00:02:20.772 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+00:02:20.773 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+00:02:20.773 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+00:02:22.069 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -- Tomcat initialized with port(s): 8080 (http)
+00:02:22.081 [main] INFO  o.a.coyote.http11.Http11NioProtocol -- Initializing ProtocolHandler ["http-nio-8080"]
+00:02:22.085 [main] INFO  o.a.catalina.core.StandardService -- Starting service [Tomcat]
+00:02:22.085 [main] INFO  o.a.catalina.core.StandardEngine -- Starting Servlet engine: [Apache Tomcat/10.1.13]
+00:02:22.279 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -- Initializing Spring embedded WebApplicationContext
+00:02:22.282 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -- Root WebApplicationContext: initialization completed in 4148 ms
+00:02:22.375 [main] INFO  c.u.j.f.DefaultLazyPropertyFilter -- Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+00:02:22.394 [main] INFO  c.u.j.r.DefaultLazyPropertyResolver -- Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+00:02:22.398 [main] INFO  c.u.j.d.DefaultLazyPropertyDetector -- Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+00:02:22.579 [main] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Starting...
+00:02:22.974 [main] INFO  com.zaxxer.hikari.pool.HikariPool -- HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:diary user=SA
+00:02:22.978 [main] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Start completed.
+00:02:23.097 [main] INFO  o.h.jpa.internal.util.LogHelper -- HHH000204: Processing PersistenceUnitInfo [name: default]
+00:02:23.238 [main] INFO  org.hibernate.Version -- HHH000412: Hibernate ORM core version 6.2.9.Final
+00:02:23.244 [main] INFO  org.hibernate.cfg.Environment -- HHH000406: Using bytecode reflection optimizer
+00:02:23.581 [main] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+00:02:23.929 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -- No LoadTimeWeaver setup: ignoring JPA class transformer
+00:02:24.529 [main] INFO  o.h.b.i.BytecodeProviderInitiator -- HHH000021: Bytecode provider name : bytebuddy
+00:02:26.918 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -- HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+00:02:26.997 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Initialized JPA EntityManagerFactory for persistence unit 'default'
+00:02:27.476 [main] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer -- Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.hn.api.diary.repository.MemberRepository
+00:02:28.339 [main] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration -- H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:diary'
+00:02:28.460 [main] INFO  o.s.b.web.servlet.RegistrationBean -- Filter registration was not registered (disabled)
+00:02:28.717 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory -- Hibernate is in classpath; If applicable, HQL parser will be used.
+00:02:29.540 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -- spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+00:02:29.748 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1bce19db, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4c1f4817, org.springframework.security.web.context.SecurityContextHolderFilter@61ee9672, org.springframework.security.web.header.HeaderWriterFilter@f1b0658, org.springframework.web.filter.CorsFilter@5d3c0735, org.springframework.security.web.authentication.logout.LogoutFilter@38911759, com.hn.api.diary.filter.AccessFilter@4be5b9b1, com.hn.api.diary.filter.SignInFilter@49741e80, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@78395e28, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6984f7d1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7a68818c, org.springframework.security.web.access.ExceptionTranslationFilter@5ba4735c, org.springframework.security.web.access.intercept.AuthorizationFilter@5de15ce1]
+00:02:29.758 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/favicon.ico']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+00:02:29.759 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/favicon.ico']
+00:02:29.760 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/error']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+00:02:29.761 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/error']
+00:02:29.762 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/test']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+00:02:29.762 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/test']
+00:02:29.762 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore Ant [pattern='/profile']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+00:02:29.762 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure Ant [pattern='/profile']
+00:02:29.762 [main] WARN  o.s.s.c.a.web.builders.WebSecurity -- You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@5c4e86e7. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+00:02:29.763 [main] INFO  o.s.s.web.DefaultSecurityFilterChain -- Will not secure org.springframework.boot.autoconfigure.security.servlet.PathRequest$H2ConsoleRequestMatcher@5c4e86e7
+00:02:30.016 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping -- Adding welcome page: class path resource [static/index.html]
+00:02:30.360 [main] INFO  o.a.coyote.http11.Http11NioProtocol -- Starting ProtocolHandler ["http-nio-8080"]
+00:02:30.403 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -- Tomcat started on port(s): 8080 (http) with context path ''
+00:02:30.405 [main] INFO  c.u.j.c.RefreshScopeRefreshedEventListener -- Refreshing cached encryptable property sources on ServletWebServerInitializedEvent
+00:02:30.406 [main] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource -- Property Source systemProperties refreshed
+00:02:30.406 [main] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource -- Property Source systemEnvironment refreshed
+00:02:30.406 [main] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource -- Property Source random refreshed
+00:02:30.406 [main] INFO  c.u.j.c.CachingDelegateEncryptablePropertySource -- Property Source Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' refreshed
+00:02:30.406 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+00:02:30.406 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+00:02:30.407 [main] INFO  c.u.j.EncryptablePropertySourceConverter -- Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+00:02:30.417 [main] INFO  c.hn.api.diary.DiaryApiApplication -- Started DiaryApiApplication in 13.313 seconds (process running for 14.61)
+00:03:07.459 [http-nio-8080-exec-3] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -- Initializing Spring DispatcherServlet 'dispatcherServlet'
+00:03:07.461 [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet -- Initializing Servlet 'dispatcherServlet'
+00:03:07.469 [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet -- Completed initialization in 5 ms
+00:03:07.719 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:03:07.720 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts/totalCount
+00:03:07.751 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:03:07.752 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts
+00:03:07.882 [http-nio-8080-exec-3] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer -- Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.hn.api.diary.controller.FreeBoardPostController
+00:03:34.508 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:03:34.510 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts/totalCount
+00:03:34.513 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:03:34.513 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts
+00:03:34.903 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:03:34.903 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts
+00:03:34.903 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:03:34.903 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts/totalCount
+00:04:11.201 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:04:11.201 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:04:11.202 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts/totalCount
+00:04:11.202 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts
+00:05:26.762 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:05:26.762 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts/totalCount
+00:05:26.771 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:05:26.771 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts
+00:10:28.905 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:10:28.905 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:10:28.905 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts
+00:10:28.905 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts/totalCount
+00:11:24.140 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:11:24.140 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /signIn
+00:11:27.058 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:11:27.058 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts/totalCount
+00:11:27.062 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:11:27.063 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts
+00:11:37.215 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:11:37.215 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/3
+00:11:37.218 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:11:37.218 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:11:37.218 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/3
+00:11:37.218 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/3
+00:11:37.222 [http-nio-8080-exec-10] WARN  o.s.c.LocalVariableTableParameterNameDiscoverer -- Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.hn.api.diary.controller.FreeBoardCommentController
+00:12:21.510 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:12:21.510 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:12:21.510 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/3
+00:12:21.510 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/3
+00:12:21.510 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:12:21.511 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/3
+00:12:23.513 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:12:23.513 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:12:23.513 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/3
+00:12:23.513 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/3
+00:12:23.514 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:12:23.514 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/3
+00:12:25.507 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:12:25.507 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:12:25.507 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:12:25.507 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/3
+00:12:25.507 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/3
+00:12:25.507 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/3
+00:12:37.517 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:12:37.519 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/3
+00:12:37.521 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:12:37.521 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/3
+00:12:37.528 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:12:37.535 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/3
+00:12:43.605 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:12:43.606 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/3
+00:12:43.610 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:12:43.610 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/3
+00:12:43.610 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:12:43.610 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/3
+00:13:01.894 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:13:01.894 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:13:01.894 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/3
+00:13:01.894 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/3
+00:13:01.895 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:13:01.895 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/3
+00:13:37.852 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:13:37.852 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comment/write
+00:13:38.002 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:13:38.002 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/3
+00:13:38.012 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:13:38.012 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/3
+00:13:55.748 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:13:55.749 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/3
+00:13:55.751 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:13:55.751 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:13:55.752 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/3
+00:13:55.752 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/3
+00:14:09.516 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:14:09.516 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/3
+00:14:09.516 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:14:09.517 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/3
+00:14:09.516 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:14:09.517 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/3
+00:14:10.334 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:14:10.334 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:14:10.335 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/3
+00:14:10.335 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:14:10.335 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/3
+00:14:10.335 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/3
+00:14:26.953 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:14:26.953 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /user
+00:14:35.929 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:14:35.930 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts/totalCount
+00:14:35.930 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:14:35.930 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts
+00:14:47.081 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:14:47.081 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /user
+00:16:52.048 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:16:52.050 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts/totalCount
+00:16:52.052 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:16:52.052 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts
+00:16:53.353 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:16:53.353 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:16:53.353 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/1
+00:16:53.353 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/1
+00:16:53.355 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:16:53.355 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/1
+00:17:00.142 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:17:00.142 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comment/delete/1
+00:17:00.158 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:17:00.158 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:17:00.158 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/1
+00:17:00.158 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/1
+00:17:06.392 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:17:06.393 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /user
+00:17:06.401 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:17:06.401 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/delete/1
+00:17:13.657 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:17:13.657 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts/totalCount
+00:17:13.671 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:17:13.672 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts
+00:17:14.864 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:17:14.865 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /user
+00:17:17.195 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:17:17.195 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/write
+00:17:17.280 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:17:17.280 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts/totalCount
+00:17:17.281 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:17:17.281 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts
+00:17:18.262 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:17:18.262 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/4
+00:17:18.262 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:17:18.262 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/4
+00:17:18.263 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:17:18.263 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/4
+00:17:19.250 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:17:19.250 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /user
+00:17:19.256 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:17:19.257 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/delete/4
+00:17:19.280 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:17:19.280 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts/totalCount
+00:17:19.287 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:17:19.288 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts
+00:17:36.715 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:17:36.716 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/3
+00:17:36.724 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:17:36.724 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:17:36.724 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/3
+00:17:36.724 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/3
+00:24:47.287 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:24:47.288 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /user
+00:24:50.366 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:24:50.366 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/3
+00:24:50.377 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:24:50.377 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:24:50.377 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/3
+00:24:50.377 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/3
+00:25:03.153 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:25:03.153 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts/totalCount
+00:25:03.161 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:25:03.161 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts
+00:25:06.405 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:25:06.406 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/1
+00:25:06.411 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:25:06.411 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/1
+00:25:06.413 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:25:06.414 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/1
+00:25:08.778 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:25:08.779 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /user
+00:25:08.787 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:25:08.787 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/delete/1
+00:25:11.294 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:25:11.294 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /user
+00:25:13.344 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:25:13.344 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/1
+00:25:13.352 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:25:13.353 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/1
+00:25:13.353 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:25:13.353 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/1
+00:26:16.076 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:26:16.076 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /user
+00:26:16.084 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:26:16.084 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/delete/1
+00:26:21.138 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:26:21.140 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts/totalCount
+00:26:21.154 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:26:21.154 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts
+00:26:22.752 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:26:22.752 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /user
+00:26:24.631 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:26:24.631 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/write
+00:26:24.675 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:26:24.675 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts/totalCount
+00:26:24.685 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:26:24.685 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts
+00:26:25.764 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:26:25.764 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/5
+00:26:25.767 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:26:25.767 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:26:25.768 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/5
+00:26:25.768 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/5
+00:26:27.012 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:26:27.012 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /user
+00:26:27.022 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:26:27.022 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/delete/5
+00:26:27.052 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:26:27.052 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts/totalCount
+00:26:27.057 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:26:27.057 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts
+00:29:01.242 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:29:01.242 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /user
+00:29:04.026 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:29:04.026 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/write
+00:29:04.067 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:29:04.068 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts/totalCount
+00:29:04.080 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:29:04.080 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts
+00:29:05.902 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:29:05.902 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/6
+00:29:05.909 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:29:05.910 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/6
+00:29:05.909 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:29:05.911 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/6
+00:34:34.511 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:34:34.511 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:34:34.511 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/6
+00:34:34.511 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/6
+00:34:34.511 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:34:34.511 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/6
+00:34:38.513 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:34:38.513 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:34:38.513 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/6
+00:34:38.513 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/6
+00:34:38.513 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:34:38.513 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/6
+00:34:49.514 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:34:49.514 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/6
+00:34:49.514 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:34:49.514 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/6
+00:34:49.515 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:34:49.515 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/6
+00:34:52.510 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:34:52.510 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:34:52.511 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:34:52.511 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/6
+00:34:52.511 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/6
+00:34:52.511 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/6
+00:35:09.926 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:35:09.926 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /user
+00:35:09.935 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:35:09.935 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/delete/6
+00:35:09.976 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:35:09.976 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts/totalCount
+00:35:09.988 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:35:09.988 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts
+00:35:32.857 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:35:32.858 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/1
+00:35:32.868 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:35:32.868 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:35:32.868 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/1
+00:35:32.868 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/1
+00:35:37.514 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:35:37.514 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comment/write
+00:35:37.525 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:35:37.525 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/1
+00:35:37.531 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:35:37.531 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/1
+00:35:42.129 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:35:42.129 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comment/delete/5
+00:35:42.145 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:35:42.145 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:35:42.146 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/1
+00:35:42.146 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/1
+00:36:19.509 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:36:19.509 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:36:19.510 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/1
+00:36:19.510 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/1
+00:36:19.511 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:36:19.511 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/1
+00:36:23.514 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:36:23.514 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/1
+00:36:23.514 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:36:23.514 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/1
+00:36:23.515 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:36:23.515 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/1
+00:36:25.503 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:36:25.504 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/1
+00:36:25.503 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:36:25.504 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/1
+00:36:25.504 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:36:25.504 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/post/read/1
+00:36:30.249 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:36:30.249 [http-nio-8080-exec-9] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comment/write
+00:36:30.263 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:36:30.263 [http-nio-8080-exec-2] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/totalCount/1
+00:36:30.269 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:36:30.269 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/1
+00:36:43.926 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:36:43.926 [http-nio-8080-exec-8] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comment/update
+00:36:43.945 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:36:43.946 [http-nio-8080-exec-4] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/comments/1
+00:36:49.783 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:36:49.783 [http-nio-8080-exec-10] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts/totalCount
+00:36:49.795 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:36:49.795 [http-nio-8080-exec-6] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts
+00:37:18.332 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:37:18.332 [http-nio-8080-exec-5] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts/totalCount
+00:37:18.339 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:37:18.339 [http-nio-8080-exec-7] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts
+00:37:53.402 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:37:53.403 [http-nio-8080-exec-1] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts/totalCount
+00:37:53.408 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, ip : 0:0:0:0:0:0:0:1
+00:37:53.408 [http-nio-8080-exec-3] INFO  c.hn.api.diary.filter.AccessFilter -- accessFilter, uri : /freeBoard/posts
+00:38:39.043 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -- Closing JPA EntityManagerFactory for persistence unit 'default'
+00:38:39.212 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown initiated...
+00:38:39.216 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown completed.
