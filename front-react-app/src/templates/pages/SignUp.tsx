@@ -13,37 +13,37 @@ const SignUp = () => {
 
         <div id='submitList'>
           <label>
-            <span>ID</span>
+            <p>ID</p>
             <input></input>
             <span>asdf</span>
           </label>
 
           <label>
-            <span>Password</span>
+            <p>Password</p>
             <input></input>
             <span>asdf</span>
           </label>
 
           <label>
-            <span>Name</span>
+            <p>Name</p>
             <input></input>
             <span>asdf</span>
           </label>
 
           <label>
-            <span>Birth date</span>
+            <p>Birth date</p>
             <input></input>
             <span>asdf</span>
           </label>
 
           <label>
-            <span>Phone number</span>
+            <p>Phone number</p>
             <input></input>
             <span>fds</span>
           </label>
 
           <label>
-            <span>Email</span>
+            <p>Email</p>
             <input></input>
             <span>sdf</span>
           </label>
@@ -54,7 +54,7 @@ const SignUp = () => {
         </div>
 
         <div id='submit-btn-box'>
-          <button>회원가입</button>
+          <button className={ Button.primary }>회원가입</button>
         </div>
       </main>
     </SignLayout>
