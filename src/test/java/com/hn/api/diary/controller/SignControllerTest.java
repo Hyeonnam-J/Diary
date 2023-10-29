@@ -1,9 +1,5 @@
 package com.hn.api.diary.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hn.api.diary.dto.SignUpDTO;
-import com.hn.api.diary.repository.SignRepository;
-import com.hn.api.diary.service.SignService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -17,13 +13,16 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hn.api.diary.dto.SignUpDTO;
+import com.hn.api.diary.repository.SignRepository;
+
 @AutoConfigureMockMvc
 @SpringBootTest
 class SignControllerTest {
 
     @Autowired private MockMvc mockMvc;
     @Autowired private ObjectMapper objectMapper;
-    @Autowired private SignService signService;
     @Autowired private SignRepository signRepository;
 
     @BeforeEach

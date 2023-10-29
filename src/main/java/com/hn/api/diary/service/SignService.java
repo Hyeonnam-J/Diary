@@ -1,7 +1,7 @@
 package com.hn.api.diary.service;
 
-import com.hn.api.diary.domain.Sign;
 import com.hn.api.diary.dto.SignUpDTO;
+import com.hn.api.diary.entity.Sign;
 import com.hn.api.diary.repository.SignRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
