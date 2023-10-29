@@ -1,6 +1,6 @@
 @import '../common/variables.css';
 
-header{
+#my{
   width: var(--fixed-button-height);
   height: var(--fixed-button-height);
 
@@ -10,7 +10,7 @@ header{
   border-radius: 50%;
 }
 
-#header-container{
+#my-container{
   /* 공간을 지정해야 hover 가능 */
   width: 100%;
   height: 100%;
@@ -24,17 +24,17 @@ header{
   position: relative;
 }
 
-#header-container:hover{
+#my-container:hover{
   cursor: pointer;
 }
 
-#header-container > img{
+#my-container > img{
   /* 이미지 가로 중앙 정렬 */
   width: 50%;
   margin: 0 auto;
 }
 
-#header-contents-box{
+#my-contents-box{
   position: absolute;
   top: 120%;
   right: 0;
@@ -52,12 +52,12 @@ header{
   justify-content: center;
 }
 
-#header-contents{
+#my-contents{
   /* 컨텐츠 가로 중앙 정렬 */
   width: 50%;
   margin: 0 auto;
 }
 
-#header-contents li{
+#my-contents li{
   margin: 20px 0;
 }

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import home from '../../assets/imgs/home.png'
+import my from '../../assets/imgs/my.png'
 
 import '../../stylesheets/common/common.css';
-import '../../stylesheets/fragments/header.css';
+import '../../stylesheets/fragments/my.css';
 
-const Header: React.FC = () => {
+const My: React.FC = () => {
   // React Hook인 useState를 사용하여 새로운 상태 변수를 생성
   // 변수명 isDropdownVisible, 초깃값 false.
   // 이 변수를 변경하기 위한 함수 setDropdownVisible.
@@ -21,11 +21,11 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header>
-      <div id='header-container' onClick={toggleDropdown}>
-        <img src={home} alt='home' />
-        <div id='header-contents-box' style={{ display: isDropdownVisible ? 'flex' : 'none' }}>
-          <ul id='header-contents'>
+    <div id='my'>
+      <div id='my-container' onClick={toggleDropdown}>
+        <img src={my} alt='my' />
+        <div id='my-contents-box' style={{ display: isDropdownVisible ? 'flex' : 'none' }}>
+          <ul id='my-contents'>
             {/* React-Router의 Link component를 통해 URL이 변경 */}
             <li><Link to="/">Home</Link></li>
             <li><Link to="/SignIn">Sign In</Link></li>
@@ -33,8 +33,8 @@ const Header: React.FC = () => {
           </ul>
         </div>
       </div>
-    </header>
+    </div>
   );
 }
 
-export default Header;
+export default My;
