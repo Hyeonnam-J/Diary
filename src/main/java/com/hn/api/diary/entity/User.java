@@ -5,20 +5,24 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
-public class Sign {
+@Getter
+@NoArgsConstructor
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    private String userId;
+    private String email;
     private String password;
 
     @Builder
-    public Sign(String userId, String password) {
-        this.userId = userId;
+    public User(String email, String password) {
+        this.email = email;
         this.password = password;
     }
 }

@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 public class SignUpDTO {
 
-  private String userId;
+  private String email;
   private String password;
 
   /*
@@ -14,8 +14,8 @@ public class SignUpDTO {
   클래스에 빌더 어노테이션을 달면 다른 어노테이션들과 충돌이 있는 경우가 있다고 함.
    */
   @Builder
-  public SignUpDTO(String userId, String password) {
-    this.userId = userId;
+  public SignUpDTO(String email, String password) {
+    this.email = email;
     this.password = password;
   }
 }
