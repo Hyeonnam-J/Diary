@@ -1,15 +1,15 @@
 package com.hn.api.diary.exception;
 
-public class InvalidValue extends RuntimeException{
+public class InvalidValue extends DiaryException{
 
     private static final String MESSAGE = "invalid value";
-
-    public int getStatus(){
-        return 404;
-    }
 
     public InvalidValue() {
         super(MESSAGE);
     }
 
+    @Override
+    public int getStatus() {
+        return 404;
+    }
 }

@@ -31,7 +31,6 @@ public class UserService {
 
         User user = userRepository.findByEmailAndPassword(receivedEmail, receivedPassword)
                 .orElseThrow(InvalidValue::new);
-        
-        System.out.println(user.getEmail());
+
     }
 }
