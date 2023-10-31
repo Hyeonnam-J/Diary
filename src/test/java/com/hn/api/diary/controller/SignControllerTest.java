@@ -15,7 +15,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hn.api.diary.dto.SignUpDTO;
-import com.hn.api.diary.repository.SignRepository;
+import com.hn.api.diary.repository.UserRepository;
 
 @AutoConfigureMockMvc
 @SpringBootTest
@@ -23,7 +23,7 @@ class SignControllerTest {
 
     @Autowired private MockMvc mockMvc;
     @Autowired private ObjectMapper objectMapper;
-    @Autowired private SignRepository signRepository;
+    @Autowired private UserRepository signRepository;
 
     @BeforeEach
     void clean(){
@@ -35,7 +35,7 @@ class SignControllerTest {
     void signUp() throws Exception {
         // given
         SignUpDTO signUpDTO = SignUpDTO.builder()
-                .userId("test-signUp-userId")
+                .email("test-signUp-email")
                 .password("test-signUp-password")
                 .build();
 
