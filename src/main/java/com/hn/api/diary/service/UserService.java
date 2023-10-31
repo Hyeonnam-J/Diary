@@ -3,9 +3,12 @@ package com.hn.api.diary.service;
 import com.hn.api.diary.dto.SignInDTO;
 import com.hn.api.diary.dto.SignUpDTO;
 import com.hn.api.diary.entity.User;
+import com.hn.api.diary.exception.InvalidValue;
 import com.hn.api.diary.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -22,19 +25,13 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void signIn(SignInDTO signInDTO){
-        String userIdOfClient = signInDTO.getEmail();
-        String passwordOfClient = signInDTO.getPassword();
+    public void signIn(SignInDTO signInDTO) {
+        String receivedEmail = signInDTO.getEmail();
+        String receivedPassword = signInDTO.getPassword();
 
-        User user = userRepository.findByEmail(userIdOfClient);
-
-        String passwordOfDatabase = user.getPassword();
-
-        if(passwordOfClient.equals(passwordOfDatabase)){
-            // TODO response package
-            System.out.println("성공");
-        }else{
-
-        }
+        User user = userRepository.findByEmailAndPassword(receivedEmail, receivedPassword)
+                .orElseThrow(InvalidValue::new);
+        
+        System.out.println(user.getEmail());
     }
 }
