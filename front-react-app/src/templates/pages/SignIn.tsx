@@ -20,6 +20,11 @@ const SignIn = () => {
             method: 'POST',
             body: JSON.stringify(data),
         })
+        .then(async (response) => {
+            const responseData = await response.json();
+            console.log("Response Code:", response.status);
+            console.log("Response Message:", responseData);
+        })
     }
     return (
         <SignLayout>

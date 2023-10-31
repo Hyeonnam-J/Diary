@@ -19,15 +19,15 @@ import com.hn.api.diary.repository.UserRepository;
 
 @AutoConfigureMockMvc
 @SpringBootTest
-class SignControllerTest {
+class UserControllerTest {
 
     @Autowired private MockMvc mockMvc;
     @Autowired private ObjectMapper objectMapper;
-    @Autowired private UserRepository signRepository;
+    @Autowired private UserRepository userRepository;
 
     @BeforeEach
     void clean(){
-        signRepository.deleteAll();
+        userRepository.deleteAll();
     }
 
     @Test
@@ -51,7 +51,24 @@ class SignControllerTest {
                 .andDo(MockMvcResultHandlers.print());
 
         // then
-        Assertions.assertEquals(1, signRepository.count());
+        Assertions.assertEquals(1, userRepository.count());
+    }
+
+    @Test
+    @DisplayName("TDD - signIn")
+    void SignIn() throws Exception{
+        // given
+
+        // when
+        mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("asd")
+        )
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print());
+
+        // then
+        new Exception();
     }
 
 }
