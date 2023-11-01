@@ -1,9 +1,12 @@
+import { useNavigate } from 'react-router-dom';
 import SignLayout from "../layouts/SignLayout";
 import '../../stylesheets/pages/signIn.css';
 import Layout from "../../stylesheets/modules/layout.module.css";
 import Button from "../../stylesheets/modules/button.module.css";
 
 const SignIn = () => {
+    const navigate = useNavigate();
+
     const requestSignIn = async () => {
         const emailInput = document.querySelector('input[name="email"]') as HTMLInputElement
         const passwordInput = document.querySelector('input[name="password"]') as HTMLInputElement
@@ -20,11 +23,11 @@ const SignIn = () => {
             method: 'POST',
             body: JSON.stringify(data),
         })
-        .then(async (response) => {
-            const responseData = await response.json();
-            console.log("Response Code:", response.status);
-            console.log("Response Message:", responseData);
-        })
+
+        // 로그인 성공 시 홈으로 리다이렉트
+        if (response.ok) {
+            navigate('/');
+        }
     }
     return (
         <SignLayout>
