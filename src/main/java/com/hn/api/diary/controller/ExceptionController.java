@@ -23,14 +23,6 @@ public class ExceptionController {
         ResponseEntity<ErrorResponse> responseEntity
                 = ResponseEntity.status(status).body(errorResponse);
 
-        // TODO
-        //  token,
-        //  exception test code,
-        //  todolist,
-        //  remain session,
-        //  http folder,
-        //  authResolver
-
         return responseEntity;
     }
 
