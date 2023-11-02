@@ -1,9 +1,12 @@
 package com.hn.api.diary.controller;
 
+import com.hn.api.diary.config.AuthSession;
 import com.hn.api.diary.dto.SignInDTO;
 import com.hn.api.diary.entity.MySession;
 import com.hn.api.diary.entity.User;
+import com.hn.api.diary.exception.InvalidValue;
 import com.hn.api.diary.repository.SessionRepository;
+import jakarta.servlet.http.Cookie;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -107,8 +110,8 @@ class UserControllerTest {
         // then
     }
 
+    @Transactional  // todo : @Transactional을 뺄 수 있는 방법 고민.
     @Test
-    @Transactional
     @DisplayName("TDD - generate session after signIn success")
     void generateSessionAfterSignIn() throws Exception{
         // given
@@ -139,15 +142,10 @@ class UserControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
 
-        // TODO
-        //  @Transactional이 문제의 소지가 있어 지우고 아래의 코드로 바뀌어야 함.
-        //  현재 프록시를 늦게 가져오는 문제.
-//        User signInUser = userRepository.findById(user.getId())
-//                        .orElseThrow(InvalidValue::new);
-//        Assertions.assertEquals(1L, signInUser.getSessions().size());
-
         // then
-        Assertions.assertEquals(1L, user.getMySessions().size());
+        User signInUser = userRepository.findById(user.getId())
+                .orElseThrow(InvalidValue::new);
+        Assertions.assertEquals(1L, signInUser.getMySessions().size());
     }
 
     @Test
@@ -203,7 +201,6 @@ class UserControllerTest {
         assertNotNull(sessionId);
     }
 
-    // todo: 쿠키가 안 담김. 포스트맨으로 테스트 했을 때 성공.
     @Test
     @DisplayName("enter page with authorization")
     void enterPageWithAuthorization() throws Exception{
@@ -220,34 +217,34 @@ class UserControllerTest {
                 .password(user.getPassword())
                 .build();
 
-        String json = objectMapper.writeValueAsString(signInDTO);
+        String signInDTO_json = objectMapper.writeValueAsString(signInDTO);
 
         // signIn and getCookie
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(json))
+                        .content(signInDTO_json))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
 
         MockHttpServletResponse response = result.getResponse();
-        String cookieHeader = response.getHeader("Set-Cookie");
-        String[] cookies = cookieHeader.split(";");
+        Cookie[] cookies = response.getCookies();
+
+        AuthSession authSession = new AuthSession(1L);
+        String authSession_json = objectMapper.writeValueAsString(authSession);
 
         // when
         // try enter auth page
         mockMvc.perform(MockMvcRequestBuilders.post("/sendCookie")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .header("Cookie", cookies[0])
-                        .content("{ \"id\": 123 }"))
+                        .cookie(cookies)
+                        .content(authSession_json))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
 
         // then
     }
 
-    // todo: 쿠키가 안 담김. 포스트맨으로 테스트 했을 때 성공.
-    //  enterPageWithAuthorization()에서 토큰 값만 살짝 수정해서 테스트.
     @Test
     @DisplayName("enter page with unauthorization")
     void enterPageWithUnAuthorization() throws Exception{
@@ -256,13 +253,39 @@ class UserControllerTest {
                 .email("test@google.com")
                 .password("!@#QWEQasdzxc")
                 .build();
-        MySession mySession = user.addSession();
         userRepository.save(user);
 
+        // for signIn
+        SignInDTO signInDTO = SignInDTO.builder()
+                .email(user.getEmail())
+                .password(user.getPassword())
+                .build();
+
+        String signInDTO_json = objectMapper.writeValueAsString(signInDTO);
+
+        // signIn and getCookie
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(signInDTO_json))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+
+        MockHttpServletResponse response = result.getResponse();
+        Cookie[] cookies = response.getCookies();
+
+        // insert wrong cookie's value
+        cookies[0].setValue(cookies[0].getValue() + "?");
+
+        AuthSession authSession = new AuthSession(1L);
+        String authSession_json = objectMapper.writeValueAsString(authSession);
+
         // when
+        // try enter auth page
         mockMvc.perform(MockMvcRequestBuilders.post("/sendCookie")
-                        .header("Authorization", mySession.getToken()+"-other")
-                        .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .cookie(cookies)
+                        .content(authSession_json))
                 .andExpect(MockMvcResultMatchers.status().isUnauthorized())
                 .andDo(MockMvcResultHandlers.print());
 
