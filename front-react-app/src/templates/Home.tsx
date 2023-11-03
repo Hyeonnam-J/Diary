@@ -9,12 +9,15 @@ function Home() {
             id: 1
         }
 
-        const response = await fetch('http://localhost:8080/sendCookie', {
+        const url = new URL('http://localhost:8080/test');
+        const response = await fetch(url, {
             headers: {
                 "Content-Type": 'application/json',
+                "credentials": 'include',
             },
             method: 'POST',
-            body: JSON.stringify(data),
+//             body: JSON.stringify(data),
+
         })
     }
 

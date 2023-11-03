@@ -35,7 +35,7 @@ public class UserController {
                 .httpOnly(true)
                 .secure(false)
                 .maxAge(Duration.ofDays(30))
-                .sameSite("Strict")
+//                .sameSite("Strict")
                 .build();
 
         return ResponseEntity.ok()
@@ -47,5 +47,12 @@ public class UserController {
     public String sendCookie(AuthSession authSession){
         System.out.println(authSession);
         return "권한이 필요한 게시물에 접근 성공";
+    }
+
+    @PostMapping(value = "/test")
+    public String test(@CookieValue("SESSION") String test){
+        System.out.println(test);
+        System.out.println("test");
+        return "test";
     }
 }

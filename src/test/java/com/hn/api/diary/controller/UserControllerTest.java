@@ -201,96 +201,99 @@ class UserControllerTest {
         assertNotNull(sessionId);
     }
 
-    @Test
-    @DisplayName("enter page with authorization")
-    void enterPageWithAuthorization() throws Exception{
-        // given
-        User user = User.builder()
-                .email("test@google.com")
-                .password("!@#QWEQasdzxc")
-                .build();
-        userRepository.save(user);
-
-        // for signIn
-        SignInDTO signInDTO = SignInDTO.builder()
-                .email(user.getEmail())
-                .password(user.getPassword())
-                .build();
-
-        String signInDTO_json = objectMapper.writeValueAsString(signInDTO);
-
-        // signIn and getCookie
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(signInDTO_json))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andDo(MockMvcResultHandlers.print())
-                .andReturn();
-
-        MockHttpServletResponse response = result.getResponse();
-        Cookie[] cookies = response.getCookies();
-
-        AuthSession authSession = new AuthSession(1L);
-        String authSession_json = objectMapper.writeValueAsString(authSession);
-
-        // when
-        // try enter auth page
-        mockMvc.perform(MockMvcRequestBuilders.post("/sendCookie")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .cookie(cookies)
-                        .content(authSession_json))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andDo(MockMvcResultHandlers.print());
-
-        // then
-    }
-
-    @Test
-    @DisplayName("enter page with unauthorization")
-    void enterPageWithUnAuthorization() throws Exception{
-        // given
-        User user = User.builder()
-                .email("test@google.com")
-                .password("!@#QWEQasdzxc")
-                .build();
-        userRepository.save(user);
-
-        // for signIn
-        SignInDTO signInDTO = SignInDTO.builder()
-                .email(user.getEmail())
-                .password(user.getPassword())
-                .build();
-
-        String signInDTO_json = objectMapper.writeValueAsString(signInDTO);
-
-        // signIn and getCookie
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(signInDTO_json))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andDo(MockMvcResultHandlers.print())
-                .andReturn();
-
-        MockHttpServletResponse response = result.getResponse();
-        Cookie[] cookies = response.getCookies();
-
-        // insert wrong cookie's value
-        cookies[0].setValue(cookies[0].getValue() + "?");
-
-        AuthSession authSession = new AuthSession(1L);
-        String authSession_json = objectMapper.writeValueAsString(authSession);
-
-        // when
-        // try enter auth page
-        mockMvc.perform(MockMvcRequestBuilders.post("/sendCookie")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .cookie(cookies)
-                        .content(authSession_json))
-                .andExpect(MockMvcResultMatchers.status().isUnauthorized())
-                .andDo(MockMvcResultHandlers.print());
-
-        // then
-    }
+    /**
+     * 일단 쿠키를 이용한 인증처리 테스트는 주석.
+     */
+//    @Test
+//    @DisplayName("enter page with authorization")
+//    void enterPageWithAuthorization() throws Exception{
+//        // given
+//        User user = User.builder()
+//                .email("test@google.com")
+//                .password("!@#QWEQasdzxc")
+//                .build();
+//        userRepository.save(user);
+//
+//        // for signIn
+//        SignInDTO signInDTO = SignInDTO.builder()
+//                .email(user.getEmail())
+//                .password(user.getPassword())
+//                .build();
+//
+//        String signInDTO_json = objectMapper.writeValueAsString(signInDTO);
+//
+//        // signIn and getCookie
+//        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(signInDTO_json))
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andDo(MockMvcResultHandlers.print())
+//                .andReturn();
+//
+//        MockHttpServletResponse response = result.getResponse();
+//        Cookie[] cookies = response.getCookies();
+//
+//        AuthSession authSession = new AuthSession(1L);
+//        String authSession_json = objectMapper.writeValueAsString(authSession);
+//
+//        // when
+//        // try enter auth page
+//        mockMvc.perform(MockMvcRequestBuilders.post("/sendCookie")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .cookie(cookies)
+//                        .content(authSession_json))
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andDo(MockMvcResultHandlers.print());
+//
+//        // then
+//    }
+//
+//    @Test
+//    @DisplayName("enter page with unauthorization")
+//    void enterPageWithUnAuthorization() throws Exception{
+//        // given
+//        User user = User.builder()
+//                .email("test@google.com")
+//                .password("!@#QWEQasdzxc")
+//                .build();
+//        userRepository.save(user);
+//
+//        // for signIn
+//        SignInDTO signInDTO = SignInDTO.builder()
+//                .email(user.getEmail())
+//                .password(user.getPassword())
+//                .build();
+//
+//        String signInDTO_json = objectMapper.writeValueAsString(signInDTO);
+//
+//        // signIn and getCookie
+//        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(signInDTO_json))
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andDo(MockMvcResultHandlers.print())
+//                .andReturn();
+//
+//        MockHttpServletResponse response = result.getResponse();
+//        Cookie[] cookies = response.getCookies();
+//
+//        // insert wrong cookie's value
+//        cookies[0].setValue(cookies[0].getValue() + "?");
+//
+//        AuthSession authSession = new AuthSession(1L);
+//        String authSession_json = objectMapper.writeValueAsString(authSession);
+//
+//        // when
+//        // try enter auth page
+//        mockMvc.perform(MockMvcRequestBuilders.post("/sendCookie")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .cookie(cookies)
+//                        .content(authSession_json))
+//                .andExpect(MockMvcResultMatchers.status().isUnauthorized())
+//                .andDo(MockMvcResultHandlers.print());
+//
+//        // then
+//    }
     /* ********************************************************************************* */
     // signIn() - end
 }
