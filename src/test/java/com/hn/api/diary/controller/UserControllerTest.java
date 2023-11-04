@@ -1,11 +1,15 @@
 package com.hn.api.diary.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.hn.api.diary.config.AuthSession;
+import com.hn.api.diary.config.JwsKey;
+import com.hn.api.diary.dto.SessionDTO;
 import com.hn.api.diary.dto.SignInDTO;
 import com.hn.api.diary.entity.MySession;
 import com.hn.api.diary.entity.User;
 import com.hn.api.diary.exception.InvalidValue;
 import com.hn.api.diary.repository.SessionRepository;
+import io.jsonwebtoken.Jwts;
 import jakarta.servlet.http.Cookie;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
@@ -49,7 +53,7 @@ class UserControllerTest {
     // signUp() - start
     /* ********************************************************************************* */
     @Test
-    @DisplayName("TDD - signUp")
+    @DisplayName("DisplayName : signUp")
     void signUp() throws Exception {
         // given
         SignUpDTO signUpDTO = SignUpDTO.builder()
@@ -77,7 +81,7 @@ class UserControllerTest {
     // signIn() - start
     /* ********************************************************************************* */
     @Test
-    @DisplayName("TDD - signIn success")
+    @DisplayName("DisplayName : signIn success")
     void signInSuccess() throws Exception{
         // given
         // save user entity and generate signInDTO
@@ -108,6 +112,56 @@ class UserControllerTest {
                 .andDo(MockMvcResultHandlers.print());
 
         // then
+    }
+
+    @Test
+    @DisplayName("DisplayName : generate jwt after signIn")
+    void generateJwtAfterSignIn() throws Exception {
+        // given
+        SignUpDTO signUpDTO = SignUpDTO.builder()
+                .email("test@naver.com")
+                .password("!@#QWEasdzxc")
+                .build();
+
+        User user = User.builder()
+                .email(signUpDTO.getEmail())
+                .password(signUpDTO.getPassword())
+                .build();
+
+        userRepository.save(user);
+
+        SignInDTO signInDTO = SignInDTO.builder()
+                .email("test@naver.com")
+                .password("!@#QWEasdzxc")
+                .build();
+
+        String json = objectMapper.writeValueAsString(signInDTO);
+
+        // when
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+
+        // then
+        // 헤더에 담은 토큰 값.
+        MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
+        String jws = mockHttpServletResponse.getHeader(HttpHeaders.AUTHORIZATION);
+
+        // 토큰 값 decode
+        String jwtSubject = Jwts.parser()
+                .verifyWith(JwsKey.getJwsSecretKey())
+                .build()
+                .parseSignedClaims(jws)
+                .getPayload()
+                .getSubject();
+        SessionDTO sessionDTO = objectMapper.readValue(jwtSubject, SessionDTO.class);
+
+        // 토큰이 담고 있는 내용 검증.
+        Assertions.assertEquals(user.getId(), sessionDTO.getId());
+        Assertions.assertEquals(user.getEmail(), sessionDTO.getEmail());
     }
 
     /**

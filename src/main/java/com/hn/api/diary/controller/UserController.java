@@ -39,7 +39,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/signIn")
-    public SessionResponse signIn(@RequestBody SignInDTO signInDTO) throws JsonProcessingException {
+    public ResponseEntity<SessionResponse> signIn(@RequestBody SignInDTO signInDTO) throws JsonProcessingException {
         User user = userService.signIn(signInDTO);
 
         SessionDTO sessionDTO = SessionDTO.builder()
@@ -60,6 +60,15 @@ public class UserController {
                 .expiration(expirateDate)
                 .compact();
 
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.AUTHORIZATION, jws);
+
+        SessionResponse body = new SessionResponse(jws);
+
+        ResponseEntity responseEntity = ResponseEntity.ok()
+                .headers(headers)
+                .body(body);
+
         /* 아래는 쿠키 인증 ↓ */
 //        ResponseCookie cookie = ResponseCookie.from("SESSION", token)
 //                .domain("localhost")    // todo 배포 전 수정.
@@ -75,7 +84,7 @@ public class UserController {
 //                .build();
         /* 쿠키 인증 ↑ */
 
-        return new SessionResponse(jws);
+        return responseEntity;
     }
 
     @PostMapping(value = "/sendCookie")
