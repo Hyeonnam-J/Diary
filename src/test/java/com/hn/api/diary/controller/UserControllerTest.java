@@ -110,100 +110,100 @@ class UserControllerTest {
         // then
     }
 
-    @Transactional  // todo : @Transactional을 뺄 수 있는 방법 고민.
-    @Test
-    @DisplayName("TDD - generate session after signIn success")
-    void generateSessionAfterSignIn() throws Exception{
-        // given
-        // save user entity and generate signInDTO
-        SignUpDTO signUpDTO = SignUpDTO.builder()
-                .email("test@naver.com")
-                .password("!@#QWEasdzxc")
-                .build();
-
-        User user = User.builder()
-                .email(signUpDTO.getEmail())
-                .password(signUpDTO.getPassword())
-                .build();
-
-        userRepository.save(user);
-
-        SignInDTO signInDTO = SignInDTO.builder()
-                .email("test@naver.com")
-                .password("!@#QWEasdzxc")
-                .build();
-
-        String json = objectMapper.writeValueAsString(signInDTO);
-
-        // when
-        mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(json))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andDo(MockMvcResultHandlers.print());
-
-        // then
-        User signInUser = userRepository.findById(user.getId())
-                .orElseThrow(InvalidValue::new);
-        Assertions.assertEquals(1L, signInUser.getMySessions().size());
-    }
-
-    @Test
-    @DisplayName("TDD - response session in cookie after signIn success")
-    void responseSessionInCookieAfterSignIn() throws Exception{
-        // given
-        // save user entity and generate signInDTO
-        SignUpDTO signUpDTO = SignUpDTO.builder()
-                .email("test@naver.com")
-                .password("!@#QWEasdzxc")
-                .build();
-
-        User user = User.builder()
-                .email(signUpDTO.getEmail())
-                .password(signUpDTO.getPassword())
-                .build();
-
-        userRepository.save(user);
-
-        SignInDTO signInDTO = SignInDTO.builder()
-                .email("test@naver.com")
-                .password("!@#QWEasdzxc")
-                .build();
-
-        String json = objectMapper.writeValueAsString(signInDTO);
-
-        // when
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(json))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andDo(MockMvcResultHandlers.print())
-                .andReturn();
-
-        // Get the response cookies
-        MockHttpServletResponse response = result.getResponse();
-        String cookieHeader = response.getHeader("Set-Cookie");
-
-        // Extract session ID from the cookie
-        String sessionId = null;
-        if (cookieHeader != null) {
-            String[] cookies = cookieHeader.split(";");
-            for (String cookie : cookies) {
-                if (cookie.startsWith("SESSION")) {
-                    sessionId = cookie.split("=")[1]; // Get the session ID value
-                    break;
-                }
-            }
-        }
-
-        // then
-        assertNotNull(cookieHeader);
-        assertNotNull(sessionId);
-    }
-
     /**
      * 일단 쿠키를 이용한 인증처리 테스트는 주석.
      */
+//    @Transactional  // todo : @Transactional을 뺄 수 있는 방법 고민.
+//    @Test
+//    @DisplayName("TDD - generate session after signIn success")
+//    void generateSessionAfterSignIn() throws Exception{
+//        // given
+//        // save user entity and generate signInDTO
+//        SignUpDTO signUpDTO = SignUpDTO.builder()
+//                .email("test@naver.com")
+//                .password("!@#QWEasdzxc")
+//                .build();
+//
+//        User user = User.builder()
+//                .email(signUpDTO.getEmail())
+//                .password(signUpDTO.getPassword())
+//                .build();
+//
+//        userRepository.save(user);
+//
+//        SignInDTO signInDTO = SignInDTO.builder()
+//                .email("test@naver.com")
+//                .password("!@#QWEasdzxc")
+//                .build();
+//
+//        String json = objectMapper.writeValueAsString(signInDTO);
+//
+//        // when
+//        mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(json))
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andDo(MockMvcResultHandlers.print());
+//
+//        // then
+//        User signInUser = userRepository.findById(user.getId())
+//                .orElseThrow(InvalidValue::new);
+//        Assertions.assertEquals(1L, signInUser.getMySessions().size());
+//    }
+
+//    @Test
+//    @DisplayName("TDD - response session in cookie after signIn success")
+//    void responseSessionInCookieAfterSignIn() throws Exception{
+//        // given
+//        // save user entity and generate signInDTO
+//        SignUpDTO signUpDTO = SignUpDTO.builder()
+//                .email("test@naver.com")
+//                .password("!@#QWEasdzxc")
+//                .build();
+//
+//        User user = User.builder()
+//                .email(signUpDTO.getEmail())
+//                .password(signUpDTO.getPassword())
+//                .build();
+//
+//        userRepository.save(user);
+//
+//        SignInDTO signInDTO = SignInDTO.builder()
+//                .email("test@naver.com")
+//                .password("!@#QWEasdzxc")
+//                .build();
+//
+//        String json = objectMapper.writeValueAsString(signInDTO);
+//
+//        // when
+//        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(json))
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andDo(MockMvcResultHandlers.print())
+//                .andReturn();
+//
+//        // Get the response cookies
+//        MockHttpServletResponse response = result.getResponse();
+//        String cookieHeader = response.getHeader("Set-Cookie");
+//
+//        // Extract session ID from the cookie
+//        String sessionId = null;
+//        if (cookieHeader != null) {
+//            String[] cookies = cookieHeader.split(";");
+//            for (String cookie : cookies) {
+//                if (cookie.startsWith("SESSION")) {
+//                    sessionId = cookie.split("=")[1]; // Get the session ID value
+//                    break;
+//                }
+//            }
+//        }
+//
+//        // then
+//        assertNotNull(cookieHeader);
+//        assertNotNull(sessionId);
+//    }
+//
 //    @Test
 //    @DisplayName("enter page with authorization")
 //    void enterPageWithAuthorization() throws Exception{

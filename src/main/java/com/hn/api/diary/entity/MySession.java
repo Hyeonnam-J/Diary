@@ -19,12 +19,12 @@ public class MySession {
 
     private String token;
 
-    @ManyToOne
-    private User user;
-
-    @Builder
-    public MySession(User user) {
-        this.token = UUID.randomUUID().toString();
-        this.user = user;
-    }
+//    @ManyToOne
+//    private User user;
+//
+//    @Builder
+//    public MySession(User user) {
+//        this.token = UUID.randomUUID().toString();
+//        this.user = user;
+//    }
 }
