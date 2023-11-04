@@ -1,6 +1,7 @@
 package com.hn.api.diary.controller;
 
 import com.hn.api.diary.config.AuthSession;
+import com.hn.api.diary.config.JwsKey;
 import com.hn.api.diary.dto.SignInDTO;
 import com.hn.api.diary.dto.SignUpDTO;
 import com.hn.api.diary.response.SessionResponse;
@@ -24,19 +25,6 @@ public class UserController {
 
     private final UserService userService;
 
-    // todo: 외부 저장소를 사용하여 키를 관리하는 것이 효율적.
-    public static volatile SecretKey key;
-    private SecretKey generateJwsSecretKey(){
-        if(key == null){
-            synchronized (UserController.class){
-                if(key == null){
-                    key = Jwts.SIG.HS256.key().build();
-                }
-            }
-        }
-        return key;
-    }
-
     @PostMapping(value = "/signUp")
     public void signUp(@RequestBody SignUpDTO signUpDTO){
         userService.signUp(signUpDTO);
@@ -46,7 +34,7 @@ public class UserController {
     public SessionResponse signIn(@RequestBody SignInDTO signInDTO){
         Long userId = userService.signIn(signInDTO);
 
-        SecretKey key = generateJwsSecretKey();
+        SecretKey key = JwsKey.getJwsSecretKey();
         String jws = Jwts.builder()
                 .subject(String.valueOf(userId))
                 .signWith(key)
