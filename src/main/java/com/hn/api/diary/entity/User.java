@@ -29,14 +29,14 @@ public class User {
         this.createdAt = LocalDateTime.now();
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<MySession> mySessions = new ArrayList<>();
-
-    public MySession addSession() {
-        MySession mySession = MySession.builder()
-                .user(this)
-                .build();
-        mySessions.add(mySession);
-        return mySession;
-    }
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+//    private List<MySession> mySessions = new ArrayList<>();
+//
+//    public MySession addSession() {
+//        MySession mySession = MySession.builder()
+//                .user(this)
+//                .build();
+//        mySessions.add(mySession);
+//        return mySession;
+//    }
 }

@@ -1,14 +1,19 @@
 package com.hn.api.diary.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hn.api.diary.config.AuthSession;
 import com.hn.api.diary.config.JwsKey;
+import com.hn.api.diary.dto.SessionDTO;
 import com.hn.api.diary.dto.SignInDTO;
 import com.hn.api.diary.dto.SignUpDTO;
+import com.hn.api.diary.entity.User;
 import com.hn.api.diary.response.SessionResponse;
 import com.hn.api.diary.service.UserService;
 import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +29,8 @@ import java.util.Date;
 @RestController
 public class UserController {
 
+    @Autowired final private ObjectMapper objectMapper;
+
     private final UserService userService;
 
     @PostMapping(value = "/signUp")
@@ -32,8 +39,14 @@ public class UserController {
     }
 
     @PostMapping(value = "/signIn")
-    public SessionResponse signIn(@RequestBody SignInDTO signInDTO){
-        Long userId = userService.signIn(signInDTO);
+    public SessionResponse signIn(@RequestBody SignInDTO signInDTO) throws JsonProcessingException {
+        User user = userService.signIn(signInDTO);
+
+        SessionDTO sessionDTO = SessionDTO.builder()
+                .id(user.getId())
+                .email(user.getEmail())
+                .build();
+        String jwtSubject = objectMapper.writeValueAsString(sessionDTO);
 
         SecretKey key = JwsKey.getJwsSecretKey();
 
@@ -41,7 +54,7 @@ public class UserController {
         Date expirateDate = new Date(generateDate.getTime() + (60 * 1000));
 
         String jws = Jwts.builder()
-                .subject(String.valueOf(userId))
+                .subject(jwtSubject)
                 .signWith(key)
                 .issuedAt(generateDate)
                 .expiration(expirateDate)
@@ -66,8 +79,8 @@ public class UserController {
     }
 
     @PostMapping(value = "/sendCookie")
-    public Long sendCookie(AuthSession authSession){
-        return authSession.id;
+    public String sendCookie(AuthSession authSession) throws JsonProcessingException {
+        return objectMapper.writeValueAsString(authSession);
     }
 
     @PostMapping(value = "/test")

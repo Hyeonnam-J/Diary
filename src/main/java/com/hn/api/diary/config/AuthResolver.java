@@ -1,6 +1,8 @@
 package com.hn.api.diary.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hn.api.diary.controller.UserController;
+import com.hn.api.diary.dto.SessionDTO;
 import com.hn.api.diary.entity.MySession;
 import com.hn.api.diary.exception.Unauthorization;
 import com.hn.api.diary.repository.SessionRepository;
@@ -8,6 +10,7 @@ import io.jsonwebtoken.*;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -19,7 +22,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AuthResolver implements HandlerMethodArgumentResolver {
 
-    private final SessionRepository sessionRepository;
+    @Autowired final private ObjectMapper objectMapper;
+
+//    private final SessionRepository sessionRepository;
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
@@ -34,14 +39,16 @@ public class AuthResolver implements HandlerMethodArgumentResolver {
         }
 
         try {
-            String userId = Jwts.parser()
+            String jwtSubject = Jwts.parser()
                     .verifyWith(JwsKey.getJwsSecretKey())
                     .build()
                     .parseSignedClaims(jws)
                     .getPayload()
                     .getSubject();
 
-            return new AuthSession(Long.parseLong(userId));
+            SessionDTO sessionDTO = objectMapper.readValue(jwtSubject, SessionDTO.class);
+
+            return new AuthSession(sessionDTO);
         } catch (JwtException e) {
             throw new Unauthorization();
         }
