@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.crypto.SecretKey;
 import java.time.Duration;
 import java.util.Base64;
+import java.util.Date;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -35,9 +36,15 @@ public class UserController {
         Long userId = userService.signIn(signInDTO);
 
         SecretKey key = JwsKey.getJwsSecretKey();
+
+        Date generateDate = new Date();
+        Date expirateDate = new Date(generateDate.getTime() + (60 * 1000));
+
         String jws = Jwts.builder()
                 .subject(String.valueOf(userId))
                 .signWith(key)
+                .issuedAt(generateDate)
+                .expiration(expirateDate)
                 .compact();
 
         /* 아래는 쿠키 인증 ↓ */
@@ -59,14 +66,12 @@ public class UserController {
     }
 
     @PostMapping(value = "/sendCookie")
-    public String sendCookie(AuthSession authSession){
-        System.out.println(authSession.toString());
-        return "권한이 필요한 게시물에 접근 성공";
+    public Long sendCookie(AuthSession authSession){
+        return authSession.id;
     }
 
     @PostMapping(value = "/test")
-    public String test(@CookieValue("SESSION") String test){
-        System.out.println(test);
+    public String test(){
         System.out.println("test");
         return "test";
     }
