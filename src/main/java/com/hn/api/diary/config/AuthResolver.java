@@ -35,7 +35,7 @@ public class AuthResolver implements HandlerMethodArgumentResolver {
 
         try {
             String userId = Jwts.parser()
-                    .verifyWith(UserController.key)
+                    .verifyWith(JwsKey.getJwsSecretKey())
                     .build()
                     .parseSignedClaims(jws)
                     .getPayload()
