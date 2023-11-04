@@ -1,8 +1,10 @@
 package com.hn.api.diary.config;
 
+import com.hn.api.diary.controller.UserController;
 import com.hn.api.diary.entity.MySession;
 import com.hn.api.diary.exception.Unauthorization;
 import com.hn.api.diary.repository.SessionRepository;
+import io.jsonwebtoken.*;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +28,23 @@ public class AuthResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-        return null;
+        String jws = webRequest.getHeader("Authorization");
+        if(jws == null || jws.equals("")){
+            throw new Unauthorization();
+        }
+
+        try {
+            String userId = Jwts.parser()
+                    .verifyWith(UserController.key)
+                    .build()
+                    .parseSignedClaims(jws)
+                    .getPayload()
+                    .getSubject();
+
+            return new AuthSession(Long.parseLong(userId));
+        } catch (JwtException e) {
+            throw new Unauthorization();
+        }
     }
 
     /**
