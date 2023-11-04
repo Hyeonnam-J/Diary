@@ -28,7 +28,7 @@ public class UserService {
     }
 
     @Transactional
-    public String signIn(SignInDTO signInDTO) {
+    public Long signIn(SignInDTO signInDTO) {
         String receivedEmail = signInDTO.getEmail();
         String receivedPassword = signInDTO.getPassword();
 
@@ -37,6 +37,6 @@ public class UserService {
 
         // todo: Transactional이 없으면 addSession 실패. 이유 공부.
         MySession mySession = user.addSession();
-        return mySession.getToken();
+        return user.getId();
     }
 }
