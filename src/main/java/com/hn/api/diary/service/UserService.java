@@ -2,7 +2,6 @@ package com.hn.api.diary.service;
 
 import com.hn.api.diary.dto.SignInDTO;
 import com.hn.api.diary.dto.SignUpDTO;
-import com.hn.api.diary.entity.MySession;
 import com.hn.api.diary.entity.User;
 import com.hn.api.diary.exception.InvalidValue;
 import com.hn.api.diary.repository.UserRepository;

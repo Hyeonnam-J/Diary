@@ -1,7 +1,6 @@
 package com.hn.api.diary.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hn.api.diary.repository.SessionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -16,14 +15,15 @@ import java.util.List;
 public class WebConfig implements WebMvcConfigurer {
 
     @Autowired private final ObjectMapper objectMapper;
-//    private final SessionRepository sessionRepository;
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:3000")
-                .allowCredentials(true);
-//                .maxAge(720)
+                .allowedOrigins("http://localhost:3000");
+//               .allowedHeaders("Authorization")
+//               .exposedHeaders("Authorization")
+//               .allowCredentials(true);
+//                .maxAge(720);
     }
 
     @Override
