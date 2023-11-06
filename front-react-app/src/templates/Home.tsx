@@ -2,18 +2,20 @@ import DefaultLayout from './layouts/DefaultLayout';
 // import React, { useState, useEffect } from 'react';
 
 function Home() {
-    // todo 쿠기가 안 보내짐.
-    const sendCookie = async () =>{
+
+    const testAuth = async () =>{
+
+
 
         const data = {
-            id: 1
+            id: 1,
+            email: "hn"
         }
 
-        const url = new URL('http://localhost:8080/test');
+        const url = new URL('http://localhost:8080/testAuth');
         const response = await fetch(url, {
             headers: {
                 "Content-Type": 'application/json',
-                "credentials": 'include',
             },
             method: 'POST',
 //             body: JSON.stringify(data),
@@ -52,7 +54,7 @@ function Home() {
   
     return (
         <DefaultLayout>
-            <button onClick={ sendCookie }>쿠키 보내기</button>
+            <button onClick={ testAuth }>권한 검증</button>
             {/* <p id='count'>{count}</p>
             <button id='plus' onClick={handlePlusClick}>+</button>
 

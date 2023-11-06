@@ -65,30 +65,14 @@ public class UserController {
 
         SessionResponse body = new SessionResponse(jws);
 
-        ResponseEntity responseEntity = ResponseEntity.ok()
+        return ResponseEntity.ok()
                 .headers(headers)
                 .body(body);
 
-        /* 아래는 쿠키 인증 ↓ */
-//        ResponseCookie cookie = ResponseCookie.from("SESSION", token)
-//                .domain("localhost")    // todo 배포 전 수정.
-//                .path("/")
-//                .httpOnly(true)
-//                .secure(false)
-//                .maxAge(Duration.ofDays(30))
-//                .sameSite("Strict")
-//                .build();
-//
-//        return ResponseEntity.ok()    // 리턴 타입 ResponseEntity<Object>
-//                .header(HttpHeaders.SET_COOKIE, cookie.toString())
-//                .build();
-        /* 쿠키 인증 ↑ */
-
-        return responseEntity;
     }
 
-    @PostMapping(value = "/sendCookie")
-    public String sendCookie(AuthSession authSession) throws JsonProcessingException {
+    @PostMapping(value = "/testAuth")
+    public String testAuth(AuthSession authSession) throws JsonProcessingException {
         return objectMapper.writeValueAsString(authSession);
     }
 

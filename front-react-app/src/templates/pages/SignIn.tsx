@@ -18,16 +18,26 @@ const SignIn = () => {
 
         const response = await fetch('http://localhost:8080/signIn', {
             headers: {
-              "Content-Type": 'application/json',
+                "Content-Type": 'application/json',
             },
             method: 'POST',
             body: JSON.stringify(data),
-        })
+        });
+
+        if(response.ok){
+
+            const responseHeaders = response.headers.get('Authorization');
+            const responseContents = await response.json();
+            console.log(responseHeaders);
+            console.log(responseContents);
+
+        }
 
         // 로그인 성공 시 홈으로 리다이렉트
-        if (response.ok) {
-            navigate('/');
-        }
+//         if (response.ok) {
+//
+//             navigate('/');
+//         }
     }
     return (
         <SignLayout>
