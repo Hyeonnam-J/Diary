@@ -19,7 +19,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
@@ -30,8 +29,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @AutoConfigureMockMvc
 @SpringBootTest
 class UserControllerTest {
-
-    // todo: 컨트롤러, 서비스 분리
 
     @Autowired private MockMvc mockMvc;
     @Autowired private ObjectMapper objectMapper;
@@ -46,86 +43,30 @@ class UserControllerTest {
     // signUp() - start
     /* ********************************************************************************* */
     @Test
-    @DisplayName("DisplayName : signUp")
-    void signUp() throws Exception {
-        // given
+    @DisplayName("sign up : success")
+    void signUpSuccess() throws Exception {
+        // [given]
         SignUpDTO signUpDTO = SignUpDTO.builder()
                 .email("test-signUp-email")
                 .password("test-signUp-password")
                 .build();
 
         // MockMvc content 파라미터로 String을 보내야 해서 직렬화 로직 추가.
-        String json = objectMapper.writeValueAsString(signUpDTO);
+        String signUpDTO_json = objectMapper.writeValueAsString(signUpDTO);
 
-        // when
+        // [when]
         ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.post("/signUp")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(json));
+                        .content(signUpDTO_json));
 
-        // then
+        // [then]
         resultActions.andExpect(MockMvcResultMatchers.status().isOk())
                         .andDo(MockMvcResultHandlers.print());
 
-        // expected
         Assertions.assertEquals(1, userRepository.count());
+
         User user = userRepository.findAll().iterator().next();
         Assertions.assertEquals(signUpDTO.getEmail(), user.getEmail());
-    }
-
-    @Test
-    @DisplayName("DisplayName : duplicated email while signUp")
-    void duplicatedEmailWhileSignUp() throws Exception {
-        // given
-        User user = User.builder()
-                .email("test-signUp-email")
-                .password("any")
-                .build();
-        userRepository.save(user);
-
-        SignUpDTO signUpDTO = SignUpDTO.builder()
-                .email("test-signUp-email")
-                .password("test-signUp-password")
-                .build();
-
-        // MockMvc content 파라미터로 String을 보내야 해서 직렬화 로직 추가.
-        String json = objectMapper.writeValueAsString(signUpDTO);
-
-        // when
-        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.post("/signUp")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(json));
-
-        // then
-        resultActions.andExpect(MockMvcResultMatchers.status().isAlreadyReported())
-                .andDo(MockMvcResultHandlers.print());
-    }
-
-    @Test
-    @DisplayName("DisplayName : check crypto password in sign up")
-    void checkCryptoPasswordInSignUp() throws Exception {
-        // given
-        SignUpDTO signUpDTO = SignUpDTO.builder()
-                .email("test-signUp-email")
-                .password("test-signUp-password")
-                .build();
-
-        // MockMvc content 파라미터로 String을 보내야 해서 직렬화 로직 추가.
-        String json = objectMapper.writeValueAsString(signUpDTO);
-
-        // when
-        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.post("/signUp")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(json));
-
-        // then
-        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
-                .andDo(MockMvcResultHandlers.print());
-
-        User user = userRepository.findByEmail(signUpDTO.getEmail())
-                        .orElseThrow(InvalidValue::new);
-
-        Assertions.assertNotEquals(signUpDTO.getPassword(), user.getPassword());
-        Assertions.assertNotNull(user.getPassword());
     }
     /* ********************************************************************************* */
     // signUp() - end
@@ -133,86 +74,49 @@ class UserControllerTest {
     // signIn() - start
     /* ********************************************************************************* */
     @Test
-    @DisplayName("DisplayName : signIn success")
-     void signInSuccess() throws Exception{
-        // given
-        // save user entity and generate signInDTO
+    @DisplayName("sign in : check accessToken after sign in")
+     void checkAccessTokenAfterSignIn() throws Exception{
+        // [given]
+        // signUp 로직을 통해 암호화 된 데이터를 넣어두고,
         SignUpDTO signUpDTO = SignUpDTO.builder()
-                .email("test@naver.com")
-                .password("!@#QWEasdzxc")
+                .email("test")
+                .password("test")
                 .build();
-
         userService.signUp(signUpDTO);
 
-        User user = userRepository.findByEmail(signUpDTO.getEmail())
-                .orElseThrow(InvalidValue::new);
-
+        // mockMvc를 통해서 보낼 파라미터 생성.
         SignInDTO signInDTO = SignInDTO.builder()
-                .email("test@naver.com")
-                .password("!@#QWEasdzxc")
+                .email("test")
+                .password("test")
                 .build();
+        String signInDTO_json = objectMapper.writeValueAsString(signInDTO);
 
-        String json = objectMapper.writeValueAsString(signInDTO);
-
-        // when
+        // [when]
         ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(json));
-
-        // then
-        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
-                .andDo(MockMvcResultHandlers.print());
-    }
-
-    @Test
-    @DisplayName("DisplayName : generate jwt after signIn")
-    void generateJwtAfterSignIn() throws Exception {
-        // given
-        SignUpDTO signUpDTO = SignUpDTO.builder()
-                .email("test@naver.com")
-                .password("!@#QWEasdzxc")
-                .build();
-
-        User user = User.builder()
-                .email(signUpDTO.getEmail())
-                .password(signUpDTO.getPassword())
-                .build();
-
-        userRepository.save(user);
-
-        SignInDTO signInDTO = SignInDTO.builder()
-                .email("test@naver.com")
-                .password("!@#QWEasdzxc")
-                .build();
-
-        String json = objectMapper.writeValueAsString(signInDTO);
-
-        // when
-        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(json));
-
+                        .content(signInDTO_json));
         MvcResult mvcResult = resultActions.andReturn();
 
-        // then
-        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
-                .andDo(MockMvcResultHandlers.print());
+        // 헤더의 Authorization의 토큰 파싱.
+        String jws = mvcResult.getResponse().getHeader(HttpHeaders.AUTHORIZATION);
 
-        // expected
-        // 헤더에 담은 토큰 값.
-        MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
-        String jws = mockHttpServletResponse.getHeader(HttpHeaders.AUTHORIZATION);
-
-        // 토큰 값 decode
         String jwtSubject = Jwts.parser()
                 .verifyWith(JwsKey.getJwsSecretKey())
                 .build()
                 .parseSignedClaims(jws)
                 .getPayload()
                 .getSubject();
+
         SessionDTO sessionDTO = objectMapper.readValue(jwtSubject, SessionDTO.class);
 
-        // 토큰이 담고 있는 내용 검증.
+        // 토큰 파싱 후 값 비교를 위해.
+        User user = userRepository.findByEmail(signUpDTO.getEmail())
+                        .orElseThrow(InvalidValue::new);
+
+        // [then]
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print());
+
         Assertions.assertEquals(user.getId(), sessionDTO.getId());
         Assertions.assertEquals(user.getEmail(), sessionDTO.getEmail());
     }
