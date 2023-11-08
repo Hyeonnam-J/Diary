@@ -42,8 +42,8 @@ public class UserService {
         User user = userRepository.findByEmail(receivedEmail)
                 .orElseThrow(InvalidValue::new);
 
-        var isMatches = PasswordEncoder.matches(receivedPassword, user.getPassword());
-        if(!isMatches)throw new InvalidValue();
+//        var isMatches = PasswordEncoder.matches(receivedPassword, user.getPassword());
+//        if(!isMatches)throw new InvalidValue();
 
         return user;
     }
