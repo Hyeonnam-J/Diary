@@ -16,7 +16,7 @@ const SignIn = () => {
             password: passwordInput.value,
         }
 
-        const response = await fetch('http://localhost:8080/signIn', {
+        const response = fetch('http://localhost:8080/signIn', {
             headers: {
                 "Content-Type": 'application/json',
             },
