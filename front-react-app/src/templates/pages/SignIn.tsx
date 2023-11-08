@@ -22,21 +22,17 @@ const SignIn = () => {
             },
             method: 'POST',
             body: JSON.stringify(data),
-        });
-
-//         if(response.ok){
-//
-//             const responseHeaders = response.headers.get('Authorization');
-//             const responseContents = await response.json();
-//             console.log(responseHeaders);
-//             console.log(responseContents);
-//
-//         }
-
-        // 로그인 성공 시 홈으로 리다이렉트
-        if (response.ok) {
-            navigate('/');
-        }
+        })
+        .then(response => {
+            if(response.ok){
+                const accessToken = response.headers.get('Authorization');
+                localStorage.setItem('accessToken', accessToken || '')
+                navigate('/');
+            }
+        })
+        .catch(error => {
+            alert(error);
+        })
     }
     return (
         <SignLayout>

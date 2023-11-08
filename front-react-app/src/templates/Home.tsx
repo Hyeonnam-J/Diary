@@ -5,14 +5,15 @@ function Home() {
 
     const testAuth = async () =>{
 
-
+        const accessToken = localStorage.getItem('accessToken');
+        console.log("home : "+accessToken);
 
         const data = {
             id: 1,
             email: "hn"
         }
 
-        const url = new URL('http://localhost:8080/testAuth');
+        const url = new URL('http://localhost:8080/postTest');
         const response = await fetch(url, {
             headers: {
                 "Content-Type": 'application/json',
@@ -21,6 +22,7 @@ function Home() {
 //             body: JSON.stringify(data),
 
         })
+
     }
 
     /*

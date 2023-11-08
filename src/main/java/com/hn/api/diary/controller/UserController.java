@@ -16,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,6 +39,8 @@ public class UserController {
 
     @PostMapping(value = "/signIn")
     public ResponseEntity<SessionResponse> signIn(@RequestBody SignInDTO signInDTO) throws JsonProcessingException {
+        System.out.println("시큐리티, 여기로 와?");
+        System.out.println(signInDTO.getEmail());
         User user = userService.signIn(signInDTO);
 
         SessionDTO sessionDTO = SessionDTO.builder()
@@ -74,9 +77,27 @@ public class UserController {
         return new ObjectMapper().writeValueAsString(authSession);
     }
 
-    @PostMapping(value = "/test")
+    @PostMapping(value = "/postTest")
+    public String postTest(){
+        System.out.println("postTest");
+        return "postTest";
+    }
+
+    @GetMapping(value = "/test")
     public String test(){
         System.out.println("test");
         return "test";
+    }
+
+    @GetMapping(value = "/success")
+    public String success(){
+        System.out.println("success");
+        return "success";
+    }
+
+    @GetMapping(value = "/fail")
+    public String fail(){
+        System.out.println("fail");
+        return "fail";
     }
 }
