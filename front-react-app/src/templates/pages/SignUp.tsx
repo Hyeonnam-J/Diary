@@ -23,6 +23,7 @@ const SignUp = () => {
                 "Content-Type": 'application/json',
             },
             method: 'POST',
+//             credentials: 'include',
             body: JSON.stringify(data),
             }); //response
 

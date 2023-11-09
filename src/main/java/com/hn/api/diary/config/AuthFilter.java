@@ -7,11 +7,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 
 public class AuthFilter extends AbstractAuthenticationProcessingFilter {
@@ -24,7 +26,6 @@ public class AuthFilter extends AbstractAuthenticationProcessingFilter {
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
-        System.out.println("여기는 class's AuthFilter");
         SignInDTO signInDTO = objectMapper.readValue(request.getInputStream(), SignInDTO.class);
 
         UsernamePasswordAuthenticationToken token = UsernamePasswordAuthenticationToken.unauthenticated(
