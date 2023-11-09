@@ -21,12 +21,12 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:3000")
                 .exposedHeaders("Authorization");
-//               .allowCredentials(true);
-//                .maxAge(720);
+//                .allowedHeaders("*");
+//                .allowCredentials(true);
     }
 
-    @Override
-    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
-        resolvers.add(new AuthResolver(objectMapper));
-    }
+//    @Override
+//    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+//        resolvers.add(new AuthResolver(objectMapper));
+//    }
 }

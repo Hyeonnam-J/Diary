@@ -21,6 +21,7 @@ const SignIn = () => {
                 "Content-Type": 'application/json',
             },
             method: 'POST',
+//             credentials: 'include',
             body: JSON.stringify(data),
         })
         .then(response => {

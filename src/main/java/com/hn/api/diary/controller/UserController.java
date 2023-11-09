@@ -77,31 +77,31 @@ public class UserController {
 
     @PostMapping(value = "/postTest")
     public String postTest(){
-        System.out.println("postTest");
-        return "postTest";
+        System.out.println("aa - postTest");
+        return "aapostTest";
     }
 
     @PostMapping(value = "/postTest2")
     public String postTest2(){
-        System.out.println("postTest2");
-        return "postTest2";
+        System.out.println("aa - postTest2");
+        return "aapostTest2";
     }
 
     @GetMapping(value = "/test")
     public String test(){
-        System.out.println("test");
-        return "test";
+        System.out.println("aa - test");
+        return "aatest";
     }
 
     @GetMapping(value = "/success")
     public String success(){
-        System.out.println("success");
-        return "success";
+        System.out.println("aa - success");
+        return "aasuccess";
     }
 
     @GetMapping(value = "/fail")
     public String fail(){
-        System.out.println("fail");
-        return "fail";
+        System.out.println("aa - fail");
+        return "aafail";
     }
 }
