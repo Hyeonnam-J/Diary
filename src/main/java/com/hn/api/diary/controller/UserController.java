@@ -39,8 +39,6 @@ public class UserController {
 
     @PostMapping(value = "/signIn")
     public ResponseEntity<SessionResponse> signIn(@RequestBody SignInDTO signInDTO) throws JsonProcessingException {
-        System.out.println("시큐리티, 여기로 와?");
-        System.out.println(signInDTO.getEmail());
         User user = userService.signIn(signInDTO);
 
         SessionDTO sessionDTO = SessionDTO.builder()
@@ -81,6 +79,12 @@ public class UserController {
     public String postTest(){
         System.out.println("postTest");
         return "postTest";
+    }
+
+    @PostMapping(value = "/postTest2")
+    public String postTest2(){
+        System.out.println("postTest2");
+        return "postTest2";
     }
 
     @GetMapping(value = "/test")
