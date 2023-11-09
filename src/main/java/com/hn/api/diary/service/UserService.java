@@ -1,6 +1,5 @@
 package com.hn.api.diary.service;
 
-import com.hn.api.diary.crypto.PasswordEncoder;
 import com.hn.api.diary.dto.SignInDTO;
 import com.hn.api.diary.dto.SignUpDTO;
 import com.hn.api.diary.entity.User;
@@ -8,6 +7,7 @@ import com.hn.api.diary.exception.AlreadyReported;
 import com.hn.api.diary.exception.InvalidValue;
 import com.hn.api.diary.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -17,6 +17,7 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public void signUp(SignUpDTO signUpDTO){
 
@@ -25,7 +26,7 @@ public class UserService {
             throw new AlreadyReported();
         }
 
-        String encryptedPassword = PasswordEncoder.encrypt(signUpDTO.getPassword());
+        String encryptedPassword = passwordEncoder.encode(signUpDTO.getPassword());
 
         User user = User.builder()
                 .email(signUpDTO.getEmail())
@@ -42,8 +43,8 @@ public class UserService {
         User user = userRepository.findByEmail(receivedEmail)
                 .orElseThrow(InvalidValue::new);
 
-//        var isMatches = PasswordEncoder.matches(receivedPassword, user.getPassword());
-//        if(!isMatches)throw new InvalidValue();
+        var isMatches = passwordEncoder.matches(receivedPassword, user.getPassword());
+        if(!isMatches)throw new InvalidValue();
 
         return user;
     }
