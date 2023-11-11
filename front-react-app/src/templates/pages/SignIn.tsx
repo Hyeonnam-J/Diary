@@ -19,6 +19,7 @@ const SignIn = () => {
         const response = fetch('http://localhost:8080/signIn', {
             headers: {
                 "Content-Type": 'application/json',
+//                 "credentials": 'include',
             },
             method: 'POST',
 //             credentials: 'include',
@@ -26,9 +27,12 @@ const SignIn = () => {
         })
         .then(response => {
             if(response.ok){
-                const accessToken = response.headers.get('Authorization');
-                localStorage.setItem('accessToken', accessToken || '')
-                navigate('/');
+                alert('성공');
+//                 const accessToken = response.headers.get('Authorization');
+//                 localStorage.setItem('accessToken', accessToken || '')
+//
+//                 console.log(accessToken);
+//                 navigate('/');
             }
         })
         .catch(error => {
