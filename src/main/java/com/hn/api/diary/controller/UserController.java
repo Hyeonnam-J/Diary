@@ -32,6 +32,12 @@ public class UserController {
     private final UserService userService;
     @Autowired final private ObjectMapper objectMapper;
 
+    // security 성공 후 여기로 리다이렉트?
+    @GetMapping(value = "/")
+    public String index(){
+        return "index";
+    }
+
     @PostMapping(value = "/signUp")
     public void signUp(@RequestBody SignUpDTO signUpDTO){
         userService.signUp(signUpDTO);

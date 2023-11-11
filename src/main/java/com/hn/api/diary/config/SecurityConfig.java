@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -47,8 +48,9 @@ public class SecurityConfig {
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return web -> web.ignoring()
-                .requestMatchers(new AntPathRequestMatcher("/favicon.ico"))
-//                .requestMatchers(new AntPathRequestMatcher("/error"))
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/favicon.ico"))
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/error"))
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/"))
                 .requestMatchers(toH2Console());
     }
 
@@ -102,7 +104,7 @@ public class SecurityConfig {
                 UserDetails userDetails = org.springframework.security.core.userdetails.User.builder()
                         .username(user.getEmail())
                         .password(user.getPassword())
-                        .roles("USER")
+                        .authorities("READ")
                         .build();
 
                 return userDetails;

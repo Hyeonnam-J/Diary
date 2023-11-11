@@ -1,12 +1,16 @@
 package com.hn.api.diary.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hn.api.diary.dto.SessionDTO;
 import com.hn.api.diary.dto.SignInDTO;
+import com.hn.api.diary.response.SessionResponse;
+import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -15,7 +19,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import javax.crypto.SecretKey;
 import java.io.IOException;
+import java.util.Date;
 
 public class AuthFilter extends AbstractAuthenticationProcessingFilter {
 
@@ -62,6 +68,27 @@ public class AuthFilter extends AbstractAuthenticationProcessingFilter {
         response.setStatus(HttpServletResponse.SC_OK);
         response.setContentType("application/json");
         response.getWriter().write("성공!!!");
+
+        SignInDTO signInDTO = SignInDTO.builder()
+                .email(userDetails.getUsername())
+                .password(userDetails.getPassword())
+                .build();
+
+        String jwtSubject = objectMapper.writeValueAsString(signInDTO);
+        SecretKey key = JwsKey.getJwsSecretKey();
+        Date generateDate = new Date();
+        Date expirateDate = new Date(generateDate.getTime() + (60 * 1000));
+
+        String jws = Jwts.builder()
+                .subject(jwtSubject)
+                .signWith(key)
+                .issuedAt(generateDate)
+                .expiration(expirateDate)
+                .compact();
+
+        SessionResponse body = new SessionResponse(jws);
+
+        response.addHeader(HttpHeaders.AUTHORIZATION, jws);
     }
 
     @Override
