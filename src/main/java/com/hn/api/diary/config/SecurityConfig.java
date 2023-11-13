@@ -1,5 +1,7 @@
 package com.hn.api.diary.config;
 
+import com.hn.api.diary.config.filter.AccessFilter;
+import com.hn.api.diary.config.filter.SignInFilter;
 import com.hn.api.diary.entity.User;
 import com.hn.api.diary.exception.InvalidValue;
 import com.hn.api.diary.repository.UserRepository;
@@ -18,7 +20,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -50,7 +51,6 @@ public class SecurityConfig {
         return web -> web.ignoring()
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/favicon.ico"))
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/error"))
-                .requestMatchers(AntPathRequestMatcher.antMatcher("/"))
                 .requestMatchers(toH2Console());
     }
 
@@ -65,18 +65,30 @@ public class SecurityConfig {
                 .authorizeHttpRequests((req) ->
                         req
                                 .requestMatchers(AntPathRequestMatcher.antMatcher("/signUp")).permitAll()
+                                .requestMatchers(AntPathRequestMatcher.antMatcher("/signIn")).hasRole("USER1")
+                                .requestMatchers(AntPathRequestMatcher.antMatcher("/test")).hasRole("USER")
+                                .requestMatchers(AntPathRequestMatcher.antMatcher("/admin")).hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
-                .addFilterBefore(authFilter(), UsernamePasswordAuthenticationFilter.class);
+                // accessFilter에서 /signIn 요청은 authFilter로 계속 진행되도록 설정.
+                // authFilter에서 계속 진행되도록 설정하지 않아서
+                // UsernamePasswordAuthenticationFilter 로직은 실행되지 않는다.
+                .addFilterBefore(signInFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(accessFilter(), SignInFilter.class);
 
         return http.build();
     }
 
     @Bean
-    public AuthFilter authFilter(){
-        AuthFilter authFilter = new AuthFilter();
-        authFilter.setAuthenticationManager(authenticationManager());
-        return authFilter;
+    public AccessFilter accessFilter(){
+        return new AccessFilter();
+    }
+
+    @Bean
+    public SignInFilter signInFilter(){
+        SignInFilter signInFilter = new SignInFilter();
+        signInFilter.setAuthenticationManager(authenticationManager());
+        return signInFilter;
     }
 
     @Bean
@@ -104,7 +116,7 @@ public class SecurityConfig {
                 UserDetails userDetails = org.springframework.security.core.userdetails.User.builder()
                         .username(user.getEmail())
                         .password(user.getPassword())
-                        .authorities("READ")
+                        .roles("ROLE_"+user.getRole())
                         .build();
 
                 return userDetails;

@@ -27,12 +27,10 @@ const SignIn = () => {
         })
         .then(response => {
             if(response.ok){
-                alert('성공');
-//                 const accessToken = response.headers.get('Authorization');
-//                 localStorage.setItem('accessToken', accessToken || '')
-//
-//                 console.log(accessToken);
-//                 navigate('/');
+                const accessToken = response.headers.get('Authorization');
+                localStorage.setItem('accessToken', accessToken || '')
+                console.log(accessToken);
+                navigate('/');
             }
         })
         .catch(error => {

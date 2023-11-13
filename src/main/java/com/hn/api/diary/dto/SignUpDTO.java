@@ -8,6 +8,8 @@ public class SignUpDTO {
 
   private String email;
   private String password;
+  @Builder.Default
+  private final String role = "USER";
 
   /*
   테스트 코드에서 데이터를 주기 위한 용도.
