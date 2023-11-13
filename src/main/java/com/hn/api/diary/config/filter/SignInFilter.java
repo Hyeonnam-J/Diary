@@ -71,14 +71,12 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
                 .build();
         String jwtSubject = objectMapper.writeValueAsString(sessionDTO);
 
-        SecretKey key = JwsKey.getJwsSecretKey();
-
         Date generateDate = new Date();
         Date expirateDate = new Date(generateDate.getTime() + (60 * 1000));
 
         String jws = Jwts.builder()
                 .subject(jwtSubject)
-                .signWith(key)
+                .signWith(JwsKey.getJwsSecretKey())
                 .issuedAt(generateDate)
                 .expiration(expirateDate)
                 .compact();

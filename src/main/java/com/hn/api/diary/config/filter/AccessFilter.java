@@ -5,6 +5,7 @@ import com.hn.api.diary.config.JwsKey;
 import com.hn.api.diary.dto.SessionDTO;
 import com.hn.api.diary.response.SessionResponse;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -56,8 +57,9 @@ public class AccessFilter extends OncePerRequestFilter {
 
             // go controller
             filterChain.doFilter(request, response);
-        }catch (Exception e){
-
+        }catch (ExpiredJwtException e){
+            // todo: return errorResponse
+            e.printStackTrace();
         }
     }
 }

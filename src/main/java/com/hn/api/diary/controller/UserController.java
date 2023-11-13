@@ -27,7 +27,6 @@ import java.util.Date;
 public class UserController {
 
     private final UserService userService;
-    @Autowired final private ObjectMapper objectMapper;
 
     @PostMapping(value = "/signUp")
     public void signUp(@RequestBody SignUpDTO signUpDTO){
