@@ -73,7 +73,7 @@ public class SecurityConfig {
                         req
                                 .requestMatchers(AntPathRequestMatcher.antMatcher("/signUp")).permitAll()
 
-                                .requestMatchers(AntPathRequestMatcher.antMatcher("/user")).hasRole("USER")
+                                .requestMatchers(AntPathRequestMatcher.antMatcher("/user")).hasAnyRole("USER", "ADMIN")
                                 .requestMatchers(AntPathRequestMatcher.antMatcher("/admin")).hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
