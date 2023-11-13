@@ -11,12 +11,16 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 public class AccessFilter extends OncePerRequestFilter {
 
@@ -24,7 +28,7 @@ public class AccessFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        // /signIn -> authFilter()
+        // /signIn -> signInFilter()
         if(request.getRequestURI().equals("/signIn")){
             filterChain.doFilter(request, response);
             return;
@@ -40,20 +44,20 @@ public class AccessFilter extends OncePerRequestFilter {
                     .parseSignedClaims(jws)
                     .getPayload();
 
-            String jwtSubject = claims.getSubject();
             Date generateDate = claims.getIssuedAt();
             Date expirateDate = claims.getExpiration();
 
+            String jwtSubject = claims.getSubject();
             SessionDTO sessionDTO = objectMapper.readValue(jwtSubject, SessionDTO.class);
 
-            System.out.println("성공");
-            System.out.println(sessionDTO.getEmail());
-            System.out.println(sessionDTO.getPassword());
-            System.out.println(sessionDTO.getRole());
-            System.out.println(generateDate);
-            System.out.println(expirateDate);
+            List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(sessionDTO.getRole());
+            Authentication authentication = new UsernamePasswordAuthenticationToken(sessionDTO.getEmail(), null, authorities);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+
+            // go controller
+            filterChain.doFilter(request, response);
         }catch (Exception e){
-            System.out.println("실패");
+
         }
     }
 }

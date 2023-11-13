@@ -31,6 +31,7 @@ import java.util.stream.Collectors;
 public class SignInFilter extends AbstractAuthenticationProcessingFilter {
 
     @Autowired private ObjectMapper objectMapper;
+
     private static final AntPathRequestMatcher SIGN_IN_REQUEST_MATCHER
             = new AntPathRequestMatcher("/signIn", "POST");
 
@@ -40,7 +41,7 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
-        SignInDTO signInDTO = objectMapper.readValue(request.getInputStream(), SignInDTO.class);
+        SignInDTO signInDTO = new ObjectMapper().readValue(request.getInputStream(), SignInDTO.class);
         String username = signInDTO.getEmail();
         String password = signInDTO.getPassword();
 

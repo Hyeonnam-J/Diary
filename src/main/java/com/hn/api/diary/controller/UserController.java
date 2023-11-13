@@ -34,4 +34,14 @@ public class UserController {
         userService.signUp(signUpDTO);
     }
 
+    @PostMapping(value = "/user")
+    public String user(){
+        return "auth is user";
+    }
+
+    @PostMapping(value = "/admin")
+    public String admin(){
+        return "auth is admin";
+    }
+
 }
