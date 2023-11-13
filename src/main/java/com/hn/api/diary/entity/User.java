@@ -21,12 +21,14 @@ public class User {
 
     private String email;
     private String password;
+    private String role;
     private LocalDateTime createdAt;
 
     @Builder
-    public User(String email, String password) {
+    public User(String email, String password, String role) {
         this.email = email;
         this.password = password;
+        this.role = role;
         this.createdAt = LocalDateTime.now();
     }
 

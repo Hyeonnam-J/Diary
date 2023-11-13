@@ -1,13 +1,12 @@
 package com.hn.api.diary.response;
 
-import lombok.Getter;
+import lombok.*;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 public class SessionResponse {
 
-    private final String token;
+    private String accessToken;
 
-    public SessionResponse(String token) {
-        this.token = token;
-    }
 }

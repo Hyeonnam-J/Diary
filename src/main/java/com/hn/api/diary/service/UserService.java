@@ -31,21 +31,9 @@ public class UserService {
         User user = User.builder()
                 .email(signUpDTO.getEmail())
                 .password(encryptedPassword)
+                .role(signUpDTO.getRole())
                 .build();
 
         userRepository.save(user);
-    }
-
-    public User signIn(SignInDTO signInDTO) {
-        String receivedEmail = signInDTO.getEmail();
-        String receivedPassword = signInDTO.getPassword();
-
-        User user = userRepository.findByEmail(receivedEmail)
-                .orElseThrow(InvalidValue::new);
-
-        var isMatches = passwordEncoder.matches(receivedPassword, user.getPassword());
-        if(!isMatches)throw new InvalidValue();
-
-        return user;
     }
 }
