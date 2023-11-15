@@ -1,10 +1,11 @@
-package com.hn.api.diary.config.filter;
+package com.hn.api.diary.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hn.api.diary.config.JwsKey;
+import com.hn.api.diary.util.JwsKey;
 import com.hn.api.diary.dto.SessionDTO;
 import com.hn.api.diary.dto.SignInDTO;
 import com.hn.api.diary.response.SessionResponse;
+import com.hn.api.diary.util.Type;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -19,9 +20,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.security.web.util.matcher.RequestMatcher;
 
-import javax.crypto.SecretKey;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -72,20 +71,20 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
         String jwtSubject = objectMapper.writeValueAsString(sessionDTO);
 
         Date generateDate = new Date();
-        Date expirateDate = new Date(generateDate.getTime() + (60 * 1000));
+        Date expireDate = new Date(generateDate.getTime() + (60 * 1000));
 
+        // todo: jws -> spring security oauth2
         String jws = Jwts.builder()
                 .subject(jwtSubject)
                 .claim("email", sessionDTO.getEmail())
                 .signWith(JwsKey.getJwsSecretKey())
                 .issuedAt(generateDate)
-                .expiration(expirateDate)
+                .expiration(expireDate)
                 .compact();
 
         response.setStatus(HttpServletResponse.SC_OK);
         response.addHeader(HttpHeaders.AUTHORIZATION, jws);
-
-        response.setContentType("application/json");
+        response.setContentType(Type.CONTENT_TYPE_JSON);
 
         String body = objectMapper.writeValueAsString(new SessionResponse(jws));
         response.getWriter().write(body);

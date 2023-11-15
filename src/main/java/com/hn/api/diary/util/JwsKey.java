@@ -1,4 +1,4 @@
-package com.hn.api.diary.config;
+package com.hn.api.diary.util;
 
 import io.jsonwebtoken.Jwts;
 
