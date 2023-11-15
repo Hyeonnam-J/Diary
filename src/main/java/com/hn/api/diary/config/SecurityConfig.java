@@ -3,7 +3,9 @@ package com.hn.api.diary.config;
 import com.hn.api.diary.config.filter.AccessFilter;
 import com.hn.api.diary.config.filter.SignInFilter;
 import com.hn.api.diary.entity.User;
+import com.hn.api.diary.exception.AccessDeniedHandler;
 import com.hn.api.diary.exception.InvalidValue;
+import com.hn.api.diary.exception.Unauthorization;
 import com.hn.api.diary.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -25,6 +27,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -81,7 +84,11 @@ public class SecurityConfig {
                 // authFilter에서 계속 진행되도록 설정하지 않아서
                 // UsernamePasswordAuthenticationFilter 로직은 실행되지 않는다.
                 .addFilterBefore(signInFilter(), UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(accessFilter(), SignInFilter.class);
+                .addFilterBefore(accessFilter(), SignInFilter.class)
+                .exceptionHandling(handling -> {
+                    handling
+                            .accessDeniedHandler(accessDeniedHandler());
+                });
 
         return http.build();
     }
@@ -129,5 +136,10 @@ public class SecurityConfig {
                 return userDetails;
             }
         };
+    }
+
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler() {
+        return new AccessDeniedHandler();
     }
 }

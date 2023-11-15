@@ -35,12 +35,12 @@ public class UserController {
 
     @PostMapping(value = "/user")
     public String user(){
-        return "auth is user";
+        return "{\"data\": \"auth is user\"}";
     }
 
     @PostMapping(value = "/admin")
     public String admin(){
-        return "auth is admin";
+        return "{\"data\": \"auth is admin\"}";
     }
 
 }
