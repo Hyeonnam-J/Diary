@@ -76,6 +76,7 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
 
         String jws = Jwts.builder()
                 .subject(jwtSubject)
+                .claim("email", sessionDTO.getEmail())
                 .signWith(JwsKey.getJwsSecretKey())
                 .issuedAt(generateDate)
                 .expiration(expirateDate)
