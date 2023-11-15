@@ -1,7 +1,7 @@
 //package com.hn.api.diary.controller;
 //
 //import com.fasterxml.jackson.databind.ObjectMapper;
-//import com.hn.api.diary.config.JwsKey;
+//import com.hn.api.diary.util.JwsKey;
 //import com.hn.api.diary.dto.SignInDTO;
 //import com.hn.api.diary.dto.SignUpDTO;
 //import com.hn.api.diary.entity.User;

@@ -1,11 +1,10 @@
-package com.hn.api.diary.config.filter;
+package com.hn.api.diary.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hn.api.diary.config.JwsKey;
+import com.hn.api.diary.util.JwsKey;
 import com.hn.api.diary.dto.SessionDTO;
 import com.hn.api.diary.response.SessionResponse;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -46,20 +45,30 @@ public class AccessFilter extends OncePerRequestFilter {
                     .getPayload();
 
             Date generateDate = claims.getIssuedAt();
-            Date expirateDate = claims.getExpiration();
+            Date expireDate = claims.getExpiration();
 
             String jwtSubject = claims.getSubject();
             SessionDTO sessionDTO = objectMapper.readValue(jwtSubject, SessionDTO.class);
 
             List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(sessionDTO.getRole());
-            Authentication authentication = new UsernamePasswordAuthenticationToken(sessionDTO.getEmail(), null, authorities);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-
-            // go controller
-            filterChain.doFilter(request, response);
-        }catch (ExpiredJwtException e){
+            setSecurityContextHolder(
+                    request, response, filterChain,
+                    new UsernamePasswordAuthenticationToken(sessionDTO.getEmail(), null, authorities)
+            );
+        }catch (IllegalArgumentException e){
+            // jws == null,
+            List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("NONE");
+            setSecurityContextHolder(
+                    request, response, filterChain,
+                    new UsernamePasswordAuthenticationToken("NONE", null, authorities)
+            );
+        }catch (Exception e){
             // todo: return errorResponse
-            e.printStackTrace();
         }
+    }
+
+    private void setSecurityContextHolder(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain, Authentication authentication) throws ServletException, IOException {
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        filterChain.doFilter(request, response);
     }
 }

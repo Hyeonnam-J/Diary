@@ -2,6 +2,7 @@ package com.hn.api.diary.exception;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hn.api.diary.response.ErrorResponse;
+import com.hn.api.diary.util.Type;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,7 +18,7 @@ public class AccessDeniedHandler implements org.springframework.security.web.acc
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        response.setContentType("application/json;charset=UTF-8");
+        response.setContentType(Type.CONTENT_TYPE_JSON);
 
         Unauthorization unauthorization = new Unauthorization();
         ErrorResponse errorResponse = ErrorResponse.builder()
