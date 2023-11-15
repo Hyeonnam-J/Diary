@@ -41,11 +41,9 @@ const SignIn = () => {
                 accessToken = accessToken || '';
 
                 localStorage.setItem('accessToken', accessToken)
-                console.log(accessToken);
 
                 const decodedAccessToken = parseJwt(accessToken);
                 localStorage.setItem('email', decodedAccessToken.email)
-                console.log(decodedAccessToken.email);
 
                 navigate('/');
             }

@@ -52,12 +52,12 @@
   justify-content: center;
 }
 
-#my-contents{
+.my-contents{
   /* 컨텐츠 가로 중앙 정렬 */
   width: 50%;
   margin: 0 auto;
 }
 
-#my-contents li{
+.my-contents li{
   margin: 20px 0;
 }
