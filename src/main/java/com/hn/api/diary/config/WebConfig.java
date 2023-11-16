@@ -14,14 +14,10 @@ import java.util.List;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-    @Autowired private final ObjectMapper objectMapper;
-
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:3000")
                 .exposedHeaders("Authorization");
-//                .allowedHeaders("*")
-//                .allowCredentials(true);
     }
 }
