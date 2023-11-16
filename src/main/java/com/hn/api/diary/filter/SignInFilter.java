@@ -40,7 +40,7 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
-        SignInDTO signInDTO = new ObjectMapper().readValue(request.getInputStream(), SignInDTO.class);
+        SignInDTO signInDTO = objectMapper.readValue(request.getInputStream(), SignInDTO.class);
         String username = signInDTO.getEmail();
         String password = signInDTO.getPassword();
 

@@ -6,6 +6,7 @@ import com.hn.api.diary.dto.SessionDTO;
 import com.hn.api.diary.response.SessionResponse;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.SignatureException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -50,24 +51,29 @@ public class AccessFilter extends OncePerRequestFilter {
             String jwtSubject = claims.getSubject();
             SessionDTO sessionDTO = objectMapper.readValue(jwtSubject, SessionDTO.class);
 
-            List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(sessionDTO.getRole());
-            setSecurityContextHolder(
-                    request, response, filterChain,
-                    new UsernamePasswordAuthenticationToken(sessionDTO.getEmail(), null, authorities)
-            );
+            setSecurityContextHolder(request, response, filterChain, sessionDTO.getEmail(), sessionDTO.getRole());
         }catch (IllegalArgumentException e){
             // jws == null,
-            List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("NONE");
-            setSecurityContextHolder(
-                    request, response, filterChain,
-                    new UsernamePasswordAuthenticationToken("NONE", null, authorities)
-            );
+            setSecurityContextHolder(request, response, filterChain, "NONE", "NONE");
+        }catch (SignatureException e){
+            // jwtKey is invalid
+            setSecurityContextHolder(request, response, filterChain, "NONE", "NONE");
         }catch (Exception e){
             // todo: return errorResponse
         }
     }
 
-    private void setSecurityContextHolder(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain, Authentication authentication) throws ServletException, IOException {
+    private void setSecurityContextHolder(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            FilterChain filterChain,
+            String principal,
+            String... authorityList
+            ) throws ServletException, IOException {
+
+        List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(authorityList);
+        Authentication authentication
+                = new UsernamePasswordAuthenticationToken(principal, null, authorities);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request, response);
     }
