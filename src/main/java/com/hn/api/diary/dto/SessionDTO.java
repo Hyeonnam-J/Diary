@@ -9,13 +9,11 @@ import lombok.NoArgsConstructor;
 public class SessionDTO {
 
     private String email;
-    private String password;
     private String role;
 
     @Builder
-    public SessionDTO(String email, String password, String role) {
+    public SessionDTO(String email, String role) {
         this.email = email;
-        this.password = password;
         this.role = role;
     }
 }
