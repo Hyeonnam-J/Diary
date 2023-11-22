@@ -70,7 +70,9 @@ public class SecurityConfig {
         return web -> web.ignoring()
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/favicon.ico"))
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/error"))
-                .requestMatchers(toH2Console());
+                .requestMatchers(toH2Console())
+
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/signUp"));
     }
 
     @Bean
@@ -83,8 +85,6 @@ public class SecurityConfig {
                 .cors(withDefaults())
                 .authorizeHttpRequests((req) ->
                         req
-                                .requestMatchers(AntPathRequestMatcher.antMatcher("/signUp")).permitAll()
-
                                 .requestMatchers(AntPathRequestMatcher.antMatcher("/user")).hasAnyRole("USER", "ADMIN")
                                 .requestMatchers(AntPathRequestMatcher.antMatcher("/admin")).hasRole("ADMIN")
                                 .anyRequest().authenticated()
