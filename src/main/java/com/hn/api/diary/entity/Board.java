@@ -40,6 +40,5 @@ public class Board {
     }
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
     User user;
 }
