@@ -38,11 +38,13 @@ const SignIn = () => {
         .then(response => {
             if(response.ok){
                 let accessToken = response.headers.get('Authorization');
+
                 accessToken = accessToken || '';
 
                 localStorage.setItem('accessToken', accessToken)
 
                 const decodedAccessToken = parseJwt(accessToken);
+                localStorage.setItem('userId', decodedAccessToken.userId)
                 localStorage.setItem('email', decodedAccessToken.email)
 
                 navigate('/');

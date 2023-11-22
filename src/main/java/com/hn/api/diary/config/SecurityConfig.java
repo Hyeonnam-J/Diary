@@ -1,5 +1,6 @@
 package com.hn.api.diary.config;
 
+import com.hn.api.diary.dto.MyUserDetails;
 import com.hn.api.diary.filter.AccessFilter;
 import com.hn.api.diary.filter.SignInFilter;
 import com.hn.api.diary.entity.User;
@@ -87,6 +88,7 @@ public class SecurityConfig {
                         req
                                 .requestMatchers(AntPathRequestMatcher.antMatcher("/user")).hasAnyRole("USER", "ADMIN")
                                 .requestMatchers(AntPathRequestMatcher.antMatcher("/admin")).hasRole("ADMIN")
+                                .requestMatchers(AntPathRequestMatcher.antMatcher("/memo/**")).hasAnyRole("USER", "ADMIN")
                                 .anyRequest().authenticated()
                 )
                 // accessFilter에서 /signIn 요청은 authFilter로 계속 진행되도록 설정.
@@ -142,7 +144,7 @@ public class SecurityConfig {
                         .roles(user.getRole())
                         .build();
 
-                return userDetails;
+                return new MyUserDetails(userDetails, user.getId());
             }
         };
     }
