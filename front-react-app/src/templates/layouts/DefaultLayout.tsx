@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import My from "../fragments/My";
@@ -11,18 +11,33 @@ interface LayoutProps {
     children: ReactNode;
 }
 
-const menuClickHandler = (uri: string) => {
-
-    const data = {
-        accessToken: localStorage.getItem('accessToken'),
-    }
-
+const menuClickHandler = (uri: string, userId: string | null, accessToken: string | null) => {
     const response = fetch('http://localhost:8080/'+uri, {
         headers: {
             "Content-Type": "application/json",
+            "userId": `${userId}`,
+            'Authorization': `${accessToken}`,
         },
         method: 'POST',
-        body: JSON.stringify(data),
+//         body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.log(error);
+    })
+}
+
+const getMemo = (uri: string, userId: string | null, accessToken: string | null) => {
+    const fullUri = userId ? `${uri}/${userId}` : uri;
+    const response = fetch('http://localhost:8080/'+fullUri, {
+        headers: {
+            "userId": `${userId}`,
+            'Authorization': `${accessToken}`,
+        },
+        method: 'GET',
     })
     .then(response => response.json())
     .then(data => {
@@ -35,6 +50,15 @@ const menuClickHandler = (uri: string) => {
 
 const Layout: React.FC<LayoutProps> = (props) => {
     const [isNavOpen, setNavOpen] = useState(false);
+
+    const [userId, setUserId] = useState<string | null>(null);
+    const [accessToken, setAccessToken] = useState<string | null>(null);
+
+    useEffect(() => {
+        // 컴포넌트가 처음 마운트될 때 localStorage에서 값 설정
+        setUserId(localStorage.getItem('userId'));
+        setAccessToken(localStorage.getItem('accessToken'));
+    }, []); // 빈 배열을 전달하여 한 번만 실행되도록 설정
 
     const receiveNavClick = () => {
         setNavOpen(prevState => !prevState);
@@ -53,8 +77,9 @@ const Layout: React.FC<LayoutProps> = (props) => {
             <div id='nav-contents-box' style={{ left: isNavOpen ? '0' : navWidthMinus }}>
                 <h3 id='nav-greetings'>Welcome</h3>
                 <ul id='nav-contents'>
-                    <li onClick={() => menuClickHandler('user')}>user</li>
-                    <li onClick={() => menuClickHandler('admin')}>admin</li>
+                    <li onClick={() => menuClickHandler('user', userId, accessToken)}>user</li>
+                    <li onClick={() => menuClickHandler('admin', userId, accessToken)}>admin</li>
+                    <li onClick={() => getMemo('memo', userId, accessToken)}>memo</li>
 
                     <li><Link to="/Menu3">Menu3</Link></li>
                     <li><Link to="/Menu4">Menu4</Link></li>

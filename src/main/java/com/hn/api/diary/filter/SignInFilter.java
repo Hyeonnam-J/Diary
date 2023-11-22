@@ -1,6 +1,7 @@
 package com.hn.api.diary.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hn.api.diary.dto.MyUserDetails;
 import com.hn.api.diary.util.JwsKey;
 import com.hn.api.diary.dto.SessionDTO;
 import com.hn.api.diary.dto.SignInDTO;
@@ -55,17 +56,17 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
         // 실행하면 리다이렉트가 된다. 여기서 바로 클라이언트로 리턴하기 위해서 삭제.
 //        super.successfulAuthentication(request, response, chain, authResult);
 
-        UserDetails userDetails = (UserDetails) authResult.getPrincipal();
+        MyUserDetails myUserDetails = (MyUserDetails) authResult.getPrincipal();
 
-        List<GrantedAuthority> authorities = new ArrayList<>(userDetails.getAuthorities());
+        List<GrantedAuthority> authorities = new ArrayList<>(myUserDetails.getAuthorities());
         List<String> rolesList = authorities.stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
         String roles = String.join(",", rolesList);
 
         SessionDTO sessionDTO = SessionDTO.builder()
-                .email(userDetails.getUsername())
-                .password(userDetails.getPassword())
+                .email(myUserDetails.getUsername())
+                .password(myUserDetails.getPassword())
                 .role(roles)
                 .build();
         String jwtSubject = objectMapper.writeValueAsString(sessionDTO);
@@ -76,6 +77,7 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
         // todo: jws -> spring security oauth2
         String jws = Jwts.builder()
                 .subject(jwtSubject)
+                .claim("userId", myUserDetails.getUserId())
                 .claim("email", sessionDTO.getEmail())
                 .signWith(JwsKey.getJwsSecretKey())
                 .issuedAt(generateDate)
