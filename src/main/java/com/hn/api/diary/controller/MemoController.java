@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class MemoController {
 
     @GetMapping(value = "/memo/{userId}")
-    public String memo(@PathVariable Long userId){
+    public String getMemoList(@PathVariable Long userId){
         System.out.println(userId);
         return "{\"data\": \"auth is memo\"}";
     }

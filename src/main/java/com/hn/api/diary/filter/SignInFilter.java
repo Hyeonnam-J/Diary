@@ -66,7 +66,6 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
 
         SessionDTO sessionDTO = SessionDTO.builder()
                 .email(myUserDetails.getUsername())
-                .password(myUserDetails.getPassword())
                 .role(roles)
                 .build();
         String jwtSubject = objectMapper.writeValueAsString(sessionDTO);

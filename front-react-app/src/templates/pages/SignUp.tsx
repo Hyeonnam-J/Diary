@@ -1,5 +1,6 @@
 import React, { ReactNode, useState } from 'react';
 import SignLayout from "../layouts/SignLayout";
+import { SERVER_IP } from "../../Config";
 import '../../stylesheets/pages/signUp.css';
 import Layout from "../../stylesheets/modules/layout.module.css";
 import Button from "../../stylesheets/modules/button.module.css";
@@ -18,7 +19,7 @@ const SignUp = () => {
             // phoneNumber: '',
             };
 
-            const response = await fetch('http://localhost:8080/signUp', {
+            const response = await fetch(SERVER_IP+'/signUp', {
             headers: {
                 "Content-Type": 'application/json',
             },

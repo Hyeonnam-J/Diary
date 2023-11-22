@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import SignLayout from "../layouts/SignLayout";
+import { SERVER_IP } from "../../Config";
 import '../../stylesheets/pages/signIn.css';
 import Layout from "../../stylesheets/modules/layout.module.css";
 import Button from "../../stylesheets/modules/button.module.css";
@@ -26,7 +27,7 @@ const SignIn = () => {
             password: passwordInput.value,
         }
 
-        const response = fetch('http://localhost:8080/signIn', {
+        const response = fetch(SERVER_IP+'/signIn', {
             headers: {
                 "Content-Type": 'application/json',
 //                 "credentials": 'include',
@@ -38,12 +39,10 @@ const SignIn = () => {
         .then(response => {
             if(response.ok){
                 let accessToken = response.headers.get('Authorization');
-
                 accessToken = accessToken || '';
+                const decodedAccessToken = parseJwt(accessToken);
 
                 localStorage.setItem('accessToken', accessToken)
-
-                const decodedAccessToken = parseJwt(accessToken);
                 localStorage.setItem('userId', decodedAccessToken.userId)
                 localStorage.setItem('email', decodedAccessToken.email)
 

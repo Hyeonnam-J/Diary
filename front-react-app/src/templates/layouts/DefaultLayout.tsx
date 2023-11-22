@@ -1,6 +1,7 @@
 import React, { ReactNode, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+import { SERVER_IP } from "../../Config";
 import My from "../fragments/My";
 import Nav from "../fragments/Nav";
 
@@ -12,7 +13,7 @@ interface LayoutProps {
 }
 
 const menuClickHandler = (uri: string, userId: string | null, accessToken: string | null) => {
-    const response = fetch('http://localhost:8080/'+uri, {
+    const response = fetch(SERVER_IP+uri, {
         headers: {
             "Content-Type": "application/json",
             "userId": `${userId}`,
@@ -30,9 +31,9 @@ const menuClickHandler = (uri: string, userId: string | null, accessToken: strin
     })
 }
 
-const getMemo = (uri: string, userId: string | null, accessToken: string | null) => {
+const getMemoList = (uri: string, userId: string | null, accessToken: string | null) => {
     const fullUri = userId ? `${uri}/${userId}` : uri;
-    const response = fetch('http://localhost:8080/'+fullUri, {
+    const response = fetch(SERVER_IP+fullUri, {
         headers: {
             "userId": `${userId}`,
             'Authorization': `${accessToken}`,
@@ -51,14 +52,17 @@ const getMemo = (uri: string, userId: string | null, accessToken: string | null)
 const Layout: React.FC<LayoutProps> = (props) => {
     const [isNavOpen, setNavOpen] = useState(false);
 
+    // 초깃값 null. 타입은 string.
     const [userId, setUserId] = useState<string | null>(null);
     const [accessToken, setAccessToken] = useState<string | null>(null);
 
+    // 비동기 데이터처리 따위에 쓰임.
+    // 두 번째 파라미터는 의존성 배열로 그 배열의 값이 변경될 때 useEffect가 실행.
+    // 지금은 빈 배열을 전달하여 한 번만 실행되도록 설정.
     useEffect(() => {
-        // 컴포넌트가 처음 마운트될 때 localStorage에서 값 설정
         setUserId(localStorage.getItem('userId'));
         setAccessToken(localStorage.getItem('accessToken'));
-    }, []); // 빈 배열을 전달하여 한 번만 실행되도록 설정
+    }, []);
 
     const receiveNavClick = () => {
         setNavOpen(prevState => !prevState);
@@ -77,9 +81,9 @@ const Layout: React.FC<LayoutProps> = (props) => {
             <div id='nav-contents-box' style={{ left: isNavOpen ? '0' : navWidthMinus }}>
                 <h3 id='nav-greetings'>Welcome</h3>
                 <ul id='nav-contents'>
-                    <li onClick={() => menuClickHandler('user', userId, accessToken)}>user</li>
-                    <li onClick={() => menuClickHandler('admin', userId, accessToken)}>admin</li>
-                    <li onClick={() => getMemo('memo', userId, accessToken)}>memo</li>
+                    <li onClick={() => menuClickHandler('/user', userId, accessToken)}>user</li>
+                    <li onClick={() => menuClickHandler('/admin', userId, accessToken)}>admin</li>
+                    <li onClick={() => getMemoList('/memo', userId, accessToken)}>memo</li>
 
                     <li><Link to="/Menu3">Menu3</Link></li>
                     <li><Link to="/Menu4">Menu4</Link></li>
