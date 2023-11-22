@@ -9,6 +9,8 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -17,7 +19,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     private String email;
     private String password;
@@ -31,4 +33,7 @@ public class User {
         this.role = role;
         this.createdAt = LocalDateTime.now();
     }
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    List<Board> posts = new ArrayList<>();
 }
