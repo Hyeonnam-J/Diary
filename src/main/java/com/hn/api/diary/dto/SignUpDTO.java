@@ -2,13 +2,14 @@ package com.hn.api.diary.dto;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 public class SignUpDTO {
 
   private String email;
   private String password;
-  @Builder.Default
   private final String role = "USER";
 
   /*
