@@ -7,6 +7,7 @@ import com.hn.api.diary.exception.AccessDeniedHandler;
 import com.hn.api.diary.exception.InvalidValue;
 import com.hn.api.diary.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -46,6 +47,23 @@ public class SecurityConfig {
 //        source.registerCorsConfiguration("/**", config);
 //        return source;
 //    }
+
+    /**
+     * about custom filter chain.
+     *
+     * filter chain: 1. SecurityFilterChain 2. ServletFilterChain
+     * web.ignore() -> SecurityFilterChain
+     * this -> ServletFilterChain
+     *
+     * i did not need SignInFilter setting
+     * maybe the implemented interface is different?
+     */
+    @Bean
+    public FilterRegistrationBean<AccessFilter> registration(AccessFilter filter) {
+        FilterRegistrationBean<AccessFilter> registration = new FilterRegistrationBean<>(filter);
+        registration.setEnabled(false);
+        return registration;
+    }
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
