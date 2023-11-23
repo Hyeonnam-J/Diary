@@ -1,24 +1,29 @@
 :root {
-  --header-height: 40px;
-  --nav-height: 40px;
-  --main-width: 1000px;
-  --nav-contents-width: 300px;
-  --nav-contents-width-minus: -300px;
+    --fixed-button-height: 40px;
 
-  --signIn-frame-height: 500px;
-  --signUp-frame-width: 300px;
-  --signUp-frame-height: 1200px;
+    --main-width: 1000px;
+    --nav-contents-width: 300px;
+    --nav-contents-width-minus: -300px;
 
-  --background-color: white;
-  --border-color: rgba(200, 200, 200, 0.5);
-  --shadow-color: rgba(200, 200, 200, 0.5);
+    --signIn-frame-height: 500px;
+    --signUp-frame-width: 300px;
+    --signUp-frame-height: 1200px;
 
-  --btn-width: 100px;
-  --btn-height: 50px;
-  --btn-fontSize: 1.1rem;
+    --board-frame-width: 100%;
+    --board-frame-height: 1500px;
+    --board-header-height: 300px;
+    --board-footer-height: 300px;
 
-  --primary-color: #0d6efd;
-  --primary-hover-color: #0062cc;
+    --background-color: white;
+    --border-color: rgba(200, 200, 200, 0.5);
+    --shadow-color: rgba(200, 200, 200, 0.5);
 
-  --text-ref-color: #CCCCCC;
+    --btn-width: 100px;
+    --btn-height: 50px;
+    --btn-fontSize: 1.1rem;
+
+    --primary-color: #0d6efd;
+    --primary-hover-color: #0062cc;
+
+    --text-ref-color: #CCCCCC;
 }

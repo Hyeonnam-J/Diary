@@ -31,24 +31,6 @@ const menuClickHandler = (uri: string, userId: string | null, accessToken: strin
     })
 }
 
-const getAllPosts = (uri: string, userId: string | null, accessToken: string | null) => {
-//     const fullUri = userId ? `${uri}/${userId}` : uri;
-    const response = fetch(SERVER_IP+uri, {
-        headers: {
-            "userId": `${userId}`,
-            'Authorization': `${accessToken}`,
-        },
-        method: 'GET',
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-    })
-    .catch(error => {
-        console.log(error);
-    })
-}
-
 const Layout: React.FC<LayoutProps> = (props) => {
     const [isNavOpen, setNavOpen] = useState(false);
 
@@ -83,8 +65,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
                 <ul id='nav-contents'>
                     <li onClick={() => menuClickHandler('/user', userId, accessToken)}>user</li>
                     <li onClick={() => menuClickHandler('/admin', userId, accessToken)}>admin</li>
-
-                    <li onClick={() => getAllPosts('/board/posts/all', userId, accessToken)}>board</li>
+                    <li><Link to="/Board">board</Link></li>
 
                     <li><Link to="/Menu3">Menu3</Link></li>
                     <li><Link to="/Menu4">Menu4</Link></li>
