@@ -1,0 +1,23 @@
+@import '../common/variables.css';
+
+section {
+    width: var(--board-frame-width);
+    height: var(--board-frame-height);
+
+    background-color: white;
+}
+
+#boardHeader {
+    height: var(--board-header-height);
+    background-color: yellow;
+}
+
+#boardSection {
+    height: 100px;
+    background-color: white;
+}
+
+#boardFooter {
+    height: var(--board-footer-height);
+    background-color: blue;
+}
