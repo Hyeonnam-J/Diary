@@ -1,5 +1,6 @@
 package com.hn.api.diary.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -34,6 +35,7 @@ public class User {
         this.createdAt = LocalDateTime.now();
     }
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     List<Board> posts = new ArrayList<>();
 }

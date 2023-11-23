@@ -72,6 +72,8 @@ public class AccessFilter extends OncePerRequestFilter {
             String... authorityList
             ) throws ServletException, IOException {
 
+        request.setAttribute("userId", principal);
+
         List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(authorityList);
         Authentication authentication
                 = new UsernamePasswordAuthenticationToken(principal, null, authorities);

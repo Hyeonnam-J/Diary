@@ -31,7 +31,7 @@ const menuClickHandler = (uri: string, userId: string | null, accessToken: strin
     })
 }
 
-const getPostsList = (uri: string, userId: string | null, accessToken: string | null) => {
+const getAllPosts = (uri: string, userId: string | null, accessToken: string | null) => {
 //     const fullUri = userId ? `${uri}/${userId}` : uri;
     const response = fetch(SERVER_IP+uri, {
         headers: {
@@ -84,7 +84,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
                     <li onClick={() => menuClickHandler('/user', userId, accessToken)}>user</li>
                     <li onClick={() => menuClickHandler('/admin', userId, accessToken)}>admin</li>
 
-                    <li onClick={() => getPostsList('/board/posts', userId, accessToken)}>board</li>
+                    <li onClick={() => getAllPosts('/board/posts/all', userId, accessToken)}>board</li>
 
                     <li><Link to="/Menu3">Menu3</Link></li>
                     <li><Link to="/Menu4">Menu4</Link></li>

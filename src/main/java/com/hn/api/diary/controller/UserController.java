@@ -31,7 +31,4 @@ public class UserController {
         return "{\"data\": \"auth is admin\"}";
     }
 
-//    @GetMapping(value = "/test")
-//    public String test(){ return "{\"data\": \"auth is test\"}"; }
-
 }

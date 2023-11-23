@@ -70,13 +70,9 @@ public class SecurityConfig {
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return web -> web.ignoring()
-                .requestMatchers(AntPathRequestMatcher.antMatcher("/test"))
-
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/favicon.ico"))
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/error"))
-                .requestMatchers(toH2Console())
-
-                .requestMatchers(AntPathRequestMatcher.antMatcher("/signUp"));
+                .requestMatchers(toH2Console());
     }
 
     @Bean
@@ -91,7 +87,9 @@ public class SecurityConfig {
                         req
                                 .requestMatchers(AntPathRequestMatcher.antMatcher("/user")).hasAnyRole("USER", "ADMIN")
                                 .requestMatchers(AntPathRequestMatcher.antMatcher("/admin")).hasRole("ADMIN")
-                                .requestMatchers(AntPathRequestMatcher.antMatcher("/memo/**")).hasAnyRole("USER", "ADMIN")
+
+                                .requestMatchers(AntPathRequestMatcher.antMatcher("/signUp")).permitAll()
+                                .requestMatchers(AntPathRequestMatcher.antMatcher("/board/**")).permitAll()
                                 .anyRequest().authenticated()
                 )
                 // accessFilter에서 /signIn 요청은 authFilter로 계속 진행되도록 설정.
@@ -129,8 +127,8 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-//        return NoOpPasswordEncoder.getInstance();
+//        return new BCryptPasswordEncoder();
+        return NoOpPasswordEncoder.getInstance();
     }
 
     @Bean
