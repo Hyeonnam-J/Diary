@@ -21,15 +21,19 @@ const Board = () => {
     const [userId, setUserId] = useState<string | null>(null);
     const [accessToken, setAccessToken] = useState<string | null>(null);
     const [posts, setPosts] = useState<Post[]>(() => []);
+    const [page, setPage] = useState(1);
+    const [sort, setSort] = useState("id,desc");
 
     useEffect(() => {
         setUserId(localStorage.getItem('userId'));
         setAccessToken(localStorage.getItem('accessToken'));
-
-        getAllPosts('/board/posts/all');
     }, []);
 
-    const getAllPosts = (uri: string) => {
+    useEffect(() => {
+        getPosts(`/board/posts?page=${page}&sort=${sort}`);
+    }, [page, sort]);
+
+    const getPosts = (uri: string) => {
 //     const getAllPosts = (uri: string, userId: string | null, accessToken: string | null) => {
     //     const fullUri = userId ? `${uri}/${userId}` : uri;
         const response = fetch(SERVER_IP+uri, {
