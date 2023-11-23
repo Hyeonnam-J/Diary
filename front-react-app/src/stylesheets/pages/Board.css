@@ -12,12 +12,58 @@ section {
     background-color: yellow;
 }
 
+#boardHeader-top {
+    height: 70%;
+    background-color: blueviolet;
+}
+
+#boardHeader-bottom {
+    height: 30%;
+    background-color: cadetblue;
+}
+
 #boardSection {
-    height: 100px;
+    display: flex;
+    justify-content: center;
+
     background-color: white;
+}
+
+#boardSection > table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#boardSection > table *{
+    padding: 10px;
+}
+
+#boardSection > table > thead {
+    background-color: var(--thead-color);
+    height: 50px;
+    font-size: 1.1rem;
+}
+
+#boardSection > table > tbody{
+    font-size: 1.1rem;
+}
+
+.title:hover, .email:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 #boardFooter {
     height: var(--board-footer-height);
     background-color: blue;
+}
+
+#boardFooter-top {
+    height: 50%;
+    background-color: azure;
+}
+
+#boardFooter-bottom {
+    height: 50%;
+    background-color: chocolate;
 }

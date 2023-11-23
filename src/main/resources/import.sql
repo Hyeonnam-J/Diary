@@ -10,3 +10,10 @@ insert into board (title, content, view_count, is_delete, created_date, last_mod
 insert into board (title, content, view_count, is_delete, created_date, last_modified_date, user_id) values ('hn-title', 'hn-content', 0, false, now(), now(), 1);
 insert into board (title, content, view_count, is_delete, created_date, last_modified_date, user_id) values ('hn-title', 'hn-content', 0, false, now(), now(), 1);
 insert into board (title, content, view_count, is_delete, created_date, last_modified_date, user_id) values ('hn-title', 'hn-content', 0, false, now(), now(), 1);
+insert into board (title, content, view_count, is_delete, created_date, last_modified_date, user_id) values ('hn-title', 'hn-content', 0, false, now(), now(), 1);
+insert into board (title, content, view_count, is_delete, created_date, last_modified_date, user_id) values ('hn-title', 'hn-content', 0, false, now(), now(), 1);
+insert into board (title, content, view_count, is_delete, created_date, last_modified_date, user_id) values ('hn-title', 'hn-content', 0, false, now(), now(), 1);
+insert into board (title, content, view_count, is_delete, created_date, last_modified_date, user_id) values ('hn-title', 'hn-content', 0, false, now(), now(), 1);
+insert into board (title, content, view_count, is_delete, created_date, last_modified_date, user_id) values ('hn-title', 'hn-content', 0, false, now(), now(), 1);
+insert into board (title, content, view_count, is_delete, created_date, last_modified_date, user_id) values ('hn-title', 'hn-content', 0, false, now(), now(), 1);
+insert into board (title, content, view_count, is_delete, created_date, last_modified_date, user_id) values ('hn-title', 'hn-content', 0, false, now(), now(), 1);
