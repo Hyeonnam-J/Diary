@@ -11,8 +11,8 @@
 
     --board-frame-width: 100%;
     --board-frame-height: 1500px;
-    --board-header-height: 300px;
-    --board-footer-height: 300px;
+    --board-header-height: 200px;
+    --board-footer-height: 200px;
 
     --background-color: white;
     --border-color: rgba(200, 200, 200, 0.5);
@@ -26,4 +26,6 @@
     --primary-hover-color: #0062cc;
 
     --text-ref-color: #CCCCCC;
+
+    --thead-color: rgba(200, 200, 200, 0.5);
 }

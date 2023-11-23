@@ -1,5 +1,6 @@
 package com.hn.api.diary.controller;
 
+import com.hn.api.diary.dto.BoardPostsDTO;
 import com.hn.api.diary.dto.PostBoardDTO;
 import com.hn.api.diary.entity.Board;
 import com.hn.api.diary.response.DataResponse;
@@ -27,14 +28,14 @@ public class BoardController {
     }
 
     @GetMapping(value = "/board/posts/all")
-    public ResponseEntity<DataResponse<Board>> getAllPosts(){
-        List<Board> posts = boardService.getAllPosts();
+    public ResponseEntity<DataResponse<BoardPostsDTO>> getAllPosts(){
+        List<BoardPostsDTO> posts = boardService.getAllPosts();
 
-        DataResponse<Board> response = DataResponse.<Board>builder()
+        DataResponse<BoardPostsDTO> response = DataResponse.<BoardPostsDTO>builder()
                 .data(posts)
                 .build();
 
-        ResponseEntity<DataResponse<Board>> responseEntity
+        ResponseEntity<DataResponse<BoardPostsDTO>> responseEntity
                 = ResponseEntity.status(response.getStatus()).body(response);
 
         return responseEntity;

@@ -14,9 +14,8 @@ const Board = () => {
         user: {
             email: string;
         };
-        date: string;
+        createdDate: string;
         viewCount: number;
-        // ... 기타 속성
     };
 
     const [userId, setUserId] = useState<string | null>(null);
@@ -57,17 +56,19 @@ const Board = () => {
         <DefaultLayout>
             <section>
                 <div id='boardHeader'>
+                    <div id='boardHeader-top'></div>
+                    <div id='boardHeader-bottom'></div>
                 </div>
 
                 <div id='boardSection'>
                     <table>
                         <thead>
                             <tr>
-                                <th></th>
-                                <th>title</th>
-                                <th>email</th>
-                                <th>date</th>
-                                <th>view</th>
+                                <th style={{ width: '5%' }}></th>
+                                <th style={{ width: '50%' }}>title</th>
+                                <th style={{ width: '20%' }}>email</th>
+                                <th style={{ width: '20%' }}>date</th>
+                                <th style={{ width: '5%' }}>view</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -75,9 +76,9 @@ const Board = () => {
                                 return (
                                     <tr key={index}>
                                         <td>{post.id}</td>
-                                        <td>{post.title}</td>
-                                        <td>{post.user.email}</td>
-                                        <td>{post.date}</td>
+                                        <td className='title'>{post.title}</td>
+                                        <td className='email'>{post.user.email}</td>
+                                        <td>{post.createdDate}</td>
                                         <td>{post.viewCount}</td>
                                     </tr>
                                 )
@@ -87,6 +88,8 @@ const Board = () => {
                 </div>
 
                 <div id='boardFooter'>
+                    <div id='boardFooter-top'></div>
+                    <div id='boardFooter-bottom'></div>
                 </div>
             </section>
         </DefaultLayout>
