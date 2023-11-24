@@ -61,9 +61,22 @@ section {
 #boardFooter-top {
     height: 50%;
     background-color: azure;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #boardFooter-bottom {
     height: 50%;
     background-color: chocolate;
+}
+
+.pagination {
+    display: flex;
+    gap: 10px;
+}
+
+.pagination:hover {
+    cursor: pointer;
 }

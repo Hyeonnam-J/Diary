@@ -1,6 +1,6 @@
 package com.hn.api.diary.exception;
 
-public class Unauthorization extends DiaryException{
+public class Unauthorization extends MyException {
 
     private static final String MESSAGE = "unauthorization";
 

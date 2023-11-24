@@ -6,7 +6,6 @@ import com.hn.api.diary.util.JwsKey;
 import com.hn.api.diary.dto.SessionDTO;
 import com.hn.api.diary.dto.SignInDTO;
 import com.hn.api.diary.response.SessionResponse;
-import com.hn.api.diary.util.Type;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -14,15 +13,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -85,9 +85,13 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
 
         response.setStatus(HttpServletResponse.SC_OK);
         response.addHeader(HttpHeaders.AUTHORIZATION, jws);
-        response.setContentType(Type.CONTENT_TYPE_JSON);
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 
-        String body = objectMapper.writeValueAsString(new SessionResponse(jws));
+        String body = objectMapper.writeValueAsString(SessionResponse.builder()
+                .status(HttpURLConnection.HTTP_OK)
+                .accessToken(jws)
+                .build()
+        );
         response.getWriter().write(body);
     }
 }

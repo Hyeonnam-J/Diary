@@ -6,13 +6,14 @@ import lombok.Getter;
 import java.util.List;
 
 @Getter
-public class DataResponse<T> {
+public class ListDataResponse<T> {
 
-    private final int status = 200;
+    private final int status;
     private final List<T> data;
 
     @Builder
-    public DataResponse(List<T> data) {
+    public ListDataResponse(int status, List<T> data) {
+        this.status = status;
         this.data = data;
     }
 }
