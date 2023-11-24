@@ -51,4 +51,8 @@ public class BoardService {
                 })
                 .collect(Collectors.toList());
     }
+
+    public int getTotalPostsCount(){
+        return (int) boardRepository.count();
+    }
 }

@@ -1,8 +1,8 @@
 package com.hn.api.diary.exception;
 
-public abstract class DiaryException extends RuntimeException{
+public abstract class MyException extends RuntimeException{
 
-    public DiaryException(String message){
+    public MyException(String message){
         super(message);
     }
 

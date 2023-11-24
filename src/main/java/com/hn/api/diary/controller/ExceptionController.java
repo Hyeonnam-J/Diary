@@ -1,6 +1,6 @@
 package com.hn.api.diary.controller;
 
-import com.hn.api.diary.exception.DiaryException;
+import com.hn.api.diary.exception.MyException;
 import com.hn.api.diary.response.ErrorResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ExceptionController {
 
     @ResponseBody
-    @ExceptionHandler(DiaryException.class)
-    public ResponseEntity<ErrorResponse> DiaryExceptionHandler(DiaryException e){
+    @ExceptionHandler(MyException.class)
+    public ResponseEntity<ErrorResponse> DiaryExceptionHandler(MyException e){
 
         ErrorResponse errorResponse = ErrorResponse.builder()
                 .status(e.getStatus())

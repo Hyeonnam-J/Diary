@@ -1,6 +1,6 @@
 package com.hn.api.diary.exception;
 
-public class AlreadyReported extends DiaryException{
+public class AlreadyReported extends MyException {
 
     private static final String MESSAGE = "Already reported value";
 

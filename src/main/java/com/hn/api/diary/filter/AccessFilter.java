@@ -3,7 +3,6 @@ package com.hn.api.diary.filter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hn.api.diary.util.JwsKey;
 import com.hn.api.diary.dto.SessionDTO;
-import com.hn.api.diary.response.SessionResponse;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.SignatureException;

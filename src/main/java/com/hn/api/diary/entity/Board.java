@@ -31,15 +31,18 @@ public class Board {
     @LastModifiedDate
     private LocalDateTime lastModifiedDate;
 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    User user;
+
     @Builder
-    public Board(String title, String content) {
+    public Board(String title, String content, User user, LocalDateTime createdDat) {
         this.title = title;
         this.content = content;
+
+        this.user = user;   // ?
+        this.createdDate = createdDat;
 
         this.viewCount = 0L;
         this.isDelete = false;
     }
-
-    @ManyToOne
-    User user;
 }

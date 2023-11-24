@@ -1,6 +1,6 @@
 package com.hn.api.diary.exception;
 
-public class InvalidValue extends DiaryException{
+public class InvalidValue extends MyException {
 
     private static final String MESSAGE = "invalid value";
 
