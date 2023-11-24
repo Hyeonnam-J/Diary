@@ -1,33 +1,23 @@
 import React, { ReactNode, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import DefaultLayout from '../layouts/DefaultLayout';
 
-import { SERVER_IP } from "../../Config";
+import { SERVER_IP, Page } from "../../Config";
 
-import '../../stylesheets/pages/Board.css';
+import { user } from "../../auth/auth";
+import { BoardPost } from "../../type/BoardPosts"
+
+import '../../stylesheets/pages/board.css';
 import Button from "../../stylesheets/modules/button.module.css";
 
 const Board = () => {
-
-    type Post = {
-        id: number;
-        title: string;
-        user: {
-            email: string;
-        };
-        createdDate: string;
-        viewCount: number;
-    };
-
-    const Page = {
-        perPageSize: 10,
-        perBlockSize: 10,
-    }
+    const navigate = useNavigate();
 
     const [userId, setUserId] = useState<string | null>(null);
     const [accessToken, setAccessToken] = useState<string | null>(null);
 
-    const [posts, setPosts] = useState<Post[]>(() => []);
+    const [posts, setPosts] = useState<BoardPost[]>(() => []);
 
     const [totalPostsCount, setTotalPostsCount] = useState(0);
     const [totalPageCount, setTotalPageCount] = useState(0);
@@ -58,16 +48,12 @@ const Board = () => {
         getPosts(`/board/posts?page=${curPage}&sort=${sort}`);
     }, [curPage, sort]);
 
-    useEffect(() => {
-            console.log(posts);
-        }, [posts])
-
     const showPage = () => {
-        console.log("totalPostsCount: "+totalPostsCount);
-        console.log("totalPageCount: "+totalPageCount);
-        console.log("totalBlockCount: "+totalBlockCount);
-        console.log("curPage: "+curPage);
-        console.log("posts: "+posts);
+        // console.log("totalPostsCount: "+totalPostsCount);
+        // console.log("totalPageCount: "+totalPageCount);
+        // console.log("totalBlockCount: "+totalBlockCount);
+        // console.log("curPage: "+curPage);
+        // console.log("posts: "+posts);
     }
 
     const getTotalPostsCount = () => {
@@ -84,13 +70,7 @@ const Board = () => {
     }
 
     const getPosts = (uri: string) => {
-//     const getAllPosts = (uri: string, userId: string | null, accessToken: string | null) => {
-    //     const fullUri = userId ? `${uri}/${userId}` : uri;
         const response = fetch(SERVER_IP+uri, {
-//             headers: {
-//                 "userId": `${userId}`,
-//                 'Authorization': `${accessToken}`,
-//             },
             method: 'GET',
         })
         .then(response => response.json())
@@ -102,23 +82,31 @@ const Board = () => {
         })
     }
 
+    const write = async () => {
+        const isAuth = await user(userId || '', accessToken || '');
+        if(isAuth) navigate('/write');
+        else navigate('/signIn');
+    }
+
     return (
         <DefaultLayout>
             <section>
                 <div id='boardHeader'>
                     <div id='boardHeader-top'></div>
-                    <div id='boardHeader-bottom' onClick={ showPage }></div>
+                    <div id='boardHeader-bottom' onClick={ showPage }>
+                        <button className={ Button.primary } onClick={ write }>write</button>
+                    </div>
                 </div>
 
                 <div id='boardSection'>
                     <table>
                         <thead>
                             <tr>
-                                <th style={{ width: '5%' }}></th>
-                                <th style={{ width: '50%' }}>title</th>
+                                <th style={{ width: '10%' }}></th>
+                                <th style={{ width: '40%' }}>title</th>
                                 <th style={{ width: '20%' }}>email</th>
                                 <th style={{ width: '20%' }}>date</th>
-                                <th style={{ width: '5%' }}>view</th>
+                                <th style={{ width: '10%' }}>view</th>
                             </tr>
                         </thead>
                         <tbody>

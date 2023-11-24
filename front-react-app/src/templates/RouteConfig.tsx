@@ -2,17 +2,19 @@ import Home from './Home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Board from './pages/Board';
+import Write from './pages/Write';
 
 interface RouteConfig {
-  path: string;
-  element: React.ReactNode;
+    path: string;
+    element: React.ReactNode;
 }
 
 const routes: RouteConfig[] = [
-  { path: '/', element: <Home /> },
-  { path: '/SignIn', element: <SignIn /> },
-  { path: '/SignUp', element: <SignUp /> },
-  { path: '/Board', element: <Board /> },
+    { path: '/', element: <Home /> },   
+    { path: '/signIn', element: <SignIn /> },
+    { path: '/signUp', element: <SignUp /> },
+    { path: '/board', element: <Board /> },
+    { path: '/write', element: <Write /> },
 ];
 
 export type { RouteConfig };

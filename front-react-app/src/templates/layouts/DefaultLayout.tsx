@@ -65,7 +65,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
                 <ul id='nav-contents'>
                     <li onClick={() => menuClickHandler('/user', userId, accessToken)}>user</li>
                     <li onClick={() => menuClickHandler('/admin', userId, accessToken)}>admin</li>
-                    <li><Link to="/Board">board</Link></li>
+                    <li><Link to="/board">board</Link></li>
 
                     <li><Link to="/Menu3">Menu3</Link></li>
                     <li><Link to="/Menu4">Menu4</Link></li>
@@ -80,7 +80,6 @@ const Layout: React.FC<LayoutProps> = (props) => {
                 {props.children}
 
             </main>
-
         </div>
     );
 }

@@ -1,13 +1,8 @@
 package com.hn.api.diary.config;
 
-import com.hn.api.diary.dto.MyUserDetails;
-import com.hn.api.diary.filter.AccessFilter;
-import com.hn.api.diary.filter.SignInFilter;
-import com.hn.api.diary.entity.User;
-import com.hn.api.diary.exception.AccessDeniedHandler;
-import com.hn.api.diary.exception.InvalidValue;
-import com.hn.api.diary.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
+import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
+import static org.springframework.security.config.Customizer.withDefaults;
+
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,15 +16,21 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
-import static org.springframework.security.config.Customizer.withDefaults;
+import com.hn.api.diary.dto.MyUserDetails;
+import com.hn.api.diary.entity.User;
+import com.hn.api.diary.exception.AccessDeniedHandler;
+import com.hn.api.diary.exception.InvalidValue;
+import com.hn.api.diary.filter.AccessFilter;
+import com.hn.api.diary.filter.SignInFilter;
+import com.hn.api.diary.repository.UserRepository;
+
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @EnableWebSecurity(debug = false)
