@@ -49,13 +49,13 @@ const SignIn = () => {
                 navigate('/');
             }
         })
-        .catch(error => {
-            alert(error);
+        .catch(e => {
+            console.log(e);
         })
     }
     return (
         <SignLayout>
-            <main id='signInFrame' className={Layout.centerFrame}>
+            <div id='signInFrame' className={Layout.centerFrame}>
 
             <div id="signInFrame-inputs">
                 <p>Email</p>
@@ -70,7 +70,7 @@ const SignIn = () => {
                 <button className={ Button.primaryOutline }>Kakao</button>
             </div>
 
-            </main>
+            </div>
         </SignLayout>
     )
 }

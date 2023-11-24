@@ -1,14 +1,12 @@
 package com.hn.api.diary.service;
 
 import com.hn.api.diary.dto.BoardPostsDTO;
-import com.hn.api.diary.dto.WriteBoardDTO;
+import com.hn.api.diary.dto.BoardWriteDTO;
 import com.hn.api.diary.entity.Board;
 import com.hn.api.diary.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.format.DateTimeFormatter;
@@ -22,9 +20,9 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
 
-    public void post(WriteBoardDTO writeBoardDTO, Long userId){
-        System.out.println(writeBoardDTO.getTitle());
-        System.out.println(writeBoardDTO.getContent());
+    public void post(BoardWriteDTO boardWriteDTO, Long userId){
+        System.out.println(boardWriteDTO.getTitle());
+        System.out.println(boardWriteDTO.getContent());
         System.out.println(userId);
     }
 

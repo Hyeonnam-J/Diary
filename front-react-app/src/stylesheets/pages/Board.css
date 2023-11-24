@@ -19,6 +19,9 @@ section {
 
 #boardHeader-bottom {
     height: 30%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
     background-color: cadetblue;
 }
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import my from '../../assets/imgs/my.png'
@@ -7,6 +8,8 @@ import '../../stylesheets/common/common.css';
 import '../../stylesheets/fragments/my.css';
 
 const My: React.FC = () => {
+    const navigate = useNavigate();
+
     // React Hook인 useState를 사용하여 새로운 상태 변수를 생성
     // 변수명 isDropdownVisible, 초깃값 false.
     // 이 변수를 변경하기 위한 함수 setDropdownVisible.
@@ -32,6 +35,8 @@ const My: React.FC = () => {
         setEmail('');
         setSignedIn(!isSignedIn);
         setDropdownVisible(!isDropdownVisible);
+
+        navigate('/');
     }
 
     return (
@@ -41,8 +46,8 @@ const My: React.FC = () => {
                 <div id='my-contents-box' style={{ display: isDropdownVisible ? 'flex' : 'none' }}>
                     <ul className='my-contents' style={{ display: !isSignedIn ? 'block' : 'none' }}>
                         <li><Link to="/">Home</Link></li>
-                        <li><Link to="/SignIn">Sign In</Link></li>
-                        <li><Link to="/SignUp">Sign Up</Link></li>
+                        <li><Link to="/signIn">Sign In</Link></li>
+                        <li><Link to="/signUp">Sign Up</Link></li>
                     </ul>
                     <ul className='my-contents' style={{ display: isSignedIn ? 'block' : 'none' }}>
                         <li><Link to="/">Home</Link></li>

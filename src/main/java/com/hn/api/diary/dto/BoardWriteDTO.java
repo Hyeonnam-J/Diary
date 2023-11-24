@@ -4,13 +4,13 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class WriteBoardDTO {
+public class BoardWriteDTO {
 
     private String title;
     private String content;
 
     @Builder
-    public WriteBoardDTO(String title, String content) {
+    public BoardWriteDTO(String title, String content) {
         this.title = title;
         this.content = content;
     }

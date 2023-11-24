@@ -39,7 +39,7 @@ const SignUp = () => {
 
     return (
         <SignLayout>
-            <main id='signUpFrame'>
+            <div id='signUpFrame'>
                 <div id='signUp-greetings'>
                     <h3>Sign Up</h3>
                 </div>
@@ -83,7 +83,7 @@ const SignUp = () => {
                 <div id='submit-btn-box'>
                     <button className={ Button.primary } onClick={ requestSignUp }>회원가입</button>
                 </div>
-            </main>
+            </div>
         </SignLayout>
     )
 }
