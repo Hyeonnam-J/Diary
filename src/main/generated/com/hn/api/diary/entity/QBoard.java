@@ -26,11 +26,17 @@ public class QBoard extends EntityPathBase<Board> {
 
     public final DateTimePath<java.time.LocalDateTime> createdDate = createDateTime("createdDate", java.time.LocalDateTime.class);
 
+    public final NumberPath<Integer> depth = createNumber("depth", Integer.class);
+
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final BooleanPath isDelete = createBoolean("isDelete");
 
     public final DateTimePath<java.time.LocalDateTime> lastModifiedDate = createDateTime("lastModifiedDate", java.time.LocalDateTime.class);
+
+    public final NumberPath<Integer> num = createNumber("num", Integer.class);
+
+    public final NumberPath<Long> origin = createNumber("origin", Long.class);
 
     public final StringPath title = createString("title");
 
