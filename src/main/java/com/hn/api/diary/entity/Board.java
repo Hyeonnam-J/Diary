@@ -32,15 +32,22 @@ public class Board {
     private LocalDateTime lastModifiedDate;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    User user;
+    private User user;
+
+    private Long origin;
+    private Integer num;
+    private Integer depth;
 
     @Builder
-    public Board(String title, String content, User user, LocalDateTime createdDat) {
+    public Board(String title, String content, User user, LocalDateTime createdDate, Long origin, Integer num, Integer depth) {
         this.title = title;
         this.content = content;
 
         this.user = user;   // ?
-        this.createdDate = createdDat;
+        this.createdDate = createdDate;
+        this.origin = origin;   // 테스트 용도
+        this.num = num;
+        this.depth = depth;
 
         this.viewCount = 0L;
         this.isDelete = false;

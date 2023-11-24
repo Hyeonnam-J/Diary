@@ -35,7 +35,7 @@ const Board = () => {
 
     const [curPage, setCurPage] = useState(1);
 
-    const [sort, setSort] = useState("id,desc");
+    const [sort, setSort] = useState("origin,desc&num,asc");
 
     useEffect(() => {
         setUserId(localStorage.getItem('userId'));

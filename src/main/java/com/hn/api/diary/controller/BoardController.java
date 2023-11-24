@@ -33,7 +33,6 @@ public class BoardController {
 
     @GetMapping(value = "/board/posts")
     public ResponseEntity<ListDataResponse<BoardPostsDTO>> getPosts(Pageable pageable){
-        System.out.println("여기: "+pageable.getPageNumber());
         List<BoardPostsDTO> posts = boardService.getPosts(pageable);
 
         ListDataResponse<BoardPostsDTO> response = ListDataResponse.<BoardPostsDTO>builder()
