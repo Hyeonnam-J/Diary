@@ -1,2 +1,8 @@
 @import '../common/variables.css';
 
+#writeFrame {
+    width: var(--write-frame-width);
+    height: var(--write-frame-height);
+
+    background-color: dodgerblue;
+}

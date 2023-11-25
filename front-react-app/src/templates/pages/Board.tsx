@@ -90,7 +90,7 @@ const Board = () => {
 
     return (
         <DefaultLayout>
-            <section>
+            <div id='boardFrame'>
                 <div id='boardHeader'>
                     <div id='boardHeader-top'></div>
                     <div id='boardHeader-bottom' onClick={ showPage }>
@@ -138,7 +138,7 @@ const Board = () => {
                     </div>
                     <div id='boardFooter-bottom'></div>
                 </div>
-            </section>
+            </div>
         </DefaultLayout>
     )
 }

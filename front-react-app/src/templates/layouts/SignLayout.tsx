@@ -8,7 +8,7 @@ const SignLayout: React.FC<LayoutRouteProps> = (props) => {
     return (
         <div className="container">
             <My />
-            <main>
+            <main className='main-sign'>
                 {props.children}
             </main>
         </div>
