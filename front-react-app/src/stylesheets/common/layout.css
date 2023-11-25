@@ -64,6 +64,11 @@ main {
     transition: left 0.3s ease-out;
 }
 
+.main-sign {
+    display: flex;
+    justify-content: center;
+}
+
 nav{
     position: absolute;
     top: 5%;
