@@ -62,14 +62,14 @@ public class SecurityConfig {
      * maybe the implemented interface is different?
      */
     @Bean
-    public FilterRegistrationBean<AccessFilter> registration(AccessFilter filter) {
+    FilterRegistrationBean<AccessFilter> registration(AccessFilter filter) {
         FilterRegistrationBean<AccessFilter> registration = new FilterRegistrationBean<>(filter);
         registration.setEnabled(false);
         return registration;
     }
 
     @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
+    WebSecurityCustomizer webSecurityCustomizer() {
         return web -> web.ignoring()
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/favicon.ico"))
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/error"))
@@ -77,7 +77,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 // Security - CorsConfigurationSource 대신 MVC - addCorsMappings 사용.
@@ -107,19 +107,19 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AccessFilter accessFilter(){
+    AccessFilter accessFilter(){
         return new AccessFilter();
     }
 
     @Bean
-    public SignInFilter signInFilter(){
+    SignInFilter signInFilter(){
         SignInFilter signInFilter = new SignInFilter();
         signInFilter.setAuthenticationManager(authenticationManager());
         return signInFilter;
     }
 
     @Bean
-    public AuthenticationManager authenticationManager() {
+    AuthenticationManager authenticationManager() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setPasswordEncoder(passwordEncoder());
         provider.setUserDetailsService(userDetailsService());
@@ -127,13 +127,13 @@ public class SecurityConfig {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    PasswordEncoder passwordEncoder() {
 //        return new BCryptPasswordEncoder();
         return NoOpPasswordEncoder.getInstance();
     }
 
     @Bean
-    public UserDetailsService userDetailsService(){
+    UserDetailsService userDetailsService(){
         return new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -152,7 +152,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AccessDeniedHandler accessDeniedHandler() {
+    AccessDeniedHandler accessDeniedHandler() {
         return new AccessDeniedHandler();
     }
 }

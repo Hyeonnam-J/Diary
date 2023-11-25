@@ -5,9 +5,9 @@ import Layout from "../../stylesheets/modules/layout.module.css";
 const Write = () => {
     return (
         <WriteLayout>
-            <main className={Layout.centerFrame}>글쓰기야
+            <div id='writeFrame' className={ Layout.centerFrame }>글쓰기야
                 
-            </main>
+            </div>
         </WriteLayout>
     )
 }

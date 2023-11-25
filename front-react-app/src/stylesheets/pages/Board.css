@@ -1,6 +1,6 @@
 @import '../common/variables.css';
 
-section {
+#boardFrame {
     width: var(--board-frame-width);
     height: var(--board-frame-height);
 

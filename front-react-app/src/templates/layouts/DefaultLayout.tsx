@@ -72,7 +72,6 @@ const Layout: React.FC<LayoutProps> = (props) => {
                 </ul>
             </div>
 
-            {/* <main style={{ marginLeft: isNavOpen ? navWidth : '0' }}> */}
             <main className='main-default' style={{ left: isNavOpen ? navWidth : '0' }}>
 
                 {/* nav는 상대적 위치로 종속. */}
