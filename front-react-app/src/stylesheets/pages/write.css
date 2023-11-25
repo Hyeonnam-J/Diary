@@ -6,3 +6,33 @@
 
     background-color: dodgerblue;
 }
+
+#write-space {
+    height: 20%;
+
+    background-color: teal;
+}
+
+#write-header {
+    height: 5%;
+
+    background-color: aliceblue;
+}
+
+#write-title {
+    height: 10%;
+
+    background-color: violet;
+}
+
+#write-custom {
+    height: 15%;
+
+    background-color: tomato;
+}
+
+#write-content {
+    height: 50%;
+
+    background-color: yellowgreen;
+}

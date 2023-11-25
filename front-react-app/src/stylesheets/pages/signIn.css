@@ -1,6 +1,6 @@
 @import '../common/variables.css';
 
-#signInFrame, #signInFrame *{
+#signInFrame, #signInFrame * {
   display: flex;
   flex: 1;
   
@@ -14,6 +14,9 @@
 #signInFrame{
   width: var(--signIn-frame-height);
   height: var(--signIn-frame-height);
+  
+  border: 1px solid var(--border-color);
+  box-sizing: border-box;
 }
 
 #signInFrame-inputs{
