@@ -22,21 +22,20 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
+
 public class BoardController {
 
     private final BoardService boardService;
 
     @PostMapping(value = "/board/write")
-    public void post(@RequestBody BoardWriteDTO boardWriteDTO, HttpServletRequest request){
-        Long userId = (Long) request.getAttribute("userId");
-        boardService.post(boardWriteDTO, userId);
-
-        System.out.println("post");
+    public void write(@RequestBody BoardWriteDTO boardWriteDTO, HttpServletRequest request){
+        String userId = String.valueOf(request.getAttribute("userId"));
+        boardService.write(boardWriteDTO, userId);
     }
 
     @GetMapping(value = "/board/posts")
-    public ResponseEntity<ListDataResponse<BoardPostsDTO>> getPosts(Pageable pageable){
-        List<BoardPostsDTO> posts = boardService.getPosts(pageable);
+    public ResponseEntity<ListDataResponse<BoardPostsDTO>> getPosts(int page, String sort){
+        List<BoardPostsDTO> posts = boardService.getPosts(page, sort);
 
         ListDataResponse<BoardPostsDTO> response = ListDataResponse.<BoardPostsDTO>builder()
                 .status(HttpURLConnection.HTTP_OK)

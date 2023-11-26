@@ -6,7 +6,7 @@ import DefaultLayout from '../layouts/DefaultLayout';
 import { SERVER_IP, Page } from "../../Config";
 
 import { user } from "../../auth/auth";
-import { BoardPost } from "../../type/BoardPosts"
+import { BoardPost, BoardSort } from "../../type/BoardPosts"
 
 import '../../stylesheets/pages/board.css';
 import Button from "../../stylesheets/modules/button.module.css";
@@ -23,9 +23,8 @@ const Board = () => {
     const [totalPageCount, setTotalPageCount] = useState(0);
     const [totalBlockCount, setTotalBlockCount] = useState(0);
 
-    const [curPage, setCurPage] = useState(1);
-
-    const [sort, setSort] = useState("origin,desc&num,asc");
+    const [curPage, setCurPage] = useState(0);
+    const [sort, setSort] = useState(BoardSort.BASIC);
 
     useEffect(() => {
         setUserId(localStorage.getItem('userId'));
@@ -82,7 +81,7 @@ const Board = () => {
         })
     }
 
-    const write = async () => {
+    const writePage = async () => {
         const isAuth = await user(userId || '', accessToken || '');
         if(isAuth) navigate('/write');
         else navigate('/signIn');
@@ -94,7 +93,7 @@ const Board = () => {
                 <div id='boardHeader'>
                     <div id='boardHeader-top'></div>
                     <div id='boardHeader-bottom' onClick={ showPage }>
-                        <button className={ Button.primary } onClick={ write }>write</button>
+                        <button className={ Button.primary } onClick={ writePage }>write</button>
                     </div>
                 </div>
 
@@ -129,7 +128,7 @@ const Board = () => {
                     <div id='boardFooter-top'>
                         <ReactPaginate
                             pageCount={totalPageCount}
-                            onPageChange={ ({selected}) => setCurPage(selected + 1)}
+                            onPageChange={ ({selected}) => setCurPage(selected)}
                             containerClassName={'pagination'}
                             activeClassName={'active'}
                             previousLabel="<"

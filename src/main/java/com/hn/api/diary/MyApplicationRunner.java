@@ -82,8 +82,8 @@ public class MyApplicationRunner implements ApplicationRunner {
         boardRepository.save(b);
 
         User re2 = User.builder()
-                .email("re")
-                .password("re")
+                .email("re2")
+                .password("re2")
                 .role("USER")
                 .build();
 
@@ -99,8 +99,8 @@ public class MyApplicationRunner implements ApplicationRunner {
         boardRepository.save(b2);
 
         User re3 = User.builder()
-                .email("re")
-                .password("re")
+                .email("re3")
+                .password("re3")
                 .role("USER")
                 .build();
 

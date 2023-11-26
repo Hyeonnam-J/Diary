@@ -6,7 +6,9 @@ import com.hn.api.diary.entity.Board;
 import com.hn.api.diary.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.format.DateTimeFormatter;
@@ -20,13 +22,33 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
 
-    public void post(BoardWriteDTO boardWriteDTO, Long userId){
+    private class BoardPageSize {
+        private static final int BASIC = 10;
+    }
+
+    private class BoardSort {
+        private static final String BASIC = "basic";
+    }
+
+    public void write(BoardWriteDTO boardWriteDTO, String userId){
         System.out.println(boardWriteDTO.getTitle());
         System.out.println(boardWriteDTO.getContent());
         System.out.println(userId);
     }
 
-    public List<BoardPostsDTO> getPosts(Pageable pageable){
+    public List<BoardPostsDTO> getPosts(int page, String sort){
+        Pageable pageable;
+
+        switch (sort) {
+            case BoardSort.BASIC:
+                pageable = PageRequest.of(page, BoardPageSize.BASIC, Sort.by("origin").descending().and(Sort.by("num")));
+                break;
+        
+            default:
+                pageable = PageRequest.of(page, BoardPageSize.BASIC, Sort.by("origin").descending().and(Sort.by("num")));
+                break;
+        }
+        
         Iterable<Board> iterablePosts = boardRepository.findAll(pageable);
         List<Board> posts = StreamSupport.stream(iterablePosts.spliterator(), false)
                 .collect(Collectors.toList());
