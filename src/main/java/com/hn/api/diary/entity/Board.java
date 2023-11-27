@@ -38,18 +38,25 @@ public class Board {
     private Integer num;
     private Integer depth;
 
+//    @Builder
+//    public Board(String title, String content, User user) {
+//        this.title = title;
+//        this.content = content;
+//        this.user = user;
+//
+//        this.viewCount = 0L;
+//        this.isDelete = false;
+//    }
+
     @Builder
-    public Board(String title, String content, User user, LocalDateTime createdDate, Long origin, Integer num, Integer depth) {
+    public Board(String title, String content, LocalDateTime createdDate, LocalDateTime lastModifiedDate, User user, Long origin, Integer num, Integer depth) {
         this.title = title;
         this.content = content;
-
-        this.user = user;   // ?
         this.createdDate = createdDate;
-        this.origin = origin;   // 테스트 용도
+        this.lastModifiedDate = lastModifiedDate;
+        this.user = user;
+        this.origin = origin;
         this.num = num;
         this.depth = depth;
-
-        this.viewCount = 0L;
-        this.isDelete = false;
     }
 }

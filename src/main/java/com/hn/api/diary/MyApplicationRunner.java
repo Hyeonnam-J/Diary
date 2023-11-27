@@ -38,16 +38,14 @@ public class MyApplicationRunner implements ApplicationRunner {
                     return Board.builder()
                             .title("title" + i)
                             .content("content" + i)
-                            .createdDate(LocalDateTime.now())
                             .user(user)
                             .origin((long) i)
-                            .num(1)
-                            .depth(1)
+                            .num(0)
+                            .depth(0)
                             .build();
                 })
                 .collect(Collectors.toList());
         boardRepository.saveAll(list);
-
 
         List<Board> list2 = IntStream.range(47, 91)
                 .mapToObj(i -> {
@@ -57,8 +55,8 @@ public class MyApplicationRunner implements ApplicationRunner {
                             .createdDate(LocalDateTime.now())
                             .user(admin)
                             .origin((long) i)
-                            .num(1)
-                            .depth(1)
+                            .num(0)
+                            .depth(0)
                             .build();
                 })
                 .collect(Collectors.toList());
@@ -76,8 +74,8 @@ public class MyApplicationRunner implements ApplicationRunner {
                 .createdDate(LocalDateTime.now())
                 .user(re)
                 .origin(85L)
-                .num(4)
-                .depth(2)
+                .num(3)
+                .depth(1)
                 .build();
         boardRepository.save(b);
 
@@ -93,8 +91,8 @@ public class MyApplicationRunner implements ApplicationRunner {
                 .createdDate(LocalDateTime.now())
                 .user(re2)
                 .origin(85L)
-                .num(3)
-                .depth(2)
+                .num(2)
+                .depth(1)
                 .build();
         boardRepository.save(b2);
 
@@ -110,8 +108,8 @@ public class MyApplicationRunner implements ApplicationRunner {
                 .createdDate(LocalDateTime.now())
                 .user(re3)
                 .origin(85L)
-                .num(2)
-                .depth(2)
+                .num(1)
+                .depth(1)
                 .build();
         boardRepository.save(b3);
     }

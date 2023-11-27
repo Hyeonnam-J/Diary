@@ -22,7 +22,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
-
 public class BoardController {
 
     private final BoardService boardService;

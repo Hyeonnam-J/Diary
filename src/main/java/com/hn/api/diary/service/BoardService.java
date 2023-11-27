@@ -3,7 +3,10 @@ package com.hn.api.diary.service;
 import com.hn.api.diary.dto.BoardPostsDTO;
 import com.hn.api.diary.dto.BoardWriteDTO;
 import com.hn.api.diary.entity.Board;
+import com.hn.api.diary.entity.User;
+import com.hn.api.diary.exception.InvalidValue;
 import com.hn.api.diary.repository.BoardRepository;
+import com.hn.api.diary.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -21,6 +25,7 @@ import java.util.stream.StreamSupport;
 public class BoardService {
 
     private final BoardRepository boardRepository;
+    private final UserRepository userRepository;
 
     private class BoardPageSize {
         private static final int BASIC = 10;
@@ -31,9 +36,16 @@ public class BoardService {
     }
 
     public void write(BoardWriteDTO boardWriteDTO, String userId){
-        System.out.println(boardWriteDTO.getTitle());
-        System.out.println(boardWriteDTO.getContent());
-        System.out.println(userId);
+        User user = userRepository.findById(Long.parseLong(userId))
+                .orElseThrow(InvalidValue::new);
+
+        Board board = Board.builder()
+                .title(boardWriteDTO.getTitle())
+                .content(boardWriteDTO.getContent())
+                .user(user)
+                .build();
+
+        boardRepository.save(board);
     }
 
     public List<BoardPostsDTO> getPosts(int page, String sort){
