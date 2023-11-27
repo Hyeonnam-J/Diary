@@ -46,6 +46,9 @@ public class BoardService {
                 .build();
 
         boardRepository.save(board);
+
+        board.setOrigin(board.getId());
+        boardRepository.save(board);
     }
 
     public List<BoardPostsDTO> getPosts(int page, String sort){
