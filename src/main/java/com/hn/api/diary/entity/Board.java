@@ -38,25 +38,24 @@ public class Board {
     private Integer num;
     private Integer depth;
 
-//    @Builder
-//    public Board(String title, String content, User user) {
-//        this.title = title;
-//        this.content = content;
-//        this.user = user;
-//
-//        this.viewCount = 0L;
-//        this.isDelete = false;
-//    }
-
     @Builder
-    public Board(String title, String content, LocalDateTime createdDate, LocalDateTime lastModifiedDate, User user, Long origin, Integer num, Integer depth) {
+    public Board(String title, String content, User user, Long origin, Integer num, Integer depth) {
         this.title = title;
         this.content = content;
-        this.createdDate = createdDate;
-        this.lastModifiedDate = lastModifiedDate;
         this.user = user;
         this.origin = origin;
         this.num = num;
         this.depth = depth;
+
+        LocalDateTime now = LocalDateTime.now();
+        this.createdDate = now;
+        this.lastModifiedDate = now;
+
+        this.viewCount = 0L;
+        this.isDelete = false;
+    }
+
+    public void setOrigin(Long origin){
+        this.origin = origin;
     }
 }
