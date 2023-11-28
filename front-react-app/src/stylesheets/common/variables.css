@@ -10,7 +10,9 @@
     --signUp-frame-height: 1200px;
 
     --write-frame-width: 1000px;
-    --write-frame-height: 800px;
+    --write-frame-height: 1000px;
+    --read-frame-width: 1000px;
+    --read-frame-height: 1000px;
 
     --board-frame-width: 100%;
     --board-frame-height: 1500px;
@@ -27,6 +29,8 @@
 
     --primary-color: #0d6efd;
     --primary-hover-color: #0062cc;
+    --inactive-color: rgba(150, 150, 150, 0.5);
+    --inactive-hover-color: rgba(150, 150, 150, 0.7);
 
     --text-ref-color: #CCCCCC;
 

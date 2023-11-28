@@ -1,6 +1,7 @@
 package com.hn.api.diary.service;
 
 import com.hn.api.diary.dto.BoardPostsDTO;
+import com.hn.api.diary.dto.BoardReadDTO;
 import com.hn.api.diary.dto.BoardWriteDTO;
 import com.hn.api.diary.entity.Board;
 import com.hn.api.diary.entity.User;
@@ -33,6 +34,12 @@ public class BoardService {
 
     private class BoardSort {
         private static final String BASIC = "basic";
+    }
+
+    public BoardReadDTO read(Long postId){
+        Board board = boardRepository.findById(postId)
+                .orElseThrow(InvalidValue::new);
+        return new ModelMapper().map(board, BoardReadDTO.class);
     }
 
     public void write(BoardWriteDTO boardWriteDTO, String userId){

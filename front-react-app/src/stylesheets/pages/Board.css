@@ -51,6 +51,10 @@
     font-size: 1.1rem;
 }
 
+.title {
+    text-align: left;
+}
+
 .title:hover, .email:hover {
     text-decoration: underline;
     cursor: pointer;

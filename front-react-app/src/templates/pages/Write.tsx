@@ -1,11 +1,14 @@
 import React, { ReactNode, useState, useEffect } from 'react';
-import WriteLayout from "../layouts/WriteLayout";
+import DefaultLayout from "../layouts/DefaultLayout";
 import { SERVER_IP } from "../../Config";
 import '../../stylesheets/pages/write.css';
 import Layout from "../../stylesheets/modules/layout.module.css";
 import Button from "../../stylesheets/modules/button.module.css";
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const Write = () => {
+    const navigate = useNavigate();
+
     const [userId, setUserId] = useState<string | null>(null);
     const [accessToken, setAccessToken] = useState<string | null>(null);
 
@@ -32,9 +35,12 @@ const Write = () => {
             method: 'POST',
             body: JSON.stringify(data),
         })
+        .then(response => {
+            navigate('/board');
+        });
     }
     return (
-        <WriteLayout>
+        <DefaultLayout>
             <div id='writeFrame'>
                 <div id='write-space'></div>
                 <div id='write-header'>
@@ -44,7 +50,7 @@ const Write = () => {
                 <div id='write-custom'></div>
                 <textarea id='write-content' name="write-content"></textarea>
             </div>
-        </WriteLayout>
+        </DefaultLayout>
     )
 }
     

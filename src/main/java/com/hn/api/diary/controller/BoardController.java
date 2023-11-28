@@ -3,10 +3,13 @@ package com.hn.api.diary.controller;
 import java.net.HttpURLConnection;
 import java.util.List;
 
+import com.hn.api.diary.dto.BoardReadDTO;
+import com.hn.api.diary.entity.Board;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +28,21 @@ import lombok.RequiredArgsConstructor;
 public class BoardController {
 
     private final BoardService boardService;
+
+    @GetMapping(value = "/board/read/{postId}")
+    public ResponseEntity<PlainDataResponse<BoardReadDTO>> read(@PathVariable Long postId){
+        BoardReadDTO boardReadDTO = boardService.read(postId);
+
+        PlainDataResponse<BoardReadDTO> response = PlainDataResponse.<BoardReadDTO>builder()
+                .status(HttpURLConnection.HTTP_OK)
+                .data(boardReadDTO)
+                .build();
+
+        ResponseEntity<PlainDataResponse<BoardReadDTO>> responseEntity
+                = ResponseEntity.status(response.getStatus()).body(response);
+
+        return responseEntity;
+    }
 
     @PostMapping(value = "/board/write")
     public void write(@RequestBody BoardWriteDTO boardWriteDTO, HttpServletRequest request){

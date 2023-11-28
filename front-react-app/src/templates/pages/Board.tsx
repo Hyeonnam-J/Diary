@@ -87,6 +87,10 @@ const Board = () => {
         else navigate('/signIn');
     }
 
+    const readPost = (post: BoardPost) => {
+        navigate('/read', { state: { postId: post.id } });
+    }
+
     return (
         <DefaultLayout>
             <div id='boardFrame'>
@@ -110,10 +114,15 @@ const Board = () => {
                         </thead>
                         <tbody>
                             {posts.map((post) => {
+
+                                const re = "Re: ";
+                                const prefixTitle = re.repeat(post.depth);
+                                const paddingLeft = 10 * post.depth;
+
                                 return (
                                     <tr key={post.id}>
                                         <td>{post.id}</td>
-                                        <td className='title'>{post.title}</td>
+                                        <td onClick={() => readPost(post)} className='title' style={{paddingLeft: `${paddingLeft}px`}}>{prefixTitle}{post.title}</td>
                                         <td className='email'>{post.user.email}</td>
                                         <td>{post.createdDate}</td>
                                         <td>{post.viewCount}</td>
