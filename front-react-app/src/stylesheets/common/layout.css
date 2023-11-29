@@ -11,8 +11,6 @@
     display: flex;
     justify-content: center;
 
-    /* position: relative; */
-
     background-color: antiquewhite;
 }
 
@@ -67,10 +65,6 @@ main {
 .main-sign {
     display: flex;
     justify-content: center;
-}
-
-.smain-write {
-    
 }
 
 nav{

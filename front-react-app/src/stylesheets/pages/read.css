@@ -25,13 +25,14 @@
     background-color: violet;
 }
 
-#read-info {
+#read-footer {
     height: 50px;
 
-    background-color: chartreuse;
-}
-
-#read-content {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    padding: 10px;
+    gap: 10px;
 
     background-color: yellowgreen;
 }
