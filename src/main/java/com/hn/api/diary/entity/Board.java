@@ -58,4 +58,8 @@ public class Board {
     public void setOrigin(Long origin){
         this.origin = origin;
     }
+
+    public void setNum(Integer num) {
+        this.num = num;
+    }
 }

@@ -44,23 +44,30 @@ public class BoardService {
     }
     
     public void reply(BoardReplyDTO boardReplyDTO, String userId, String postDetailId){
-        System.out.println(boardReplyDTO.getTitle());
-        System.out.println(boardReplyDTO.getContent());
-        System.out.println(userId);
-        System.out.println(postDetailId);
-        // User user = userRepository.findById(Long.parseLong(userId))
-        //         .orElseThrow(InvalidValue::new);
+        User user = userRepository.findById(Long.parseLong(userId))
+                .orElseThrow(InvalidValue::new);
 
-        // Board board = Board.builder()
-        //         .title(boardWriteDTO.getTitle())
-        //         .content(boardWriteDTO.getContent())
-        //         .user(user)
-        //         .build();
+        Board originPost = boardRepository.findById(Long.parseLong(postDetailId))
+                .orElseThrow(InvalidValue::new);
 
-        // boardRepository.save(board);
+        // 원글 아래 기존 게시물 num + 1
+        List<Board> originPosts = boardRepository.findByOrigin(originPost.getOrigin());
+        originPosts = originPosts.stream()
+                .peek(board -> {
+                    if(board.getNum() > originPost.getNum())board.setNum(board.getNum()+1);
+                })
+                .collect(Collectors.toList());
+        boardRepository.saveAll(originPosts);
 
-        // board.setOrigin(board.getId());
-        // boardRepository.save(board);
+        Board board = Board.builder()
+                .title(boardReplyDTO.getTitle())
+                .content(boardReplyDTO.getContent())
+                .user(user)
+                .origin(originPost.getOrigin())
+                .num(originPost.getNum()+1)
+                .depth(originPost.getDepth()+1)
+                .build();
+        boardRepository.save(board);
     }
 
     public void write(BoardWriteDTO boardWriteDTO, String userId){
