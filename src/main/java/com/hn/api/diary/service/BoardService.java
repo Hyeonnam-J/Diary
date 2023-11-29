@@ -2,6 +2,7 @@ package com.hn.api.diary.service;
 
 import com.hn.api.diary.dto.BoardPostsDTO;
 import com.hn.api.diary.dto.BoardReadDTO;
+import com.hn.api.diary.dto.BoardReplyDTO;
 import com.hn.api.diary.dto.BoardWriteDTO;
 import com.hn.api.diary.entity.Board;
 import com.hn.api.diary.entity.User;
@@ -40,6 +41,26 @@ public class BoardService {
         Board board = boardRepository.findById(postId)
                 .orElseThrow(InvalidValue::new);
         return new ModelMapper().map(board, BoardReadDTO.class);
+    }
+    
+    public void reply(BoardReplyDTO boardReplyDTO, String userId, String postDetailId){
+        System.out.println(boardReplyDTO.getTitle());
+        System.out.println(boardReplyDTO.getContent());
+        System.out.println(userId);
+        System.out.println(postDetailId);
+        // User user = userRepository.findById(Long.parseLong(userId))
+        //         .orElseThrow(InvalidValue::new);
+
+        // Board board = Board.builder()
+        //         .title(boardWriteDTO.getTitle())
+        //         .content(boardWriteDTO.getContent())
+        //         .user(user)
+        //         .build();
+
+        // boardRepository.save(board);
+
+        // board.setOrigin(board.getId());
+        // boardRepository.save(board);
     }
 
     public void write(BoardWriteDTO boardWriteDTO, String userId){

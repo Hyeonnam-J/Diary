@@ -4,6 +4,7 @@ import SignUp from './pages/SignUp';
 import Board from './pages/Board';
 import Write from './pages/Write';
 import Read from './pages/Read';
+import Reply from './pages/Reply';
 
 interface RouteConfig {
     path: string;
@@ -17,6 +18,7 @@ const routes: RouteConfig[] = [
     { path: '/board', element: <Board /> },
     { path: '/write', element: <Write /> },
     { path: '/read', element: <Read /> },
+    { path: '/reply', element: <Reply /> },
 ];
 
 export type { RouteConfig };

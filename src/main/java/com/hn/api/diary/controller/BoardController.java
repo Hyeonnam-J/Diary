@@ -4,6 +4,7 @@ import java.net.HttpURLConnection;
 import java.util.List;
 
 import com.hn.api.diary.dto.BoardReadDTO;
+import com.hn.api.diary.dto.BoardReplyDTO;
 import com.hn.api.diary.entity.Board;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -42,6 +43,13 @@ public class BoardController {
                 = ResponseEntity.status(response.getStatus()).body(response);
 
         return responseEntity;
+    }
+
+    @PostMapping(value = "/board/reply")
+    public void reply(@RequestBody BoardReplyDTO boardReplyDTO, HttpServletRequest request){
+        String userId = String.valueOf(request.getAttribute("userId"));
+        String postDetailId = String.valueOf(request.getAttribute("postDetailId"));
+        boardService.reply(boardReplyDTO, userId, postDetailId);
     }
 
     @PostMapping(value = "/board/write")
