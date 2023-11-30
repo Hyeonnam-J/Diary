@@ -20,7 +20,7 @@ public class AuthController {
     public ResponseEntity<PlainDataResponse<String>> admin() {
         return success();
     }
-
+    
     private ResponseEntity<PlainDataResponse<String>> success(){
         PlainDataResponse<String> plainDataResponse = PlainDataResponse.<String>builder()
                 .status(HttpURLConnection.HTTP_OK)

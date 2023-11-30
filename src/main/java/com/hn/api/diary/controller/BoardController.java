@@ -3,20 +3,13 @@ package com.hn.api.diary.controller;
 import java.net.HttpURLConnection;
 import java.util.List;
 
-import com.hn.api.diary.dto.BoardReadDTO;
-import com.hn.api.diary.dto.BoardReplyDTO;
+import com.hn.api.diary.dto.*;
 import com.hn.api.diary.entity.Board;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.hn.api.diary.dto.BoardPostsDTO;
-import com.hn.api.diary.dto.BoardWriteDTO;
 import com.hn.api.diary.response.ListDataResponse;
 import com.hn.api.diary.response.PlainDataResponse;
 import com.hn.api.diary.service.BoardService;
@@ -43,6 +36,13 @@ public class BoardController {
                 = ResponseEntity.status(response.getStatus()).body(response);
 
         return responseEntity;
+    }
+
+    @PutMapping(value = "/board/update")
+    public void update(@RequestBody BoardUpdateDTO boardUpdateDTO, HttpServletRequest request){
+        String userId = String.valueOf(request.getAttribute("userId"));
+        String postDetailId = String.valueOf(request.getAttribute("postDetailId"));
+        boardService.update(boardUpdateDTO, userId, postDetailId);
     }
 
     @PostMapping(value = "/board/reply")
