@@ -1,9 +1,6 @@
 package com.hn.api.diary.service;
 
-import com.hn.api.diary.dto.BoardPostsDTO;
-import com.hn.api.diary.dto.BoardReadDTO;
-import com.hn.api.diary.dto.BoardReplyDTO;
-import com.hn.api.diary.dto.BoardWriteDTO;
+import com.hn.api.diary.dto.*;
 import com.hn.api.diary.entity.Board;
 import com.hn.api.diary.entity.User;
 import com.hn.api.diary.exception.InvalidValue;
@@ -37,13 +34,22 @@ public class BoardService {
         private static final String BASIC = "basic";
     }
 
-    public BoardReadDTO read(Long postId){
+    public BoardReadDTO read(Long postId) {
         Board board = boardRepository.findById(postId)
                 .orElseThrow(InvalidValue::new);
         return new ModelMapper().map(board, BoardReadDTO.class);
     }
-    
-    public void reply(BoardReplyDTO boardReplyDTO, String userId, String postDetailId){
+
+    public void update(BoardUpdateDTO boardUpdateDTO, String userId, String postDetailId) {
+        Board post = boardRepository.findById(Long.parseLong(postDetailId))
+                .orElseThrow(InvalidValue::new);
+        post.setTitle(boardUpdateDTO.getTitle());
+        post.setContent(boardUpdateDTO.getContent());
+
+        boardRepository.save(post);
+    }
+
+    public void reply(BoardReplyDTO boardReplyDTO, String userId, String postDetailId) {
         User user = userRepository.findById(Long.parseLong(userId))
                 .orElseThrow(InvalidValue::new);
 
@@ -54,7 +60,8 @@ public class BoardService {
         List<Board> originPosts = boardRepository.findByOrigin(originPost.getOrigin());
         originPosts = originPosts.stream()
                 .peek(board -> {
-                    if(board.getNum() > originPost.getNum())board.setNum(board.getNum()+1);
+                    if (board.getNum() > originPost.getNum())
+                        board.setNum(board.getNum() + 1);
                 })
                 .collect(Collectors.toList());
         boardRepository.saveAll(originPosts);
@@ -64,13 +71,13 @@ public class BoardService {
                 .content(boardReplyDTO.getContent())
                 .user(user)
                 .origin(originPost.getOrigin())
-                .num(originPost.getNum()+1)
-                .depth(originPost.getDepth()+1)
+                .num(originPost.getNum() + 1)
+                .depth(originPost.getDepth() + 1)
                 .build();
         boardRepository.save(board);
     }
 
-    public void write(BoardWriteDTO boardWriteDTO, String userId){
+    public void write(BoardWriteDTO boardWriteDTO, String userId) {
         User user = userRepository.findById(Long.parseLong(userId))
                 .orElseThrow(InvalidValue::new);
 
@@ -86,28 +93,30 @@ public class BoardService {
         boardRepository.save(board);
     }
 
-    public List<BoardPostsDTO> getPosts(int page, String sort){
+    public List<BoardPostsDTO> getPosts(int page, String sort) {
         Pageable pageable;
 
         switch (sort) {
             case BoardSort.BASIC:
-                pageable = PageRequest.of(page, BoardPageSize.BASIC, Sort.by("origin").descending().and(Sort.by("num")));
+                pageable = PageRequest.of(page, BoardPageSize.BASIC,
+                        Sort.by("origin").descending().and(Sort.by("num")));
                 break;
-        
+
             default:
-                pageable = PageRequest.of(page, BoardPageSize.BASIC, Sort.by("origin").descending().and(Sort.by("num")));
+                pageable = PageRequest.of(page, BoardPageSize.BASIC,
+                        Sort.by("origin").descending().and(Sort.by("num")));
                 break;
         }
-        
+
         Iterable<Board> iterablePosts = boardRepository.findAll(pageable);
         List<Board> posts = StreamSupport.stream(iterablePosts.spliterator(), false)
                 .collect(Collectors.toList());
 
         // todo: N + 1 issue
-//        for(Board b : posts){
-//            System.out.println(b.getUser().getId());
-//            System.out.println(b.getId());
-//        }
+        // for(Board b : posts){
+        // System.out.println(b.getUser().getId());
+        // System.out.println(b.getId());
+        // }
 
         ModelMapper modelMapper = new ModelMapper();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy. MM. dd.");
@@ -122,7 +131,7 @@ public class BoardService {
                 .collect(Collectors.toList());
     }
 
-    public int getTotalPostsCount(){
+    public int getTotalPostsCount() {
         return (int) boardRepository.count();
     }
 }

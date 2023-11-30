@@ -46,11 +46,13 @@ const Read = () => {
         }else navigate('/signIn');
     }
     
-    const updatePost = () => {
-
+    const updatePost = async (postDetail: BoardPostDetail | null) => {
+        if((userId || -1) == postDetail?.user.id){
+            navigate('/update', { state: { postDetail: postDetail } });
+        }else alert('작성자가 아닙니다');
     }
     
-    const deletePost = () => {
+    const deletePost = async (postDetail: BoardPostDetail | null) => {
 
     }
 
@@ -63,8 +65,8 @@ const Read = () => {
             <div id='readFrame' className={ Layout.centerFrame }>
                 <div id='read-header'>
                     <button onClick={() => replyPost(postDetail)} className={ Button.primary }>reply</button>
-                    <button onClick={ updatePost } className={ Button.primary }>update</button>
-                    <button onClick={ deletePost } className={ Button.inactive }>delete</button>
+                    <button onClick={() => updatePost(postDetail)} className={ Button.primary }>update</button>
+                    <button onClick={() => deletePost(postDetail)} className={ Button.inactive }>delete</button>
                 </div>
                 <table>
                     {postDetail !== null && (

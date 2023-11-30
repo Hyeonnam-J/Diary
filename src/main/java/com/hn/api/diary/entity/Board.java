@@ -62,4 +62,12 @@ public class Board {
     public void setNum(Integer num) {
         this.num = num;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 }

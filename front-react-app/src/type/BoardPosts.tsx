@@ -18,6 +18,7 @@ export type BoardPostDetail = {
     title: string;
     content: string;
     user: {
+        id: number,
         email: string;
     };
     createdDate: string;
