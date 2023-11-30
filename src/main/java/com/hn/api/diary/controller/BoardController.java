@@ -38,6 +38,13 @@ public class BoardController {
         return responseEntity;
     }
 
+    @DeleteMapping(value = "/board/delete")
+    public void delete(HttpServletRequest request){
+        String userId = String.valueOf(request.getAttribute("userId"));
+        String postDetailId = String.valueOf(request.getAttribute("postDetailId"));
+        boardService.delete(userId, postDetailId);
+    }
+
     @PutMapping(value = "/board/update")
     public void update(@RequestBody BoardUpdateDTO boardUpdateDTO, HttpServletRequest request){
         String userId = String.valueOf(request.getAttribute("userId"));

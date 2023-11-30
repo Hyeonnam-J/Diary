@@ -53,7 +53,19 @@ const Read = () => {
     }
     
     const deletePost = async (postDetail: BoardPostDetail | null) => {
-
+        if((userId || -1) == postDetail?.user.id){
+            fetch(`${SERVER_IP}/board/delete`, {
+                headers: {
+                    "userId": userId || '',
+                    "postDetailId": postId,
+                    "Authorization": accessToken || '',
+                },
+                method: 'DELETE',
+            })
+            .then(response => {
+                navigate('/board');
+            });
+        }else alert('작성자가 아닙니다');
     }
 
     const list = () => {
