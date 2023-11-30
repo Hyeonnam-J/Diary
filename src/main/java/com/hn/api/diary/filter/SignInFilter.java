@@ -71,7 +71,7 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
         String jwtSubject = objectMapper.writeValueAsString(sessionDTO);
 
         Date generateDate = new Date();
-        Date expireDate = new Date(generateDate.getTime() + (60 * 1000));
+        Date expireDate = new Date(generateDate.getTime() + (24 * 60 * 60 * 1000)); // 하루
 
         // todo: jws -> spring security oauth2
         String jws = Jwts.builder()

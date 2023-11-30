@@ -40,9 +40,15 @@ public class BoardService {
         return new ModelMapper().map(board, BoardReadDTO.class);
     }
 
+    public void delete(String userId, String postDetailId){
+        // todo: delete -> put : isDelete true
+        boardRepository.deleteById(Long.parseLong(postDetailId));
+    }
+
     public void update(BoardUpdateDTO boardUpdateDTO, String userId, String postDetailId) {
         Board post = boardRepository.findById(Long.parseLong(postDetailId))
                 .orElseThrow(InvalidValue::new);
+        // todo: lastModifiedDate
         post.setTitle(boardUpdateDTO.getTitle());
         post.setContent(boardUpdateDTO.getContent());
 
@@ -108,6 +114,7 @@ public class BoardService {
                 break;
         }
 
+        // todo: where isDelete is false
         Iterable<Board> iterablePosts = boardRepository.findAll(pageable);
         List<Board> posts = StreamSupport.stream(iterablePosts.spliterator(), false)
                 .collect(Collectors.toList());
