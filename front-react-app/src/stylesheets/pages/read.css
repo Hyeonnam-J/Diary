@@ -36,3 +36,16 @@
 
     background-color: yellowgreen;
 }
+
+#comment-header {
+    height: var(--comment-header-height);
+    display: flex;
+
+    background-color: antiquewhite;
+}
+
+#comment-content {
+    max-height: var(--comment-content-max-height);
+
+    background-color: tomato;
+}

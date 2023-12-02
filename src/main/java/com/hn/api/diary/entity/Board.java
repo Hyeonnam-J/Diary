@@ -1,10 +1,14 @@
 package com.hn.api.diary.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -13,6 +17,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,7 +33,6 @@ public class Board {
     private Long id;
 
     private String title;
-
     private String content;
     private Long viewCount;
     private boolean isDelete;
@@ -58,7 +62,7 @@ public class Board {
         LocalDateTime now = LocalDateTime.now();
         this.createdDate = now;
         this.lastModifiedDate = now;
-
+        
         this.viewCount = 0L;
         this.isDelete = false;
     }
@@ -78,4 +82,8 @@ public class Board {
     public void setContent(String content) {
         this.content = content;
     }
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "board")
+    List<Comment> comments = new ArrayList<>();
 }

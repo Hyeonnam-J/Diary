@@ -101,6 +101,14 @@ const Read = () => {
                         </>
                     )}
                 </table>
+                <div id='commentFrame'>
+                    <div id='comment-header'>
+                        <div id='comment-user'>tempValue</div>
+                        <div id='comment-btns'></div>
+                    </div>
+                    <div id='comment-content'>tempValue</div>
+                    <div id='comment-page'></div>
+                </div>
                 <div id='read-footer'>
                     <button id='list' onClick={ list } className={ Button.primary }>list</button>
                 </div>

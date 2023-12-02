@@ -17,7 +17,10 @@
     --update-frame-height: 1000px;
     --read-frame-width: 1000px;
     --read-frame-height: 1000px;
-
+    
+    --comment-header-height: 30px;
+    --comment-content-max-height: 200px;
+    
     --board-frame-width: 100%;
     --board-frame-height: 1500px;
     --board-header-height: 200px;
