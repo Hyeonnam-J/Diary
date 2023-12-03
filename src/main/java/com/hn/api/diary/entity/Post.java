@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @Entity
-public class Board {
+public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,7 +51,7 @@ public class Board {
     private Integer depth;
 
     @Builder
-    public Board(String title, String content, User user, Long origin, Integer num, Integer depth) {
+    public Post(String title, String content, User user, Long origin, Integer num, Integer depth) {
         this.title = title;
         this.content = content;
         this.user = user;
@@ -84,6 +84,6 @@ public class Board {
     }
 
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "board")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     List<Comment> comments = new ArrayList<>();
 }

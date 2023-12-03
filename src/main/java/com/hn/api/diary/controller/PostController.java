@@ -4,8 +4,6 @@ import java.net.HttpURLConnection;
 import java.util.List;
 
 import com.hn.api.diary.dto.*;
-import com.hn.api.diary.entity.Board;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
-public class BoardController {
+public class PostController {
 
     private final BoardService boardService;
 

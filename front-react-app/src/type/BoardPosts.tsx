@@ -24,3 +24,12 @@ export type BoardPostDetail = {
     createdDate: string;
     viewCount: number;
 };
+
+export type BoardComment = {
+    id: number;
+    user: {
+        email: string;
+    };
+    content: string;
+    createdDate: string;
+};

@@ -2,6 +2,7 @@ package com.hn.api.diary.entity;
 
 import java.time.LocalDateTime;
 
+import lombok.Builder;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -27,7 +28,10 @@ public class Comment {
     private Long id;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    private Board board;
+    private Post post;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private User user;
 
     private String content;
 
@@ -36,5 +40,14 @@ public class Comment {
 
     @LastModifiedDate
     private LocalDateTime lastModifiedDate;
-  
+
+    @Builder
+    public Comment(Post post, String content) {
+        this.post = post;
+        this.content = content;
+
+        LocalDateTime now = LocalDateTime.now();
+        this.createdDate = now;
+        this.lastModifiedDate = now;
+    }
 }

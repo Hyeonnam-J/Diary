@@ -49,3 +49,8 @@
 
     background-color: tomato;
 }
+
+#comment-footer {
+    display: flex;
+    justify-content: center;
+}

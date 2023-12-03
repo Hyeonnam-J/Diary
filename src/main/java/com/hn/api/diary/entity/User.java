@@ -40,5 +40,9 @@ public class User {
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    List<Board> posts = new ArrayList<>();
+    List<Post> posts = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    List<Comment> comments = new ArrayList<>();
 }

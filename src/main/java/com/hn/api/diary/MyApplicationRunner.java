@@ -1,23 +1,21 @@
 package com.hn.api.diary;
 
-import com.hn.api.diary.entity.Board;
-import com.hn.api.diary.entity.User;
 import com.hn.api.diary.repository.BoardRepository;
+import com.hn.api.diary.repository.CommentRepository;
+import com.hn.api.diary.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
+@Transactional
 @Component
 public class MyApplicationRunner implements ApplicationRunner {
 
-    @Autowired
-    BoardRepository boardRepository;
+    @Autowired BoardRepository boardRepository;
+    @Autowired CommentRepository commentRepository;
+    @Autowired UserRepository userRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
