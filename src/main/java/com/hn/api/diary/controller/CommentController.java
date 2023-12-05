@@ -36,13 +36,13 @@ public class CommentController {
         return responseEntity;
     }
 
-    @GetMapping(value = "/board/comments/totalCommentsCount")
-    public ResponseEntity<PlainDataResponse<Integer>> getTotalCommentsCount() {
-        int boardCount = commentService.getTotalCommentsCount();
+    @GetMapping(value = "/board/comments/totalCommentsCount/{postId}")
+    public ResponseEntity<PlainDataResponse<Integer>> getTotalCommentsCount(@PathVariable Long postId) {
+        int commentsCount = commentService.getTotalCommentsCount(postId);
 
         PlainDataResponse<Integer> plainDataResponse = PlainDataResponse.<Integer>builder()
                 .status(HttpURLConnection.HTTP_OK)
-                .data(boardCount)
+                .data(commentsCount)
                 .build();
 
         ResponseEntity<PlainDataResponse<Integer>> responseEntity 

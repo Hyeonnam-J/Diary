@@ -50,7 +50,7 @@ const Read = () => {
     }, []);
 
     const getTotalCommentsCount = () => {
-        const response = fetch(SERVER_IP+"/board/comments/totalCommentsCount", {
+        const response = fetch(SERVER_IP+`/board/comments/totalCommentsCount/${postId}`, {
             method: 'GET',
         })
         .then(response => response.json())
