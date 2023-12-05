@@ -1,19 +1,17 @@
 package com.hn.api.diary.controller;
 
-import java.net.HttpURLConnection;
-import java.util.List;
-
 import com.hn.api.diary.dto.*;
+import com.hn.api.diary.response.ListDataResponse;
+import com.hn.api.diary.response.PlainDataResponse;
+import com.hn.api.diary.service.BoardService;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.hn.api.diary.response.ListDataResponse;
-import com.hn.api.diary.response.PlainDataResponse;
-import com.hn.api.diary.service.BoardService;
-
-import jakarta.servlet.http.HttpServletRequest;
-import lombok.RequiredArgsConstructor;
+import java.net.HttpURLConnection;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -81,7 +79,7 @@ public class PostController {
     @GetMapping(value = "/board/posts/totalPostsCount")
     public ResponseEntity<PlainDataResponse<Integer>> getTotalPostsCount(){
         int postsCount = boardService.getTotalPostsCount();
-
+        
         PlainDataResponse<Integer> plainDataResponse = PlainDataResponse.<Integer>builder()
                 .status(HttpURLConnection.HTTP_OK)
                 .data(postsCount)

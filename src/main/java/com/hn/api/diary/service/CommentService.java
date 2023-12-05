@@ -48,8 +48,9 @@ public class CommentService {
                 .collect(Collectors.toList());
     }
 
-    public int getTotalCommentsCount(){
-        return (int) commentRepository.count();
+    public int getTotalCommentsCount(Long postId){
+        // todo: N+1 issue
+        return (int) commentRepository.countByPostId(postId);
     }
     
 }

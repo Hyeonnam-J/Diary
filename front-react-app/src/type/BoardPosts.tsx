@@ -32,5 +32,4 @@ export type BoardPostDetail = {
     };
     createdDate: string;
     viewCount: number;
-    comments: BoardComment[];
 };
