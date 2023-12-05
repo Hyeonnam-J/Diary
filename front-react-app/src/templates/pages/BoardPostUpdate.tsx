@@ -1,7 +1,7 @@
 import React, { ReactNode, useState, useEffect } from 'react';
 import DefaultLayout from "../layouts/DefaultLayout";
 import { SERVER_IP } from "../../Config";
-import '../../stylesheets/pages/update.css';
+import '../../stylesheets/pages/boardPostUpdate.css';
 import Layout from "../../stylesheets/modules/layout.module.css";
 import Button from "../../stylesheets/modules/button.module.css";
 import { useNavigate, useLocation } from 'react-router-dom';

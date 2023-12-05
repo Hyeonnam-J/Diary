@@ -1,22 +1,20 @@
 package com.hn.api.diary.service;
 
-import com.hn.api.diary.dto.BoardCommentsDTO;
-import com.hn.api.diary.dto.BoardPostsDTO;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.hn.api.diary.entity.Post;
+import com.hn.api.diary.dto.BoardCommentsDTO;
 import com.hn.api.diary.entity.Comment;
 import com.hn.api.diary.repository.CommentRepository;
 
 import lombok.RequiredArgsConstructor;
-
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @RequiredArgsConstructor
 @Service

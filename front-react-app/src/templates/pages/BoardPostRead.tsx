@@ -2,7 +2,7 @@ import React, { ReactNode, useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 import DefaultLayout from "../layouts/DefaultLayout";
 import { SERVER_IP, Page } from "../../Config";
-import '../../stylesheets/pages/read.css';
+import '../../stylesheets/pages/boardPostRead.css';
 import Layout from "../../stylesheets/modules/layout.module.css";
 import Button from "../../stylesheets/modules/button.module.css";
 import { Navigate, useNavigate, useLocation } from 'react-router-dom';
@@ -155,7 +155,11 @@ const Read = () => {
                             <div key={comment.id}>
                                 <div id='comment-header'>
                                     <div id='comment-user'>{comment.user?.email}</div>
-                                    <div id='comment-btns'></div>
+                                    <div id='comment-btns'>
+                                        <p>reply</p>
+                                        <p>update</p>
+                                        <p>delete</p>
+                                    </div>
                                 </div>
                                 <div id='comment-content'>{comment.content}</div>
                             </div>
