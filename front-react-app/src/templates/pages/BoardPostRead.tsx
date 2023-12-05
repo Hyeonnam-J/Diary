@@ -30,6 +30,7 @@ const Read = () => {
         setUserId(localStorage.getItem('userId'));
         setAccessToken(localStorage.getItem('accessToken'));
 
+        console.log("userId >>>>>>>>>>>>"+userId);
         getTotalCommentsCount();
     });
 
@@ -151,14 +152,20 @@ const Read = () => {
                 </table>
                 <div id='commentFrame'>
                     {comments.map((comment) => {
+                        const isCurrentUserComment = comment.user.id.toString() === userId;
+
                         return (
                             <div key={comment.id}>
                                 <div id='comment-header'>
                                     <div id='comment-user'>{comment.user?.email}</div>
                                     <div id='comment-btns'>
-                                        <p>reply</p>
-                                        <p>update</p>
-                                        <p>delete</p>
+                                        {isCurrentUserComment && (
+                                            <>
+                                                <p>reply</p>
+                                                <p>update</p>
+                                                <p>delete</p>
+                                            </>
+                                        )}
                                     </div>
                                 </div>
                                 <div id='comment-content'>{comment.content}</div>

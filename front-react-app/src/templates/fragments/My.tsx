@@ -32,6 +32,7 @@ const My: React.FC = () => {
     const signOut = () => {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('email');
+        localStorage.removeItem('userId');
         setEmail('');
         setSignedIn(!isSignedIn);
         setDropdownVisible(!isDropdownVisible);
