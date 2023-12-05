@@ -1,0 +1,68 @@
+@import '../common/variables.css';
+
+#readFrame {
+    width: var(--boardPostRead-frame-width);
+    /* height: var(--read-frame-height); */
+
+    background-color: dodgerblue;
+}
+
+#read-header {
+    height: 50px;
+
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    padding: 10px;
+    gap: 10px;
+
+    background-color: aliceblue;
+}
+
+#read-title {
+    height: 50px;
+
+    background-color: violet;
+}
+
+#read-footer {
+    height: 50px;
+
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    padding: 10px;
+    gap: 10px;
+
+    background-color: yellowgreen;
+}
+
+#comment-header {
+    height: var(--comment-header-height);
+    display: flex;
+    justify-content: space-between;
+
+    background-color: antiquewhite;
+}
+
+#comment-btns {
+    display: flex;
+    gap: 5px;
+}
+
+#comment-btns p:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#comment-content {
+    max-height: var(--comment-content-max-height);
+    text-align: left;
+
+    background-color: tomato;
+}
+
+#comment-footer {
+    display: flex;
+    justify-content: center;
+}
