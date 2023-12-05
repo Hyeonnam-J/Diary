@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @Getter
-public class Comment {
+public class Comment extends LocalDateTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,19 +35,9 @@ public class Comment {
 
     private String content;
 
-    @CreatedDate
-    private LocalDateTime createdDate;
-
-    @LastModifiedDate
-    private LocalDateTime lastModifiedDate;
-
     @Builder
     public Comment(Post post, String content) {
         this.post = post;
         this.content = content;
-
-        LocalDateTime now = LocalDateTime.now();
-        this.createdDate = now;
-        this.lastModifiedDate = now;
     }
 }

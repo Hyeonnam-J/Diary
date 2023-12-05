@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,11 +23,10 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor
 @Getter
 @Entity
-public class Post {
+public class Post extends LocalDateTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,12 +36,6 @@ public class Post {
     private String content;
     private Long viewCount;
     private boolean isDelete;
-
-    @CreatedDate
-    private LocalDateTime createdDate;
-
-    @LastModifiedDate
-    private LocalDateTime lastModifiedDate;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     private User user;
@@ -59,10 +53,6 @@ public class Post {
         this.num = num != null ? num : 0;
         this.depth = depth != null ? depth : 0;
 
-        LocalDateTime now = LocalDateTime.now();
-        this.createdDate = now;
-        this.lastModifiedDate = now;
-        
         this.viewCount = 0L;
         this.isDelete = false;
     }

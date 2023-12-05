@@ -22,11 +22,14 @@ public class QPost extends EntityPathBase<Post> {
 
     public static final QPost post = new QPost("post");
 
+    public final QLocalDateTimeEntity _super = new QLocalDateTimeEntity(this);
+
     public final ListPath<Comment, QComment> comments = this.<Comment, QComment>createList("comments", Comment.class, QComment.class, PathInits.DIRECT2);
 
     public final StringPath content = createString("content");
 
-    public final DateTimePath<java.time.LocalDateTime> createdDate = createDateTime("createdDate", java.time.LocalDateTime.class);
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
 
     public final NumberPath<Integer> depth = createNumber("depth", Integer.class);
 
@@ -34,7 +37,8 @@ public class QPost extends EntityPathBase<Post> {
 
     public final BooleanPath isDelete = createBoolean("isDelete");
 
-    public final DateTimePath<java.time.LocalDateTime> lastModifiedDate = createDateTime("lastModifiedDate", java.time.LocalDateTime.class);
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> lastModifiedDate = _super.lastModifiedDate;
 
     public final NumberPath<Integer> num = createNumber("num", Integer.class);
 
