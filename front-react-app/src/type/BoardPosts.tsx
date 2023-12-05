@@ -13,6 +13,15 @@ export const BoardSort = {
     BASIC: "basic"
 };
 
+export type BoardComment = {
+    id: number;
+    user: {
+        email: string;
+    };
+    content: string;
+    createdDate: string;
+};
+
 export type BoardPostDetail = {
     id: number;
     title: string;
@@ -23,4 +32,5 @@ export type BoardPostDetail = {
     };
     createdDate: string;
     viewCount: number;
+    comments: BoardComment[];
 };
