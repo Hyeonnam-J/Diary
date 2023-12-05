@@ -16,8 +16,6 @@ const Read = () => {
     const [userId, setUserId] = useState<string | null>(null);
     const [accessToken, setAccessToken] = useState<string | null>(null);
 
-    const [comments, setComments] = useState<BoardComment[]>(() => []);
-
     const postId = location?.state?.postId;
     const [postDetail, setPostDetail] = useState<BoardPostDetail | null>(null);
 
@@ -69,7 +67,7 @@ const Read = () => {
         })
         .then(response => response.json())
         .then(body => {
-            setComments(body.data);
+//             setComments(body.data);
         })
         .catch(error => {
             console.log(error);
@@ -151,11 +149,11 @@ const Read = () => {
                     )}
                 </table>
                 <div id='commentFrame'>
-                    {comments.map((comment) => {
+                    {postDetail?.comments.map((comment) => {
                         return (
                             <div key={comment.id}>
                                 <div id='comment-header'>
-                                    <div id='comment-user'>{comment.user.email}</div>
+                                    <div id='comment-user'>{comment.user?.email}</div>
                                     <div id='comment-btns'></div>
                                 </div>
                                 <div id='comment-content'>{comment.content}</div>
@@ -172,7 +170,7 @@ const Read = () => {
                             containerClassName={'pagination'}
                             activeClassName={'pageActive'}
                             previousLabel="<"
-                            nextLabel=">"  
+                            nextLabel=">"
                         />
                     </div>
                 </div>
