@@ -1,27 +1,16 @@
 package com.hn.api.diary.entity;
 
-import java.time.LocalDateTime;
-
+import jakarta.persistence.*;
 import lombok.Builder;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @EntityListeners(AuditingEntityListener.class)
 @Entity
 @NoArgsConstructor
 @Getter
-public class Comment extends LocalDateTimeEntity{
+public class Comment extends DateColumn {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
