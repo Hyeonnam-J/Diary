@@ -9,6 +9,7 @@
     --signUp-frame-width: 300px;
     --signUp-frame-height: 1200px;
 
+<<<<<<< HEAD
     --write-frame-width: 1000px;
     --write-frame-height: 1000px;
     --reply-frame-width: 1000px;
@@ -18,6 +19,20 @@
     --read-frame-width: 1000px;
     --read-frame-height: 1000px;
 
+=======
+    --boardPostWrite-frame-width: 1000px;
+    --boardPostWrite-frame-height: 1000px;
+    --boardPostReply-frame-width: 1000px;
+    --boardPostReply-frame-height: 1000px;
+    --boardPostUpdate-frame-width: 1000px;
+    --boardPostUpdate-frame-height: 1000px;
+    --boardPostRead-frame-width: 1000px;
+    --boardPostRead-frame-height: 1000px;
+    
+    --comment-header-height: 30px;
+    --comment-content-max-height: 200px;
+    
+>>>>>>> 949ad98 (vari)
     --board-frame-width: 100%;
     --board-frame-height: 1500px;
     --board-header-height: 200px;
