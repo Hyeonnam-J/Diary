@@ -26,7 +26,7 @@ const Write = () => {
             content: content.value
         }
 
-        fetch(SERVER_IP+"/board/write", {
+        fetch(SERVER_IP+"/board/post/write", {
             headers: {
                 "Content-Type": 'application/json',
                 "userId": userId || '',

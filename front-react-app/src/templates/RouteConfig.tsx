@@ -2,10 +2,10 @@ import Home from './Home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Board from './pages/Board';
-import Write from './pages/Write';
-import Read from './pages/Read';
-import Reply from './pages/Reply';
-import Update from './pages/Update';
+import BoardPostWrite from './pages/BoardPostWrite';
+import BoardPostRead from './pages/BoardPostRead';
+import BoardPostReply from './pages/BoardPostReply';
+import BoardPostUpdate from './pages/BoardPostUpdate';
 
 interface RouteConfig {
     path: string;
@@ -17,10 +17,10 @@ const routes: RouteConfig[] = [
     { path: '/signIn', element: <SignIn /> },
     { path: '/signUp', element: <SignUp /> },
     { path: '/board', element: <Board /> },
-    { path: '/write', element: <Write /> },
-    { path: '/read', element: <Read /> },
-    { path: '/reply', element: <Reply /> },
-    { path: '/update', element: <Update /> },
+    { path: '/board/post/write', element: <BoardPostWrite /> },
+    { path: '/board/post/read', element: <BoardPostRead /> },
+    { path: '/board/post/reply', element: <BoardPostReply /> },
+    { path: '/board/post/update', element: <BoardPostUpdate /> },
 ];
 
 export type { RouteConfig };

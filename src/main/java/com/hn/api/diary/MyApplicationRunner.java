@@ -1,6 +1,6 @@
 package com.hn.api.diary;
 
-import com.hn.api.diary.repository.BoardRepository;
+import com.hn.api.diary.repository.PostRepository;
 import com.hn.api.diary.repository.CommentRepository;
 import com.hn.api.diary.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 public class MyApplicationRunner implements ApplicationRunner {
 
-    @Autowired BoardRepository boardRepository;
+    @Autowired
+    PostRepository postRepository;
     @Autowired CommentRepository commentRepository;
     @Autowired UserRepository userRepository;
 

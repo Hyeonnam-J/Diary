@@ -46,7 +46,7 @@ const Read = () => {
     }, [curPage]);
 
     useEffect(() => {
-        read(postId);
+        getPostDetail(postId);
     }, []);
 
     const getTotalCommentsCount = () => {
@@ -75,8 +75,8 @@ const Read = () => {
         })
     }
 
-    const read = (postId: number) => {
-        fetch(`${SERVER_IP}/board/read/${postId}`, {
+    const getPostDetail = (postId: number) => {
+        fetch(`${SERVER_IP}/board/post/read/${postId}`, {
             headers: {
             },
             method: 'GET',
@@ -90,19 +90,19 @@ const Read = () => {
     const replyPost = async (postDetail: BoardPostDetail | null) => {
         const isAuth = await user(userId || '', accessToken || '');
         if(isAuth) {
-            if (postDetail) navigate('/reply', { state: { postDetailId: postDetail.id } });
+            if (postDetail) navigate('/board/post/reply', { state: { postDetailId: postDetail.id } });
         }else navigate('/signIn');
     }
     
     const updatePost = async (postDetail: BoardPostDetail | null) => {
         if((userId || -1) == postDetail?.user.id){
-            navigate('/update', { state: { postDetail: postDetail } });
+            navigate('/board/post/update', { state: { postDetail: postDetail } });
         }else alert('작성자가 아닙니다');
     }
     
     const deletePost = async (postDetail: BoardPostDetail | null) => {
         if((userId || -1) == postDetail?.user.id){
-            fetch(`${SERVER_IP}/board/delete`, {
+            fetch(`${SERVER_IP}/board/post/delete`, {
                 headers: {
                     "userId": userId || '',
                     "postDetailId": postId,

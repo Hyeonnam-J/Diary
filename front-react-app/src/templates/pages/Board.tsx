@@ -47,14 +47,6 @@ const Board = () => {
         getPosts(`/board/posts?page=${curPage}&sort=${sort}`);
     }, [curPage, sort]);
 
-    const showPage = () => {
-        // console.log("totalPostsCount: "+totalPostsCount);
-        // console.log("totalPageCount: "+totalPageCount);
-        // console.log("totalBlockCount: "+totalBlockCount);
-        // console.log("curPage: "+curPage);
-        // console.log("posts: "+posts);
-    }
-
     const getTotalPostsCount = () => {
         const response = fetch(SERVER_IP+"/board/posts/totalPostsCount", {
             method: 'GET',
@@ -81,14 +73,14 @@ const Board = () => {
         })
     }
 
-    const writePage = async () => {
+    const write = async () => {
         const isAuth = await user(userId || '', accessToken || '');
-        if(isAuth) navigate('/write');
+        if(isAuth) navigate('/board/post/write');
         else navigate('/signIn');
     }
 
-    const readPost = (post: BoardPost) => {
-        navigate('/read', { state: { postId: post.id } });
+    const read = (post: BoardPost) => {
+        navigate('/board/post/read', { state: { postId: post.id } });
     }
 
     return (
@@ -96,8 +88,8 @@ const Board = () => {
             <div id='boardFrame'>
                 <div id='boardHeader'>
                     <div id='boardHeader-top'></div>
-                    <div id='boardHeader-bottom' onClick={ showPage }>
-                        <button className={ Button.primary } onClick={ writePage }>write</button>
+                    <div id='boardHeader-bottom'>
+                        <button className={ Button.primary } onClick={ write }>write</button>
                     </div>
                 </div>
 
@@ -122,7 +114,7 @@ const Board = () => {
                                 return (
                                     <tr key={post.id}>
                                         <td>{post.id}</td>
-                                        <td onClick={() => readPost(post)} className='title' style={{paddingLeft: `${paddingLeft}px`}}>{prefixTitle}{post.title}</td>
+                                        <td onClick={() => read(post)} className='title' style={{paddingLeft: `${paddingLeft}px`}}>{prefixTitle}{post.title}</td>
                                         <td className='email'>{post.user.email}</td>
                                         <td>{post.createdDate}</td>
                                         <td>{post.viewCount}</td>
