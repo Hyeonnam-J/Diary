@@ -7,6 +7,7 @@ import com.hn.api.diary.dto.BoardCommentsDTO;
 import com.hn.api.diary.response.ListDataResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hn.api.diary.response.PlainDataResponse;
@@ -20,9 +21,9 @@ public class CommentController {
 
     private final CommentService commentService;
 
-    @GetMapping(value = "/board/comments")
-    public ResponseEntity<ListDataResponse<BoardCommentsDTO>> getComments(int page){
-        List<BoardCommentsDTO> comments = commentService.getComments(page);
+    @GetMapping(value = "/board/comments/{postId}")
+    public ResponseEntity<ListDataResponse<BoardCommentsDTO>> getComments(@PathVariable Long postId, int page){
+        List<BoardCommentsDTO> comments = commentService.getComments(postId, page);
 
         ListDataResponse<BoardCommentsDTO> response = ListDataResponse.<BoardCommentsDTO>builder()
                 .status(HttpURLConnection.HTTP_OK)

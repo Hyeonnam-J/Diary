@@ -28,9 +28,10 @@ public class CommentService {
         private static final int BASIC = 10;
     }
 
-    public List<BoardCommentsDTO> getComments(int page){
+    public List<BoardCommentsDTO> getComments(Long postId, int page){
         Pageable pageable = PageRequest.of(page, CommentPageSize.BASIC);
-        Iterable<Comment> iterableComments = commentRepository.findAll(pageable);
+        // Iterable<Comment> iterableComments = commentRepository.findAll(pageable);
+        Iterable<Comment> iterableComments = commentRepository.findByPostId(postId, pageable);
 
         List<Comment> comments = StreamSupport.stream(iterableComments.spliterator(), false)
                 .collect(Collectors.toList());

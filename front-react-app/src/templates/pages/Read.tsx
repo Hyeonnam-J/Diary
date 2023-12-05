@@ -43,7 +43,7 @@ const Read = () => {
     }, [totalPageCount]);
 
     useEffect(() => {
-        getComments(`/board/comments?page=${curPage}`);
+        getComments(`/board/comments/${postId}?page=${curPage}`);
     }, [curPage]);
 
     useEffect(() => {
@@ -118,7 +118,7 @@ const Read = () => {
     }
 
     const list = () => {
-        navigate('/post');
+        navigate('/board');
     }
 
     return (
