@@ -16,6 +16,7 @@ export const BoardSort = {
 export type BoardComment = {
     id: number;
     user: {
+        id: number,
         email: string;
     };
     content: string;
