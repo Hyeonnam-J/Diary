@@ -11,63 +11,52 @@ import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
- * QPost is a Querydsl query type for Post
+ * QComment is a Querydsl query type for Comment
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QPost extends EntityPathBase<Post> {
+public class QComment extends EntityPathBase<Comment> {
 
-    private static final long serialVersionUID = -862374831L;
+    private static final long serialVersionUID = -1467487986L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QPost post = new QPost("post");
+    public static final QComment comment = new QComment("comment");
 
     public final QLocalDateTimeEntity _super = new QLocalDateTimeEntity(this);
-
-    public final ListPath<Comment, QComment> comments = this.<Comment, QComment>createList("comments", Comment.class, QComment.class, PathInits.DIRECT2);
 
     public final StringPath content = createString("content");
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
 
-    public final NumberPath<Integer> depth = createNumber("depth", Integer.class);
-
     public final NumberPath<Long> id = createNumber("id", Long.class);
-
-    public final BooleanPath isDelete = createBoolean("isDelete");
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> lastModifiedDate = _super.lastModifiedDate;
 
-    public final NumberPath<Integer> num = createNumber("num", Integer.class);
-
-    public final NumberPath<Long> origin = createNumber("origin", Long.class);
-
-    public final StringPath title = createString("title");
+    public final QPost post;
 
     public final QUser user;
 
-    public final NumberPath<Long> viewCount = createNumber("viewCount", Long.class);
-
-    public QPost(String variable) {
-        this(Post.class, forVariable(variable), INITS);
+    public QComment(String variable) {
+        this(Comment.class, forVariable(variable), INITS);
     }
 
-    public QPost(Path<? extends Post> path) {
+    public QComment(Path<? extends Comment> path) {
         this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QPost(PathMetadata metadata) {
+    public QComment(PathMetadata metadata) {
         this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QPost(PathMetadata metadata, PathInits inits) {
-        this(Post.class, metadata, inits);
+    public QComment(PathMetadata metadata, PathInits inits) {
+        this(Comment.class, metadata, inits);
     }
 
-    public QPost(Class<? extends Post> type, PathMetadata metadata, PathInits inits) {
+    public QComment(Class<? extends Comment> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.post = inits.isInitialized("post") ? new QPost(forProperty("post"), inits.get("post")) : null;
         this.user = inits.isInitialized("user") ? new QUser(forProperty("user")) : null;
     }
 

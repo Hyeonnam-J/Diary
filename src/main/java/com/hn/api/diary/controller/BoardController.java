@@ -1,6 +1,8 @@
 package com.hn.api.diary.controller;
 
 import com.hn.api.diary.dto.*;
+import com.hn.api.diary.entity.Post;
+import com.hn.api.diary.repository.PostRepository;
 import com.hn.api.diary.response.ListDataResponse;
 import com.hn.api.diary.response.PlainDataResponse;
 import com.hn.api.diary.service.PostService;
