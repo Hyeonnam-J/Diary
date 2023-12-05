@@ -30,7 +30,6 @@ public class CommentService {
 
     public List<BoardCommentsDTO> getComments(Long postId, int page){
         Pageable pageable = PageRequest.of(page, CommentPageSize.BASIC);
-        // Iterable<Comment> iterableComments = commentRepository.findAll(pageable);
         Iterable<Comment> iterableComments = commentRepository.findByPostId(postId, pageable);
 
         List<Comment> comments = StreamSupport.stream(iterableComments.spliterator(), false)

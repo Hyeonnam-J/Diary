@@ -18,6 +18,7 @@ const Read = () => {
 
     const postId = location?.state?.postId;
     const [postDetail, setPostDetail] = useState<BoardPostDetail | null>(null);
+    const [comments, setComments] = useState<BoardComment[]>([]);
 
     const [totalCommentsCount, setTotalCommentsCount] = useState(0);
     const [totalPageCount, setTotalPageCount] = useState(0);
@@ -67,7 +68,7 @@ const Read = () => {
         })
         .then(response => response.json())
         .then(body => {
-//             setComments(body.data);
+            setComments(body.data);
         })
         .catch(error => {
             console.log(error);
@@ -149,7 +150,7 @@ const Read = () => {
                     )}
                 </table>
                 <div id='commentFrame'>
-                    {postDetail?.comments.map((comment) => {
+                    {comments.map((comment) => {
                         return (
                             <div key={comment.id}>
                                 <div id='comment-header'>
