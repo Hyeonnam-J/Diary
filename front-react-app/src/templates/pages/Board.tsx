@@ -127,17 +127,19 @@ const Board = () => {
 
                 <div id='boardFooter'>
                     <div id='boardFooter-top'>
-                        <ReactPaginate
-                            // pageRangeDisplayed={Page.perBlockSize}
-                            pageRangeDisplayed={5}
-                            marginPagesDisplayed={1}
-                            pageCount={totalPageCount}
-                            onPageChange={ ({selected}) => setCurPage(selected)}
-                            containerClassName={'pagination'}
-                            activeClassName={'pageActive'}
-                            previousLabel="<"
-                            nextLabel=">"  
-                        />
+                        {totalPageCount > 0 && (
+                            <ReactPaginate
+                                // pageRangeDisplayed={Page.perBlockSize}
+                                pageRangeDisplayed={5}
+                                marginPagesDisplayed={1}
+                                pageCount={totalPageCount}
+                                onPageChange={ ({selected}) => setCurPage(selected)}
+                                containerClassName={'pagination'}
+                                activeClassName={'pageActive'}
+                                previousLabel="<"
+                                nextLabel=">"
+                            />
+                        )}
                     </div>
                     <div id='boardFooter-bottom'></div>
                 </div>
