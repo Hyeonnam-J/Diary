@@ -3,7 +3,7 @@ package com.hn.api.diary.controller;
 import com.hn.api.diary.dto.*;
 import com.hn.api.diary.response.ListDataResponse;
 import com.hn.api.diary.response.PlainDataResponse;
-import com.hn.api.diary.service.BoardService;
+import com.hn.api.diary.service.PostService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,53 +17,53 @@ import java.util.List;
 @RestController
 public class PostController {
 
-    private final BoardService boardService;
+    private final PostService postService;
 
-    @GetMapping(value = "/board/read/{postId}")
-    public ResponseEntity<PlainDataResponse<BoardReadDTO>> read(@PathVariable Long postId){
-        BoardReadDTO boardReadDTO = boardService.read(postId);
+    @GetMapping(value = "/board/post/read/{postId}")
+    public ResponseEntity<PlainDataResponse<BoardPostReadDTO>> boardPostRead(@PathVariable Long postId){
+        BoardPostReadDTO boardPostReadDTO = postService.boardPostRead(postId);
 
-        PlainDataResponse<BoardReadDTO> response = PlainDataResponse.<BoardReadDTO>builder()
+        PlainDataResponse<BoardPostReadDTO> response = PlainDataResponse.<BoardPostReadDTO>builder()
                 .status(HttpURLConnection.HTTP_OK)
-                .data(boardReadDTO)
+                .data(boardPostReadDTO)
                 .build();
 
-        ResponseEntity<PlainDataResponse<BoardReadDTO>> responseEntity
+        ResponseEntity<PlainDataResponse<BoardPostReadDTO>> responseEntity
                 = ResponseEntity.status(response.getStatus()).body(response);
 
         return responseEntity;
     }
 
-    @DeleteMapping(value = "/board/delete")
-    public void delete(HttpServletRequest request){
+    @DeleteMapping(value = "/board/post/delete")
+    public void boardPostDelete(HttpServletRequest request){
         String userId = String.valueOf(request.getAttribute("userId"));
         String postDetailId = String.valueOf(request.getAttribute("postDetailId"));
-        boardService.delete(userId, postDetailId);
+        postService.boardPostDelete(userId, postDetailId);
     }
 
-    @PutMapping(value = "/board/update")
-    public void update(@RequestBody BoardUpdateDTO boardUpdateDTO, HttpServletRequest request){
+    @PutMapping(value = "/board/post/update")
+    public void boardPostUpdate(@RequestBody BoardPostUpdateDTO boardPostUpdateDTO, HttpServletRequest request){
         String userId = String.valueOf(request.getAttribute("userId"));
         String postDetailId = String.valueOf(request.getAttribute("postDetailId"));
-        boardService.update(boardUpdateDTO, userId, postDetailId);
+        postService.boardPostUpdate(boardPostUpdateDTO, userId, postDetailId);
     }
 
-    @PostMapping(value = "/board/reply")
-    public void reply(@RequestBody BoardReplyDTO boardReplyDTO, HttpServletRequest request){
+    @PostMapping(value = "/board/post/reply")
+    public void boardPostReply(@RequestBody BoardPostReplyDTO boardPostReplyDTO, HttpServletRequest request){
         String userId = String.valueOf(request.getAttribute("userId"));
         String postDetailId = String.valueOf(request.getAttribute("postDetailId"));
-        boardService.reply(boardReplyDTO, userId, postDetailId);
+        postService.boardPostReply(boardPostReplyDTO, userId, postDetailId);
     }
 
-    @PostMapping(value = "/board/write")
-    public void write(@RequestBody BoardWriteDTO boardWriteDTO, HttpServletRequest request){
+    @PostMapping(value = "/board/post/write")
+    public void boardPostWrite(@RequestBody BoardPostWriteDTO boardPostWriteDTO, HttpServletRequest request){
         String userId = String.valueOf(request.getAttribute("userId"));
-        boardService.write(boardWriteDTO, userId);
+        postService.boardPostWrite(boardPostWriteDTO, userId);
     }
 
     @GetMapping(value = "/board/posts")
     public ResponseEntity<ListDataResponse<BoardPostsDTO>> getPosts(int page, String sort){
-        List<BoardPostsDTO> posts = boardService.getPosts(page, sort);
+        List<BoardPostsDTO> posts = postService.getPosts(page, sort);
 
         ListDataResponse<BoardPostsDTO> response = ListDataResponse.<BoardPostsDTO>builder()
                 .status(HttpURLConnection.HTTP_OK)
@@ -78,7 +78,7 @@ public class PostController {
 
     @GetMapping(value = "/board/posts/totalPostsCount")
     public ResponseEntity<PlainDataResponse<Integer>> getTotalPostsCount(){
-        int postsCount = boardService.getTotalPostsCount();
+        int postsCount = postService.getTotalPostsCount();
         
         PlainDataResponse<Integer> plainDataResponse = PlainDataResponse.<Integer>builder()
                 .status(HttpURLConnection.HTTP_OK)

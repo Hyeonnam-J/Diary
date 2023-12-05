@@ -1,29 +1,34 @@
 package com.hn.api.diary.service;
 
-import com.hn.api.diary.dto.*;
-import com.hn.api.diary.entity.Board;
-import com.hn.api.diary.entity.User;
-import com.hn.api.diary.exception.InvalidValue;
-import com.hn.api.diary.repository.BoardRepository;
-import com.hn.api.diary.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
+import com.hn.api.diary.dto.BoardPostsDTO;
+import com.hn.api.diary.dto.BoardPostReadDTO;
+import com.hn.api.diary.dto.BoardPostReplyDTO;
+import com.hn.api.diary.dto.BoardPostUpdateDTO;
+import com.hn.api.diary.dto.BoardPostWriteDTO;
+import com.hn.api.diary.entity.Post;
+import com.hn.api.diary.entity.User;
+import com.hn.api.diary.exception.InvalidValue;
+import com.hn.api.diary.repository.PostRepository;
+import com.hn.api.diary.repository.UserRepository;
+
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-public class BoardService {
+public class PostService {
 
-    private final BoardRepository boardRepository;
+    private final PostRepository postRepository;
     private final UserRepository userRepository;
 
     private class BoardPageSize {
@@ -34,69 +39,69 @@ public class BoardService {
         private static final String BASIC = "basic";
     }
 
-    public BoardReadDTO read(Long postId) {
-        Board board = boardRepository.findById(postId)
+    public BoardPostReadDTO boardPostRead(Long postId) {
+        Post post = postRepository.findById(postId)
                 .orElseThrow(InvalidValue::new);
-        return new ModelMapper().map(board, BoardReadDTO.class);
+        return new ModelMapper().map(post, BoardPostReadDTO.class);
     }
 
-    public void delete(String userId, String postDetailId){
+    public void boardPostDelete(String userId, String postDetailId){
         // todo: delete -> put : isDelete true
-        boardRepository.deleteById(Long.parseLong(postDetailId));
+        postRepository.deleteById(Long.parseLong(postDetailId));
     }
 
-    public void update(BoardUpdateDTO boardUpdateDTO, String userId, String postDetailId) {
-        Board post = boardRepository.findById(Long.parseLong(postDetailId))
+    public void boardPostUpdate(BoardPostUpdateDTO boardPostUpdateDTO, String userId, String postDetailId) {
+        Post post = postRepository.findById(Long.parseLong(postDetailId))
                 .orElseThrow(InvalidValue::new);
         // todo: lastModifiedDate
-        post.setTitle(boardUpdateDTO.getTitle());
-        post.setContent(boardUpdateDTO.getContent());
+        post.setTitle(boardPostUpdateDTO.getTitle());
+        post.setContent(boardPostUpdateDTO.getContent());
 
-        boardRepository.save(post);
+        postRepository.save(post);
     }
 
-    public void reply(BoardReplyDTO boardReplyDTO, String userId, String postDetailId) {
+    public void boardPostReply(BoardPostReplyDTO boardPostReplyDTO, String userId, String postDetailId) {
         User user = userRepository.findById(Long.parseLong(userId))
                 .orElseThrow(InvalidValue::new);
 
-        Board originPost = boardRepository.findById(Long.parseLong(postDetailId))
+        Post originPost = postRepository.findById(Long.parseLong(postDetailId))
                 .orElseThrow(InvalidValue::new);
 
         // 원글 아래 기존 게시물 num + 1
-        List<Board> originPosts = boardRepository.findByOrigin(originPost.getOrigin());
+        List<Post> originPosts = postRepository.findByOrigin(originPost.getOrigin());
         originPosts = originPosts.stream()
                 .peek(board -> {
                     if (board.getNum() > originPost.getNum())
                         board.setNum(board.getNum() + 1);
                 })
                 .collect(Collectors.toList());
-        boardRepository.saveAll(originPosts);
+        postRepository.saveAll(originPosts);
 
-        Board board = Board.builder()
-                .title(boardReplyDTO.getTitle())
-                .content(boardReplyDTO.getContent())
+        Post post = Post.builder()
+                .title(boardPostReplyDTO.getTitle())
+                .content(boardPostReplyDTO.getContent())
                 .user(user)
                 .origin(originPost.getOrigin())
                 .num(originPost.getNum() + 1)
                 .depth(originPost.getDepth() + 1)
                 .build();
-        boardRepository.save(board);
+        postRepository.save(post);
     }
 
-    public void write(BoardWriteDTO boardWriteDTO, String userId) {
+    public void boardPostWrite(BoardPostWriteDTO boardPostWriteDTO, String userId) {
         User user = userRepository.findById(Long.parseLong(userId))
                 .orElseThrow(InvalidValue::new);
 
-        Board board = Board.builder()
-                .title(boardWriteDTO.getTitle())
-                .content(boardWriteDTO.getContent())
+        Post post = Post.builder()
+                .title(boardPostWriteDTO.getTitle())
+                .content(boardPostWriteDTO.getContent())
                 .user(user)
                 .build();
 
-        boardRepository.save(board);
+        postRepository.save(post);
 
-        board.setOrigin(board.getId());
-        boardRepository.save(board);
+        post.setOrigin(post.getId());
+        postRepository.save(post);
     }
 
     public List<BoardPostsDTO> getPosts(int page, String sort) {
@@ -115,8 +120,8 @@ public class BoardService {
         }
 
         // todo: where isDelete is false
-        Iterable<Board> iterablePosts = boardRepository.findAll(pageable);
-        List<Board> posts = StreamSupport.stream(iterablePosts.spliterator(), false)
+        Iterable<Post> iterablePosts = postRepository.findAll(pageable);
+        List<Post> posts = StreamSupport.stream(iterablePosts.spliterator(), false)
                 .collect(Collectors.toList());
 
         // todo: N + 1 issue
@@ -139,6 +144,6 @@ public class BoardService {
     }
 
     public int getTotalPostsCount() {
-        return (int) boardRepository.count();
+        return (int) postRepository.count();
     }
 }

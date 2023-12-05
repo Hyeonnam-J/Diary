@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter // modelMapper
 @NoArgsConstructor
-public class BoardReadDTO {
+public class BoardPostReadDTO {
     private Long id;
     private String title;
     private String content;

@@ -6,13 +6,13 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Getter
-public class BoardWriteDTO {
+public class BoardPostWriteDTO {
 
     private String title;
     private String content;
 
     @Builder
-    public BoardWriteDTO(String title, String content) {
+    public BoardPostWriteDTO(String title, String content) {
         this.title = title;
         this.content = content;
     }
