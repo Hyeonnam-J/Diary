@@ -47,6 +47,7 @@ public class PostService {
 
     public void boardPostDelete(String userId, String postDetailId){
         // todo: delete -> put : isDelete true
+        // todo: when deleted origin post..
         postRepository.deleteById(Long.parseLong(postDetailId));
     }
 
@@ -104,7 +105,7 @@ public class PostService {
         postRepository.save(post);
     }
 
-    public List<BoardPostsDTO> getPosts(int page, String sort) {
+    public List<BoardPostsDTO> getBoardPosts(int page, String sort) {
         Pageable pageable;
 
         switch (sort) {
@@ -143,7 +144,7 @@ public class PostService {
                 .collect(Collectors.toList());
     }
 
-    public int getTotalPostsCount() {
+    public int getTotalBoardPostsCount() {
         return (int) postRepository.count();
     }
 }

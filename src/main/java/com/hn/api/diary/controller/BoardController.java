@@ -62,8 +62,8 @@ public class PostController {
     }
 
     @GetMapping(value = "/board/posts")
-    public ResponseEntity<ListDataResponse<BoardPostsDTO>> getPosts(int page, String sort){
-        List<BoardPostsDTO> posts = postService.getPosts(page, sort);
+    public ResponseEntity<ListDataResponse<BoardPostsDTO>> getBoardPosts(int page, String sort){
+        List<BoardPostsDTO> posts = postService.getBoardPosts(page, sort);
 
         ListDataResponse<BoardPostsDTO> response = ListDataResponse.<BoardPostsDTO>builder()
                 .status(HttpURLConnection.HTTP_OK)
@@ -77,8 +77,8 @@ public class PostController {
     }
 
     @GetMapping(value = "/board/posts/totalPostsCount")
-    public ResponseEntity<PlainDataResponse<Integer>> getTotalPostsCount(){
-        int postsCount = postService.getTotalPostsCount();
+    public ResponseEntity<PlainDataResponse<Integer>> getTotalBoardPostsCount(){
+        int postsCount = postService.getTotalBoardPostsCount();
         
         PlainDataResponse<Integer> plainDataResponse = PlainDataResponse.<Integer>builder()
                 .status(HttpURLConnection.HTTP_OK)
