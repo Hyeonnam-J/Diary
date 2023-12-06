@@ -21,6 +21,7 @@ export type BoardComment = {
     };
     content: string;
     createdDate: string;
+    depth: number,
 };
 
 export type BoardPostDetail = {

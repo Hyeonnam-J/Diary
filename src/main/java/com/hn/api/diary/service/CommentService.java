@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import com.hn.api.diary.dto.BoardCommentWirteDTO;
+import com.hn.api.diary.dto.BoardCommentReplyDTO;
+import com.hn.api.diary.dto.BoardCommentWriteDTO;
 import com.hn.api.diary.entity.Post;
 import com.hn.api.diary.entity.User;
 import com.hn.api.diary.exception.InvalidValue;
@@ -14,6 +15,7 @@ import com.hn.api.diary.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.hn.api.diary.dto.BoardCommentsDTO;
@@ -34,7 +36,7 @@ public class CommentService {
         private static final int BASIC = 10;
     }
 
-    public void boardCommentWirte(BoardCommentWirteDTO boardCommentWirteDTO, String userId, String postDetailId){
+    public void boardCommentWirte(BoardCommentWriteDTO boardCommentWriteDTO, String userId, String postDetailId){
         User user = userRepository.findById(Long.parseLong(userId))
                 .orElseThrow(InvalidValue::new);
 
@@ -44,7 +46,7 @@ public class CommentService {
         Comment comment = Comment.builder()
                 .post(post)
                 .user(user)
-                .content(boardCommentWirteDTO.getContent())
+                .content(boardCommentWriteDTO.getContent())
                 .build();
 
         commentRepository.save(comment);
@@ -53,8 +55,31 @@ public class CommentService {
         commentRepository.save(comment);
     }
 
+    public void boardCommentReply(BoardCommentReplyDTO boardCommentReplyDTO, String userId, String postDetailId, String commentId){
+        User user = userRepository.findById(Long.parseLong(userId))
+                .orElseThrow(InvalidValue::new);
+
+        Post post = postRepository.findById(Long.parseLong(postDetailId))
+                .orElseThrow(InvalidValue::new);
+
+        Comment comment = commentRepository.findById(Long.parseLong(commentId))
+                .orElseThrow(InvalidValue::new);
+
+        Comment comment_save = Comment.builder()
+                .user(user)
+                .post(post)
+                .origin(comment.getOrigin())
+                .content(boardCommentReplyDTO.getContent())
+                .depth(1)
+                .build();
+
+        commentRepository.save(comment_save);
+    }
+
     public List<BoardCommentsDTO> getBoardComments(Long postId, int page){
-        Pageable pageable = PageRequest.of(page, CommentPageSize.BASIC);
+        Pageable pageable = PageRequest.of(page, CommentPageSize.BASIC,
+                Sort.by("origin").ascending().and(Sort.by("createdDate").ascending()));
+
         Iterable<Comment> iterableComments = commentRepository.findByPostId(postId, pageable);
 
         List<Comment> comments = StreamSupport.stream(iterableComments.spliterator(), false)

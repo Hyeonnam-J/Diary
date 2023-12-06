@@ -25,17 +25,15 @@ public class Comment extends DateColumn {
     private String content;
 
     private Long origin;
-    private Integer num;
     private Integer depth;
 
     @Builder
-    public Comment(Post post, User user, String content, Long origin, Integer num, Integer depth) {
+    public Comment(Post post, User user, String content, Long origin, Integer depth) {
         this.post = post;
         this.user = user;
         this.content = content;
 
         this.origin = origin;   // 테스트 용도?
-        this.num = num != null ? num : 0;
         this.depth = depth != null ? depth : 0;
     }
 
