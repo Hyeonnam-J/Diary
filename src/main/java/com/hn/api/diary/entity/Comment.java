@@ -40,4 +40,8 @@ public class Comment extends DateColumn {
     public void setOrigin(Long origin) {
         this.origin = origin;
     }
+
+    public void setContent(String content){
+        this.content = content;
+    }
 }
