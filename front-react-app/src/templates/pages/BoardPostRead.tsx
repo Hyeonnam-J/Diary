@@ -215,8 +215,24 @@ const Read = () => {
 //         })
     }
 
-    const deleteComment = () => {
+    const deleteComment = (comment: BoardComment) => {
+        if(userId !== comment.user.id.toString()) {
+            alert('Unauthorization');
+            return;
+        }
 
+        fetch(`${SERVER_IP}/board/comment/delete`, {
+            headers: {
+                "userId": userId || '',
+                "postDetailId": postId,
+                "commentId": comment.id.toString(),
+                "Authorization": accessToken || '',
+            },
+            method: 'DELETE',
+        })
+        .then(response => {
+            getComments(`/board/comments/${postId}?page=${curPage}`);
+        });
     }
 
     const list = () => {
@@ -264,12 +280,12 @@ const Read = () => {
                                     <div id='comment-user'>{comment.user?.email}</div>
                                     <div id='comment-btns'>
                                         {comment.depth === 0 && (
-                                            <p onClick={() => showReplyCommentFrame(comment.id.toString())}>reply</p>
+                                            <p onClick={() => showReplyCommentFrame( comment.id.toString() )}>reply</p>
                                         )}
                                         {isCurrentUserComment && (
                                             <>
-                                                <p onClick={() => updateComment(comment.id.toString())}>update</p>
-                                                <p onClick={() => deleteComment()}>delete</p>
+                                                <p onClick={() => updateComment( comment.id.toString() )}>update</p>
+                                                <p onClick={() => deleteComment( comment )}>delete</p>
                                             </>
                                         )}
                                     </div>
