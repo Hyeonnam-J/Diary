@@ -184,8 +184,35 @@ const Read = () => {
         }));
     };
 
-    const updateComment = () => {
+    const updateComment = (commentId: string) => {
+        if(!userId){
+            alert('please sign in');
+            return;
+        }
 
+//         const commentContent = document.querySelector<HTMLTextAreaElement>('#comment-reply textarea')?.value;
+//
+//         const data = {
+//             content: commentContent,
+//         }
+//
+//         fetch(SERVER_IP+"/board/comment/reply", {
+//             headers: {
+//                 "Content-Type": 'application/json',
+//                 "userId": userId || '',
+//                 "postDetailId": postId || '',
+//                 "commentId": commentId || '',
+//                 "Authorization": accessToken || '',
+//             },
+//             method: 'POST',
+//             body: JSON.stringify(data),
+//         })
+//         .then(body => {
+//             getComments(`/board/comments/${postId}?page=${curPage}`);
+//             const textarea = document.querySelector<HTMLTextAreaElement>('#comment-reply textarea');
+//             if (textarea) textarea.value = '';
+//             showReplyCommentFrame(commentId);
+//         })
     }
 
     const deleteComment = () => {
@@ -232,14 +259,16 @@ const Read = () => {
                         const paddingLeft = 20 * comment.depth;
 
                         return (
-                            <div key={comment.id} style={{paddingLeft: `${paddingLeft}px`}}>
+                            <div key={comment.id} id={`comment-${comment.id}`} style={{ paddingLeft: `${paddingLeft}px` }}>
                                 <div id='comment-header'>
                                     <div id='comment-user'>{comment.user?.email}</div>
                                     <div id='comment-btns'>
-                                        {isCurrentUserComment && comment.depth === 0 && (
+                                        {comment.depth === 0 && (
+                                            <p onClick={() => showReplyCommentFrame(comment.id.toString())}>reply</p>
+                                        )}
+                                        {isCurrentUserComment && (
                                             <>
-                                                <p onClick={() => showReplyCommentFrame(comment.id.toString())}>reply</p>
-                                                <p onClick={() => updateComment()}>update</p>
+                                                <p onClick={() => updateComment(comment.id.toString())}>update</p>
                                                 <p onClick={() => deleteComment()}>delete</p>
                                             </>
                                         )}
