@@ -5,6 +5,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import com.hn.api.diary.dto.BoardCommentWirteDTO;
+import com.hn.api.diary.entity.Post;
+import com.hn.api.diary.entity.User;
+import com.hn.api.diary.exception.InvalidValue;
+import com.hn.api.diary.repository.PostRepository;
+import com.hn.api.diary.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -21,9 +27,30 @@ import lombok.RequiredArgsConstructor;
 public class CommentService {
 
     private final CommentRepository commentRepository;
+    private final PostRepository postRepository;
+    private final UserRepository userRepository;
 
     private class CommentPageSize {
         private static final int BASIC = 10;
+    }
+
+    public void boardCommentWirte(BoardCommentWirteDTO boardCommentWirteDTO, String userId, String postDetailId){
+        User user = userRepository.findById(Long.parseLong(userId))
+                .orElseThrow(InvalidValue::new);
+
+        Post post = postRepository.findById(Long.parseLong(postDetailId))
+                .orElseThrow(InvalidValue::new);
+
+        Comment comment = Comment.builder()
+                .post(post)
+                .user(user)
+                .content(boardCommentWirteDTO.getContent())
+                .build();
+
+        commentRepository.save(comment);
+
+        comment.setOrigin(comment.getId());
+        commentRepository.save(comment);
     }
 
     public List<BoardCommentsDTO> getBoardComments(Long postId, int page){

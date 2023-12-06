@@ -22,7 +22,7 @@ public class QPost extends EntityPathBase<Post> {
 
     public static final QPost post = new QPost("post");
 
-    public final QLocalDateTimeEntity _super = new QLocalDateTimeEntity(this);
+    public final QDateColumn _super = new QDateColumn(this);
 
     public final ListPath<Comment, QComment> comments = this.<Comment, QComment>createList("comments", Comment.class, QComment.class, PathInits.DIRECT2);
 
