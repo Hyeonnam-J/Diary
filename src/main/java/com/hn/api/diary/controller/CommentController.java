@@ -9,11 +9,7 @@ import com.hn.api.diary.dto.BoardCommentsDTO;
 import com.hn.api.diary.response.ListDataResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.hn.api.diary.response.PlainDataResponse;
 import com.hn.api.diary.service.CommentService;
@@ -25,6 +21,12 @@ import lombok.RequiredArgsConstructor;
 public class CommentController {
 
     private final CommentService commentService;
+
+    @DeleteMapping(value = "/board/comment/delete")
+    public void boardCommentDelete(HttpServletRequest request){
+        String commentId = String.valueOf(request.getAttribute("commentId"));
+        commentService.boardCommentDelete(commentId);
+    }
 
     @PostMapping(value = "/board/comment/write")
     public void boardCommentWrite(@RequestBody BoardCommentWriteDTO boardCommentWriteDTO, HttpServletRequest request){

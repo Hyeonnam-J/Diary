@@ -36,6 +36,12 @@ public class CommentService {
         private static final int BASIC = 10;
     }
 
+    public void boardCommentDelete(String commentId){
+        // todo: delete -> put : isDelete true
+        // todo: when deleted origin post..
+        commentRepository.deleteById(Long.parseLong(commentId));
+    }
+
     public void boardCommentWirte(BoardCommentWriteDTO boardCommentWriteDTO, String userId, String postDetailId){
         User user = userRepository.findById(Long.parseLong(userId))
                 .orElseThrow(InvalidValue::new);
