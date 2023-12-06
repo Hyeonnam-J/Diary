@@ -1,19 +1,29 @@
 package com.hn.api.diary.controller;
 
-import com.hn.api.diary.dto.*;
-import com.hn.api.diary.entity.Post;
-import com.hn.api.diary.repository.PostRepository;
+import java.net.HttpURLConnection;
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.hn.api.diary.dto.BoardPostReadDTO;
+import com.hn.api.diary.dto.BoardPostReplyDTO;
+import com.hn.api.diary.dto.BoardPostUpdateDTO;
+import com.hn.api.diary.dto.BoardPostWriteDTO;
+import com.hn.api.diary.dto.BoardPostsDTO;
 import com.hn.api.diary.response.ListDataResponse;
 import com.hn.api.diary.response.PlainDataResponse;
 import com.hn.api.diary.service.PostService;
+
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.net.HttpURLConnection;
-import java.util.List;
 
 @RequiredArgsConstructor
 @RestController

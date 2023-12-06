@@ -10,28 +10,28 @@ import com.querydsl.core.types.Path;
 
 
 /**
- * QLocalDateTimeEntity is a Querydsl query type for LocalDateTimeEntity
+ * QDateColumn is a Querydsl query type for DateColumn
  */
 @Generated("com.querydsl.codegen.DefaultSupertypeSerializer")
-public class QLocalDateTimeEntity extends EntityPathBase<DateColumn> {
+public class QDateColumn extends EntityPathBase<DateColumn> {
 
-    private static final long serialVersionUID = 1595989976L;
+    private static final long serialVersionUID = -292354155L;
 
-    public static final QLocalDateTimeEntity localDateTimeEntity = new QLocalDateTimeEntity("localDateTimeEntity");
+    public static final QDateColumn dateColumn = new QDateColumn("dateColumn");
 
     public final DateTimePath<java.time.LocalDateTime> createdDate = createDateTime("createdDate", java.time.LocalDateTime.class);
 
     public final DateTimePath<java.time.LocalDateTime> lastModifiedDate = createDateTime("lastModifiedDate", java.time.LocalDateTime.class);
 
-    public QLocalDateTimeEntity(String variable) {
+    public QDateColumn(String variable) {
         super(DateColumn.class, forVariable(variable));
     }
 
-    public QLocalDateTimeEntity(Path<? extends DateColumn> path) {
+    public QDateColumn(Path<? extends DateColumn> path) {
         super(path.getType(), path.getMetadata());
     }
 
-    public QLocalDateTimeEntity(PathMetadata metadata) {
+    public QDateColumn(PathMetadata metadata) {
         super(DateColumn.class, metadata);
     }
 

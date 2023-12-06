@@ -37,6 +37,7 @@ public class AccessFilter extends OncePerRequestFilter {
 
         String userId = request.getHeader("userId");
         String postDetailId = request.getHeader("postDetailId");
+        String commentId = request.getHeader("commentId");
         String jws = request.getHeader(HttpHeaders.AUTHORIZATION);
 
         try {
@@ -52,13 +53,13 @@ public class AccessFilter extends OncePerRequestFilter {
             String jwtSubject = claims.getSubject();
             SessionDTO sessionDTO = objectMapper.readValue(jwtSubject, SessionDTO.class);
 
-            setSecurityContextHolder(request, response, filterChain, userId, postDetailId, sessionDTO.getEmail(), sessionDTO.getRole());
+            setSecurityContextHolder(request, response, filterChain, userId, postDetailId, commentId, sessionDTO.getEmail(), sessionDTO.getRole());
         }catch (IllegalArgumentException e){
             // jws == null,
-            setSecurityContextHolder(request, response, filterChain, "NONE", "NONE", "NONE");
+            setSecurityContextHolder(request, response, filterChain, "NONE", "NONE", "NONE", "NONE");
         }catch (SignatureException e){
             // jwtKey is invalid
-            setSecurityContextHolder(request, response, filterChain, "NONE", "NONE", "NONE");
+            setSecurityContextHolder(request, response, filterChain, "NONE", "NONE", "NONE", "NONE");
         }catch (Exception e){
             // todo: return errorResponse
             e.printStackTrace();
@@ -71,12 +72,14 @@ public class AccessFilter extends OncePerRequestFilter {
             FilterChain filterChain,
             String userId,
             String postDetailId,
+            String commentId,
             String principal,
             String... authorityList
             ) throws ServletException, IOException {
 
         request.setAttribute("userId", userId);
         request.setAttribute("postDetailId", postDetailId);
+        request.setAttribute("commentId", commentId);
 
         List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(authorityList);
         Authentication authentication

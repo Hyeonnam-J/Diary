@@ -3,11 +3,15 @@ package com.hn.api.diary.controller;
 import java.net.HttpURLConnection;
 import java.util.List;
 
+import com.hn.api.diary.dto.BoardCommentWirteDTO;
 import com.hn.api.diary.dto.BoardCommentsDTO;
 import com.hn.api.diary.response.ListDataResponse;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hn.api.diary.response.PlainDataResponse;
@@ -20,6 +24,13 @@ import lombok.RequiredArgsConstructor;
 public class CommentController {
 
     private final CommentService commentService;
+
+    @PostMapping(value = "/board/comment/write")
+    public void boardCommentWirte(@RequestBody BoardCommentWirteDTO boardCommentWirteDTO, HttpServletRequest request){
+        String userId = String.valueOf(request.getAttribute("userId"));
+        String postDetailId = String.valueOf(request.getAttribute("postDetailId"));
+        commentService.boardCommentWirte(boardCommentWirteDTO, userId, postDetailId);
+    }
 
     @GetMapping(value = "/board/comments/{postId}")
     public ResponseEntity<ListDataResponse<BoardCommentsDTO>> getBoardComments(@PathVariable Long postId, int page){

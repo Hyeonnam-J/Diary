@@ -55,26 +55,26 @@ const Read = () => {
         const response = fetch(SERVER_IP + `/board/comments/totalCommentsCount/${postId}`, {
             method: 'GET',
         })
-            .then(response => response.json())
-            .then(body => {
-                setTotalCommentsCount(body.data);
-            })
-            .catch(error => {
-                console.log(error);
-            })
+        .then(response => response.json())
+        .then(body => {
+            setTotalCommentsCount(body.data);
+        })
+        .catch(error => {
+            console.log(error);
+        })
     }
 
     const getComments = (uri: string) => {
         const response = fetch(SERVER_IP + uri, {
             method: 'GET',
         })
-            .then(response => response.json())
-            .then(body => {
-                setComments(body.data);
-            })
-            .catch(error => {
-                console.log(error);
-            })
+        .then(response => response.json())
+        .then(body => {
+            setComments(body.data);
+        })
+        .catch(error => {
+            console.log(error);
+        })
     }
 
     const getPostDetail = (postId: number) => {
@@ -83,10 +83,10 @@ const Read = () => {
             },
             method: 'GET',
         })
-            .then(response => response.json())
-            .then(body => {
-                setPostDetail(body.data);
-            })
+        .then(response => response.json())
+        .then(body => {
+            setPostDetail(body.data);
+        })
     }
 
     const replyPost = async (postDetail: BoardPostDetail | null) => {
@@ -118,7 +118,36 @@ const Read = () => {
         } else alert('작성자가 아닙니다');
     }
 
-    const replyComment = (commentId: number) => {
+    const writeComment = () => {
+        if(!userId){
+            alert('please sign in');
+            return;
+        }
+
+        const commentContent = document.querySelector<HTMLTextAreaElement>('#comment-write textarea')?.value;
+
+        const data = {
+            content: commentContent,
+        }
+        
+        fetch(SERVER_IP+"/board/comment/write", {
+            headers: {
+                "Content-Type": 'application/json',
+                "userId": userId || '',
+                "postDetailId": postId || '',
+                "Authorization": accessToken || '',
+            },
+            method: 'POST',
+            body: JSON.stringify(data),
+        })
+        .then(body => {
+            getComments(`/board/comments/${postId}?page=${curPage}`);
+            const textarea = document.querySelector<HTMLTextAreaElement>('#comment-write textarea');
+            if (textarea) textarea.value = '';
+        })
+    }
+
+    const showreplyCommentFrame = (commentId: number) => {
         setReplyingStates((prevStates) => ({
             [commentId]: !prevStates[commentId] || false,
         }));
@@ -177,7 +206,7 @@ const Read = () => {
                                     <div id='comment-btns'>
                                         {isCurrentUserComment && (
                                             <>
-                                                <p onClick={() => replyComment(comment.id)}>reply</p>
+                                                <p onClick={() => showreplyCommentFrame(comment.id)}>reply</p>
                                                 <p onClick={() => updateComment()}>update</p>
                                                 <p onClick={() => deleteComment()}>delete</p>
                                             </>
@@ -186,18 +215,18 @@ const Read = () => {
                                 </div>
                                 <div id='comment-content'>{comment.content}</div>
                                 {isReplyingToComment && (
-                                    <div>
+                                    <div id='comment-reply'>
                                         <textarea></textarea>
-                                        <button>submit</button>
+                                        <button className={Button.primary}>submit</button>
                                     </div>
                                 )}
                             </div>
                         )
                     })}
                     <div id='comment-footer'>
-                        <div>
+                        <div id='comment-write'>
                             <textarea></textarea>
-                            <button>submit</button>
+                            <button onClick = { () => writeComment() } className={Button.primary}>submit</button>
                         </div>
                         {totalPageCount > 0 && (
                             <ReactPaginate
