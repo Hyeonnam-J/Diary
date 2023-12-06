@@ -26,7 +26,7 @@ const Read = () => {
 
     const [curPage, setCurPage] = useState(0);
 
-    const [replyingStates, setReplyingStates] = useState<Record<number, boolean>>({});
+    const [replyingStates, setReplyingStates] = useState<Record<string, boolean>>({});
 
     useEffect(() => {
         setUserId(localStorage.getItem('userId'));
@@ -147,7 +147,38 @@ const Read = () => {
         })
     }
 
-    const showreplyCommentFrame = (commentId: number) => {
+    const replyComment = (commentId: string) => {
+        if(!userId){
+            alert('please sign in');
+            return;
+        }
+
+        const commentContent = document.querySelector<HTMLTextAreaElement>('#comment-reply textarea')?.value;
+
+        const data = {
+            content: commentContent,
+        }
+
+        fetch(SERVER_IP+"/board/comment/reply", {
+            headers: {
+                "Content-Type": 'application/json',
+                "userId": userId || '',
+                "postDetailId": postId || '',
+                "commentId": commentId || '',
+                "Authorization": accessToken || '',
+            },
+            method: 'POST',
+            body: JSON.stringify(data),
+        })
+        .then(body => {
+            getComments(`/board/comments/${postId}?page=${curPage}`);
+            const textarea = document.querySelector<HTMLTextAreaElement>('#comment-reply textarea');
+            if (textarea) textarea.value = '';
+            showReplyCommentFrame(commentId);
+        })
+    }
+
+    const showReplyCommentFrame = (commentId: string) => {
         setReplyingStates((prevStates) => ({
             [commentId]: !prevStates[commentId] || false,
         }));
@@ -198,15 +229,16 @@ const Read = () => {
                     {comments.map((comment) => {
                         const isCurrentUserComment = comment.user.id.toString() === userId;
                         const isReplyingToComment = replyingStates[comment.id] || false;
+                        const paddingLeft = 20 * comment.depth;
 
                         return (
-                            <div key={comment.id}>
+                            <div key={comment.id} style={{paddingLeft: `${paddingLeft}px`}}>
                                 <div id='comment-header'>
                                     <div id='comment-user'>{comment.user?.email}</div>
                                     <div id='comment-btns'>
-                                        {isCurrentUserComment && (
+                                        {isCurrentUserComment && comment.depth === 0 && (
                                             <>
-                                                <p onClick={() => showreplyCommentFrame(comment.id)}>reply</p>
+                                                <p onClick={() => showReplyCommentFrame(comment.id.toString())}>reply</p>
                                                 <p onClick={() => updateComment()}>update</p>
                                                 <p onClick={() => deleteComment()}>delete</p>
                                             </>
@@ -217,7 +249,7 @@ const Read = () => {
                                 {isReplyingToComment && (
                                     <div id='comment-reply'>
                                         <textarea></textarea>
-                                        <button className={Button.primary}>submit</button>
+                                        <button onClick = { () => replyComment(comment.id.toString()) } className={Button.primary}>submit</button>
                                     </div>
                                 )}
                             </div>

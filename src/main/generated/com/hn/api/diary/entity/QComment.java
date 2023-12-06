@@ -36,8 +36,6 @@ public class QComment extends EntityPathBase<Comment> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> lastModifiedDate = _super.lastModifiedDate;
 
-    public final NumberPath<Integer> num = createNumber("num", Integer.class);
-
     public final NumberPath<Long> origin = createNumber("origin", Long.class);
 
     public final QPost post;

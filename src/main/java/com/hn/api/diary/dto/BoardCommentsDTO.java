@@ -14,5 +14,6 @@ public class BoardCommentsDTO {
     private PostDTO post;
     private String content;
     private String createdDate;
+    private int depth;
 
 }
