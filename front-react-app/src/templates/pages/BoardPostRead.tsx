@@ -26,11 +26,12 @@ const Read = () => {
 
     const [curPage, setCurPage] = useState(0);
 
+    const [replyingStates, setReplyingStates] = useState<Record<number, boolean>>({});
+
     useEffect(() => {
         setUserId(localStorage.getItem('userId'));
         setAccessToken(localStorage.getItem('accessToken'));
 
-        console.log("userId >>>>>>>>>>>>"+userId);
         getTotalCommentsCount();
     });
 
@@ -51,29 +52,29 @@ const Read = () => {
     }, []);
 
     const getTotalCommentsCount = () => {
-        const response = fetch(SERVER_IP+`/board/comments/totalCommentsCount/${postId}`, {
+        const response = fetch(SERVER_IP + `/board/comments/totalCommentsCount/${postId}`, {
             method: 'GET',
         })
-        .then(response => response.json())
-        .then(body => {
-            setTotalCommentsCount(body.data);
-        })
-        .catch(error => {
-            console.log(error);
-        })
+            .then(response => response.json())
+            .then(body => {
+                setTotalCommentsCount(body.data);
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     const getComments = (uri: string) => {
-        const response = fetch(SERVER_IP+uri, {
+        const response = fetch(SERVER_IP + uri, {
             method: 'GET',
         })
-        .then(response => response.json())
-        .then(body => {
-            setComments(body.data);
-        })
-        .catch(error => {
-            console.log(error);
-        })
+            .then(response => response.json())
+            .then(body => {
+                setComments(body.data);
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     const getPostDetail = (postId: number) => {
@@ -82,27 +83,27 @@ const Read = () => {
             },
             method: 'GET',
         })
-        .then(response => response.json())
-        .then(body => {
-            setPostDetail(body.data);
-        })
+            .then(response => response.json())
+            .then(body => {
+                setPostDetail(body.data);
+            })
     }
 
     const replyPost = async (postDetail: BoardPostDetail | null) => {
         const isAuth = await user(userId || '', accessToken || '');
-        if(isAuth) {
+        if (isAuth) {
             if (postDetail) navigate('/board/post/reply', { state: { postDetailId: postDetail.id } });
-        }else navigate('/signIn');
+        } else navigate('/signIn');
     }
-    
+
     const updatePost = async (postDetail: BoardPostDetail | null) => {
-        if((userId || -1) == postDetail?.user.id){
+        if ((userId || -1) == postDetail?.user.id) {
             navigate('/board/post/update', { state: { postDetail: postDetail } });
-        }else alert('작성자가 아닙니다');
+        } else alert('작성자가 아닙니다');
     }
-    
+
     const deletePost = async (postDetail: BoardPostDetail | null) => {
-        if((userId || -1) == postDetail?.user.id){
+        if ((userId || -1) == postDetail?.user.id) {
             fetch(`${SERVER_IP}/board/post/delete`, {
                 headers: {
                     "userId": userId || '',
@@ -114,7 +115,21 @@ const Read = () => {
             .then(response => {
                 navigate('/board');
             });
-        }else alert('작성자가 아닙니다');
+        } else alert('작성자가 아닙니다');
+    }
+
+    const replyComment = (commentId: number) => {
+        setReplyingStates((prevStates) => ({
+            [commentId]: !prevStates[commentId] || false,
+        }));
+    };
+
+    const updateComment = () => {
+
+    }
+
+    const deleteComment = () => {
+
     }
 
     const list = () => {
@@ -123,11 +138,11 @@ const Read = () => {
 
     return (
         <DefaultLayout>
-            <div id='readFrame' className={ Layout.centerFrame }>
+            <div id='readFrame' className={Layout.centerFrame}>
                 <div id='read-header'>
-                    <button onClick={() => replyPost(postDetail)} className={ Button.primary }>reply</button>
-                    <button onClick={() => updatePost(postDetail)} className={ Button.primary }>update</button>
-                    <button onClick={() => deletePost(postDetail)} className={ Button.inactive }>delete</button>
+                    <button onClick={() => replyPost(postDetail)} className={Button.primary}>reply</button>
+                    <button onClick={() => updatePost(postDetail)} className={Button.primary}>update</button>
+                    <button onClick={() => deletePost(postDetail)} className={Button.inactive}>delete</button>
                 </div>
                 <table>
                     {postDetail !== null && (
@@ -153,6 +168,7 @@ const Read = () => {
                 <div id='commentFrame'>
                     {comments.map((comment) => {
                         const isCurrentUserComment = comment.user.id.toString() === userId;
+                        const isReplyingToComment = replyingStates[comment.id] || false;
 
                         return (
                             <div key={comment.id}>
@@ -161,25 +177,35 @@ const Read = () => {
                                     <div id='comment-btns'>
                                         {isCurrentUserComment && (
                                             <>
-                                                <p>reply</p>
-                                                <p>update</p>
-                                                <p>delete</p>
+                                                <p onClick={() => replyComment(comment.id)}>reply</p>
+                                                <p onClick={() => updateComment()}>update</p>
+                                                <p onClick={() => deleteComment()}>delete</p>
                                             </>
                                         )}
                                     </div>
                                 </div>
                                 <div id='comment-content'>{comment.content}</div>
+                                {isReplyingToComment && (
+                                    <div>
+                                        <textarea></textarea>
+                                        <button>submit</button>
+                                    </div>
+                                )}
                             </div>
                         )
                     })}
                     <div id='comment-footer'>
+                        <div>
+                            <textarea></textarea>
+                            <button>submit</button>
+                        </div>
                         {totalPageCount > 0 && (
                             <ReactPaginate
                                 // pageRangeDisplayed={Page.perBlockSize}
                                 pageRangeDisplayed={5}
                                 marginPagesDisplayed={1}
                                 pageCount={totalPageCount}
-                                onPageChange={ ({selected}) => setCurPage(selected)}
+                                onPageChange={({ selected }) => setCurPage(selected)}
                                 containerClassName={'pagination'}
                                 activeClassName={'pageActive'}
                                 previousLabel="<"
@@ -189,7 +215,7 @@ const Read = () => {
                     </div>
                 </div>
                 <div id='read-footer'>
-                    <button id='list' onClick={ list } className={ Button.primary }>list</button>
+                    <button id='list' onClick={list} className={Button.primary}>list</button>
                 </div>
             </div>
         </DefaultLayout>

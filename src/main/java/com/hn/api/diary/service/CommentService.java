@@ -26,7 +26,7 @@ public class CommentService {
         private static final int BASIC = 10;
     }
 
-    public List<BoardCommentsDTO> getComments(Long postId, int page){
+    public List<BoardCommentsDTO> getBoardComments(Long postId, int page){
         Pageable pageable = PageRequest.of(page, CommentPageSize.BASIC);
         Iterable<Comment> iterableComments = commentRepository.findByPostId(postId, pageable);
 

@@ -22,8 +22,8 @@ public class CommentController {
     private final CommentService commentService;
 
     @GetMapping(value = "/board/comments/{postId}")
-    public ResponseEntity<ListDataResponse<BoardCommentsDTO>> getComments(@PathVariable Long postId, int page){
-        List<BoardCommentsDTO> comments = commentService.getComments(postId, page);
+    public ResponseEntity<ListDataResponse<BoardCommentsDTO>> getBoardComments(@PathVariable Long postId, int page){
+        List<BoardCommentsDTO> comments = commentService.getBoardComments(postId, page);
 
         ListDataResponse<BoardCommentsDTO> response = ListDataResponse.<BoardCommentsDTO>builder()
                 .status(HttpURLConnection.HTTP_OK)
