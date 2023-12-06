@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import com.hn.api.diary.dto.BoardCommentReplyDTO;
+import com.hn.api.diary.dto.BoardCommentUpdateDTO;
 import com.hn.api.diary.dto.BoardCommentWriteDTO;
 import com.hn.api.diary.entity.Post;
 import com.hn.api.diary.entity.User;
@@ -40,6 +41,14 @@ public class CommentService {
         // todo: delete -> put : isDelete true
         // todo: when deleted origin post..
         commentRepository.deleteById(Long.parseLong(commentId));
+    }
+
+    public void boardCommentUpdate(BoardCommentUpdateDTO boardCommentUpdateDTO, String userId, String postDetailId, String commentId){
+        Comment comment = commentRepository.findById(Long.parseLong(commentId))
+                .orElseThrow(InvalidValue::new);
+
+        comment.setContent(boardCommentUpdateDTO.getContent());
+        commentRepository.save(comment);
     }
 
     public void boardCommentWirte(BoardCommentWriteDTO boardCommentWriteDTO, String userId, String postDetailId){

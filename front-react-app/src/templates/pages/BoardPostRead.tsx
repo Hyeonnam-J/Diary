@@ -27,6 +27,7 @@ const Read = () => {
     const [curPage, setCurPage] = useState(0);
 
     const [replyingStates, setReplyingStates] = useState<Record<string, boolean>>({});
+    const [updatingStates, setUpdatingStates] = useState<Record<string, boolean>>({});
 
     useEffect(() => {
         setUserId(localStorage.getItem('userId'));
@@ -184,35 +185,45 @@ const Read = () => {
         }));
     };
 
-    const updateComment = (commentId: string) => {
+    const showUpdateCommentFrame = (commentId: string) => {
         if(!userId){
             alert('please sign in');
             return;
         }
 
-//         const commentContent = document.querySelector<HTMLTextAreaElement>('#comment-reply textarea')?.value;
-//
-//         const data = {
-//             content: commentContent,
-//         }
-//
-//         fetch(SERVER_IP+"/board/comment/reply", {
-//             headers: {
-//                 "Content-Type": 'application/json',
-//                 "userId": userId || '',
-//                 "postDetailId": postId || '',
-//                 "commentId": commentId || '',
-//                 "Authorization": accessToken || '',
-//             },
-//             method: 'POST',
-//             body: JSON.stringify(data),
-//         })
-//         .then(body => {
-//             getComments(`/board/comments/${postId}?page=${curPage}`);
-//             const textarea = document.querySelector<HTMLTextAreaElement>('#comment-reply textarea');
-//             if (textarea) textarea.value = '';
-//             showReplyCommentFrame(commentId);
-//         })
+        setUpdatingStates((prevStates) => ({
+            [commentId]: !prevStates[commentId] || false,
+        }));
+    }
+
+    const updateComment = (commentId: string) => {
+        const updateTextarea = document.querySelector(`#comment-${commentId} #comment-update`) as HTMLTextAreaElement;
+
+        let updatedContent = '';
+        if(updateTextarea){
+            updatedContent = updateTextarea.value;
+        }
+        
+        const data = {
+            content: updatedContent,
+        }
+
+        fetch(SERVER_IP+"/board/comment/update", {
+            headers: {
+                "Content-Type": 'application/json',
+                "userId": userId || '',
+                "postDetailId": postId || '',
+                "commentId": commentId || '',
+                "Authorization": accessToken || '',
+            },
+            method: 'POST',
+            body: JSON.stringify(data),
+        })
+        .then(body => {
+            getComments(`/board/comments/${postId}?page=${curPage}`);
+            updateTextarea.value = '';
+            showUpdateCommentFrame(commentId);
+        })
     }
 
     const deleteComment = (comment: BoardComment) => {
@@ -272,6 +283,8 @@ const Read = () => {
                     {comments.map((comment) => {
                         const isCurrentUserComment = comment.user.id.toString() === userId;
                         const isReplyingToComment = replyingStates[comment.id] || false;
+                        const isUpdatingComment = updatingStates[comment.id] || false;
+
                         const paddingLeft = 20 * comment.depth;
 
                         return (
@@ -284,13 +297,21 @@ const Read = () => {
                                         )}
                                         {isCurrentUserComment && (
                                             <>
-                                                <p onClick={() => updateComment( comment.id.toString() )}>update</p>
+                                                <p onClick={() => showUpdateCommentFrame( comment.id.toString() )}>update</p>
                                                 <p onClick={() => deleteComment( comment )}>delete</p>
                                             </>
                                         )}
                                     </div>
                                 </div>
-                                <div id='comment-content'>{comment.content}</div>
+                                {!isUpdatingComment && (
+                                    <div id='comment-content'>{comment.content}</div>
+                                )}
+                                {isUpdatingComment && (
+                                    <>
+                                        <textarea id='comment-update'>{comment.content}</textarea>
+                                        <button onClick={ () => updateComment( comment.id.toString() ) } className={Button.primary}>submit</button>
+                                    </>
+                                )}
                                 {isReplyingToComment && (
                                     <div id='comment-reply'>
                                         <textarea></textarea>

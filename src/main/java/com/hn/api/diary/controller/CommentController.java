@@ -4,6 +4,7 @@ import java.net.HttpURLConnection;
 import java.util.List;
 
 import com.hn.api.diary.dto.BoardCommentReplyDTO;
+import com.hn.api.diary.dto.BoardCommentUpdateDTO;
 import com.hn.api.diary.dto.BoardCommentWriteDTO;
 import com.hn.api.diary.dto.BoardCommentsDTO;
 import com.hn.api.diary.response.ListDataResponse;
@@ -26,6 +27,15 @@ public class CommentController {
     public void boardCommentDelete(HttpServletRequest request){
         String commentId = String.valueOf(request.getAttribute("commentId"));
         commentService.boardCommentDelete(commentId);
+    }
+
+    @PostMapping(value = "/board/comment/update")
+    public void boardCommentUpdate(@RequestBody BoardCommentUpdateDTO boardCommentUpdateDTO, HttpServletRequest request){
+        String userId = String.valueOf(request.getAttribute("userId"));
+        String postDetailId = String.valueOf(request.getAttribute("postDetailId"));
+        String commentId = String.valueOf(request.getAttribute("commentId"));
+
+        commentService.boardCommentUpdate(boardCommentUpdateDTO, userId, postDetailId, commentId);
     }
 
     @PostMapping(value = "/board/comment/write")
