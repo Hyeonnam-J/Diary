@@ -47,7 +47,6 @@
 main {
     position: relative;
     width: var(--main-width);
-    height: var(--main-height);
 }
 
 .main-default{
@@ -55,7 +54,7 @@ main {
     지금 main의 position은 absolute가 아니다.
     main이 가운데 정렬인 것은 부모 요소에 flex, justify-content 때문.
     여기 position: relative는 main을 기준으로 배치되는 nav, header를 위한 것. */
-    
+    height: var(--main-height);
     transition: left 0.3s ease-out;
 }
 

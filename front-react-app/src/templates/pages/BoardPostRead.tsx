@@ -272,7 +272,9 @@ const Read = () => {
                         </div>
                     </>
                 )}
+
                 <span className='seperator'></span>
+                
                 <div id='comment'>
                     {comments.map((comment) => {
                         const isCurrentUserComment = comment.user.id.toString() === userId;

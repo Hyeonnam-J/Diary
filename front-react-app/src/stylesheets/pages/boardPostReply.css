@@ -5,9 +5,9 @@
     height: var(--boardPostReply-frame-height);
 }
 
-#reply-space {
+/* #reply-space {
     height: 20%;
-}
+} */
 
 #reply-header {
     height: 10%;
@@ -21,10 +21,11 @@
     height: 5%;
 }
 
-#reply-custom {
+/* #reply-custom {
     height: 10%;
-}
+} */
 
 #reply-content {
-    height: 45%;
+    height: 60%;
+    margin: 20px 0;
 }

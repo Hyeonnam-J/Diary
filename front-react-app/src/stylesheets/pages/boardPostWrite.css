@@ -5,9 +5,9 @@
     height: var(--boardPostWrite-frame-height);
 }
 
-#write-space {
+/* #write-space {
     height: 20%;
-}
+} */
 
 #write-header {
     height: 10%;
@@ -21,10 +21,11 @@
     height: 5%;
 }
 
-#write-custom {
+/* #write-custom {
     height: 10%;
-}
+} */
 
 #write-content {
-    height: 45%;
+    height: 60%;
+    margin: 20px 0;
 }
