@@ -258,27 +258,31 @@ const Read = () => {
                     <button onClick={() => updatePost(postDetail)} className={Button.primary}>update</button>
                     <button onClick={() => deletePost(postDetail)} className={Button.inactive}>delete</button>
                 </div>
-                <table>
-                    {postDetail !== null && (
-                        <>
+                
+                {postDetail !== null && (
+                    <>
+                        <table id='postDetailTable'>
+                            <colgroup>
+                                <col style={{ width: '20%' }} />
+                                <col style={{ width: '20%' }} />
+                                <col />
+                            </colgroup>
                             <tr>
-                                <td>{postDetail.title}</td>
+                                <td colSpan={3}>{postDetail.title}</td>
                             </tr>
                             <tr>
-                                <th>Date</th>
+                                <td colSpan={3}>{postDetail.user.email}</td>
+                            </tr>
+                            <tr>
                                 <td>{postDetail.createdDate}</td>
-                                <th>Writer</th>
-                                <td>{postDetail.user.email}</td>
-                                <th>View</th>
-                                <td>{postDetail.viewCount}</td>
+                                <td>view {postDetail.viewCount}</td>
+                                <td />
                             </tr>
-                            <tr>
-                                <td>{postDetail.content}</td>
-                            </tr>
-                        </>
-                    )}
-                </table>
-                <div id='commentFrame'>
+                        </table>
+                        <div id='postDetail-content'>{postDetail.content}</div>
+                    </>
+                )}
+                <div id='comment'>
                     {comments.map((comment) => {
                         const isCurrentUserComment = comment.user.id.toString() === userId;
                         const isReplyingToComment = replyingStates[comment.id] || false;
@@ -287,7 +291,7 @@ const Read = () => {
                         const paddingLeft = 20 * comment.depth;
 
                         return (
-                            <div key={comment.id} id={`comment-${comment.id}`} style={{ paddingLeft: `${paddingLeft}px` }}>
+                            <div key={comment.id} id={`comment-${comment.id}`} className='comment-container' style={{ paddingLeft: `${paddingLeft}px` }}>
                                 <div id='comment-header'>
                                     <div id='comment-user'>{comment.user?.email}</div>
                                     <div id='comment-btns'>

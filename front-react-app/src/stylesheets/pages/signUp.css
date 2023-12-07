@@ -20,23 +20,18 @@
 
   border: 0;
   gap: 10px;
-
-  background-color: red;
 }
 
 #signUp-greetings{
-  background-color: aquamarine;
 }
 
 #submitList{
   gap: 5px;
-  background-color: cadetblue;
 }
 
 #submitList > label{
   gap: 3px;
   flex: 1;
-  background-color: wheat;
 }
 
 #submitList > label *{
@@ -49,11 +44,9 @@
 }
 
 #submitList p, #submitList span{
-  background-color: coral;
 }
 
 #terms{
-  background-color: chocolate;
 }
 
 #submit-btn-box, #submit-btn-box > button{
@@ -65,5 +58,4 @@
 }
 
 #submit-btn-box{
-  background-color: chartreuse;
 }

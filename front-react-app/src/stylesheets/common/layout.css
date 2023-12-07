@@ -10,8 +10,6 @@
     /* 컨테이너 아래 (nav-contents-box), main 가운데 정렬 */
     display: flex;
     justify-content: center;
-
-    background-color: antiquewhite;
 }
 
 #my{
@@ -49,8 +47,7 @@
 main {
     position: relative;
     width: var(--main-width);
-
-    background-color: aqua;
+    height: var(--main-height);
 }
 
 .main-default{

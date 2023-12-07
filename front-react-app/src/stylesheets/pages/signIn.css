@@ -20,7 +20,6 @@
 }
 
 #signInFrame-inputs{
-  background-color: brown;
 }
 
 #signInFrame-inputs *{
@@ -29,7 +28,6 @@
 
 #signInFrame-btns{
   gap: 5px;
-  background-color: blueviolet;
 }
 
 #signInFrame-btns button{

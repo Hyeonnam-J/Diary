@@ -3,18 +3,14 @@
 #boardFrame {
     width: var(--board-frame-width);
     height: var(--board-frame-height);
-
-    background-color: white;
 }
 
 #boardHeader {
     height: var(--board-header-height);
-    background-color: yellow;
 }
 
 #boardHeader-top {
     height: 70%;
-    background-color: blueviolet;
 }
 
 #boardHeader-bottom {
@@ -22,14 +18,11 @@
     display: flex;
     justify-content: end;
     align-items: center;
-    background-color: cadetblue;
 }
 
 #boardSection {
     display: flex;
     justify-content: center;
-
-    background-color: white;
 }
 
 #boardSection > table {
@@ -62,12 +55,10 @@
 
 #boardFooter {
     height: var(--board-footer-height);
-    background-color: blue;
 }
 
 #boardFooter-top {
     height: 50%;
-    background-color: azure;
 
     display: flex;
     align-items: center;
@@ -76,5 +67,4 @@
 
 #boardFooter-bottom {
     height: 50%;
-    background-color: chocolate;
 }
