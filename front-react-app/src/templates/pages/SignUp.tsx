@@ -40,10 +40,6 @@ const SignUp = () => {
     return (
         <SignLayout>
             <div id='signUpFrame'>
-                <div id='signUp-greetings'>
-                    <h3>Sign Up</h3>
-                </div>
-
                 <div id='submitList'>
                     <label>
                         <p>Email</p>
@@ -75,14 +71,8 @@ const SignUp = () => {
                         <span>fds</span>
                     </label>
                 </div>
-
-                <div id='terms'>
-                    이용약관
-                </div>
-
-                <div id='submit-btn-box'>
-                    <button className={ Button.primary } onClick={ requestSignUp }>회원가입</button>
-                </div>
+                <button id='terms' className={ Button.primaryOutline }>Terms of Service</button>
+                <button id='submit-btn' className={ Button.primary } onClick={ requestSignUp }>Sign un</button>
             </div>
         </SignLayout>
     )

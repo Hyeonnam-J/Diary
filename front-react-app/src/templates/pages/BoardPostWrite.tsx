@@ -42,12 +42,12 @@ const Write = () => {
     return (
         <DefaultLayout>
             <div id='writeFrame'>
-                <div id='write-space'></div>
+                {/* <div id='write-space'></div> */}
                 <div id='write-header'>
                     <button onClick={ write } className={ Button.primary }>submit</button>
                 </div>
                 <input type="text" id='write-title' name="write-title"/>
-                <div id='write-custom'></div>
+                {/* <div id='write-custom'></div> */}
                 <textarea id='write-content' name="write-content"></textarea>
             </div>
         </DefaultLayout>

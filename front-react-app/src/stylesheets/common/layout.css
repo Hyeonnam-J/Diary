@@ -10,8 +10,6 @@
     /* 컨테이너 아래 (nav-contents-box), main 가운데 정렬 */
     display: flex;
     justify-content: center;
-
-    background-color: antiquewhite;
 }
 
 #my{
@@ -25,7 +23,7 @@
 #nav-contents-box{
     width: var(--nav-contents-width);
     height: 100vh;
-    background-color: var(--border-color);
+    background-color: var(--nav-container-color);
 
     position: absolute;
     left: var(--nav-contents-width-minus);
@@ -49,8 +47,6 @@
 main {
     position: relative;
     width: var(--main-width);
-
-    background-color: aqua;
 }
 
 .main-default{
@@ -58,7 +54,7 @@ main {
     지금 main의 position은 absolute가 아니다.
     main이 가운데 정렬인 것은 부모 요소에 flex, justify-content 때문.
     여기 position: relative는 main을 기준으로 배치되는 nav, header를 위한 것. */
-    
+    height: var(--main-height);
     transition: left 0.3s ease-out;
 }
 

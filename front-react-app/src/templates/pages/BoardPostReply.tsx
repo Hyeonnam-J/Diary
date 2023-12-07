@@ -45,12 +45,12 @@ const Reply = () => {
     return (
         <DefaultLayout>
             <div id='replyFrame'>
-                <div id='reply-space'></div>
+                {/* <div id='reply-space'></div> */}
                 <div id='reply-header'>
                     <button onClick={ reply } className={ Button.primary }>submit</button>
                 </div>
                 <input type="text" id='reply-title' name="reply-title"/>
-                <div id='reply-custom'></div>
+                {/* <div id='reply-custom'></div> */}
                 <textarea id='reply-content' name="reply-content"></textarea>
             </div>
         </DefaultLayout>

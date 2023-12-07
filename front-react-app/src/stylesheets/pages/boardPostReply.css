@@ -3,15 +3,11 @@
 #replyFrame {
     width: var(--boardPostReply-frame-width);
     height: var(--boardPostReply-frame-height);
-
-    background-color: dodgerblue;
 }
 
-#reply-space {
+/* #reply-space {
     height: 20%;
-
-    background-color: teal;
-}
+} */
 
 #reply-header {
     height: 10%;
@@ -19,24 +15,17 @@
     justify-content: end;
     align-items: end;
     padding: 10px;
-
-    background-color: aliceblue;
 }
 
 #reply-title {
     height: 5%;
-
-    background-color: violet;
 }
 
-#reply-custom {
+/* #reply-custom {
     height: 10%;
-
-    background-color: tomato;
-}
+} */
 
 #reply-content {
-    height: 45%;
-
-    background-color: yellowgreen;
+    height: 60%;
+    margin: 20px 0;
 }

@@ -3,15 +3,11 @@
 #writeFrame {
     width: var(--boardPostWrite-frame-width);
     height: var(--boardPostWrite-frame-height);
-
-    background-color: dodgerblue;
 }
 
-#write-space {
+/* #write-space {
     height: 20%;
-
-    background-color: teal;
-}
+} */
 
 #write-header {
     height: 10%;
@@ -19,24 +15,17 @@
     justify-content: end;
     align-items: end;
     padding: 10px;
-
-    background-color: aliceblue;
 }
 
 #write-title {
     height: 5%;
-
-    background-color: violet;
 }
 
-#write-custom {
+/* #write-custom {
     height: 10%;
-
-    background-color: tomato;
-}
+} */
 
 #write-content {
-    height: 45%;
-
-    background-color: yellowgreen;
+    height: 60%;
+    margin: 20px 0;
 }

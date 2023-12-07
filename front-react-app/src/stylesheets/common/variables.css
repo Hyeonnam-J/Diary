@@ -2,24 +2,14 @@
     --fixed-button-height: 40px;
 
     --main-width: 1000px;
+    --main-height: 1000px;
     --nav-contents-width: 300px;
     --nav-contents-width-minus: -300px;
 
     --signIn-frame-height: 500px;
     --signUp-frame-width: 300px;
-    --signUp-frame-height: 1200px;
+    --signUp-frame-height: 1000px;
 
-<<<<<<< HEAD
-    --write-frame-width: 1000px;
-    --write-frame-height: 1000px;
-    --reply-frame-width: 1000px;
-    --reply-frame-height: 1000px;
-    --update-frame-width: 1000px;
-    --update-frame-height: 1000px;
-    --read-frame-width: 1000px;
-    --read-frame-height: 1000px;
-
-=======
     --boardPostWrite-frame-width: 1000px;
     --boardPostWrite-frame-height: 1000px;
     --boardPostReply-frame-width: 1000px;
@@ -31,14 +21,15 @@
     
     --comment-header-height: 30px;
     --comment-content-max-height: 200px;
+    --comment-write-height: 200px;
     
->>>>>>> 949ad98 (vari)
     --board-frame-width: 100%;
     --board-frame-height: 1500px;
     --board-header-height: 200px;
     --board-footer-height: 200px;
 
     --background-color: white;
+    --nav-container-color: rgba(240, 240, 240, 0.5);
     --border-color: rgba(200, 200, 200, 0.5);
     --shadow-color: rgba(200, 200, 200, 0.5);
 
@@ -52,6 +43,6 @@
     --inactive-hover-color: rgba(150, 150, 150, 0.7);
 
     --text-ref-color: #CCCCCC;
-
-    --thead-color: rgba(200, 200, 200, 0.5);
+    --thead-color: rgba(230, 230, 230, 0.5);
+    --seperator-color: rgba(200, 200, 200, 0.5);
 }

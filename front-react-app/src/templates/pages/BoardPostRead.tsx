@@ -258,27 +258,24 @@ const Read = () => {
                     <button onClick={() => updatePost(postDetail)} className={Button.primary}>update</button>
                     <button onClick={() => deletePost(postDetail)} className={Button.inactive}>delete</button>
                 </div>
-                <table>
-                    {postDetail !== null && (
-                        <>
-                            <tr>
-                                <td>{postDetail.title}</td>
-                            </tr>
-                            <tr>
-                                <th>Date</th>
-                                <td>{postDetail.createdDate}</td>
-                                <th>Writer</th>
-                                <td>{postDetail.user.email}</td>
-                                <th>View</th>
-                                <td>{postDetail.viewCount}</td>
-                            </tr>
-                            <tr>
-                                <td>{postDetail.content}</td>
-                            </tr>
-                        </>
-                    )}
-                </table>
-                <div id='commentFrame'>
+                
+                {postDetail !== null && (
+                    <>
+                        <div id='postDetailTable'>
+                            <p id='postDetail-title'>{postDetail.title}</p>
+                            <p>{postDetail.user.email}</p>
+                            <div id='postDetail-dataAndViewCount'>
+                                <p>{postDetail.createdDate}</p>
+                                <p>view {postDetail.viewCount}</p>
+                            </div>
+                            <p id='postDetail-content'>{postDetail.content}</p>
+                        </div>
+                    </>
+                )}
+
+                <span className='seperator'></span>
+                
+                <div id='comment'>
                     {comments.map((comment) => {
                         const isCurrentUserComment = comment.user.id.toString() === userId;
                         const isReplyingToComment = replyingStates[comment.id] || false;
@@ -287,9 +284,12 @@ const Read = () => {
                         const paddingLeft = 20 * comment.depth;
 
                         return (
-                            <div key={comment.id} id={`comment-${comment.id}`} style={{ paddingLeft: `${paddingLeft}px` }}>
+                            <div key={comment.id} id={`comment-${comment.id}`} className='comment-container' style={{ paddingLeft: `${paddingLeft}px` }}>
                                 <div id='comment-header'>
-                                    <div id='comment-user'>{comment.user?.email}</div>
+                                    <div id='comment-userContainer'>
+                                        <div id='comment-user'>{comment.user?.email}</div>
+                                        <div id='commnet-date'>{comment.createdDate}</div>
+                                    </div>
                                     <div id='comment-btns'>
                                         {comment.depth === 0 && (
                                             <p onClick={() => showReplyCommentFrame( comment.id.toString() )}>reply</p>
