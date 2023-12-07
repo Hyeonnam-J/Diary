@@ -43,7 +43,7 @@ public class PostService {
         Post post = postRepository.findById(postId)
                 .orElseThrow(InvalidValue::new);
 
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy. MM. dd.");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy. MM. dd. HH:mm:ss");
         String formattedCreatedDate = post.getCreatedDate().format(dateTimeFormatter);
 
         BoardPostReadDTO dto = new ModelMapper().map(post, BoardPostReadDTO.class);
@@ -133,10 +133,9 @@ public class PostService {
                 .collect(Collectors.toList());
 
         // todo: N + 1 issue
-        // for(Board b : posts){
-        // System.out.println(b.getUser().getId());
-        // System.out.println(b.getId());
-        // }
+         for(Post b : posts){
+            System.out.println(">>>>>>>>>>>"+b.getUser().getId());
+         }
 
         ModelMapper modelMapper = new ModelMapper();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy. MM. dd.");

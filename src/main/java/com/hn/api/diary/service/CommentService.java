@@ -101,7 +101,7 @@ public class CommentService {
                 .collect(Collectors.toList());
 
         ModelMapper modelMapper = new ModelMapper();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy. MM. dd.");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy. MM. dd. HH:mm:ss");
 
         return comments.stream()
                 .map(c -> {
