@@ -21,11 +21,21 @@
 
 #postDetailTable * {
     text-align: left;
+    margin: 5px 0;
+}
+
+#postDetail-title {
+    font-size: 2rem;
+    margin: 10px 0;
+}
+
+#postDetail-dataAndViewCount {
+    display: flex;
+    gap: 30px;
 }
 
 #postDetail-content {
-    text-align: left;
-    padding: 10px;
+    margin: 30px 0;
 }
 
 #read-footer {
@@ -43,13 +53,23 @@
 }
 
 .comment-container {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 #comment-header {
     height: var(--comment-header-height);
     display: flex;
     justify-content: space-between;
+}
+
+#comment-userContainer {
+    display: flex;
+    gap: 20px;
+}
+
+#comment-date {
+    color: red;
+    /* color: var(--text-ref-color); */
 }
 
 #comment-btns {
@@ -65,6 +85,11 @@
 #comment-content {
     max-height: var(--comment-content-max-height);
     text-align: left;
+}
+
+#comment-reply > textarea {
+    height: var(--comment-write-height);
+    margin: 10px 0;
 }
 
 #comment-footer {

@@ -23,7 +23,7 @@
 #nav-contents-box{
     width: var(--nav-contents-width);
     height: 100vh;
-    background-color: var(--border-color);
+    background-color: var(--nav-container-color);
 
     position: absolute;
     left: var(--nav-contents-width-minus);

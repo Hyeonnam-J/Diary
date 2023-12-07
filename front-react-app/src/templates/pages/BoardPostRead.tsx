@@ -261,27 +261,18 @@ const Read = () => {
                 
                 {postDetail !== null && (
                     <>
-                        <table id='postDetailTable'>
-                            <colgroup>
-                                <col style={{ width: '20%' }} />
-                                <col style={{ width: '20%' }} />
-                                <col />
-                            </colgroup>
-                            <tr>
-                                <td colSpan={3}>{postDetail.title}</td>
-                            </tr>
-                            <tr>
-                                <td colSpan={3}>{postDetail.user.email}</td>
-                            </tr>
-                            <tr>
-                                <td>{postDetail.createdDate}</td>
-                                <td>view {postDetail.viewCount}</td>
-                                <td />
-                            </tr>
-                        </table>
-                        <div id='postDetail-content'>{postDetail.content}</div>
+                        <div id='postDetailTable'>
+                            <p id='postDetail-title'>{postDetail.title}</p>
+                            <p>{postDetail.user.email}</p>
+                            <div id='postDetail-dataAndViewCount'>
+                                <p>{postDetail.createdDate}</p>
+                                <p>view {postDetail.viewCount}</p>
+                            </div>
+                            <p id='postDetail-content'>{postDetail.content}</p>
+                        </div>
                     </>
                 )}
+                <span className='seperator'></span>
                 <div id='comment'>
                     {comments.map((comment) => {
                         const isCurrentUserComment = comment.user.id.toString() === userId;
@@ -293,7 +284,10 @@ const Read = () => {
                         return (
                             <div key={comment.id} id={`comment-${comment.id}`} className='comment-container' style={{ paddingLeft: `${paddingLeft}px` }}>
                                 <div id='comment-header'>
-                                    <div id='comment-user'>{comment.user?.email}</div>
+                                    <div id='comment-userContainer'>
+                                        <div id='comment-user'>{comment.user?.email}</div>
+                                        <div id='commnet-date'>{comment.createdDate}</div>
+                                    </div>
                                     <div id='comment-btns'>
                                         {comment.depth === 0 && (
                                             <p onClick={() => showReplyCommentFrame( comment.id.toString() )}>reply</p>

@@ -2,7 +2,7 @@
     --fixed-button-height: 40px;
 
     --main-width: 1000px;
-    --main-height: 800px;
+    --main-height: 1000px;
     --nav-contents-width: 300px;
     --nav-contents-width-minus: -300px;
 
@@ -29,6 +29,7 @@
     --board-footer-height: 200px;
 
     --background-color: white;
+    --nav-container-color: rgba(220, 220, 220, 0.5);
     --border-color: rgba(200, 200, 200, 0.5);
     --shadow-color: rgba(200, 200, 200, 0.5);
 
@@ -42,6 +43,6 @@
     --inactive-hover-color: rgba(150, 150, 150, 0.7);
 
     --text-ref-color: #CCCCCC;
-
     --thead-color: rgba(200, 200, 200, 0.5);
+    --seperator-color: rgba(200, 200, 200, 0.5);
 }
