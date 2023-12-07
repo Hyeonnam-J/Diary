@@ -262,7 +262,6 @@ const Read = () => {
                     {postDetail !== null && (
                         <>
                             <tr>
-                                <th>Title</th>
                                 <td>{postDetail.title}</td>
                             </tr>
                             <tr>
