@@ -42,7 +42,14 @@ public class PostService {
     public BoardPostReadDTO boardPostRead(Long postId) {
         Post post = postRepository.findById(postId)
                 .orElseThrow(InvalidValue::new);
-        return new ModelMapper().map(post, BoardPostReadDTO.class);
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy. MM. dd.");
+        String formattedCreatedDate = post.getCreatedDate().format(dateTimeFormatter);
+
+        BoardPostReadDTO dto = new ModelMapper().map(post, BoardPostReadDTO.class);
+        dto.setCreatedDate(formattedCreatedDate);
+
+        return dto;
     }
 
     public void boardPostDelete(String userId, String postDetailId){
