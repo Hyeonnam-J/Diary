@@ -23,6 +23,7 @@ public class Comment extends DateColumn {
     private User user;
 
     private String content;
+    private boolean isDelete;
 
     private Long origin;
     private Integer depth;
@@ -33,7 +34,8 @@ public class Comment extends DateColumn {
         this.user = user;
         this.content = content;
 
-        this.origin = origin;   // 테스트 용도?
+        this.isDelete = false;
+        this.origin = origin;
         this.depth = depth != null ? depth : 0;
     }
 

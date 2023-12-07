@@ -35,7 +35,7 @@ public class Post extends DateColumn {
         this.title = title;
         this.content = content;
         this.user = user;
-        this.origin = origin;   // 테스트 용도
+        this.origin = origin;
         this.num = num != null ? num : 0;
         this.depth = depth != null ? depth : 0;
 
