@@ -2,10 +2,11 @@
 
 #readFrame {
     width: var(--boardPostRead-frame-width);
+    height: var(--boardPostRead-frame-height);
 }
 
 #read-header {
-    height: 50px;
+    height: var(--board-post-header-height);
 
     display: flex;
     justify-content: end;
