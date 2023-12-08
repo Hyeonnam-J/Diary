@@ -21,6 +21,12 @@ public class TestController {
 
     @GetMapping(value = "/test")
     public String test(){
+        Post post = postRepository.findById(1L).orElseThrow();
+        System.out.println(post.getUser().getEmail());
+        List<Comment> comments = post.getComments();
+        for(Comment c: comments){
+            System.out.println(c.getId());
+        }
         return "end";
     }
 }
