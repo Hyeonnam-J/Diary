@@ -2,27 +2,41 @@
 
 #readFrame {
     width: var(--boardPostRead-frame-width);
-    /* height: var(--read-frame-height); */
-
-    background-color: dodgerblue;
+    height: var(--boardPostRead-frame-height);
 }
 
 #read-header {
-    height: 50px;
+    height: var(--board-post-header-height);
 
     display: flex;
     justify-content: end;
     align-items: end;
     padding: 10px;
     gap: 10px;
-
-    background-color: aliceblue;
 }
 
-#read-title {
-    height: 50px;
+#postDetailTable {
+    width: 100%;
+    padding: 10px;
+}
 
-    background-color: violet;
+#postDetailTable * {
+    text-align: left;
+    margin: 5px 0;
+}
+
+#postDetail-title {
+    font-size: 2rem;
+    margin: 10px 0;
+}
+
+#postDetail-dataAndViewCount {
+    display: flex;
+    gap: 30px;
+}
+
+#postDetail-content {
+    margin: 30px 0;
 }
 
 #read-footer {
@@ -33,16 +47,30 @@
     align-items: end;
     padding: 10px;
     gap: 10px;
+}
 
-    background-color: yellowgreen;
+#comment {
+    padding: 10px;
+}
+
+.comment-container {
+    margin-bottom: 20px;
 }
 
 #comment-header {
     height: var(--comment-header-height);
     display: flex;
     justify-content: space-between;
+}
 
-    background-color: antiquewhite;
+#comment-userContainer {
+    display: flex;
+    gap: 20px;
+}
+
+#comment-date {
+    color: red;
+    /* color: var(--text-ref-color); */
 }
 
 #comment-btns {
@@ -58,14 +86,24 @@
 #comment-content {
     max-height: var(--comment-content-max-height);
     text-align: left;
+}
 
-    background-color: tomato;
+#comment-reply > textarea {
+    height: var(--comment-write-height);
+    margin: 10px 0;
 }
 
 #comment-footer {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
 
-    background-color: salmon;
+#comment-write {
+    width: 100%;
+}
+
+#comment-write > textarea {
+    height: var(--comment-write-height);
+    margin: 10px 0;
 }

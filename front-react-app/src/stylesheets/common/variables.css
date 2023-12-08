@@ -24,9 +24,10 @@
     --comment-write-height: 200px;
     
     --board-frame-width: 100%;
-    --board-frame-height: 1500px;
+    --board-frame-height: 1000px;
     --board-header-height: 200px;
     --board-footer-height: 200px;
+    --board-post-header-height: 200px;
 
     --background-color: white;
     --nav-container-color: rgba(240, 240, 240, 0.5);
