@@ -114,7 +114,6 @@ public class CommentService {
     }
 
     public int getTotalCommentsCount(Long postId){
-        // todo: N+1 issue
         return (int) commentRepository.countByPostId(postId);
     }
     

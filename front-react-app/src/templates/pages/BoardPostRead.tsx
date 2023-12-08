@@ -34,7 +34,7 @@ const Read = () => {
         setAccessToken(localStorage.getItem('accessToken'));
 
         getTotalCommentsCount();
-    });
+    }, []);
 
     useEffect(() => {
         setTotalPageCount(Math.ceil(totalCommentsCount / Page.perPageSize));
@@ -142,6 +142,7 @@ const Read = () => {
             body: JSON.stringify(data),
         })
         .then(body => {
+            getTotalCommentsCount();
             getComments(`/board/comments/${postId}?page=${curPage}`);
             const textarea = document.querySelector<HTMLTextAreaElement>('#comment-write textarea');
             if (textarea) textarea.value = '';
@@ -172,6 +173,7 @@ const Read = () => {
             body: JSON.stringify(data),
         })
         .then(body => {
+            getTotalCommentsCount();
             getComments(`/board/comments/${postId}?page=${curPage}`);
             const textarea = document.querySelector<HTMLTextAreaElement>('#comment-reply textarea');
             if (textarea) textarea.value = '';
@@ -242,6 +244,7 @@ const Read = () => {
             method: 'DELETE',
         })
         .then(response => {
+            getTotalCommentsCount();
             getComments(`/board/comments/${postId}?page=${curPage}`);
         });
     }

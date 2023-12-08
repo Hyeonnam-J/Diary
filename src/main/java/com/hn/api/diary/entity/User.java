@@ -28,12 +28,4 @@ public class User extends DateColumn {
         this.password = password;
         this.role = role;
     }
-
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    List<Post> posts = new ArrayList<>();
-
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    List<Comment> comments = new ArrayList<>();
 }
