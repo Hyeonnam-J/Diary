@@ -53,7 +53,8 @@ public class PostService {
     }
 
     public void boardPostDelete(String userId, String postDetailId){
-//        // todo: when deleted origin post..
+        // todo: when deleted origin post..
+        // todo: think! Hierarchical board...
         Post post = postRepository.findById(Long.parseLong(postDetailId))
                 .orElseThrow(InvalidValue::new);
 
@@ -64,7 +65,7 @@ public class PostService {
     public void boardPostUpdate(BoardPostUpdateDTO boardPostUpdateDTO, String userId, String postDetailId) {
         Post post = postRepository.findById(Long.parseLong(postDetailId))
                 .orElseThrow(InvalidValue::new);
-        // todo: lastModifiedDate
+
         post.setTitle(boardPostUpdateDTO.getTitle());
         post.setContent(boardPostUpdateDTO.getContent());
 
@@ -130,7 +131,6 @@ public class PostService {
                 break;
         }
 
-        // todo: where isDelete is false
         Iterable<Post> iterablePosts = postRepository.findAllWithComments(pageable);
         List<Post> posts = StreamSupport.stream(iterablePosts.spliterator(), false)
                 .collect(Collectors.toList());

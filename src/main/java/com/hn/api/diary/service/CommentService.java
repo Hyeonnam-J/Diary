@@ -38,7 +38,7 @@ public class CommentService {
     }
 
     public void boardCommentDelete(String commentId){
-        // todo: when deleted origin post..
+        // todo: when deleted origin comment..
         Comment comment = commentRepository.findById(Long.parseLong(commentId))
                 .orElseThrow(InvalidValue::new);
 
