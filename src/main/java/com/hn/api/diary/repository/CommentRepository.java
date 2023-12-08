@@ -13,8 +13,9 @@ import java.util.List;
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     @EntityGraph(attributePaths = {"user", "post"})
-    @Query("select c from Comment c where c.post.id = :postId")
+    @Query("select c from Comment c where c.post.id = :postId and c.isDelete = false")
     List<Comment> findByPostId(@Param("postId") Long postId, Pageable pageable);
 
-    long countByPostId(Long postId);
+    @Query("select count(c) from Comment c where c.post.id = :postId and c.isDelete = false")
+    long countByPostIdWithIsDelete(@Param("postId") Long postId);
 }

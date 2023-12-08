@@ -38,9 +38,12 @@ public class CommentService {
     }
 
     public void boardCommentDelete(String commentId){
-        // todo: delete -> put : isDelete true
         // todo: when deleted origin post..
-        commentRepository.deleteById(Long.parseLong(commentId));
+        Comment comment = commentRepository.findById(Long.parseLong(commentId))
+                .orElseThrow(InvalidValue::new);
+
+        comment.setDelete(true);
+        commentRepository.save(comment);
     }
 
     public void boardCommentUpdate(BoardCommentUpdateDTO boardCommentUpdateDTO, String userId, String postDetailId, String commentId){
@@ -114,7 +117,6 @@ public class CommentService {
     }
 
     public int getTotalCommentsCount(Long postId){
-        return (int) commentRepository.countByPostId(postId);
+        return (int) commentRepository.countByPostIdWithIsDelete(postId);
     }
-    
 }

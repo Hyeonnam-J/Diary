@@ -16,7 +16,10 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     List<Post> findByOrigin(@Param("origin") Long origin);
 
     @EntityGraph(attributePaths = {"comments", "comments.user"})
-    @Query("select p from Post p")
+    @Query("select p from Post p where p.isDelete = false")
     List<Post> findAllWithComments(Pageable pageable);
+
+    @Query("select count(p) from Post p where p.isDelete = false")
+    long countWithIsDelete();
 
 }

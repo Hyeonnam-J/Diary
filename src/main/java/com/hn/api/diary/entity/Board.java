@@ -59,6 +59,10 @@ public class Post extends DateColumn {
         this.content = content;
     }
 
+    public void setDelete(boolean delete) {
+        isDelete = delete;
+    }
+
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     List<Comment> comments = new ArrayList<>();
