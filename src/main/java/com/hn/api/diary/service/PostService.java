@@ -128,14 +128,9 @@ public class PostService {
         }
 
         // todo: where isDelete is false
-        Iterable<Post> iterablePosts = postRepository.findAll(pageable);
+        Iterable<Post> iterablePosts = postRepository.findAllWithComments(pageable);
         List<Post> posts = StreamSupport.stream(iterablePosts.spliterator(), false)
                 .collect(Collectors.toList());
-
-        // todo: N + 1 issue
-         for(Post b : posts){
-            System.out.println(">>>>>>>>>>>"+b.getUser().getId());
-         }
 
         ModelMapper modelMapper = new ModelMapper();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy. MM. dd.");
