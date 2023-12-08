@@ -53,9 +53,12 @@ public class PostService {
     }
 
     public void boardPostDelete(String userId, String postDetailId){
-        // todo: delete -> put : isDelete true
-        // todo: when deleted origin post..
-        postRepository.deleteById(Long.parseLong(postDetailId));
+//        // todo: when deleted origin post..
+        Post post = postRepository.findById(Long.parseLong(postDetailId))
+                .orElseThrow(InvalidValue::new);
+
+        post.setDelete(true);
+        postRepository.save(post);
     }
 
     public void boardPostUpdate(BoardPostUpdateDTO boardPostUpdateDTO, String userId, String postDetailId) {
@@ -146,6 +149,6 @@ public class PostService {
     }
 
     public int getTotalBoardPostsCount() {
-        return (int) postRepository.count();
+        return (int) postRepository.countWithIsDelete();
     }
 }

@@ -46,4 +46,8 @@ public class Comment extends DateColumn {
     public void setContent(String content){
         this.content = content;
     }
+
+    public void setDelete(boolean delete) {
+        isDelete = delete;
+    }
 }
