@@ -2,6 +2,8 @@ package com.hn.api.diary.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hn.api.diary.dto.SessionDTO;
+import com.hn.api.diary.repository.CommentRepository;
+import com.hn.api.diary.repository.PostRepository;
 import com.hn.api.diary.util.JwsKey;
 import com.hn.api.diary.dto.SignInDTO;
 import com.hn.api.diary.dto.SignUpDTO;
@@ -34,9 +36,13 @@ class UserControllerTest {
     @Autowired private ObjectMapper objectMapper;
     @Autowired private UserService userService;
     @Autowired private UserRepository userRepository;
+    @Autowired private PostRepository postRepository;
+    @Autowired private CommentRepository commentRepository;
 
     @BeforeEach
     void clean(){
+        commentRepository.deleteAll();
+        postRepository.deleteAll();
         userRepository.deleteAll();
     }
 
@@ -49,6 +55,7 @@ class UserControllerTest {
         SignUpDTO signUpDTO = SignUpDTO.builder()
                 .email("test-signUp-email")
                 .password("test-signUp-password")
+                .userName("test-signUp-userName")
                 .build();
 
         // MockMvc content 파라미터로 String을 보내야 해서 직렬화 로직 추가.
@@ -81,6 +88,7 @@ class UserControllerTest {
         SignUpDTO signUpDTO = SignUpDTO.builder()
                 .email("test")
                 .password("test")
+                .userName("test")
                 .build();
         userService.signUp(signUpDTO);
 

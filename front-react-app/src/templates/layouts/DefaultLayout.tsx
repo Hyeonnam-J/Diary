@@ -63,12 +63,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
             <div id='nav-contents-box' style={{ left: isNavOpen ? '0' : navWidthMinus }}>
                 <h3 id='nav-greetings'>Welcome</h3>
                 <ul id='nav-contents'>
-                    <li onClick={() => menuClickHandler('/user', userId, accessToken)}>user</li>
-                    <li onClick={() => menuClickHandler('/admin', userId, accessToken)}>admin</li>
                     <li><Link to="/board">board</Link></li>
-
-                    <li><Link to="/Menu3">Menu3</Link></li>
-                    <li><Link to="/Menu4">Menu4</Link></li>
                 </ul>
             </div>
 
