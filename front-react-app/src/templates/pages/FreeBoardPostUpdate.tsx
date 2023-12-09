@@ -33,7 +33,6 @@ const FreeBoardPostUpdate = () => {
         fetch(SERVER_IP+"/freeBoard/post/update", {
             headers: {
                 "Content-Type": 'application/json',
-                "userId": userId || '',
                 "Authorization": accessToken || '',
             },
             method: 'PUT',

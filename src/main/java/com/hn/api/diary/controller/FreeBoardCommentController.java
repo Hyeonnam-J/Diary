@@ -29,9 +29,8 @@ public class FreeBoardCommentController {
     }
 
     @PostMapping(value = "/freeBoard/comment/update")
-    public void update(@RequestBody FreeBoardCommentUpdateDTO freeBoardCommentUpdateDTO, HttpServletRequest request){
-        String userId = String.valueOf(request.getAttribute("userId"));
-        freeBoardCommentService.update(freeBoardCommentUpdateDTO, userId);
+    public void update(@RequestBody FreeBoardCommentUpdateDTO freeBoardCommentUpdateDTO){
+        freeBoardCommentService.update(freeBoardCommentUpdateDTO);
     }
 
     @PostMapping(value = "/freeBoard/comment/write")
