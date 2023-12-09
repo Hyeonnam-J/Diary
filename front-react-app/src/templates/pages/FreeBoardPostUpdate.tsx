@@ -11,7 +11,7 @@ const FreeBoardPostUpdate = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const postDetail: FreeBoardPostDetail = location?.state?.postDetail;
+    const post: FreeBoardPostDetail = location?.state?.post;
     const [userId, setUserId] = useState<string | null>(null);
     const [accessToken, setAccessToken] = useState<string | null>(null);
 
@@ -25,6 +25,7 @@ const FreeBoardPostUpdate = () => {
         const content = document.querySelector('textarea[name="update-content"]') as HTMLInputElement;
 
         const data = {
+            postId: post.id,
             title: title.value,
             content: content.value
         }
@@ -33,7 +34,6 @@ const FreeBoardPostUpdate = () => {
             headers: {
                 "Content-Type": 'application/json',
                 "userId": userId || '',
-                "postDetailId": postDetail.id.toString(),
                 "Authorization": accessToken || '',
             },
             method: 'PUT',
@@ -50,9 +50,9 @@ const FreeBoardPostUpdate = () => {
                 <div id='update-header'>
                     <button onClick={ update } className={ Button.primary }>submit</button>
                 </div>
-                <input type="text" id='update-title' name="update-title" defaultValue={postDetail?.title || ''} />
+                <input type="text" id='update-title' name="update-title" defaultValue={post?.title || ''} />
                 <div id='update-custom'></div>
-                <textarea id='update-content' name="update-content" defaultValue={postDetail?.content || ''} />
+                <textarea id='update-content' name="update-content" defaultValue={post?.content || ''} />
             </div>
         </DefaultLayout>
     )

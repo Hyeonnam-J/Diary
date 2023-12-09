@@ -62,8 +62,8 @@ public class FreeBoardPostService {
         freeBoardPostRepository.save(freeBoardPost);
     }
 
-    public void update(FreeBoardPostUpdateDTO freeBoardPostUpdateDTO, String userId, String postDetailId) {
-        FreeBoardPost freeBoardPost = freeBoardPostRepository.findById(Long.parseLong(postDetailId))
+    public void update(FreeBoardPostUpdateDTO freeBoardPostUpdateDTO, String userId) {
+        FreeBoardPost freeBoardPost = freeBoardPostRepository.findById(Long.parseLong(freeBoardPostUpdateDTO.getPostId()))
                 .orElseThrow(InvalidValue::new);
 
         freeBoardPost.setTitle(freeBoardPostUpdateDTO.getTitle());

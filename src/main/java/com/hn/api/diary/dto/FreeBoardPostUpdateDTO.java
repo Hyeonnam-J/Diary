@@ -8,12 +8,8 @@ import lombok.NoArgsConstructor;
 @Getter
 public class FreeBoardPostUpdateDTO {
 
+    private String postId;
     private String title;
     private String content;
 
-    @Builder
-    public FreeBoardPostUpdateDTO(String title, String content) {
-        this.title = title;
-        this.content = content;
-    }
 }
