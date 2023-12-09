@@ -100,7 +100,7 @@ const Read = () => {
     const updatePost = async (postDetail: BoardPostDetail | null) => {
         if ((userId || -1) == postDetail?.user.id) {
             navigate('/board/post/update', { state: { postDetail: postDetail } });
-        } else alert('작성자가 아닙니다');
+        } else alert('You are not writer');
     }
 
     const deletePost = async (postDetail: BoardPostDetail | null) => {
@@ -116,7 +116,7 @@ const Read = () => {
             .then(response => {
                 navigate('/board');
             });
-        } else alert('작성자가 아닙니다');
+        } else alert('You are not writer');
     }
 
     const writeComment = () => {
