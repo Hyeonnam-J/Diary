@@ -231,11 +231,9 @@ const FreeBoardPostDetailRead = () => {
             return;
         }
 
-        fetch(`${SERVER_IP}/freeBoard/comment/delete`, {
+        fetch(`${SERVER_IP}/freeBoard/comment/delete/${comment.id}`, {
             headers: {
                 "userId": userId || '',
-                "postId": postId,
-                "commentId": comment.id.toString(),
                 "Authorization": accessToken || '',
             },
             method: 'DELETE',
