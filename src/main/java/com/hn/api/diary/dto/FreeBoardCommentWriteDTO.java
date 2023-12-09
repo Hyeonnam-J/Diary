@@ -4,5 +4,6 @@ import lombok.Getter;
 
 @Getter
 public class FreeBoardCommentWriteDTO {
+    private String postId;
     private String content;
 }

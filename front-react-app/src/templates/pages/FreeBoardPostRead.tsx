@@ -127,6 +127,7 @@ const FreeBoardPostDetailRead = () => {
         const commentContent = document.querySelector<HTMLTextAreaElement>('#read-comment-write textarea')?.value;
 
         const data = {
+            postId: postId,
             content: commentContent,
         }
         
@@ -134,7 +135,6 @@ const FreeBoardPostDetailRead = () => {
             headers: {
                 "Content-Type": 'application/json',
                 "userId": userId || '',
-                "postId": postId || '',
                 "Authorization": accessToken || '',
             },
             method: 'POST',
@@ -157,6 +157,7 @@ const FreeBoardPostDetailRead = () => {
         const commentContent = document.querySelector<HTMLTextAreaElement>('#read-comment-reply textarea')?.value;
 
         const data = {
+            commentId: commentId,
             content: commentContent,
         }
 
@@ -164,8 +165,6 @@ const FreeBoardPostDetailRead = () => {
             headers: {
                 "Content-Type": 'application/json',
                 "userId": userId || '',
-                "postId": postId || '',
-                "commentId": commentId || '',
                 "Authorization": accessToken || '',
             },
             method: 'POST',
@@ -206,6 +205,7 @@ const FreeBoardPostDetailRead = () => {
         }
         
         const data = {
+            commentId: commentId,
             content: updatedContent,
         }
 
@@ -213,8 +213,6 @@ const FreeBoardPostDetailRead = () => {
             headers: {
                 "Content-Type": 'application/json',
                 "userId": userId || '',
-                "postId": postId || '',
-                "commentId": commentId || '',
                 "Authorization": accessToken || '',
             },
             method: 'POST',

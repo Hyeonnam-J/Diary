@@ -46,19 +46,19 @@ public class FreeBoardCommentService {
         freeBoardCommentRepository.save(freeBoardComment);
     }
 
-    public void update(FreeBoardCommentUpdateDTO freeBoardCommentUpdateDTO, String userId, String postDetailId, String commentId){
-        FreeBoardComment freeBoardComment = freeBoardCommentRepository.findById(Long.parseLong(commentId))
+    public void update(FreeBoardCommentUpdateDTO freeBoardCommentUpdateDTO, String userId){
+        FreeBoardComment freeBoardComment = freeBoardCommentRepository.findById(Long.parseLong(freeBoardCommentUpdateDTO.getCommentId()))
                 .orElseThrow(InvalidValue::new);
 
         freeBoardComment.setContent(freeBoardCommentUpdateDTO.getContent());
         freeBoardCommentRepository.save(freeBoardComment);
     }
 
-    public void write(FreeBoardCommentWriteDTO freeBoardCommentWriteDTO, String userId, String postDetailId){
+    public void write(FreeBoardCommentWriteDTO freeBoardCommentWriteDTO, String userId){
         User user = userRepository.findById(Long.parseLong(userId))
                 .orElseThrow(InvalidValue::new);
 
-        FreeBoardPost freeBoardPost = freeBoardPostRepository.findById(Long.parseLong(postDetailId))
+        FreeBoardPost freeBoardPost = freeBoardPostRepository.findById(Long.parseLong(freeBoardCommentWriteDTO.getPostId()))
                 .orElseThrow(InvalidValue::new);
 
         FreeBoardComment freeBoardComment = FreeBoardComment.builder()
@@ -73,19 +73,16 @@ public class FreeBoardCommentService {
         freeBoardCommentRepository.save(freeBoardComment);
     }
 
-    public void reply(FreeBoardBoardCommentReplyDTO boardCommentReplyDTO, String userId, String postDetailId, String commentId){
+    public void reply(FreeBoardBoardCommentReplyDTO boardCommentReplyDTO, String userId){
         User user = userRepository.findById(Long.parseLong(userId))
                 .orElseThrow(InvalidValue::new);
 
-        FreeBoardPost freeBoardPost = freeBoardPostRepository.findById(Long.parseLong(postDetailId))
-                .orElseThrow(InvalidValue::new);
-
-        FreeBoardComment freeBoardComment = freeBoardCommentRepository.findById(Long.parseLong(commentId))
+        FreeBoardComment freeBoardComment = freeBoardCommentRepository.findById(Long.parseLong(boardCommentReplyDTO.getCommentId()))
                 .orElseThrow(InvalidValue::new);
 
         FreeBoardComment freeBoardComment_save = FreeBoardComment.builder()
                 .user(user)
-                .freeBoardPost(freeBoardPost)
+                .freeBoardPost(freeBoardComment.getFreeBoardPost())
                 .origin(freeBoardComment.getOrigin())
                 .content(boardCommentReplyDTO.getContent())
                 .depth(1)
