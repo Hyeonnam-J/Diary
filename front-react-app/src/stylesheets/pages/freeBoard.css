@@ -1,20 +1,16 @@
 @import '../common/variables.css';
 
 #boardFrame {
-    width: var(--board-frame-width);
-    height: var(--board-frame-height);
-
-    background-color: white;
+    width: var(--freeBoard-frame-width);
+    height: var(--freeBoard-frame-height);
 }
 
 #boardHeader {
-    height: var(--board-header-height);
-    background-color: yellow;
+    height: var(--freeBoard-header-height);
 }
 
 #boardHeader-top {
     height: 70%;
-    background-color: blueviolet;
 }
 
 #boardHeader-bottom {
@@ -22,14 +18,11 @@
     display: flex;
     justify-content: end;
     align-items: center;
-    background-color: cadetblue;
 }
 
 #boardSection {
     display: flex;
     justify-content: center;
-
-    background-color: white;
 }
 
 #boardSection > table {
@@ -61,13 +54,11 @@
 }
 
 #boardFooter {
-    height: var(--board-footer-height);
-    background-color: blue;
+    height: var(--freeBoard-footer-height);
 }
 
 #boardFooter-top {
     height: 50%;
-    background-color: azure;
 
     display: flex;
     align-items: center;
@@ -76,21 +67,4 @@
 
 #boardFooter-bottom {
     height: 50%;
-    background-color: chocolate;
-}
-
-.pagination {
-    display: flex;
-    justify-content: space-between;
-    width: 40%;
-    gap: 10px;
-    font-size: 1.2rem;
-}
-
-.pagination:hover {
-    cursor: pointer;
-}
-
-.pageActive {
-    text-decoration: underline;
 }

@@ -1,8 +1,8 @@
 @import '../common/variables.css';
 
 #writeFrame {
-    width: var(--boardPostWrite-frame-width);
-    height: var(--boardPostWrite-frame-height);
+    width: var(--freeBoard-post-write-width);
+    height: var(--freeBoard-post-write-height);
 }
 
 /* #write-space {

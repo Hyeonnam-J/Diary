@@ -1,16 +1,12 @@
 @import '../common/variables.css';
 
 #updateFrame {
-    width: var(--boardPostUpdate-frame-width);
-    height: var(--boardPostUpdate-frame-height);
-
-    background-color: dodgerblue;
+    width: var(--freeBoard-post-update-width);
+    height: var(--freeBoard-post-update-height);
 }
 
 #update-space {
     height: 20%;
-
-    background-color: teal;
 }
 
 #update-header {
@@ -19,24 +15,16 @@
     justify-content: end;
     align-items: end;
     padding: 10px;
-
-    background-color: aliceblue;
 }
 
 #update-title {
     height: 5%;
-
-    background-color: violet;
 }
 
 #update-custom {
     height: 10%;
-
-    background-color: tomato;
 }
 
 #update-content {
     height: 45%;
-
-    background-color: yellowgreen;
 }

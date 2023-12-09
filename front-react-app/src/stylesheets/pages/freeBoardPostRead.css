@@ -1,12 +1,12 @@
 @import '../common/variables.css';
 
 #readFrame {
-    width: var(--boardPostRead-frame-width);
-    height: var(--boardPostRead-frame-height);
+    width: var(--freeBoard-post-read-width);
+    height: var(--freeBoard-post-read-height);
 }
 
 #read-header {
-    height: var(--board-post-header-height);
+    height: var(--freeBoard-post-read-header-height);
 
     display: flex;
     justify-content: end;
@@ -58,7 +58,7 @@
 }
 
 #comment-header {
-    height: var(--comment-header-height);
+    height: var(--freeBoard-comment-header-height);
     display: flex;
     justify-content: space-between;
 }
@@ -84,12 +84,12 @@
 }
 
 #comment-content {
-    max-height: var(--comment-content-max-height);
+    max-height: var(--freeBoard-comment-content-max-height);
     text-align: left;
 }
 
 #comment-reply > textarea {
-    height: var(--comment-write-height);
+    height: var(--freeBoard-comment-write-height);
     margin: 10px 0;
 }
 
@@ -104,6 +104,6 @@
 }
 
 #comment-write > textarea {
-    height: var(--comment-write-height);
+    height: var(--freeBoard-comment-write-height);
     margin: 10px 0;
 }
