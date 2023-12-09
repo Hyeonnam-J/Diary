@@ -5,7 +5,7 @@ import '../../stylesheets/pages/freeBoardPostUpdate.css';
 import Layout from "../../stylesheets/modules/layout.module.css";
 import Button from "../../stylesheets/modules/button.module.css";
 import { useNavigate, useLocation } from 'react-router-dom';
-import { FreeBoardPostDetail } from "../../type/FreeBoardPost"
+import { FreeBoardPostDetail } from "../../type/FreeBoard"
 
 const FreeBoardPostUpdate = () => {
     const navigate = useNavigate();
