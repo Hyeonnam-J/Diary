@@ -107,8 +107,17 @@ const SignUp = () => {
     };
 
     const requestSignUp = async () => {
-        for (const [key, value] of Object.entries(validations)) {
-            if(`${value}`) console.log(`${key}: ${value}`);
+        for (const key in validations) {
+            if (!validations[key as keyof typeof validations]) {
+                
+                if(key === 'userName') {
+                    alert("check your name value");
+                    return;
+                }
+
+                alert("check your "+key+" value");
+                return;
+            }
         }
 
         try{
