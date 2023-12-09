@@ -15,27 +15,27 @@
     gap: 10px;
 }
 
-#postDetailTable {
+#post-table {
     width: 100%;
     padding: 10px;
 }
 
-#postDetailTable * {
+#post-table * {
     text-align: left;
     margin: 5px 0;
 }
 
-#postDetail-title {
+#post-title {
     font-size: 2rem;
     margin: 20px 0;
 }
 
-#postDetail-dataAndViewCount {
+#post-dataAndViewCount {
     display: flex;
     gap: 30px;
 }
 
-#postDetail-content {
+#post-content {
     margin: 30px 0;
 }
 

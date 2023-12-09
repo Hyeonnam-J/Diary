@@ -46,11 +46,10 @@ public class FreeBoardPostController {
         return responseEntity;
     }
 
-    @DeleteMapping(value = "/freeBoard/post/delete")
-    public void delete(HttpServletRequest request){
+    @DeleteMapping(value = "/freeBoard/post/delete/{postId}")
+    public void delete(@PathVariable String postId, HttpServletRequest request){
         String userId = String.valueOf(request.getAttribute("userId"));
-        String postDetailId = String.valueOf(request.getAttribute("postDetailId"));
-        freeBoardPostService.delete(userId, postDetailId);
+        freeBoardPostService.delete(userId, postId);
     }
 
     @PutMapping(value = "/freeBoard/post/update")

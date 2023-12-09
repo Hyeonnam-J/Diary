@@ -52,10 +52,10 @@ public class FreeBoardPostService {
         return dto;
     }
 
-    public void delete(String userId, String postDetailId){
+    public void delete(String userId, String postId){
         // todo: when deleted origin post..
         // todo: think! Hierarchical board...
-        FreeBoardPost freeBoardPost = freeBoardPostRepository.findById(Long.parseLong(postDetailId))
+        FreeBoardPost freeBoardPost = freeBoardPostRepository.findById(Long.parseLong(postId))
                 .orElseThrow(InvalidValue::new);
 
         freeBoardPost.setDelete(true);

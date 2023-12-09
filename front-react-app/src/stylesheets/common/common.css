@@ -1,36 +1,70 @@
 @import 'variables.css';
 
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 
-  text-align: center;
-  color: black;
+    text-align: center;
+    color: black;
 }
 
-ul{
-  list-style: none;
+ul {
+    list-style: none;
 }
 
-a{
-  text-decoration: none;
+a {
+    text-decoration: none;
 }
 
-li:hover{
-  text-decoration: underline;
+li:hover {
+    text-decoration: underline;
 }
 
-button{
-  width: var(--btn-width);
-  height: var(--btn-height);
-  box-sizing: border-box;
-  font-size: var(--btn-fontSize);
-  cursor: pointer;
+button {
+    width: var(--btn-width);
+    height: var(--btn-height);
+    box-sizing: border-box;
+    font-size: var(--btn-fontSize);
+    cursor: pointer;
 }
 
-input, textarea {
-  box-sizing: border-box;
-  padding: 10px;
-  text-align: left;
-  width: 100%;
+input,
+textarea {
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: left;
+    width: 100%;
+}
+
+input, textarea:focus {
+    outline-color: var(--primary-color);
+}
+
+textarea {
+    resize: none;
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+    gap: 10px;
+    font-size: 1.2rem;
+    margin: 20px 0;
+}
+
+.pagination:hover {
+    cursor: pointer;
+}
+
+.pageActive {
+    text-decoration: underline;
+}
+
+.separator {
+    content: "";
+    display: block;
+    box-shadow: 0 0 0 0.03rem var(--seperator-color);
+    margin: 30px 0;
+    overflow: hidden;   /* overflow를 줘야 위, 아래 동시 적용 */
 }
