@@ -1,6 +1,6 @@
 @import '../common/variables.css';
 
-#updateFrame {
+#update-frame {
     width: var(--freeBoard-post-update-width);
     height: var(--freeBoard-post-update-height);
 }

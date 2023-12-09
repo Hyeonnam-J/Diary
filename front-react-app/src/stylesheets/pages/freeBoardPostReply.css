@@ -1,6 +1,6 @@
 @import '../common/variables.css';
 
-#replyFrame {
+#reply-frame {
     width: var(--freeBoard-post-reply-width);
     height: var(--freeBoard-post-reply-height);
 }
