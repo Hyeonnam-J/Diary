@@ -125,7 +125,7 @@ const FreeBoardPostRead = () => {
             return;
         }
 
-        const commentContent = document.querySelector<HTMLTextAreaElement>('#comment-write textarea')?.value;
+        const commentContent = document.querySelector<HTMLTextAreaElement>('#read-comment-write textarea')?.value;
 
         const data = {
             content: commentContent,
@@ -144,7 +144,7 @@ const FreeBoardPostRead = () => {
         .then(body => {
             getTotalCommentsCount();
             getComments(`/freeBoard/comments/${postId}?page=${curPage}`);
-            const textarea = document.querySelector<HTMLTextAreaElement>('#comment-write textarea');
+            const textarea = document.querySelector<HTMLTextAreaElement>('#read-comment-write textarea');
             if (textarea) textarea.value = '';
         })
     }
@@ -155,7 +155,7 @@ const FreeBoardPostRead = () => {
             return;
         }
 
-        const commentContent = document.querySelector<HTMLTextAreaElement>('#comment-reply textarea')?.value;
+        const commentContent = document.querySelector<HTMLTextAreaElement>('#read-comment-reply textarea')?.value;
 
         const data = {
             content: commentContent,
@@ -175,7 +175,7 @@ const FreeBoardPostRead = () => {
         .then(body => {
             getTotalCommentsCount();
             getComments(`/freeBoard/comments/${postId}?page=${curPage}`);
-            const textarea = document.querySelector<HTMLTextAreaElement>('#comment-reply textarea');
+            const textarea = document.querySelector<HTMLTextAreaElement>('#read-comment-reply textarea');
             if (textarea) textarea.value = '';
             showReplyCommentFrame(commentId);
         })
@@ -199,7 +199,7 @@ const FreeBoardPostRead = () => {
     }
 
     const updateComment = (commentId: string) => {
-        const updateTextarea = document.querySelector(`#comment-${commentId} #comment-update`) as HTMLTextAreaElement;
+        const updateTextarea = document.querySelector(`#read-comment-${commentId} #read-comment-update`) as HTMLTextAreaElement;
 
         let updatedContent = '';
         if(updateTextarea){
@@ -255,7 +255,7 @@ const FreeBoardPostRead = () => {
 
     return (
         <DefaultLayout>
-            <div id='readFrame' className={Layout.centerFrame}>
+            <div id='read-frame' className={Layout.centerFrame}>
                 <div id='read-header'>
                     <button onClick={() => replyPost(postDetail)} className={Button.primary}>reply</button>
                     <button onClick={() => updatePost(postDetail)} className={Button.primary}>update</button>
@@ -278,7 +278,7 @@ const FreeBoardPostRead = () => {
 
                 <span className='seperator'></span>
                 
-                <div id='comment'>
+                <div id='read-comment'>
                     {comments.map((comment) => {
                         const isCurrentUserComment = comment.user.id.toString() === userId;
                         const isReplyingToComment = replyingStates[comment.id] || false;
@@ -287,13 +287,13 @@ const FreeBoardPostRead = () => {
                         const paddingLeft = 20 * comment.depth;
 
                         return (
-                            <div key={comment.id} id={`comment-${comment.id}`} className='comment-container' style={{ paddingLeft: `${paddingLeft}px` }}>
-                                <div id='comment-header'>
-                                    <div id='comment-userContainer'>
-                                        <div id='comment-user'>{comment.user?.email}</div>
-                                        <div id='commnet-date'>{comment.createdDate}</div>
+                            <div key={comment.id} id={`read-comment-${comment.id}`} className='read-comment-container' style={{ paddingLeft: `${paddingLeft}px` }}>
+                                <div id='read-comment-header'>
+                                    <div id='read-comment-userContainer'>
+                                        <div id='read-comment-user'>{comment.user?.email}</div>
+                                        <div id='read-comment-date'>{comment.createdDate}</div>
                                     </div>
-                                    <div id='comment-btns'>
+                                    <div id='read-comment-btns'>
                                         {comment.depth === 0 && (
                                             <p onClick={() => showReplyCommentFrame( comment.id.toString() )}>reply</p>
                                         )}
@@ -306,16 +306,16 @@ const FreeBoardPostRead = () => {
                                     </div>
                                 </div>
                                 {!isUpdatingComment && (
-                                    <div id='comment-content'>{comment.content}</div>
+                                    <div id='read-comment-content'>{comment.content}</div>
                                 )}
                                 {isUpdatingComment && (
                                     <>
-                                        <textarea id='comment-update'>{comment.content}</textarea>
+                                        <textarea id='read-comment-update'>{comment.content}</textarea>
                                         <button onClick={ () => updateComment( comment.id.toString() ) } className={Button.primary}>submit</button>
                                     </>
                                 )}
                                 {isReplyingToComment && (
-                                    <div id='comment-reply'>
+                                    <div id='read-comment-reply'>
                                         <textarea></textarea>
                                         <button onClick = { () => replyComment(comment.id.toString()) } className={Button.primary}>submit</button>
                                     </div>
@@ -323,8 +323,8 @@ const FreeBoardPostRead = () => {
                             </div>
                         )
                     })}
-                    <div id='comment-footer'>
-                        <div id='comment-write'>
+                    <div id='read-comment-footer'>
+                        <div id='read-comment-write'>
                             <textarea></textarea>
                             <button onClick = { () => writeComment() } className={Button.primary}>submit</button>
                         </div>

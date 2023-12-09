@@ -41,7 +41,7 @@ const FreeBoardPostWrite = () => {
     }
     return (
         <DefaultLayout>
-            <div id='writeFrame'>
+            <div id='write-frame'>
                 {/* <div id='write-space'></div> */}
                 <div id='write-header'>
                     <button onClick={ write } className={ Button.primary }>submit</button>

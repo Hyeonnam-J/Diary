@@ -45,7 +45,7 @@ const FreeBoardPostUpdate = () => {
     }
     return (
         <DefaultLayout>
-            <div id='updateFrame'>
+            <div id='update-frame'>
                 <div id='update-space'></div>
                 <div id='update-header'>
                     <button onClick={ update } className={ Button.primary }>submit</button>

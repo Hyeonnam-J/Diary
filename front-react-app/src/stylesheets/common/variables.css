@@ -28,6 +28,8 @@
     --freeBoard-comment-header-height: 30px;
     --freeBoard-comment-content-max-height: 200px;
     --freeBoard-comment-write-height: 200px;
+    --freeBoard-comment-reply-height: 200px;
+    --freeBoard-comment-update-height: 200px;
 
     --background-color: white;
     --nav-container-color: rgba(240, 240, 240, 0.5);

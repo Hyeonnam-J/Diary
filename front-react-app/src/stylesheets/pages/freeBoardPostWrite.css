@@ -1,6 +1,6 @@
 @import '../common/variables.css';
 
-#writeFrame {
+#write-frame {
     width: var(--freeBoard-post-write-width);
     height: var(--freeBoard-post-write-height);
 }

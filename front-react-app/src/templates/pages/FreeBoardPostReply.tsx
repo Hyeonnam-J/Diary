@@ -44,7 +44,7 @@ const FreeBoardPostReply = () => {
     }
     return (
         <DefaultLayout>
-            <div id='replyFrame'>
+            <div id='reply-frame'>
                 {/* <div id='reply-space'></div> */}
                 <div id='reply-header'>
                     <button onClick={ reply } className={ Button.primary }>submit</button>
