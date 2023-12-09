@@ -107,7 +107,6 @@ const FreeBoardPostDetailRead = () => {
         if ((userId || -1) == post?.user.id) {
             fetch(`${SERVER_IP}/freeBoard/post/delete/${postId}`, {
                 headers: {
-                    "userId": userId || '',
                     "Authorization": accessToken || '',
                 },
                 method: 'DELETE',
@@ -212,7 +211,6 @@ const FreeBoardPostDetailRead = () => {
         fetch(SERVER_IP+"/freeBoard/comment/update", {
             headers: {
                 "Content-Type": 'application/json',
-                "userId": userId || '',
                 "Authorization": accessToken || '',
             },
             method: 'POST',
@@ -233,7 +231,6 @@ const FreeBoardPostDetailRead = () => {
 
         fetch(`${SERVER_IP}/freeBoard/comment/delete/${comment.id}`, {
             headers: {
-                "userId": userId || '',
                 "Authorization": accessToken || '',
             },
             method: 'DELETE',

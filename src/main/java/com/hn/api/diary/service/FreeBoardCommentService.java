@@ -46,7 +46,7 @@ public class FreeBoardCommentService {
         freeBoardCommentRepository.save(freeBoardComment);
     }
 
-    public void update(FreeBoardCommentUpdateDTO freeBoardCommentUpdateDTO, String userId){
+    public void update(FreeBoardCommentUpdateDTO freeBoardCommentUpdateDTO){
         FreeBoardComment freeBoardComment = freeBoardCommentRepository.findById(Long.parseLong(freeBoardCommentUpdateDTO.getCommentId()))
                 .orElseThrow(InvalidValue::new);
 
