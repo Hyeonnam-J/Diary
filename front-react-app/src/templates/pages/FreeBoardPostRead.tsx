@@ -6,7 +6,7 @@ import '../../stylesheets/pages/freeBoardPostRead.css';
 import Layout from "../../stylesheets/modules/layout.module.css";
 import Button from "../../stylesheets/modules/button.module.css";
 import { Navigate, useNavigate, useLocation } from 'react-router-dom';
-import { FreeBoardPostDetail, FreeBoardComment } from "../../type/FreeBoardPost"
+import { FreeBoardPostDetail, FreeBoardComment } from "../../type/FreeBoard"
 import { user } from "../../auth/auth";
 
 const FreeBoardPostRead = () => {
