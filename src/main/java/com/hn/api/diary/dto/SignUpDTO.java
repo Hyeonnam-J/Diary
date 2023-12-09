@@ -8,17 +8,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SignUpDTO {
 
-  private String email;
-  private String password;
-  private final String role = "USER";
+    private String email;
+    private String password;
+    private String userName;
+    private String phoneNumber;
+    private final String role = "USER";
 
-  /*
-  테스트 코드에서 데이터를 주기 위한 용도.
-  클래스에 빌더 어노테이션을 달면 다른 어노테이션들과 충돌이 있는 경우가 있다고 함.
-   */
-  @Builder
-  public SignUpDTO(String email, String password) {
-    this.email = email;
-    this.password = password;
-  }
+    @Builder // for testcode
+    public SignUpDTO(String email, String password, String userName, String phoneNumber) {
+        this.email = email;
+        this.password = password;
+        this.userName = userName;
+        this.phoneNumber = phoneNumber;
+    }
 }

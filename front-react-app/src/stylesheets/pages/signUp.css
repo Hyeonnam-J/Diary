@@ -25,6 +25,7 @@
 
 #submitList {
     gap: 5px;
+    margin-bottom: 20px;
 }
 
 #submitList>label {
@@ -38,11 +39,18 @@
 
 #submitList>label span {
     font-size: 0.8rem;
-    color: var(--text-ref-color);
 }
 
 #terms, #submit-btn {
     align-items: center;
     width: 70%;
     margin: 0 auto;
+}
+
+#submitList .valid > span {
+    color: green;
+}
+
+#submitList .invalid > span {
+    color: red;
 }

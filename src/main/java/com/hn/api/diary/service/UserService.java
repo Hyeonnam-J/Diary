@@ -29,6 +29,8 @@ public class UserService {
         User user = User.builder()
                 .email(signUpDTO.getEmail())
                 .password(encryptedPassword)
+                .userName(signUpDTO.getUserName())
+                .phoneNumber(signUpDTO.getPhoneNumber())
                 .role(signUpDTO.getRole())
                 .build();
 

@@ -1,13 +1,12 @@
 package com.hn.api.diary.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -20,12 +19,16 @@ public class User extends DateColumn {
 
     private String email;
     private String password;
+    private String userName;
+    private String phoneNumber;
     private String role;
 
     @Builder
-    public User(String email, String password, String role) {
+    public User(String email, String password, String userName, String phoneNumber, String role) {
         this.email = email;
         this.password = password;
+        this.userName = userName;
+        this.phoneNumber = phoneNumber;
         this.role = role;
     }
 }

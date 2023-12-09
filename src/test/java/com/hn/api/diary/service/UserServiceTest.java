@@ -1,12 +1,12 @@
 package com.hn.api.diary.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hn.api.diary.dto.SignInDTO;
 import com.hn.api.diary.dto.SignUpDTO;
 import com.hn.api.diary.entity.User;
 import com.hn.api.diary.exception.AlreadyReported;
 import com.hn.api.diary.exception.InvalidValue;
+import com.hn.api.diary.repository.CommentRepository;
+import com.hn.api.diary.repository.PostRepository;
 import com.hn.api.diary.repository.UserRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,13 +19,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @SpringBootTest
 class UserServiceTest {
 
-    @Autowired private UserService userService;
-    @Autowired private UserRepository userRepository;
     @Autowired private ObjectMapper objectMapper;
     @Autowired private PasswordEncoder passwordEncoder;
+    @Autowired private UserService userService;
+    @Autowired private UserRepository userRepository;
+    @Autowired private PostRepository postRepository;
+    @Autowired private CommentRepository commentRepository;
 
     @BeforeEach
     void clean(){
+        commentRepository.deleteAll();
+        postRepository.deleteAll();
         userRepository.deleteAll();
     }
 
@@ -40,6 +44,7 @@ class UserServiceTest {
         User user = User.builder()
                 .email("testDuplicated")
                 .password("any")
+                .userName("userName")
                 .build();
         userRepository.save(user);
 
@@ -47,6 +52,7 @@ class UserServiceTest {
         SignUpDTO signUpDTO = SignUpDTO.builder()
                 .email("testDuplicated")
                 .password("any")
+                .userName("userName")
                 .build();
 
         // [expected]
@@ -62,6 +68,7 @@ class UserServiceTest {
         SignUpDTO signUpDTO = SignUpDTO.builder()
                 .email("any")
                 .password("isEncrypted")
+                .userName("userName")
                 .build();
         userService.signUp(signUpDTO);
 
