@@ -1,8 +1,8 @@
 @import '../common/variables.css';
 
 #replyFrame {
-    width: var(--boardPostReply-frame-width);
-    height: var(--boardPostReply-frame-height);
+    width: var(--freeBoard-post-reply-width);
+    height: var(--freeBoard-post-reply-height);
 }
 
 /* #reply-space {

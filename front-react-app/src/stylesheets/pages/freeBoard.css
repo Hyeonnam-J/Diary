@@ -1,12 +1,12 @@
 @import '../common/variables.css';
 
 #boardFrame {
-    width: var(--board-frame-width);
-    height: var(--board-frame-height);
+    width: var(--freeBoard-frame-width);
+    height: var(--freeBoard-frame-height);
 }
 
 #boardHeader {
-    height: var(--board-header-height);
+    height: var(--freeBoard-header-height);
 }
 
 #boardHeader-top {
@@ -54,7 +54,7 @@
 }
 
 #boardFooter {
-    height: var(--board-footer-height);
+    height: var(--freeBoard-footer-height);
 }
 
 #boardFooter-top {

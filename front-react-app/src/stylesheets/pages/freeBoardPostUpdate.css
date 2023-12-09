@@ -1,8 +1,8 @@
 @import '../common/variables.css';
 
 #updateFrame {
-    width: var(--boardPostUpdate-frame-width);
-    height: var(--boardPostUpdate-frame-height);
+    width: var(--freeBoard-post-update-width);
+    height: var(--freeBoard-post-update-height);
 }
 
 #update-space {

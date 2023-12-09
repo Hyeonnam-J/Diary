@@ -10,24 +10,24 @@
     --signUp-frame-width: 300px;
     --signUp-frame-height: 900px;
 
-    --boardPostWrite-frame-width: 1000px;
-    --boardPostWrite-frame-height: 1000px;
-    --boardPostReply-frame-width: 1000px;
-    --boardPostReply-frame-height: 1000px;
-    --boardPostUpdate-frame-width: 1000px;
-    --boardPostUpdate-frame-height: 1000px;
-    --boardPostRead-frame-width: 1000px;
-    --boardPostRead-frame-height: 1000px;
-    
-    --comment-header-height: 30px;
-    --comment-content-max-height: 200px;
-    --comment-write-height: 200px;
-    
-    --board-frame-width: 100%;
-    --board-frame-height: 1000px;
-    --board-header-height: 200px;
-    --board-footer-height: 200px;
-    --board-post-header-height: 200px;
+    --freeBoard-frame-width: 100%;
+    --freeBoard-frame-height: 1000px;
+    --freeBoard-header-height: 200px;
+    --freeBoard-footer-height: 200px;
+
+    --freeBoard-post-write-width: 1000px;
+    --freeBoard-post-write-height: 1000px;
+    --freeBoard-post-reply-width: 1000px;
+    --freeBoard-post-reply-height: 1000px;
+    --freeBoard-post-update-width: 1000px;
+    --freeBoard-post-update-height: 1000px;
+    --freeBoard-post-read-width: 1000px;
+    --freeBoard-post-read-height: 1000px;
+    --freeBoard-post-read-header-height: 200px;
+
+    --freeBoard-comment-header-height: 30px;
+    --freeBoard-comment-content-max-height: 200px;
+    --freeBoard-comment-write-height: 200px;
 
     --background-color: white;
     --nav-container-color: rgba(240, 240, 240, 0.5);
