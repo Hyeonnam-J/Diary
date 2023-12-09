@@ -62,8 +62,7 @@ public class FreeBoardPostController {
     @PostMapping(value = "/freeBoard/post/reply")
     public void reply(@RequestBody FreeBoardPostReplyDTO freeBoardPostReplyDTO, HttpServletRequest request){
         String userId = String.valueOf(request.getAttribute("userId"));
-        String postDetailId = String.valueOf(request.getAttribute("postDetailId"));
-        freeBoardPostService.reply(freeBoardPostReplyDTO, userId, postDetailId);
+        freeBoardPostService.reply(freeBoardPostReplyDTO, userId);
     }
 
     @PostMapping(value = "/freeBoard/post/write")
