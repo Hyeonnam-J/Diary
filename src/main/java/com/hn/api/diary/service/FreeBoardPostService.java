@@ -72,11 +72,11 @@ public class FreeBoardPostService {
         freeBoardPostRepository.save(freeBoardPost);
     }
 
-    public void reply(FreeBoardPostReplyDTO freeBoardPostReplyDTO, String userId, String postDetailId) {
+    public void reply(FreeBoardPostReplyDTO freeBoardPostReplyDTO, String userId) {
         User user = userRepository.findById(Long.parseLong(userId))
                 .orElseThrow(InvalidValue::new);
 
-        FreeBoardPost originFreeBoardPost = freeBoardPostRepository.findById(Long.parseLong(postDetailId))
+        FreeBoardPost originFreeBoardPost = freeBoardPostRepository.findById(Long.parseLong(freeBoardPostReplyDTO.getPostId()))
                 .orElseThrow(InvalidValue::new);
 
         // 원글 아래 기존 게시물 num + 1

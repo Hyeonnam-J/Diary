@@ -8,12 +8,8 @@ import lombok.NoArgsConstructor;
 @Getter
 public class FreeBoardPostReplyDTO {
 
+    private String postId;
     private String title;
     private String content;
 
-    @Builder
-    public FreeBoardPostReplyDTO(String title, String content) {
-        this.title = title;
-        this.content = content;
-    }
 }

@@ -12,7 +12,7 @@ const FreeBoardPostReply = () => {
 
     const [userId, setUserId] = useState<string | null>(null);
     const [accessToken, setAccessToken] = useState<string | null>(null);
-    const postDetailId = location?.state?.postDetailId;
+    const postId = location?.state?.postId;
 
     useEffect(() => {
         setUserId(localStorage.getItem('userId'));
@@ -24,6 +24,7 @@ const FreeBoardPostReply = () => {
         const content = document.querySelector('textarea[name="reply-content"]') as HTMLInputElement;
 
         const data = {
+            postId: postId,
             title: title.value,
             content: content.value
         }
@@ -32,7 +33,6 @@ const FreeBoardPostReply = () => {
             headers: {
                 "Content-Type": 'application/json',
                 "userId": userId || '',
-                "postDetailId": postDetailId || '',
                 "Authorization": accessToken || '',
             },
             method: 'POST',
