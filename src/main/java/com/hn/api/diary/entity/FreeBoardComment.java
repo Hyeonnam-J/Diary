@@ -10,14 +10,14 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @NoArgsConstructor
 @Getter
-public class Comment extends DateColumn {
+public class FreeBoardComment extends DateColumn {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    private Post post;
+    private FreeBoardPost freeBoardPost;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     private User user;
@@ -29,8 +29,8 @@ public class Comment extends DateColumn {
     private Integer depth;
 
     @Builder
-    public Comment(Post post, User user, String content, Long origin, Integer depth) {
-        this.post = post;
+    public FreeBoardComment(FreeBoardPost freeBoardPost, User user, String content, Long origin, Integer depth) {
+        this.freeBoardPost = freeBoardPost;
         this.user = user;
         this.content = content;
 

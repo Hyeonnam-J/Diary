@@ -5,8 +5,8 @@ import com.hn.api.diary.dto.SignUpDTO;
 import com.hn.api.diary.entity.User;
 import com.hn.api.diary.exception.AlreadyReported;
 import com.hn.api.diary.exception.InvalidValue;
-import com.hn.api.diary.repository.CommentRepository;
-import com.hn.api.diary.repository.PostRepository;
+import com.hn.api.diary.repository.FreeBoardCommentRepository;
+import com.hn.api.diary.repository.FreeBoardPostRepository;
 import com.hn.api.diary.repository.UserRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,13 +23,13 @@ class UserServiceTest {
     @Autowired private PasswordEncoder passwordEncoder;
     @Autowired private UserService userService;
     @Autowired private UserRepository userRepository;
-    @Autowired private PostRepository postRepository;
-    @Autowired private CommentRepository commentRepository;
+    @Autowired private FreeBoardPostRepository freeBoardPostRepository;
+    @Autowired private FreeBoardCommentRepository freeBoardCommentRepository;
 
     @BeforeEach
     void clean(){
-        commentRepository.deleteAll();
-        postRepository.deleteAll();
+        freeBoardCommentRepository.deleteAll();
+        freeBoardPostRepository.deleteAll();
         userRepository.deleteAll();
     }
 

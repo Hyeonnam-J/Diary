@@ -11,16 +11,16 @@ import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
- * QComment is a Querydsl query type for Comment
+ * QFreeBoardComment is a Querydsl query type for FreeBoardComment
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QComment extends EntityPathBase<FreeBoardComment> {
+public class QFreeBoardComment extends EntityPathBase<FreeBoardComment> {
 
-    private static final long serialVersionUID = -1467487986L;
+    private static final long serialVersionUID = -16192682L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QComment comment = new QComment("comment");
+    public static final QFreeBoardComment freeBoardComment = new QFreeBoardComment("freeBoardComment");
 
     public final QDateColumn _super = new QDateColumn(this);
 
@@ -31,6 +31,8 @@ public class QComment extends EntityPathBase<FreeBoardComment> {
 
     public final NumberPath<Integer> depth = createNumber("depth", Integer.class);
 
+    public final QFreeBoardPost freeBoardPost;
+
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final BooleanPath isDelete = createBoolean("isDelete");
@@ -40,29 +42,27 @@ public class QComment extends EntityPathBase<FreeBoardComment> {
 
     public final NumberPath<Long> origin = createNumber("origin", Long.class);
 
-    public final QPost post;
-
     public final QUser user;
 
-    public QComment(String variable) {
+    public QFreeBoardComment(String variable) {
         this(FreeBoardComment.class, forVariable(variable), INITS);
     }
 
-    public QComment(Path<? extends FreeBoardComment> path) {
+    public QFreeBoardComment(Path<? extends FreeBoardComment> path) {
         this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QComment(PathMetadata metadata) {
+    public QFreeBoardComment(PathMetadata metadata) {
         this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QComment(PathMetadata metadata, PathInits inits) {
+    public QFreeBoardComment(PathMetadata metadata, PathInits inits) {
         this(FreeBoardComment.class, metadata, inits);
     }
 
-    public QComment(Class<? extends FreeBoardComment> type, PathMetadata metadata, PathInits inits) {
+    public QFreeBoardComment(Class<? extends FreeBoardComment> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.post = inits.isInitialized("post") ? new QPost(forProperty("post"), inits.get("post")) : null;
+        this.freeBoardPost = inits.isInitialized("freeBoardPost") ? new QFreeBoardPost(forProperty("freeBoardPost"), inits.get("freeBoardPost")) : null;
         this.user = inits.isInitialized("user") ? new QUser(forProperty("user")) : null;
     }
 

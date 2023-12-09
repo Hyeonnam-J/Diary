@@ -2,8 +2,8 @@ package com.hn.api.diary.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hn.api.diary.dto.SessionDTO;
-import com.hn.api.diary.repository.CommentRepository;
-import com.hn.api.diary.repository.PostRepository;
+import com.hn.api.diary.repository.FreeBoardCommentRepository;
+import com.hn.api.diary.repository.FreeBoardPostRepository;
 import com.hn.api.diary.util.JwsKey;
 import com.hn.api.diary.dto.SignInDTO;
 import com.hn.api.diary.dto.SignUpDTO;
@@ -36,13 +36,13 @@ class UserControllerTest {
     @Autowired private ObjectMapper objectMapper;
     @Autowired private UserService userService;
     @Autowired private UserRepository userRepository;
-    @Autowired private PostRepository postRepository;
-    @Autowired private CommentRepository commentRepository;
+    @Autowired private FreeBoardPostRepository freeBoardPostRepository;
+    @Autowired private FreeBoardCommentRepository freeBoardCommentRepository;
 
     @BeforeEach
     void clean(){
-        commentRepository.deleteAll();
-        postRepository.deleteAll();
+        freeBoardCommentRepository.deleteAll();
+        freeBoardPostRepository.deleteAll();
         userRepository.deleteAll();
     }
 
