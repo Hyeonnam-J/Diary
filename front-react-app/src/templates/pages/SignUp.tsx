@@ -58,7 +58,7 @@ const SignUp = () => {
     };
     
     const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/;
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
     const userNameRegex = /^(?!\d)(?!\s)[\p{L}\d\s]*[\p{L}\d]$/u;
     const phoneNumberRegex = /.*/;
 
@@ -144,6 +144,7 @@ const SignUp = () => {
             .then(response => {
                 if(response.ok) {
                     navigate('/');
+                    alert("Registration is complete")
                 }
             })
         }catch (error){
