@@ -9,7 +9,7 @@ import { Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { FreeBoardPostDetail, FreeBoardComment } from "../../type/FreeBoard"
 import { user } from "../../auth/auth";
 
-const FreeBoardPostRead = () => {
+const FreeBoardPostDetailRead = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -17,7 +17,7 @@ const FreeBoardPostRead = () => {
     const [accessToken, setAccessToken] = useState<string | null>(null);
 
     const postId = location?.state?.postId;
-    const [postDetail, setPostDetail] = useState<FreeBoardPostDetail | null>(null);
+    const [post, setPost] = useState<FreeBoardPostDetail | null>(null);
     const [comments, setComments] = useState<FreeBoardComment[]>([]);
 
     const [totalCommentsCount, setTotalCommentsCount] = useState(0);
@@ -49,7 +49,7 @@ const FreeBoardPostRead = () => {
     }, [curPage]);
 
     useEffect(() => {
-        getPostDetail(postId);
+        getPost(postId);
     }, []);
 
     const getTotalCommentsCount = () => {
@@ -78,7 +78,7 @@ const FreeBoardPostRead = () => {
         })
     }
 
-    const getPostDetail = (postId: number) => {
+    const getPost = (postId: number) => {
         fetch(`${SERVER_IP}/freeBoard/post/read/${postId}`, {
             headers: {
             },
@@ -86,29 +86,28 @@ const FreeBoardPostRead = () => {
         })
         .then(response => response.json())
         .then(body => {
-            setPostDetail(body.data);
+            setPost(body.data);
         })
     }
 
-    const replyPost = async (postDetail: FreeBoardPostDetail | null) => {
+    const replyPost = async (post: FreeBoardPostDetail | null) => {
         const isAuth = await user(userId || '', accessToken || '');
         if (isAuth) {
-            if (postDetail) navigate('/freeBoard/post/reply', { state: { postDetailId: postDetail.id } });
+            if (post) navigate('/freeBoard/post/reply', { state: { postId: post.id } });
         } else navigate('/signIn');
     }
 
-    const updatePost = async (postDetail: FreeBoardPostDetail | null) => {
-        if ((userId || -1) == postDetail?.user.id) {
-            navigate('/freeBoard/post/update', { state: { postDetail: postDetail } });
+    const updatePost = async (post: FreeBoardPostDetail | null) => {
+        if ((userId || -1) == post?.user.id) {
+            navigate('/freeBoard/post/update', { state: { post: post } });
         } else alert('You are not writer');
     }
 
-    const deletePost = async (postDetail: FreeBoardPostDetail | null) => {
-        if ((userId || -1) == postDetail?.user.id) {
-            fetch(`${SERVER_IP}/freeBoard/post/delete`, {
+    const deletePost = async (post: FreeBoardPostDetail | null) => {
+        if ((userId || -1) == post?.user.id) {
+            fetch(`${SERVER_IP}/freeBoard/post/delete/${postId}`, {
                 headers: {
                     "userId": userId || '',
-                    "postDetailId": postId,
                     "Authorization": accessToken || '',
                 },
                 method: 'DELETE',
@@ -135,7 +134,7 @@ const FreeBoardPostRead = () => {
             headers: {
                 "Content-Type": 'application/json',
                 "userId": userId || '',
-                "postDetailId": postId || '',
+                "postId": postId || '',
                 "Authorization": accessToken || '',
             },
             method: 'POST',
@@ -165,7 +164,7 @@ const FreeBoardPostRead = () => {
             headers: {
                 "Content-Type": 'application/json',
                 "userId": userId || '',
-                "postDetailId": postId || '',
+                "postId": postId || '',
                 "commentId": commentId || '',
                 "Authorization": accessToken || '',
             },
@@ -214,7 +213,7 @@ const FreeBoardPostRead = () => {
             headers: {
                 "Content-Type": 'application/json',
                 "userId": userId || '',
-                "postDetailId": postId || '',
+                "postId": postId || '',
                 "commentId": commentId || '',
                 "Authorization": accessToken || '',
             },
@@ -237,7 +236,7 @@ const FreeBoardPostRead = () => {
         fetch(`${SERVER_IP}/freeBoard/comment/delete`, {
             headers: {
                 "userId": userId || '',
-                "postDetailId": postId,
+                "postId": postId,
                 "commentId": comment.id.toString(),
                 "Authorization": accessToken || '',
             },
@@ -257,26 +256,26 @@ const FreeBoardPostRead = () => {
         <DefaultLayout>
             <div id='read-frame' className={Layout.centerFrame}>
                 <div id='read-header'>
-                    <button onClick={() => replyPost(postDetail)} className={Button.primary}>reply</button>
-                    <button onClick={() => updatePost(postDetail)} className={Button.primary}>update</button>
-                    <button onClick={() => deletePost(postDetail)} className={Button.inactive}>delete</button>
+                    <button onClick={() => replyPost(post)} className={Button.primary}>reply</button>
+                    <button onClick={() => updatePost(post)} className={Button.primary}>update</button>
+                    <button onClick={() => deletePost(post)} className={Button.inactive}>delete</button>
                 </div>
                 
-                {postDetail !== null && (
+                {post !== null && (
                     <>
-                        <div id='postDetailTable'>
-                            <p id='postDetail-title'>{postDetail.title}</p>
-                            <p>{postDetail.user.email}</p>
-                            <div id='postDetail-dataAndViewCount'>
-                                <p>{postDetail.createdDate}</p>
-                                <p>view {postDetail.viewCount}</p>
+                        <div id='post-table'>
+                            <p id='post-title'>{post.title}</p>
+                            <p>{post.user.email}</p>
+                            <div id='post-dataAndViewCount'>
+                                <p>{post.createdDate}</p>
+                                <p>view {post.viewCount}</p>
                             </div>
-                            <p id='postDetail-content'>{postDetail.content}</p>
+                            <p id='post-content'>{post.content}</p>
                         </div>
                     </>
                 )}
 
-                <span className='seperator'></span>
+                <span className='separator'></span>
                 
                 <div id='read-comment'>
                     {comments.map((comment) => {
@@ -351,4 +350,4 @@ const FreeBoardPostRead = () => {
     )
 }
 
-export default FreeBoardPostRead;
+export default FreeBoardPostDetailRead;

@@ -9,6 +9,18 @@ export type FreeBoardPosts = {
     depth: number;
 };
 
+export type FreeBoardPostDetail = {
+    id: number;
+    title: string;
+    content: string;
+    user: {
+        id: number,
+        email: string;
+    };
+    createdDate: string;
+    viewCount: number;
+};
+
 export const FreeBoardSort = {
     BASIC: "basic"
 };
@@ -22,16 +34,4 @@ export type FreeBoardComment = {
     content: string;
     createdDate: string;
     depth: number,
-};
-
-export type FreeBoardPostDetail = {
-    id: number;
-    title: string;
-    content: string;
-    user: {
-        id: number,
-        email: string;
-    };
-    createdDate: string;
-    viewCount: number;
 };

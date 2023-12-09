@@ -61,7 +61,7 @@ textarea {
     text-decoration: underline;
 }
 
-.seperator {
+.separator {
     content: "";
     display: block;
     box-shadow: 0 0 0 0.03rem var(--seperator-color);
