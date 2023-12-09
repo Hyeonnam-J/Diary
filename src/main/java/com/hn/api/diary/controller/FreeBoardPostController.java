@@ -88,7 +88,7 @@ public class FreeBoardPostController {
         return responseEntity;
     }
 
-    @GetMapping(value = "/freeBoard/posts/totalPostsCount")
+    @GetMapping(value = "/freeBoard/posts/totalCount")
     public ResponseEntity<PlainDataResponse<Integer>> getTotalCount(){
         int postsCount = freeBoardPostService.getTotalCount();
         

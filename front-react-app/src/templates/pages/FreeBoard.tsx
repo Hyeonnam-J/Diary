@@ -6,25 +6,25 @@ import DefaultLayout from '../layouts/DefaultLayout';
 import { SERVER_IP, Page } from "../../Config";
 
 import { user } from "../../auth/auth";
-import { BoardPost, BoardSort } from "../../type/BoardPosts"
+import { FreeBoardPosts, FreeBoardSort } from "../../type/FreeBoardPost"
 
-import '../../stylesheets/pages/board.css';
+import '../../stylesheets/pages/freeBoard.css';
 import Button from "../../stylesheets/modules/button.module.css";
 
-const Board = () => {
+const FreeBoard = () => {
     const navigate = useNavigate();
 
     const [userId, setUserId] = useState<string | null>(null);
     const [accessToken, setAccessToken] = useState<string | null>(null);
 
-    const [posts, setPosts] = useState<BoardPost[]>(() => []);
+    const [posts, setPosts] = useState<FreeBoardPosts[]>(() => []);
 
     const [totalPostsCount, setTotalPostsCount] = useState(0);
     const [totalPageCount, setTotalPageCount] = useState(0);
     const [totalBlockCount, setTotalBlockCount] = useState(0);
 
     const [curPage, setCurPage] = useState(0);
-    const [sort, setSort] = useState(BoardSort.BASIC);
+    const [sort, setSort] = useState(FreeBoardSort.BASIC);
 
     useEffect(() => {
         setUserId(localStorage.getItem('userId'));
@@ -44,11 +44,11 @@ const Board = () => {
     /* 비동기 때문에 나눠야 한다. */
 
     useEffect(() => {
-        getPosts(`/board/posts?page=${curPage}&sort=${sort}`);
+        getPosts(`/freeBoard/posts?page=${curPage}&sort=${sort}`);
     }, [curPage, sort]);
 
     const getTotalPostsCount = () => {
-        const response = fetch(SERVER_IP+"/board/posts/totalPostsCount", {
+        const response = fetch(SERVER_IP+"/freeBoard/posts/totalCount", {
             method: 'GET',
         })
         .then(response => response.json())
@@ -75,12 +75,12 @@ const Board = () => {
 
     const write = async () => {
         const isAuth = await user(userId || '', accessToken || '');
-        if(isAuth) navigate('/board/post/write');
+        if(isAuth) navigate('/freeBoard/post/write');
         else navigate('/signIn');
     }
 
-    const read = (post: BoardPost) => {
-        navigate('/board/post/read', { state: { postId: post.id } });
+    const read = (post: FreeBoardPosts) => {
+        navigate('/freeBoard/post/read', { state: { postId: post.id } });
     }
 
     return (
@@ -148,4 +148,4 @@ const Board = () => {
     )
 }
 
-export default Board;
+export default FreeBoard;

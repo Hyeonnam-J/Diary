@@ -1,11 +1,11 @@
 import Home from './Home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
-import Board from './pages/Board';
-import BoardPostWrite from './pages/BoardPostWrite';
-import BoardPostRead from './pages/BoardPostRead';
-import BoardPostReply from './pages/BoardPostReply';
-import BoardPostUpdate from './pages/BoardPostUpdate';
+import FreeBoard from './pages/FreeBoard';
+import FreeBoardPostWrite from './pages/FreeBoardPostWrite';
+import FreeBoardPostRead from './pages/FreeBoardPostRead';
+import FreeBoardPostReply from './pages/FreeBoardPostReply';
+import FreeBoardPostUpdate from './pages/FreeBoardPostUpdate';
 
 interface RouteConfig {
     path: string;
@@ -16,11 +16,11 @@ const routes: RouteConfig[] = [
     { path: '/', element: <Home /> },   
     { path: '/signIn', element: <SignIn /> },
     { path: '/signUp', element: <SignUp /> },
-    { path: '/board', element: <Board /> },
-    { path: '/board/post/write', element: <BoardPostWrite /> },
-    { path: '/board/post/read', element: <BoardPostRead /> },
-    { path: '/board/post/reply', element: <BoardPostReply /> },
-    { path: '/board/post/update', element: <BoardPostUpdate /> },
+    { path: '/freeBoard', element: <FreeBoard /> },
+    { path: '/freeBoard/post/write', element: <FreeBoardPostWrite /> },
+    { path: '/freeBoard/post/read', element: <FreeBoardPostRead /> },
+    { path: '/freeBoard/post/reply', element: <FreeBoardPostReply /> },
+    { path: '/freeBoard/post/update', element: <FreeBoardPostUpdate /> },
 ];
 
 export type { RouteConfig };

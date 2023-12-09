@@ -1,4 +1,4 @@
-export type BoardPost = {
+export type FreeBoardPosts = {
     id: number;
     title: string;
     user: {
@@ -9,11 +9,11 @@ export type BoardPost = {
     depth: number;
 };
 
-export const BoardSort = {
+export const FreeBoardSort = {
     BASIC: "basic"
 };
 
-export type BoardComment = {
+export type FreeBoardComment = {
     id: number;
     user: {
         id: number,
@@ -24,7 +24,7 @@ export type BoardComment = {
     depth: number,
 };
 
-export type BoardPostDetail = {
+export type FreeBoardPostDetail = {
     id: number;
     title: string;
     content: string;

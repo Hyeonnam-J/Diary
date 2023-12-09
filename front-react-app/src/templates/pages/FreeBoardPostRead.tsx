@@ -2,14 +2,14 @@ import React, { ReactNode, useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 import DefaultLayout from "../layouts/DefaultLayout";
 import { SERVER_IP, Page } from "../../Config";
-import '../../stylesheets/pages/boardPostRead.css';
+import '../../stylesheets/pages/freeBoardPostRead.css';
 import Layout from "../../stylesheets/modules/layout.module.css";
 import Button from "../../stylesheets/modules/button.module.css";
 import { Navigate, useNavigate, useLocation } from 'react-router-dom';
-import { BoardPostDetail, BoardComment } from "../../type/BoardPosts"
+import { FreeBoardPostDetail, FreeBoardComment } from "../../type/FreeBoardPost"
 import { user } from "../../auth/auth";
 
-const Read = () => {
+const FreeBoardPostRead = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -17,8 +17,8 @@ const Read = () => {
     const [accessToken, setAccessToken] = useState<string | null>(null);
 
     const postId = location?.state?.postId;
-    const [postDetail, setPostDetail] = useState<BoardPostDetail | null>(null);
-    const [comments, setComments] = useState<BoardComment[]>([]);
+    const [postDetail, setPostDetail] = useState<FreeBoardPostDetail | null>(null);
+    const [comments, setComments] = useState<FreeBoardComment[]>([]);
 
     const [totalCommentsCount, setTotalCommentsCount] = useState(0);
     const [totalPageCount, setTotalPageCount] = useState(0);
@@ -45,7 +45,7 @@ const Read = () => {
     }, [totalPageCount]);
 
     useEffect(() => {
-        getComments(`/board/comments/${postId}?page=${curPage}`);
+        getComments(`/freeBoard/comments/${postId}?page=${curPage}`);
     }, [curPage]);
 
     useEffect(() => {
@@ -53,7 +53,7 @@ const Read = () => {
     }, []);
 
     const getTotalCommentsCount = () => {
-        const response = fetch(SERVER_IP + `/board/comments/totalCommentsCount/${postId}`, {
+        const response = fetch(SERVER_IP + `/freeBoard/comments/totalCount/${postId}`, {
             method: 'GET',
         })
         .then(response => response.json())
@@ -79,7 +79,7 @@ const Read = () => {
     }
 
     const getPostDetail = (postId: number) => {
-        fetch(`${SERVER_IP}/board/post/read/${postId}`, {
+        fetch(`${SERVER_IP}/freeBoard/post/read/${postId}`, {
             headers: {
             },
             method: 'GET',
@@ -90,22 +90,22 @@ const Read = () => {
         })
     }
 
-    const replyPost = async (postDetail: BoardPostDetail | null) => {
+    const replyPost = async (postDetail: FreeBoardPostDetail | null) => {
         const isAuth = await user(userId || '', accessToken || '');
         if (isAuth) {
-            if (postDetail) navigate('/board/post/reply', { state: { postDetailId: postDetail.id } });
+            if (postDetail) navigate('/freeBoard/post/reply', { state: { postDetailId: postDetail.id } });
         } else navigate('/signIn');
     }
 
-    const updatePost = async (postDetail: BoardPostDetail | null) => {
+    const updatePost = async (postDetail: FreeBoardPostDetail | null) => {
         if ((userId || -1) == postDetail?.user.id) {
-            navigate('/board/post/update', { state: { postDetail: postDetail } });
+            navigate('/freeBoard/post/update', { state: { postDetail: postDetail } });
         } else alert('You are not writer');
     }
 
-    const deletePost = async (postDetail: BoardPostDetail | null) => {
+    const deletePost = async (postDetail: FreeBoardPostDetail | null) => {
         if ((userId || -1) == postDetail?.user.id) {
-            fetch(`${SERVER_IP}/board/post/delete`, {
+            fetch(`${SERVER_IP}/freeBoard/post/delete`, {
                 headers: {
                     "userId": userId || '',
                     "postDetailId": postId,
@@ -114,7 +114,7 @@ const Read = () => {
                 method: 'DELETE',
             })
             .then(response => {
-                navigate('/board');
+                navigate('/freeBoard');
             });
         } else alert('You are not writer');
     }
@@ -131,7 +131,7 @@ const Read = () => {
             content: commentContent,
         }
         
-        fetch(SERVER_IP+"/board/comment/write", {
+        fetch(SERVER_IP+"/freeBoard/comment/write", {
             headers: {
                 "Content-Type": 'application/json',
                 "userId": userId || '',
@@ -143,7 +143,7 @@ const Read = () => {
         })
         .then(body => {
             getTotalCommentsCount();
-            getComments(`/board/comments/${postId}?page=${curPage}`);
+            getComments(`/freeBoard/comments/${postId}?page=${curPage}`);
             const textarea = document.querySelector<HTMLTextAreaElement>('#comment-write textarea');
             if (textarea) textarea.value = '';
         })
@@ -161,7 +161,7 @@ const Read = () => {
             content: commentContent,
         }
 
-        fetch(SERVER_IP+"/board/comment/reply", {
+        fetch(SERVER_IP+"/freeBoard/comment/reply", {
             headers: {
                 "Content-Type": 'application/json',
                 "userId": userId || '',
@@ -174,7 +174,7 @@ const Read = () => {
         })
         .then(body => {
             getTotalCommentsCount();
-            getComments(`/board/comments/${postId}?page=${curPage}`);
+            getComments(`/freeBoard/comments/${postId}?page=${curPage}`);
             const textarea = document.querySelector<HTMLTextAreaElement>('#comment-reply textarea');
             if (textarea) textarea.value = '';
             showReplyCommentFrame(commentId);
@@ -210,7 +210,7 @@ const Read = () => {
             content: updatedContent,
         }
 
-        fetch(SERVER_IP+"/board/comment/update", {
+        fetch(SERVER_IP+"/freeBoard/comment/update", {
             headers: {
                 "Content-Type": 'application/json',
                 "userId": userId || '',
@@ -222,19 +222,19 @@ const Read = () => {
             body: JSON.stringify(data),
         })
         .then(body => {
-            getComments(`/board/comments/${postId}?page=${curPage}`);
+            getComments(`/freeBoard/comments/${postId}?page=${curPage}`);
             updateTextarea.value = '';
             showUpdateCommentFrame(commentId);
         })
     }
 
-    const deleteComment = (comment: BoardComment) => {
+    const deleteComment = (comment: FreeBoardComment) => {
         if(userId !== comment.user.id.toString()) {
             alert('Unauthorization');
             return;
         }
 
-        fetch(`${SERVER_IP}/board/comment/delete`, {
+        fetch(`${SERVER_IP}/freeBoard/comment/delete`, {
             headers: {
                 "userId": userId || '',
                 "postDetailId": postId,
@@ -245,12 +245,12 @@ const Read = () => {
         })
         .then(response => {
             getTotalCommentsCount();
-            getComments(`/board/comments/${postId}?page=${curPage}`);
+            getComments(`/freeBoard/comments/${postId}?page=${curPage}`);
         });
     }
 
     const list = () => {
-        navigate('/board');
+        navigate('/freeBoard');
     }
 
     return (
@@ -351,4 +351,4 @@ const Read = () => {
     )
 }
 
-export default Read;
+export default FreeBoardPostRead;
