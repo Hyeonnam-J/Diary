@@ -32,25 +32,19 @@ public class FreeBoardCommentController {
     @PostMapping(value = "/freeBoard/comment/update")
     public void update(@RequestBody FreeBoardCommentUpdateDTO freeBoardCommentUpdateDTO, HttpServletRequest request){
         String userId = String.valueOf(request.getAttribute("userId"));
-        String postDetailId = String.valueOf(request.getAttribute("postDetailId"));
-        String commentId = String.valueOf(request.getAttribute("commentId"));
-
-        freeBoardCommentService.update(freeBoardCommentUpdateDTO, userId, postDetailId, commentId);
+        freeBoardCommentService.update(freeBoardCommentUpdateDTO, userId);
     }
 
     @PostMapping(value = "/freeBoard/comment/write")
     public void write(@RequestBody FreeBoardCommentWriteDTO freeBoardCommentWriteDTO, HttpServletRequest request){
         String userId = String.valueOf(request.getAttribute("userId"));
-        String postDetailId = String.valueOf(request.getAttribute("postDetailId"));
-        freeBoardCommentService.write(freeBoardCommentWriteDTO, userId, postDetailId);
+        freeBoardCommentService.write(freeBoardCommentWriteDTO, userId);
     }
 
     @PostMapping(value = "/freeBoard/comment/reply")
     public void reply(@RequestBody FreeBoardBoardCommentReplyDTO boardCommentReplyDTO, HttpServletRequest request){
         String userId = String.valueOf(request.getAttribute("userId"));
-        String postDetailId = String.valueOf(request.getAttribute("postDetailId"));
-        String commentId = String.valueOf(request.getAttribute("commentId"));
-        freeBoardCommentService.reply(boardCommentReplyDTO, userId, postDetailId, commentId);
+        freeBoardCommentService.reply(boardCommentReplyDTO, userId);
     }
 
     @GetMapping(value = "/freeBoard/comments/{postId}")
