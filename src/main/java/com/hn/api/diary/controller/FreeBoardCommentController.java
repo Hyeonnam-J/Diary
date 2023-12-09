@@ -68,7 +68,7 @@ public class FreeBoardCommentController {
         return responseEntity;
     }
 
-    @GetMapping(value = "/freeBoard/comments/totalCommentsCount/{postId}")
+    @GetMapping(value = "/freeBoard/comments/totalCount/{postId}")
     public ResponseEntity<PlainDataResponse<Integer>> getTotalCount(@PathVariable Long postId) {
         int commentsCount = freeBoardCommentService.getTotalCount(postId);
 

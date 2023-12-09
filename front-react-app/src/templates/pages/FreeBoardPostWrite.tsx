@@ -1,12 +1,12 @@
 import React, { ReactNode, useState, useEffect } from 'react';
 import DefaultLayout from "../layouts/DefaultLayout";
 import { SERVER_IP } from "../../Config";
-import '../../stylesheets/pages/boardPostWrite.css';
+import '../../stylesheets/pages/freeBoardPostWrite.css';
 import Layout from "../../stylesheets/modules/layout.module.css";
 import Button from "../../stylesheets/modules/button.module.css";
 import { Navigate, useNavigate } from 'react-router-dom';
 
-const Write = () => {
+const FreeBoardPostWrite = () => {
     const navigate = useNavigate();
 
     const [userId, setUserId] = useState<string | null>(null);
@@ -26,7 +26,7 @@ const Write = () => {
             content: content.value
         }
 
-        fetch(SERVER_IP+"/board/post/write", {
+        fetch(SERVER_IP+"/freeBoard/post/write", {
             headers: {
                 "Content-Type": 'application/json',
                 "userId": userId || '',
@@ -36,7 +36,7 @@ const Write = () => {
             body: JSON.stringify(data),
         })
         .then(response => {
-            navigate('/board');
+            navigate('/freeBoard');
         });
     }
     return (
@@ -54,4 +54,4 @@ const Write = () => {
     )
 }
     
-export default Write;
+export default FreeBoardPostWrite;

@@ -1,17 +1,17 @@
 import React, { ReactNode, useState, useEffect } from 'react';
 import DefaultLayout from "../layouts/DefaultLayout";
 import { SERVER_IP } from "../../Config";
-import '../../stylesheets/pages/boardPostUpdate.css';
+import '../../stylesheets/pages/freeBoardPostUpdate.css';
 import Layout from "../../stylesheets/modules/layout.module.css";
 import Button from "../../stylesheets/modules/button.module.css";
 import { useNavigate, useLocation } from 'react-router-dom';
-import { BoardPostDetail } from "../../type/BoardPosts"
+import { FreeBoardPostDetail } from "../../type/FreeBoardPost"
 
-const Update = () => {
+const FreeBoardPostUpdate = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const postDetail: BoardPostDetail = location?.state?.postDetail;
+    const postDetail: FreeBoardPostDetail = location?.state?.postDetail;
     const [userId, setUserId] = useState<string | null>(null);
     const [accessToken, setAccessToken] = useState<string | null>(null);
 
@@ -29,7 +29,7 @@ const Update = () => {
             content: content.value
         }
 
-        fetch(SERVER_IP+"/board/post/update", {
+        fetch(SERVER_IP+"/freeBoard/post/update", {
             headers: {
                 "Content-Type": 'application/json',
                 "userId": userId || '',
@@ -40,7 +40,7 @@ const Update = () => {
             body: JSON.stringify(data),
         })
         .then(response => {
-            navigate('/board');
+            navigate('/freeBoard');
         });
     }
     return (
@@ -58,4 +58,4 @@ const Update = () => {
     )
 }
     
-export default Update;
+export default FreeBoardPostUpdate;
