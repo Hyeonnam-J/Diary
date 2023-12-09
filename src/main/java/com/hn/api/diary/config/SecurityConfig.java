@@ -90,7 +90,7 @@ public class SecurityConfig {
                                 .requestMatchers(AntPathRequestMatcher.antMatcher("/admin")).hasRole("ADMIN")
 
                                 .requestMatchers(AntPathRequestMatcher.antMatcher("/signUp")).permitAll()
-                                .requestMatchers(AntPathRequestMatcher.antMatcher("/board/**")).permitAll()
+                                .requestMatchers(AntPathRequestMatcher.antMatcher("/freeBoard/**")).permitAll()
                                 .anyRequest().authenticated()
                 )
                 // accessFilter에서 /signIn 요청은 authFilter로 계속 진행되도록 설정.

@@ -3,6 +3,6 @@ package com.hn.api.diary.dto;
 import lombok.Getter;
 
 @Getter
-public class BoardCommentUpdateDTO {
+public class FreeBoardCommentWriteDTO {
     private String content;
 }

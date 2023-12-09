@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Entity
-public class Post extends DateColumn {
+public class FreeBoardPost extends DateColumn {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +31,7 @@ public class Post extends DateColumn {
     private Integer depth;
 
     @Builder
-    public Post(String title, String content, User user, Long origin, Integer num, Integer depth) {
+    public FreeBoardPost(String title, String content, User user, Long origin, Integer num, Integer depth) {
         this.title = title;
         this.content = content;
         this.user = user;
@@ -64,6 +64,6 @@ public class Post extends DateColumn {
     }
 
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    List<Comment> comments = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "freeBoardPost")
+    List<FreeBoardComment> freeBoardComments = new ArrayList<>();
 }

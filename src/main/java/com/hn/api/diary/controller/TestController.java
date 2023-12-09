@@ -1,10 +1,9 @@
 package com.hn.api.diary.controller;
 
-import com.hn.api.diary.entity.Comment;
-import com.hn.api.diary.entity.Post;
-import com.hn.api.diary.entity.User;
-import com.hn.api.diary.repository.CommentRepository;
-import com.hn.api.diary.repository.PostRepository;
+import com.hn.api.diary.entity.FreeBoardComment;
+import com.hn.api.diary.entity.FreeBoardPost;
+import com.hn.api.diary.repository.FreeBoardCommentRepository;
+import com.hn.api.diary.repository.FreeBoardPostRepository;
 import com.hn.api.diary.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,15 +15,15 @@ import java.util.List;
 public class TestController {
 
     @Autowired private UserRepository userRepository;
-    @Autowired private PostRepository postRepository;
-    @Autowired private CommentRepository commentRepository;
+    @Autowired private FreeBoardPostRepository freeBoardPostRepository;
+    @Autowired private FreeBoardCommentRepository freeBoardCommentRepository;
 
     @GetMapping(value = "/test")
     public String test(){
-        Post post = postRepository.findById(1L).orElseThrow();
-        System.out.println(post.getUser().getEmail());
-        List<Comment> comments = post.getComments();
-        for(Comment c: comments){
+        FreeBoardPost freeBoardPost = freeBoardPostRepository.findById(1L).orElseThrow();
+        System.out.println(freeBoardPost.getUser().getEmail());
+        List<FreeBoardComment> freeBoardComments = freeBoardPost.getFreeBoardComments();
+        for(FreeBoardComment c: freeBoardComments){
             System.out.println(c.getId());
         }
         return "end";

@@ -11,20 +11,18 @@ import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
- * QPost is a Querydsl query type for Post
+ * QFreeBoardPost is a Querydsl query type for FreeBoardPost
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QPost extends EntityPathBase<Post> {
+public class QFreeBoardPost extends EntityPathBase<FreeBoardPost> {
 
-    private static final long serialVersionUID = -862374831L;
+    private static final long serialVersionUID = -291989751L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QPost post = new QPost("post");
+    public static final QFreeBoardPost freeBoardPost = new QFreeBoardPost("freeBoardPost");
 
     public final QDateColumn _super = new QDateColumn(this);
-
-    public final ListPath<Comment, QComment> comments = this.<Comment, QComment>createList("comments", Comment.class, QComment.class, PathInits.DIRECT2);
 
     public final StringPath content = createString("content");
 
@@ -32,6 +30,8 @@ public class QPost extends EntityPathBase<Post> {
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
 
     public final NumberPath<Integer> depth = createNumber("depth", Integer.class);
+
+    public final ListPath<FreeBoardComment, QFreeBoardComment> freeBoardComments = this.<FreeBoardComment, QFreeBoardComment>createList("freeBoardComments", FreeBoardComment.class, QFreeBoardComment.class, PathInits.DIRECT2);
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
@@ -50,23 +50,23 @@ public class QPost extends EntityPathBase<Post> {
 
     public final NumberPath<Long> viewCount = createNumber("viewCount", Long.class);
 
-    public QPost(String variable) {
-        this(Post.class, forVariable(variable), INITS);
+    public QFreeBoardPost(String variable) {
+        this(FreeBoardPost.class, forVariable(variable), INITS);
     }
 
-    public QPost(Path<? extends Post> path) {
+    public QFreeBoardPost(Path<? extends FreeBoardPost> path) {
         this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QPost(PathMetadata metadata) {
+    public QFreeBoardPost(PathMetadata metadata) {
         this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QPost(PathMetadata metadata, PathInits inits) {
-        this(Post.class, metadata, inits);
+    public QFreeBoardPost(PathMetadata metadata, PathInits inits) {
+        this(FreeBoardPost.class, metadata, inits);
     }
 
-    public QPost(Class<? extends Post> type, PathMetadata metadata, PathInits inits) {
+    public QFreeBoardPost(Class<? extends FreeBoardPost> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.user = inits.isInitialized("user") ? new QUser(forProperty("user")) : null;
     }
