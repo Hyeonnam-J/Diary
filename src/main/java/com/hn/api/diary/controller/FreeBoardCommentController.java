@@ -23,9 +23,8 @@ public class FreeBoardCommentController {
 
     private final FreeBoardCommentService freeBoardCommentService;
 
-    @DeleteMapping(value = "/freeBoard/comment/delete")
-    public void delete(HttpServletRequest request){
-        String commentId = String.valueOf(request.getAttribute("commentId"));
+    @DeleteMapping(value = "/freeBoard/comment/delete/{commentId}")
+    public void delete(@PathVariable String commentId){
         freeBoardCommentService.delete(commentId);
     }
 
