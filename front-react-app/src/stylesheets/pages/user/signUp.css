@@ -54,3 +54,20 @@
 #submitList .invalid > span {
     color: red;
 }
+
+#submitList label > div {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.duplicateButton{
+    color: var(--primary-color);
+    font-size: 0.8rem;
+}
+
+.duplicateButton:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
