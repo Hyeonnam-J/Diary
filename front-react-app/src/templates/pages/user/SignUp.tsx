@@ -14,15 +14,19 @@ const SignUp = () => {
     const [userName, setUserName] = useState("");
     const [nick, setNick] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
-    const [validations, setValidations] = useState({
+    const [inputValidations, setInputValidations] = useState({
         email: false,
         password: false,
         userName: false,
         nick: false,
         phoneNumber: true,
     });
+    const [duplicateValidations, setDuplicateValidations] = useState({
+        email: false,
+        nick: false,
+    })
 
-    const getValidationMessage = (name: string) => {
+    const getInputValidationMessage = (name: string) => {
         switch (name) {
             case "email":
                 if(!emailRegex.test(email)) return "Invalid email format";
@@ -74,6 +78,11 @@ const SignUp = () => {
 
         switch (name) {
             case "email":
+                setDuplicateValidations({
+                    ...duplicateValidations,
+                    [name]: false,
+                });
+
                 isValid = emailRegex.test(value);
                 break;
             case "password":
@@ -83,6 +92,11 @@ const SignUp = () => {
                 isValid = userNameRegex.test(value);
                 break;
             case "nick":
+                setDuplicateValidations({
+                    ...duplicateValidations,
+                    [name]: false,
+                });
+
                 isValid = nickRegex.test(value);
                 break;
             case "phoneNumber":
@@ -92,8 +106,8 @@ const SignUp = () => {
                 break;
         }
 
-        setValidations({
-            ...validations,
+        setInputValidations({
+            ...inputValidations,
             [name]: isValid,
         });
 
@@ -119,8 +133,8 @@ const SignUp = () => {
     };
 
     const requestSignUp = async () => {
-        for (const key in validations) {
-            if (!validations[key as keyof typeof validations]) {
+        for (const key in inputValidations) {
+            if (!inputValidations[key as keyof typeof inputValidations]) {
                 
                 if(key === 'userName') {
                     alert("check your name value");
@@ -128,6 +142,13 @@ const SignUp = () => {
                 }
 
                 alert("check your "+key+" value");
+                return;
+            }
+        }
+
+        for (const key in duplicateValidations) {
+            if(!duplicateValidations[key as keyof typeof duplicateValidations]){
+                alert("check "+key+" duplicate");
                 return;
             }
         }
@@ -157,6 +178,10 @@ const SignUp = () => {
             })
             .then(response => {
                 if(response.ok) {
+                    if(response.status == 208) {
+                        alert('duplicated email or nick. Please check your email and nick');
+                        return;
+                    }
                     navigate('/');
                     alert("Registration is complete")
                 }
@@ -166,38 +191,99 @@ const SignUp = () => {
         }
     } // requestSignUp
 
+    const checkDuplication = (checkItem: string) => {
+        // 체크 전에 input에 입력된 값의 유효성을 먼저 확인.
+        let inputValid: boolean = false;
+        switch(checkItem){
+            case "email":
+                inputValid = inputValidations.email;
+                break;
+            case "nick":
+                inputValid = inputValidations.nick;
+                break;
+        }
+        if(! inputValid){
+            alert('invalid value');
+            return;
+        }
+
+        // input의 값은 유효한 값. 이제 중복 검사 시작.
+        let input= document.querySelector(`input[name="${checkItem}"]`) as HTMLInputElement;
+        const data = {
+            item: checkItem,
+            value: input.value,
+        }
+
+        fetch(SERVER_IP+'/signUp/checkDuplication', {
+            headers: {
+                "Content-Type": 'application/json',
+            },
+            method: 'POST',
+            body: JSON.stringify(data),
+        })
+        .then(response => {
+            if(response.ok) {
+                if(response.status == 208) {
+                    alert('Existing value');
+
+                    setDuplicateValidations({
+                        ...duplicateValidations,
+                        [checkItem]: false,
+                    })
+
+                    return;
+                }else if(response.status == 200) {
+                    alert('Valid value');
+
+                    setDuplicateValidations({
+                        ...duplicateValidations,
+                        [checkItem]: true,
+                    })
+
+                    return;
+                }
+            }
+        })
+    }
+
     return (
         <SignLayout>
             <div id='signUpFrame'>
                 <div id='submitList'>
-                    <label className={validations.email ? 'valid' : 'invalid'}>
-                        <p>* Email</p>
+                    <label className={inputValidations.email ? 'valid' : 'invalid'}>
+                        <div>
+                            <p>* Email</p>
+                            <p onClick={() => checkDuplication('email')} className='duplicateButton'>Duplicate check</p>
+                        </div>
                         <input name='email' value={email} onChange={handleInputChange}></input>
-                        <span>{getValidationMessage('email')}</span>
+                        <span>{getInputValidationMessage('email')}</span>
                     </label>
 
-                    <label className={validations.password ? 'valid' : 'invalid'}>
+                    <label className={inputValidations.password ? 'valid' : 'invalid'}>
                         <p>* Password</p>
                         <input name='password' value={password} onChange={handleInputChange}></input>
-                        <span>{getValidationMessage('password')}</span>
+                        <span>{getInputValidationMessage('password')}</span>
                     </label>
 
-                    <label className={validations.userName ? 'valid' : 'invalid'}>
+                    <label className={inputValidations.userName ? 'valid' : 'invalid'}>
                         <p>* Name</p>
                         <input name='userName' value={userName} onChange={handleInputChange}></input>
-                        <span>{getValidationMessage('userName')}</span>
+                        <span>{getInputValidationMessage('userName')}</span>
                     </label>
 
-                    <label className={validations.nick ? 'valid' : 'invalid'}>
-                        <p>* Nick</p>
+                    <label className={inputValidations.nick ? 'valid' : 'invalid'}>
+                        <div>
+                            <p>* Nick</p>
+                            <p onClick={() => checkDuplication('nick')} className='duplicateButton'>Duplicate check</p>
+                        </div>
                         <input name='nick' value={nick} onChange={handleInputChange}></input>
-                        <span>{getValidationMessage('nick')}</span>
+                        <span>{getInputValidationMessage('nick')}</span>
                     </label>
 
-                    <label className={validations.phoneNumber ? 'valid' : 'invalid'}>
+                    <label className={inputValidations.phoneNumber ? 'valid' : 'invalid'}>
                         <p>Phone number</p>
                         <input name='phoneNumber' value={phoneNumber} onChange={handleInputChange}></input>
-                        <span>{getValidationMessage('phoneNumber')}</span>
+                        <span>{getInputValidationMessage('phoneNumber')}</span>
                     </label>
                 </div>
                 <button id='terms' className={ Button.primaryOutline }>Terms of Service</button>
