@@ -18,11 +18,14 @@ const My: React.FC = () => {
     const [isDropdownVisible, setDropdownVisible] = useState(false);
     const [isSignedIn, setSignedIn] = useState(false);
     const [email, setEmail] = useState('');
+    const [nick, setNick] = useState('');
 
     useEffect(() => {
         const email = localStorage.getItem('email');
+        const nick = localStorage.getItem('nick');
         setSignedIn(!!email);
         setEmail(email || '');
+        setNick(nick || '');
     }, []);
 
     const toggleDropdown = () => {
@@ -31,9 +34,11 @@ const My: React.FC = () => {
 
     const signOut = () => {
         localStorage.removeItem('accessToken');
-        localStorage.removeItem('email');
         localStorage.removeItem('userId');
+        localStorage.removeItem('email');
+        localStorage.removeItem('nick');
         setEmail('');
+        setNick('');
         setSignedIn(!isSignedIn);
         setDropdownVisible(!isDropdownVisible);
 
@@ -52,7 +57,7 @@ const My: React.FC = () => {
                     </ul>
                     <ul className='my-contents' style={{ display: isSignedIn ? 'block' : 'none' }}>
                         <li><Link to="/">Home</Link></li>
-                        <li>{email}</li>
+                        <li>{nick}</li>
                         <li onClick={signOut}>sign out</li>
                     </ul>
                 </div>

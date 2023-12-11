@@ -2,7 +2,7 @@ import React, { ReactNode, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SignLayout from "../../layouts/SignLayout";
 import { SERVER_IP } from "../../../Config";
-import '../../../stylesheets/pages/sign/signUp.css';
+import '../../../stylesheets/pages/user/signUp.css';
 import Layout from "../../../stylesheets/modules/layout.module.css";
 import Button from "../../../stylesheets/modules/button.module.css";
 
@@ -12,11 +12,13 @@ const SignUp = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [userName, setUserName] = useState("");
+    const [nick, setNick] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [validations, setValidations] = useState({
         email: false,
         password: false,
         userName: false,
+        nick: false,
         phoneNumber: true,
     });
 
@@ -49,6 +51,9 @@ const SignUp = () => {
                 else if (/^\s|\s$/.test(userName)) return "Name cannot start or end with spaces";
                 else if (!userName.trim()) return "Name is required";
                 else return "Valid name";
+            case "nick":
+                if(!nickRegex.test(nick)) return "Nick cannot contain space";
+                else return "Valid Nick";
             case "phoneNumber":
                 if(phoneNumberRegex.test(phoneNumber)) return "";
                 return "";
@@ -60,6 +65,7 @@ const SignUp = () => {
     const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/;
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
     const userNameRegex = /^(?!\d)(?!\s)[\p{L}\d\s]*[\p{L}\d]$/u;
+    const nickRegex = /^[^\s]+[^\s]*$/;
     const phoneNumberRegex = /.*/;
 
     let isValid = false;
@@ -76,8 +82,11 @@ const SignUp = () => {
             case "userName":
                 isValid = userNameRegex.test(value);
                 break;
+            case "nick":
+                isValid = nickRegex.test(value);
+                break;
             case "phoneNumber":
-                isValid = phoneNumberRegex.test(phoneNumber);
+                isValid = phoneNumberRegex.test(value);
                 break;
             default:
                 break;
@@ -97,6 +106,9 @@ const SignUp = () => {
                 break;
             case "userName":
                 setUserName(value);
+                break;
+            case "nick":
+                setNick(value)
                 break;
             case "phoneNumber":
                 setPhoneNumber(value);
@@ -124,12 +136,14 @@ const SignUp = () => {
             const emailInput = document.querySelector('input[name="email"]') as HTMLInputElement;
             const passwordInput = document.querySelector('input[name="password"]') as HTMLInputElement;
             const userNamedInput = document.querySelector('input[name="userName"]') as HTMLInputElement;
+            const nickInput = document.querySelector('input[name="nick"]') as HTMLInputElement;
             const phoneNumberInput = document.querySelector('input[name="phoneNumber"]') as HTMLInputElement;
 
             const data = {
                 email: emailInput.value,
                 password: passwordInput.value,
                 userName: userNamedInput.value,
+                nick: nickInput.value,
                 phoneNumber: phoneNumberInput.value,
             };
 
@@ -172,6 +186,12 @@ const SignUp = () => {
                         <p>* Name</p>
                         <input name='userName' value={userName} onChange={handleInputChange}></input>
                         <span>{getValidationMessage('userName')}</span>
+                    </label>
+
+                    <label className={validations.nick ? 'valid' : 'invalid'}>
+                        <p>* Nick</p>
+                        <input name='nick' value={nick} onChange={handleInputChange}></input>
+                        <span>{getValidationMessage('nick')}</span>
                     </label>
 
                     <label className={validations.phoneNumber ? 'valid' : 'invalid'}>

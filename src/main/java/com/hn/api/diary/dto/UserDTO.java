@@ -9,4 +9,5 @@ import lombok.Setter;
 public class UserDTO extends User {
     private Long id;
     private String email;
+    private String nick;
 }

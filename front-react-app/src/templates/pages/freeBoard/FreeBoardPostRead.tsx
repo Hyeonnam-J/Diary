@@ -258,7 +258,7 @@ const FreeBoardPostDetailRead = () => {
                     <>
                         <div id='post-table'>
                             <p id='post-title'>{post.title}</p>
-                            <p>{post.user.email}</p>
+                            <p>{post.user.nick}</p>
                             <div id='post-dataAndViewCount'>
                                 <p>{post.createdDate}</p>
                                 <p>view {post.viewCount}</p>
@@ -282,7 +282,7 @@ const FreeBoardPostDetailRead = () => {
                             <div key={comment.id} id={`read-comment-${comment.id}`} className='read-comment-container' style={{ paddingLeft: `${paddingLeft}px` }}>
                                 <div id='read-comment-header'>
                                     <div id='read-comment-userContainer'>
-                                        <div id='read-comment-user'>{comment.user?.email}</div>
+                                        <div id='read-comment-user'>{comment.user?.nick}</div>
                                         <div id='read-comment-date'>{comment.createdDate}</div>
                                     </div>
                                     <div id='read-comment-btns'>
