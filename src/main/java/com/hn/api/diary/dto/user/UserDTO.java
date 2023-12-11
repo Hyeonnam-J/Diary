@@ -1,4 +1,4 @@
-package com.hn.api.diary.dto;
+package com.hn.api.diary.dto.user;
 
 import com.hn.api.diary.entity.User;
 import lombok.Getter;

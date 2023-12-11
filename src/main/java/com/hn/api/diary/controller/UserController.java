@@ -4,8 +4,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hn.api.diary.dto.sign.CheckDuplicationDTO;
-import com.hn.api.diary.dto.sign.SignUpDTO;
+import com.hn.api.diary.dto.user.CheckDuplicationDTO;
+import com.hn.api.diary.dto.user.SignUpDTO;
 import com.hn.api.diary.service.UserService;
 
 import lombok.RequiredArgsConstructor;
