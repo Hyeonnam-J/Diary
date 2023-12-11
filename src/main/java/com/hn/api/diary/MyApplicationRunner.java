@@ -31,7 +31,7 @@ public class MyApplicationRunner implements ApplicationRunner {
         User user = userRepository.findById(1L).orElseThrow();
 
         List<FreeBoardPost> freeBoardPosts = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 150; i++) {
             FreeBoardPost freeBoardPost = FreeBoardPost.builder()
                     .title(i + "")
                     .content(i + "")
@@ -44,7 +44,7 @@ public class MyApplicationRunner implements ApplicationRunner {
 
         FreeBoardPost freeBoardPost = freeBoardPostRepository.findById(1L).orElseThrow();
         List<FreeBoardComment> freeBoardComments = new ArrayList<>();
-        for(int i = 0; i < 100; i++){
+        for(int i = 0; i < 150; i++){
             FreeBoardComment freeBoardComment = FreeBoardComment.builder()
                     .freeBoardPost(freeBoardPost)
                     .content(i+"")
