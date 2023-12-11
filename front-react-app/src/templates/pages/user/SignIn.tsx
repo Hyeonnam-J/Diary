@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import SignLayout from "../../layouts/SignLayout";
 import { SERVER_IP } from "../../../Config";
-import '../../../stylesheets/pages/sign/signIn.css';
+import '../../../stylesheets/pages/user/signIn.css';
 import Layout from "../../../stylesheets/modules/layout.module.css";
 import Button from "../../../stylesheets/modules/button.module.css";
 
@@ -45,6 +45,7 @@ const SignIn = () => {
                 localStorage.setItem('accessToken', accessToken)
                 localStorage.setItem('userId', decodedAccessToken.userId)
                 localStorage.setItem('email', decodedAccessToken.email)
+                localStorage.setItem('nick', decodedAccessToken.nick)
 
                 navigate('/');
             }

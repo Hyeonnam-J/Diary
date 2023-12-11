@@ -48,7 +48,7 @@
     text-align: left;
 }
 
-.title:hover, .email:hover {
+.title:hover, .nick:hover {
     text-decoration: underline;
     cursor: pointer;
 }

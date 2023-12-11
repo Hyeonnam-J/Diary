@@ -99,7 +99,7 @@ const FreeBoard = () => {
                             <tr>
                                 <th style={{ width: '10%' }}></th>
                                 <th style={{ width: '40%' }}>title</th>
-                                <th style={{ width: '20%' }}>email</th>
+                                <th style={{ width: '20%' }}>writer</th>
                                 <th style={{ width: '20%' }}>date</th>
                                 <th style={{ width: '10%' }}>view</th>
                             </tr>
@@ -107,15 +107,16 @@ const FreeBoard = () => {
                         <tbody>
                             {posts.map((post) => {
 
-                                const re = "Re: ";
-                                const prefixTitle = re.repeat(post.depth);
+                                const prefixTitle = post.depth > 0 ? '└ ': '';
                                 const paddingLeft = 10 * post.depth;
 
                                 return (
                                     <tr key={post.id}>
                                         <td>{post.id}</td>
-                                        <td onClick={() => read(post)} className='title' style={{paddingLeft: `${paddingLeft}px`}}>{prefixTitle}{post.title}</td>
-                                        <td className='email'>{post.user.email}</td>
+                                        <td onClick={() => read(post)} className='title' style={{paddingLeft: `${paddingLeft}px`}}>
+                                            {prefixTitle}{post.title}
+                                        </td>
+                                        <td className='nick'>{post.user.nick}</td>
                                         <td>{post.createdDate}</td>
                                         <td>{post.viewCount}</td>
                                     </tr>

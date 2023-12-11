@@ -1,24 +1,26 @@
 export type FreeBoardPosts = {
-    id: number;
-    title: string;
+    id: number,
+    title: string,
     user: {
-        email: string;
-    };
-    createdDate: string;
-    viewCount: number;
-    depth: number;
+        email: string,
+        nick: string,
+    },
+    createdDate: string,
+    viewCount: number,
+    depth: number,
 };
 
 export type FreeBoardPostDetail = {
-    id: number;
-    title: string;
-    content: string;
+    id: number,
+    title: string,
+    content: string,
     user: {
         id: number,
-        email: string;
+        email: string,
+        nick: string,
     };
-    createdDate: string;
-    viewCount: number;
+    createdDate: string,
+    viewCount: number,
 };
 
 export const FreeBoardSort = {
@@ -26,12 +28,13 @@ export const FreeBoardSort = {
 };
 
 export type FreeBoardComment = {
-    id: number;
+    id: number,
     user: {
         id: number,
-        email: string;
+        email: string,
+        nick: string,
     };
-    content: string;
-    createdDate: string;
+    content: string,
+    createdDate: string,
     depth: number,
 };

@@ -146,7 +146,7 @@ public class SecurityConfig {
                         .roles(user.getRole())
                         .build();
 
-                return new MyUserDetails(userDetails, user.getId());
+                return new MyUserDetails(userDetails, user.getId(), user.getNick());
             }
         };
     }

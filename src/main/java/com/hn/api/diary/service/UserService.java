@@ -30,6 +30,7 @@ public class UserService {
                 .email(signUpDTO.getEmail())
                 .password(encryptedPassword)
                 .userName(signUpDTO.getUserName())
+                .nick(signUpDTO.getNick())
                 .phoneNumber(signUpDTO.getPhoneNumber())
                 .role(signUpDTO.getRole())
                 .build();
