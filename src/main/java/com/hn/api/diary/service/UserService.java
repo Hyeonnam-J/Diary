@@ -1,7 +1,7 @@
 package com.hn.api.diary.service;
 
-import com.hn.api.diary.dto.sign.CheckDuplicationDTO;
-import com.hn.api.diary.dto.sign.SignUpDTO;
+import com.hn.api.diary.dto.user.CheckDuplicationDTO;
+import com.hn.api.diary.dto.user.SignUpDTO;
 import com.hn.api.diary.entity.User;
 import com.hn.api.diary.exception.AlreadyReported;
 import com.hn.api.diary.repository.UserRepository;

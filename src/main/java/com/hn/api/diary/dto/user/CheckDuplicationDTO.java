@@ -1,4 +1,4 @@
-package com.hn.api.diary.dto.sign;
+package com.hn.api.diary.dto.user;
 
 import lombok.Getter;
 

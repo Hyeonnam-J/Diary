@@ -1,12 +1,12 @@
 package com.hn.api.diary.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hn.api.diary.dto.SessionDTO;
+import com.hn.api.diary.dto.user.SessionDTO;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
 import com.hn.api.diary.util.JwsKey;
-import com.hn.api.diary.dto.sign.SignInDTO;
-import com.hn.api.diary.dto.sign.SignUpDTO;
+import com.hn.api.diary.dto.user.SignInDTO;
+import com.hn.api.diary.dto.user.SignUpDTO;
 import com.hn.api.diary.entity.User;
 import com.hn.api.diary.exception.InvalidValue;
 import com.hn.api.diary.repository.UserRepository;

@@ -22,7 +22,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.hn.api.diary.dto.MyUserDetails;
+import com.hn.api.diary.dto.user.MyUserDetails;
 import com.hn.api.diary.entity.User;
 import com.hn.api.diary.exception.AccessDeniedHandler;
 import com.hn.api.diary.exception.InvalidValue;
