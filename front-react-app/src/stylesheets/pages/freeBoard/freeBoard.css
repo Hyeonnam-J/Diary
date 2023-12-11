@@ -54,17 +54,16 @@
 }
 
 #boardFooter {
+    display: flex;
+    justify-content: center;
+
     height: var(--freeBoard-footer-height);
 }
 
-#boardFooter-top {
+#boardFooter > .pagination {
     height: 50%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 #boardFooter-bottom {
-    height: 50%;
+    /* height: 50%; */
 }

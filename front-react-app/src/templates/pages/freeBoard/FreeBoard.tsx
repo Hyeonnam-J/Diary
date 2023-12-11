@@ -127,21 +127,19 @@ const FreeBoard = () => {
                 </div>
 
                 <div id='boardFooter'>
-                    <div id='boardFooter-top'>
-                        {totalPageCount > 0 && (
-                            <ReactPaginate
-                                // pageRangeDisplayed={Page.perBlockSize}
-                                pageRangeDisplayed={5}
-                                marginPagesDisplayed={1}
-                                pageCount={totalPageCount}
-                                onPageChange={ ({selected}) => setCurPage(selected)}
-                                containerClassName={'pagination'}
-                                activeClassName={'pageActive'}
-                                previousLabel="<"
-                                nextLabel=">"
-                            />
-                        )}
-                    </div>
+                    {totalPageCount > 0 && (
+                        <ReactPaginate
+                            // pageRangeDisplayed={Page.perBlockSize}
+                            pageRangeDisplayed={5}
+                            marginPagesDisplayed={1}
+                            pageCount={totalPageCount}
+                            onPageChange={ ({selected}) => setCurPage(selected)}
+                            containerClassName={'pagination'}
+                            activeClassName={'pageActive'}
+                            previousLabel="<"
+                            nextLabel=">"
+                        />
+                    )}
                     <div id='boardFooter-bottom'></div>
                 </div>
             </div>
