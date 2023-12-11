@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import com.hn.api.diary.dto.FreeBoardBoardCommentReplyDTO;
-import com.hn.api.diary.dto.FreeBoardCommentUpdateDTO;
-import com.hn.api.diary.dto.FreeBoardCommentWriteDTO;
+import com.hn.api.diary.dto.freeBoard.FreeBoardBoardCommentReplyDTO;
+import com.hn.api.diary.dto.freeBoard.FreeBoardCommentUpdateDTO;
+import com.hn.api.diary.dto.freeBoard.FreeBoardCommentWriteDTO;
 import com.hn.api.diary.entity.FreeBoardComment;
 import com.hn.api.diary.entity.FreeBoardPost;
 import com.hn.api.diary.entity.User;
@@ -20,7 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.hn.api.diary.dto.FreeBoardCommentsDTO;
+import com.hn.api.diary.dto.freeBoard.FreeBoardCommentsDTO;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 
 import lombok.RequiredArgsConstructor;

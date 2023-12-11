@@ -1,7 +1,7 @@
 package com.hn.api.diary.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hn.api.diary.dto.SignUpDTO;
+import com.hn.api.diary.dto.sign.SignUpDTO;
 import com.hn.api.diary.entity.User;
 import com.hn.api.diary.exception.AlreadyReported;
 import com.hn.api.diary.exception.InvalidValue;

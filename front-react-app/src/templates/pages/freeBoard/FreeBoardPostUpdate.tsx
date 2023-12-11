@@ -1,11 +1,11 @@
 import React, { ReactNode, useState, useEffect } from 'react';
-import DefaultLayout from "../layouts/DefaultLayout";
-import { SERVER_IP } from "../../Config";
-import '../../stylesheets/pages/freeBoardPostUpdate.css';
-import Layout from "../../stylesheets/modules/layout.module.css";
-import Button from "../../stylesheets/modules/button.module.css";
+import DefaultLayout from "../../layouts/DefaultLayout";
+import { SERVER_IP } from "../../../Config";
+import '../../../stylesheets/pages/freeBoard/freeBoardPostUpdate.css';
+import Layout from "../../../stylesheets/modules/layout.module.css";
+import Button from "../../../stylesheets/modules/button.module.css";
 import { useNavigate, useLocation } from 'react-router-dom';
-import { FreeBoardPostDetail } from "../../type/FreeBoard"
+import { FreeBoardPostDetail } from "../../../type/FreeBoard"
 
 const FreeBoardPostUpdate = () => {
     const navigate = useNavigate();

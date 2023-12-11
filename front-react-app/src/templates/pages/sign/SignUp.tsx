@@ -1,10 +1,10 @@
 import React, { ReactNode, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SignLayout from "../layouts/SignLayout";
-import { SERVER_IP } from "../../Config";
-import '../../stylesheets/pages/signUp.css';
-import Layout from "../../stylesheets/modules/layout.module.css";
-import Button from "../../stylesheets/modules/button.module.css";
+import SignLayout from "../../layouts/SignLayout";
+import { SERVER_IP } from "../../../Config";
+import '../../../stylesheets/pages/sign/signUp.css';
+import Layout from "../../../stylesheets/modules/layout.module.css";
+import Button from "../../../stylesheets/modules/button.module.css";
 
 const SignUp = () => {
     const navigate = useNavigate();

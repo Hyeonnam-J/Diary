@@ -1,11 +1,11 @@
 import Home from './Home';
-import SignIn from './pages/SignIn';
-import SignUp from './pages/SignUp';
-import FreeBoard from './pages/FreeBoard';
-import FreeBoardPostWrite from './pages/FreeBoardPostWrite';
-import FreeBoardPostRead from './pages/FreeBoardPostRead';
-import FreeBoardPostReply from './pages/FreeBoardPostReply';
-import FreeBoardPostUpdate from './pages/FreeBoardPostUpdate';
+import SignIn from './pages/sign/SignIn';
+import SignUp from './pages/sign/SignUp';
+import FreeBoard from './pages/freeBoard/FreeBoard';
+import FreeBoardPostWrite from './pages/freeBoard/FreeBoardPostWrite';
+import FreeBoardPostRead from './pages/freeBoard/FreeBoardPostRead';
+import FreeBoardPostReply from './pages/freeBoard/FreeBoardPostReply';
+import FreeBoardPostUpdate from './pages/freeBoard/FreeBoardPostUpdate';
 
 interface RouteConfig {
     path: string;

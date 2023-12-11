@@ -3,10 +3,10 @@ package com.hn.api.diary.controller;
 import java.net.HttpURLConnection;
 import java.util.List;
 
-import com.hn.api.diary.dto.FreeBoardBoardCommentReplyDTO;
-import com.hn.api.diary.dto.FreeBoardCommentUpdateDTO;
-import com.hn.api.diary.dto.FreeBoardCommentWriteDTO;
-import com.hn.api.diary.dto.FreeBoardCommentsDTO;
+import com.hn.api.diary.dto.freeBoard.FreeBoardBoardCommentReplyDTO;
+import com.hn.api.diary.dto.freeBoard.FreeBoardCommentUpdateDTO;
+import com.hn.api.diary.dto.freeBoard.FreeBoardCommentWriteDTO;
+import com.hn.api.diary.dto.freeBoard.FreeBoardCommentsDTO;
 import com.hn.api.diary.response.ListDataResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;

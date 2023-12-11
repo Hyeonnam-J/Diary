@@ -1,9 +1,9 @@
 import React, { ReactNode, useState, useEffect } from 'react';
-import DefaultLayout from "../layouts/DefaultLayout";
-import { SERVER_IP } from "../../Config";
-import '../../stylesheets/pages/freeBoardPostWrite.css';
-import Layout from "../../stylesheets/modules/layout.module.css";
-import Button from "../../stylesheets/modules/button.module.css";
+import DefaultLayout from "../../layouts/DefaultLayout";
+import { SERVER_IP } from "../../../Config";
+import '../../../stylesheets/pages/freeBoard/freeBoardPostWrite.css';
+import Layout from "../../../stylesheets/modules/layout.module.css";
+import Button from "../../../stylesheets/modules/button.module.css";
 import { Navigate, useNavigate } from 'react-router-dom';
 
 const FreeBoardPostWrite = () => {

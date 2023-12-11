@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hn.api.diary.dto.FreeBoardPostReadDTO;
-import com.hn.api.diary.dto.FreeBoardPostReplyDTO;
-import com.hn.api.diary.dto.FreeBoardPostUpdateDTO;
-import com.hn.api.diary.dto.FreeBoardPostWriteDTO;
-import com.hn.api.diary.dto.FreeBoardPostsDTO;
+import com.hn.api.diary.dto.freeBoard.FreeBoardPostReadDTO;
+import com.hn.api.diary.dto.freeBoard.FreeBoardPostReplyDTO;
+import com.hn.api.diary.dto.freeBoard.FreeBoardPostUpdateDTO;
+import com.hn.api.diary.dto.freeBoard.FreeBoardPostWriteDTO;
+import com.hn.api.diary.dto.freeBoard.FreeBoardPostsDTO;
 import com.hn.api.diary.response.ListDataResponse;
 import com.hn.api.diary.response.PlainDataResponse;
 import com.hn.api.diary.service.FreeBoardPostService;
