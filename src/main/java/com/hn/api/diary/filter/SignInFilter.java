@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hn.api.diary.dto.MyUserDetails;
 import com.hn.api.diary.util.JwsKey;
 import com.hn.api.diary.dto.SessionDTO;
-import com.hn.api.diary.dto.SignInDTO;
+import com.hn.api.diary.dto.sign.SignInDTO;
 import com.hn.api.diary.response.SessionResponse;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;

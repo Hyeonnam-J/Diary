@@ -1,5 +1,6 @@
-package com.hn.api.diary.dto;
+package com.hn.api.diary.dto.freeBoard;
 
+import com.hn.api.diary.dto.UserDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

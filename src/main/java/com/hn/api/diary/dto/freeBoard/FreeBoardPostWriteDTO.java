@@ -1,4 +1,4 @@
-package com.hn.api.diary.dto;
+package com.hn.api.diary.dto.freeBoard;
 
 import lombok.Builder;
 import lombok.Getter;

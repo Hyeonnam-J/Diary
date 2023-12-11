@@ -1,9 +1,9 @@
-package com.hn.api.diary.dto;
+package com.hn.api.diary.dto.freeBoard;
 
 import lombok.Getter;
 
 @Getter
-public class FreeBoardBoardCommentReplyDTO {
+public class FreeBoardCommentUpdateDTO {
     private String commentId;
     private String content;
 }

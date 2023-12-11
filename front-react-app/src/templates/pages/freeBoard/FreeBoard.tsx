@@ -1,15 +1,15 @@
 import React, { ReactNode, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
-import DefaultLayout from '../layouts/DefaultLayout';
+import DefaultLayout from '../../layouts/DefaultLayout';
 
-import { SERVER_IP, Page } from "../../Config";
+import { SERVER_IP, Page } from "../../../Config";
 
-import { user } from "../../auth/auth";
-import { FreeBoardPosts, FreeBoardSort } from "../../type/FreeBoard"
+import { user } from "../../../auth/auth";
+import { FreeBoardPosts, FreeBoardSort } from "../../../type/FreeBoard"
 
-import '../../stylesheets/pages/freeBoard.css';
-import Button from "../../stylesheets/modules/button.module.css";
+import '../../../stylesheets/pages/freeBoard/freeBoard.css';
+import Button from "../../../stylesheets/modules/button.module.css";
 
 const FreeBoard = () => {
     const navigate = useNavigate();

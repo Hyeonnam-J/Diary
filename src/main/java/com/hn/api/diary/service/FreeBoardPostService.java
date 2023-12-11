@@ -11,11 +11,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.hn.api.diary.dto.FreeBoardPostsDTO;
-import com.hn.api.diary.dto.FreeBoardPostReadDTO;
-import com.hn.api.diary.dto.FreeBoardPostReplyDTO;
-import com.hn.api.diary.dto.FreeBoardPostUpdateDTO;
-import com.hn.api.diary.dto.FreeBoardPostWriteDTO;
+import com.hn.api.diary.dto.freeBoard.FreeBoardPostsDTO;
+import com.hn.api.diary.dto.freeBoard.FreeBoardPostReadDTO;
+import com.hn.api.diary.dto.freeBoard.FreeBoardPostReplyDTO;
+import com.hn.api.diary.dto.freeBoard.FreeBoardPostUpdateDTO;
+import com.hn.api.diary.dto.freeBoard.FreeBoardPostWriteDTO;
 import com.hn.api.diary.entity.FreeBoardPost;
 import com.hn.api.diary.entity.User;
 import com.hn.api.diary.exception.InvalidValue;
