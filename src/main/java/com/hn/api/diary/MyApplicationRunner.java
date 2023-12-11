@@ -1,6 +1,12 @@
 package com.hn.api.diary;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import com.hn.api.diary.repository.FreeBoardPostRepository;
+import com.hn.api.diary.entity.FreeBoardComment;
+import com.hn.api.diary.entity.FreeBoardPost;
+import com.hn.api.diary.entity.User;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,96 +23,35 @@ public class MyApplicationRunner implements ApplicationRunner {
     FreeBoardPostRepository freeBoardPostRepository;
     @Autowired
     FreeBoardCommentRepository freeBoardCommentRepository;
-    @Autowired UserRepository userRepository;
+    @Autowired
+    UserRepository userRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        // User user = User.builder()
-        //         .email("user")
-        //         .password("user")
-        //         .role("USER")
-        //         .build();
+        User user = userRepository.findById(1L).orElseThrow();
 
-        // User admin = User.builder()
-        //         .email("admin")
-        //         .password("admin")
-        //         .role("ADMIN")
-        //         .build();
+        List<FreeBoardPost> freeBoardPosts = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            FreeBoardPost freeBoardPost = FreeBoardPost.builder()
+                    .title(i + "")
+                    .content(i + "")
+                    .user(user)
+                    .build();
+            freeBoardPost.setOrigin(freeBoardPost.getId());
+            freeBoardPosts.add(freeBoardPost);
+        }
+        freeBoardPostRepository.saveAll(freeBoardPosts);
 
-        // List<Board> list = IntStream.range(1, 47)
-        //         .mapToObj(i -> {
-        //             return Board.builder()
-        //                     .title("title" + i)
-        //                     .content("content" + i)
-        //                     .user(user)
-        //                     .origin((long) i)
-        //                     .num(0)
-        //                     .depth(0)
-        //                     .build();
-        //         })
-        //         .collect(Collectors.toList());
-        // boardRepository.saveAll(list);
-
-        // List<Board> list2 = IntStream.range(47, 91)
-        //         .mapToObj(i -> {
-        //             return Board.builder()
-        //                     .title("title" + i)
-        //                     .content("content" + i)
-        //                     .user(admin)
-        //                     .origin((long) i)
-        //                     .num(0)
-        //                     .depth(0)
-        //                     .build();
-        //         })
-        //         .collect(Collectors.toList());
-        // boardRepository.saveAll(list2);
-
-        // User re = User.builder()
-        //         .email("re")
-        //         .password("re")
-        //         .role("USER")
-        //         .build();
-
-        // Board b = Board.builder()
-        //         .title("title 답글")
-        //         .content("content 답글")
-        //         .user(re)
-        //         .origin(85L)
-        //         .num(3)
-        //         .depth(1)
-        //         .build();
-        // boardRepository.save(b);
-
-        // User re2 = User.builder()
-        //         .email("re2")
-        //         .password("re2")
-        //         .role("USER")
-        //         .build();
-
-        // Board b2 = Board.builder()
-        //         .title("title 답글2")
-        //         .content("content 답글2")
-        //         .user(re2)
-        //         .origin(85L)
-        //         .num(2)
-        //         .depth(1)
-        //         .build();
-        // boardRepository.save(b2);
-
-        // User re3 = User.builder()
-        //         .email("re3")
-        //         .password("re3")
-        //         .role("USER")
-        //         .build();
-
-        // Board b3 = Board.builder()
-        //         .title("title 답글3")
-        //         .content("content 답글3")
-        //         .user(re3)
-        //         .origin(85L)
-        //         .num(1)
-        //         .depth(1)
-        //         .build();
-        // boardRepository.save(b3);
+        FreeBoardPost freeBoardPost = freeBoardPostRepository.findById(1L).orElseThrow();
+        List<FreeBoardComment> freeBoardComments = new ArrayList<>();
+        for(int i = 0; i < 100; i++){
+            FreeBoardComment freeBoardComment = FreeBoardComment.builder()
+                    .freeBoardPost(freeBoardPost)
+                    .content(i+"")
+                    .user(user)
+                    .build();
+            freeBoardComments.add(freeBoardComment);
+        }
+        freeBoardCommentRepository.saveAll(freeBoardComments);
     }
 }
