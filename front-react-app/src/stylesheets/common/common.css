@@ -67,12 +67,10 @@ textarea {
     cursor: pointer;
     text-decoration: none;
     border: 1px solid var(--pagination-border-color);
-    border-radius: 50%;
 }
 
 .pageActive {
     border: 1px solid var(--pagination-border-color);
-    border-radius: 50%;
 }
 
 .separator {

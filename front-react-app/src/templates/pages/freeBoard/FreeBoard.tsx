@@ -129,8 +129,7 @@ const FreeBoard = () => {
                 <div id='boardFooter'>
                     {totalPageCount > 0 && (
                         <ReactPaginate
-                            // pageRangeDisplayed={Page.perBlockSize}
-                            pageRangeDisplayed={5}
+                            pageRangeDisplayed={Page.perBlockSize}
                             marginPagesDisplayed={1}
                             pageCount={totalPageCount}
                             onPageChange={ ({selected}) => setCurPage(selected)}
@@ -140,7 +139,6 @@ const FreeBoard = () => {
                             nextLabel=">"
                         />
                     )}
-                    <div id='boardFooter-bottom'></div>
                 </div>
             </div>
         </DefaultLayout>
