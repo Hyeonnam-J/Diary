@@ -1,6 +1,8 @@
 package com.hn.api.diary.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hn.api.diary.dto.user.CheckDuplicationDTO;
 import com.hn.api.diary.dto.user.SessionDTO;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
@@ -74,6 +76,114 @@ class UserControllerTest {
 
         User user = userRepository.findAll().iterator().next();
         Assertions.assertEquals(signUpDTO.getEmail(), user.getEmail());
+    }
+
+    @Test
+    @DisplayName("sign up : duplicated email")
+    public void checkEmailDuplicate() throws Exception {
+        // [given]
+        User user = User.builder()
+                .email("test@naver.com")
+                .password("!@#QWE123qwe")
+                .nick("testNick")
+                .build();
+        userRepository.save(user);
+
+        CheckDuplicationDTO checkDuplicationDTO = CheckDuplicationDTO.builder()
+                .item("email")
+                .value("test@naver.com")
+                .build();
+        String signUpDTO_json = objectMapper.writeValueAsString(checkDuplicationDTO);
+
+        // [when]
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.post("/signUp/checkDuplication")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(signUpDTO_json));
+
+        // [then]
+        resultActions.andExpect(MockMvcResultMatchers.status().isAlreadyReported())
+                .andDo(MockMvcResultHandlers.print());
+    }
+
+    @Test
+    @DisplayName("sign up : duplicated nick")
+    public void checkNickDuplicate() throws Exception {
+        // [given]
+        User user = User.builder()
+                .email("test@naver.com")
+                .password("!@#QWE123qwe")
+                .nick("testNick")
+                .build();
+        userRepository.save(user);
+
+        CheckDuplicationDTO checkDuplicationDTO = CheckDuplicationDTO.builder()
+                .item("nick")
+                .value("testNick")
+                .build();
+        String signUpDTO_json = objectMapper.writeValueAsString(checkDuplicationDTO);
+
+        // [when]
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.post("/signUp/checkDuplication")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(signUpDTO_json));
+
+        // [then]
+        resultActions.andExpect(MockMvcResultMatchers.status().isAlreadyReported())
+                .andDo(MockMvcResultHandlers.print());
+    }
+
+    @Test
+    @DisplayName("sign up : pass duplication email test")
+    public void passDuplicationEmailTest() throws Exception {
+        // [given]
+        User user = User.builder()
+                .email("test@naver.com")
+                .password("!@#QWE123qwe")
+                .nick("testNick")
+                .build();
+        userRepository.save(user);
+
+        CheckDuplicationDTO checkDuplicationDTO = CheckDuplicationDTO.builder()
+                .item("email")
+                .value("test@googlel.co.kr")
+                .build();
+        String signUpDTO_json = objectMapper.writeValueAsString(checkDuplicationDTO);
+
+        // [when]
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.post("/signUp/checkDuplication")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(signUpDTO_json));
+
+        // [then]
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print());
+    }
+
+    @Test
+    @DisplayName("sign up : pass duplication nick test")
+    public void passDuplicationNickTest() throws Exception {
+        // [given]
+        User user = User.builder()
+                .email("test@naver.com")
+                .password("!@#QWE123qwe")
+                .nick("testNick")
+                .build();
+        userRepository.save(user);
+
+        CheckDuplicationDTO checkDuplicationDTO = CheckDuplicationDTO.builder()
+                .item("nick")
+                .value("testNick2")
+                .build();
+        String signUpDTO_json = objectMapper.writeValueAsString(checkDuplicationDTO);
+
+        // [when]
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.post("/signUp/checkDuplication")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(signUpDTO_json));
+
+        // [then]
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print());
     }
     /* ********************************************************************************* */
     // signUp() - end

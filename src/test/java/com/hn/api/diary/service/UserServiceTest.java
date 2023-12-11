@@ -1,6 +1,7 @@
 package com.hn.api.diary.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hn.api.diary.dto.user.CheckDuplicationDTO;
 import com.hn.api.diary.dto.user.SignUpDTO;
 import com.hn.api.diary.entity.User;
 import com.hn.api.diary.exception.AlreadyReported;
@@ -19,15 +20,21 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @SpringBootTest
 class UserServiceTest {
 
-    @Autowired private ObjectMapper objectMapper;
-    @Autowired private PasswordEncoder passwordEncoder;
-    @Autowired private UserService userService;
-    @Autowired private UserRepository userRepository;
-    @Autowired private FreeBoardPostRepository freeBoardPostRepository;
-    @Autowired private FreeBoardCommentRepository freeBoardCommentRepository;
+    @Autowired
+    private ObjectMapper objectMapper;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private FreeBoardPostRepository freeBoardPostRepository;
+    @Autowired
+    private FreeBoardCommentRepository freeBoardCommentRepository;
 
     @BeforeEach
-    void clean(){
+    void clean() {
         freeBoardCommentRepository.deleteAll();
         freeBoardPostRepository.deleteAll();
         userRepository.deleteAll();
@@ -37,7 +44,7 @@ class UserServiceTest {
     /* ********************************************************************************* */
     @Test
     @DisplayName("sign up : fail while check duplicated email")
-    void failWhileCheckDuplicatedEmail(){
+    void failWhileCheckDuplicatedEmail() {
         // [given]
 
         // 데이터를 넣어두고,
@@ -61,7 +68,7 @@ class UserServiceTest {
 
     @Test
     @DisplayName("sign up : check encrypted password")
-    void checkEncryptedPassword(){
+    void checkEncryptedPassword() {
         // [given]
 
         // 암호화하는 signUp 로직을 거쳐 저장하고,
@@ -74,10 +81,35 @@ class UserServiceTest {
 
         // 저장된 데이터를 가져온다.
         User user = userRepository.findByEmail("any")
-                        .orElseThrow(InvalidValue::new);
+                .orElseThrow(InvalidValue::new);
 
         // [expected]
         Assertions.assertTrue(passwordEncoder.matches(signUpDTO.getPassword(), user.getPassword()));
+    }
+
+    @Test
+    @DisplayName("sign up : check duplicated value")
+    public void checkDuplicatedValue() {
+        // [given]
+        User user = User.builder()
+                .email("email@naver.com")
+                .password("!@#123QWEqwe")
+                .nick("nick")
+                .build();
+        userRepository.save(user);
+
+        CheckDuplicationDTO checkDuplicationDTO_1 = CheckDuplicationDTO.builder()
+                .item("email")
+                .value("email@naver.com")
+                .build();
+        CheckDuplicationDTO checkDuplicationDTO_2 = CheckDuplicationDTO.builder()
+                .item("nick")
+                .value("nick")
+                .build();
+
+        // [expected]
+        Assertions.assertThrows(AlreadyReported.class, () -> userService.checkDuplication(checkDuplicationDTO_1));
+        Assertions.assertThrows(AlreadyReported.class, () -> userService.checkDuplication(checkDuplicationDTO_2));
     }
     /* ********************************************************************************* */
     // signUp() - end
