@@ -37,5 +37,5 @@ export type FreeBoardComment = {
     };
     content: string,
     createdDate: string,
-    origin: number,
+    isParent: boolean,
 };

@@ -287,8 +287,7 @@ const FreeBoardPostDetailRead = () => {
                         const isReplyingToComment = replyingStates[comment.id] || false;
                         const isUpdatingComment = updatingStates[comment.id] || false;
 
-                        const isOrigin = comment.id === comment.origin;
-                        const paddingLeft = isOrigin ? 0 : 20;
+                        const paddingLeft = comment.parent ? 0 : 20;
 
                         return (
                             <div key={comment.id} id={`read-comment-${comment.id}`} className='read-comment-container' style={{ paddingLeft: `${paddingLeft}px` }}>
@@ -298,7 +297,7 @@ const FreeBoardPostDetailRead = () => {
                                         <div id='read-comment-date'>{comment.createdDate}</div>
                                     </div>
                                     <div id='read-comment-btns'>
-                                        {comment.id === comment.origin && (
+                                        {comment.parent && (
                                             <p onClick={() => showReplyCommentFrame( comment.id.toString() )}>reply</p>
                                         )}
                                         {isCurrentUserComment && (

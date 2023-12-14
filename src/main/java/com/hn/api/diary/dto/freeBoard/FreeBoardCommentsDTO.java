@@ -15,6 +15,6 @@ public class FreeBoardCommentsDTO {
     private FreeBoardPostDTO post;
     private String content;
     private String createdDate;
-    private Long origin;
+    private boolean isParent;
 
 }

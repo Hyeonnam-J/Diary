@@ -35,6 +35,8 @@ public class QFreeBoardComment extends EntityPathBase<FreeBoardComment> {
 
     public final BooleanPath isDelete = createBoolean("isDelete");
 
+    public final BooleanPath isParent = createBoolean("isParent");
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> lastModifiedDate = _super.lastModifiedDate;
 
