@@ -20,12 +20,7 @@ public class TestController {
 
     @GetMapping(value = "/test")
     public String test(){
-        FreeBoardPost freeBoardPost = freeBoardPostRepository.findById(1L).orElseThrow();
-        System.out.println(freeBoardPost.getUser().getEmail());
-        List<FreeBoardComment> freeBoardComments = freeBoardPost.getFreeBoardComments();
-        for(FreeBoardComment c: freeBoardComments){
-            System.out.println(c.getId());
-        }
-        return "end";
+        System.out.println("테스트");
+        return "테스트";
     }
 }

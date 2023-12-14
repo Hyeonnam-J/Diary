@@ -42,8 +42,8 @@
   background-color: var(--background-color);
   border: 1px solid var(--border-color);
 
-  width: 150px;
-  height: 150px;
+  width: var(--my-contents-box-width);
+  height: var(--my-contents-box-height);
 
   /* 컨텐츠 세로 중앙 정렬 */
   /* 클릭 또는 오버 시 display: flex로 */
