@@ -61,15 +61,12 @@ public class FreeBoardPostService {
         long countComments = freeBoardCommentRepository.countByFreeBoardPostIdWithNoDelete(Long.parseLong(postId));
         if(countComments != 0) throw new Forbidden();
 
+        // 답글이 있으면 삭제할 수 없다.
+        long countChildPosts = freeBoardPostRepository.countByParentIdWithNoDelete(Long.parseLong(postId));
+        if(countChildPosts != 0) throw new Forbidden();
+
         FreeBoardPost freeBoardPost = freeBoardPostRepository.findById(Long.parseLong(postId))
                 .orElseThrow(InvalidValue::new);
-
-        // 원글일 경우에만,
-        if(freeBoardPost.getId() == freeBoardPost.getOrigin()){
-            long countReplies = freeBoardPostRepository.countByOriginWithNoDelete(freeBoardPost.getOrigin());
-            // 1개 이상, 즉 자기 자신과 다른 글-답글이 있으면 삭제할 수 없다.
-            if(countReplies > 1) throw new Forbidden();
-        }
 
         freeBoardPost.setDelete(true);
         freeBoardPostRepository.save(freeBoardPost);
@@ -126,7 +123,6 @@ public class FreeBoardPostService {
         freeBoardPostRepository.save(freeBoardPost);
 
         freeBoardPost.setOrigin(freeBoardPost.getId());
-        freeBoardPost.setParentId(freeBoardPost.getId());
         freeBoardPostRepository.save(freeBoardPost);
     }
 

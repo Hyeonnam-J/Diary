@@ -37,8 +37,8 @@ public class FreeBoardPost extends DateColumn {
         this.content = content;
         this.user = user;
         this.origin = origin;
-        this.parentId = parentId;
 
+        this.parentId = parentId == null ? 0 : parentId;
         this.num = num == null ? 0 : num;
         this.depth = depth == null ? 0 : depth;
 
@@ -60,10 +60,6 @@ public class FreeBoardPost extends DateColumn {
 
     public void setDelete(boolean delete) {
         isDelete = delete;
-    }
-
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
     }
 
     public void setNum(Integer num) {
