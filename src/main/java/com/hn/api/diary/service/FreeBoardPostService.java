@@ -57,18 +57,19 @@ public class FreeBoardPostService {
     }
 
     public void delete(String postId){
-        // origin으로 찾은 게시글이 1개 즉 자기 자신 그 이상 있으면 삭제할 수 없다.
-        long countReplies = freeBoardPostRepository.countByOriginWithNoDelete(Long.parseLong(postId));
-        if(countReplies > 1) throw new Forbidden();
-
         // 코멘트가 있으면 삭제할 수 없다.
         long countComments = freeBoardCommentRepository.countByFreeBoardPostIdWithNoDelete(Long.parseLong(postId));
         if(countComments != 0) throw new Forbidden();
 
-        // todo: when deleted origin post..
-        // todo: think! Hierarchical board...
         FreeBoardPost freeBoardPost = freeBoardPostRepository.findById(Long.parseLong(postId))
                 .orElseThrow(InvalidValue::new);
+
+        // 원글일 경우에만,
+        if(freeBoardPost.getId() == freeBoardPost.getOrigin()){
+            long countReplies = freeBoardPostRepository.countByOriginWithNoDelete(freeBoardPost.getOrigin());
+            // 1개 이상, 즉 자기 자신과 다른 글-답글이 있으면 삭제할 수 없다.
+            if(countReplies > 1) throw new Forbidden();
+        }
 
         freeBoardPost.setDelete(true);
         freeBoardPostRepository.save(freeBoardPost);
@@ -91,23 +92,11 @@ public class FreeBoardPostService {
         FreeBoardPost originFreeBoardPost = freeBoardPostRepository.findById(Long.parseLong(freeBoardPostReplyDTO.getPostId()))
                 .orElseThrow(InvalidValue::new);
 
-        // 원글 아래 기존 게시물 num + 1
-        List<FreeBoardPost> originFreeBoardPosts = freeBoardPostRepository.findByOrigin(originFreeBoardPost.getOrigin());
-        originFreeBoardPosts = originFreeBoardPosts.stream()
-                .peek(board -> {
-                    if (board.getNum() > originFreeBoardPost.getNum())
-                        board.setNum(board.getNum() + 1);
-                })
-                .collect(Collectors.toList());
-        freeBoardPostRepository.saveAll(originFreeBoardPosts);
-
         FreeBoardPost freeBoardPost = FreeBoardPost.builder()
                 .title(freeBoardPostReplyDTO.getTitle())
                 .content(freeBoardPostReplyDTO.getContent())
                 .user(user)
                 .origin(originFreeBoardPost.getOrigin())
-                .num(originFreeBoardPost.getNum() + 1)
-                .depth(originFreeBoardPost.getDepth() + 1)
                 .build();
         freeBoardPostRepository.save(freeBoardPost);
     }
@@ -134,7 +123,7 @@ public class FreeBoardPostService {
         switch (sort) {
             case BoardSort.BASIC:
                 pageable = PageRequest.of(page, BoardPageSize.BASIC,
-                        Sort.by("origin").descending().and(Sort.by("num")));
+                        Sort.by("origin").descending().and(Sort.by("createdDate").ascending()));
                 break;
 
             default:

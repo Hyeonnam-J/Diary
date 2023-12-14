@@ -39,12 +39,11 @@ public class FreeBoardCommentService {
     }
 
     public void delete(String commentId){
-        // todo: when deleted origin comment..
         FreeBoardComment freeBoardComment = freeBoardCommentRepository.findById(Long.parseLong(commentId))
                 .orElseThrow(InvalidValue::new);
 
         // 코멘트 원글이고,
-        if(freeBoardComment.getDepth() == 0){
+        if(freeBoardComment.getId() == freeBoardComment.getOrigin()){
             // 자기 외에 origin이 있을 때, 그러니까 답글이 있을 때 삭제할 수 없다.
             long countReplies = freeBoardCommentRepository.countByOriginWithNoDelete(freeBoardComment.getOrigin());
             if(countReplies > 1) throw new Forbidden();
@@ -93,7 +92,6 @@ public class FreeBoardCommentService {
                 .freeBoardPost(freeBoardComment.getFreeBoardPost())
                 .origin(freeBoardComment.getOrigin())
                 .content(boardCommentReplyDTO.getContent())
-                .depth(1)
                 .build();
 
         freeBoardCommentRepository.save(freeBoardComment_save);

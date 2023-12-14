@@ -29,8 +29,6 @@ public class QFreeBoardComment extends EntityPathBase<FreeBoardComment> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
 
-    public final NumberPath<Integer> depth = createNumber("depth", Integer.class);
-
     public final QFreeBoardPost freeBoardPost;
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
