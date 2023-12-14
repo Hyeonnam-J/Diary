@@ -112,6 +112,11 @@ const FreeBoardPostDetailRead = () => {
                 method: 'DELETE',
             })
             .then(response => {
+                if(response.status == 403){
+                    alert('Replies exist');
+                    return;
+                }
+
                 navigate('/freeBoard');
             });
         } else alert('You are not writer');
@@ -236,6 +241,10 @@ const FreeBoardPostDetailRead = () => {
             method: 'DELETE',
         })
         .then(response => {
+            if(response.status == 403){
+                alert('Replies exist');
+                return;
+            }
             getTotalCommentsCount();
             getComments(`/freeBoard/comments/${postId}?page=${curPage}`);
         });
@@ -249,7 +258,9 @@ const FreeBoardPostDetailRead = () => {
         <DefaultLayout>
             <div id='read-frame' className={Layout.centerFrame}>
                 <div id='read-header'>
-                    <button onClick={() => replyPost(post)} className={Button.primary}>reply</button>
+                    {post !== null && post.depth === 0 && (
+                        <button onClick={() => replyPost(post)} className={Button.primary}>reply</button>
+                    )}
                     <button onClick={() => updatePost(post)} className={Button.primary}>update</button>
                     <button onClick={() => deletePost(post)} className={Button.inactive}>delete</button>
                 </div>

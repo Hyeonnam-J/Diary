@@ -21,6 +21,7 @@ export type FreeBoardPostDetail = {
     };
     createdDate: string,
     viewCount: number,
+    depth: number,
 };
 
 export const FreeBoardSort = {
