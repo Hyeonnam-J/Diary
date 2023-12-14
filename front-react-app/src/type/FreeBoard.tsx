@@ -7,7 +7,7 @@ export type FreeBoardPosts = {
     },
     createdDate: string,
     viewCount: number,
-    origin: number,
+    depth: number,
 };
 
 export type FreeBoardPostDetail = {
@@ -21,7 +21,7 @@ export type FreeBoardPostDetail = {
     };
     createdDate: string,
     viewCount: number,
-    origin: number,
+    depth: number,
 };
 
 export const FreeBoardSort = {
@@ -37,5 +37,5 @@ export type FreeBoardComment = {
     };
     content: string,
     createdDate: string,
-    isParent: boolean,
+    parent: boolean,
 };

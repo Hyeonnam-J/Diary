@@ -258,9 +258,7 @@ const FreeBoardPostDetailRead = () => {
         <DefaultLayout>
             <div id='read-frame' className={Layout.centerFrame}>
                 <div id='read-header'>
-                    {post !== null && post.id === post.origin && (
-                        <button onClick={() => replyPost(post)} className={Button.primary}>reply</button>
-                    )}
+                    <button onClick={() => replyPost(post)} className={Button.primary}>reply</button>
                     <button onClick={() => updatePost(post)} className={Button.primary}>update</button>
                     <button onClick={() => deletePost(post)} className={Button.inactive}>delete</button>
                 </div>
