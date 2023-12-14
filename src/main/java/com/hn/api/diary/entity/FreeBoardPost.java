@@ -27,17 +27,13 @@ public class FreeBoardPost extends DateColumn {
     private User user;
 
     private Long origin;
-    private Integer num;
-    private Integer depth;
 
     @Builder
-    public FreeBoardPost(String title, String content, User user, Long origin, Integer num, Integer depth) {
+    public FreeBoardPost(String title, String content, User user, Long origin) {
         this.title = title;
         this.content = content;
         this.user = user;
         this.origin = origin;
-        this.num = num != null ? num : 0;
-        this.depth = depth != null ? depth : 0;
 
         this.viewCount = 0L;
         this.isDelete = false;
@@ -45,10 +41,6 @@ public class FreeBoardPost extends DateColumn {
 
     public void setOrigin(Long origin){
         this.origin = origin;
-    }
-
-    public void setNum(Integer num) {
-        this.num = num;
     }
 
     public void setTitle(String title) {

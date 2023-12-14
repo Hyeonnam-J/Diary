@@ -258,7 +258,7 @@ const FreeBoardPostDetailRead = () => {
         <DefaultLayout>
             <div id='read-frame' className={Layout.centerFrame}>
                 <div id='read-header'>
-                    {post !== null && post.depth === 0 && (
+                    {post !== null && post.id === post.origin && (
                         <button onClick={() => replyPost(post)} className={Button.primary}>reply</button>
                     )}
                     <button onClick={() => updatePost(post)} className={Button.primary}>update</button>
@@ -287,7 +287,8 @@ const FreeBoardPostDetailRead = () => {
                         const isReplyingToComment = replyingStates[comment.id] || false;
                         const isUpdatingComment = updatingStates[comment.id] || false;
 
-                        const paddingLeft = 20 * comment.depth;
+                        const isOrigin = comment.id === comment.origin;
+                        const paddingLeft = isOrigin ? 0 : 20;
 
                         return (
                             <div key={comment.id} id={`read-comment-${comment.id}`} className='read-comment-container' style={{ paddingLeft: `${paddingLeft}px` }}>
@@ -297,7 +298,7 @@ const FreeBoardPostDetailRead = () => {
                                         <div id='read-comment-date'>{comment.createdDate}</div>
                                     </div>
                                     <div id='read-comment-btns'>
-                                        {comment.depth === 0 && (
+                                        {comment.id === comment.origin && (
                                             <p onClick={() => showReplyCommentFrame( comment.id.toString() )}>reply</p>
                                         )}
                                         {isCurrentUserComment && (

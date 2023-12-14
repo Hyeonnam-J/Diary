@@ -29,8 +29,6 @@ public class QFreeBoardPost extends EntityPathBase<FreeBoardPost> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
 
-    public final NumberPath<Integer> depth = createNumber("depth", Integer.class);
-
     public final ListPath<FreeBoardComment, QFreeBoardComment> freeBoardComments = this.<FreeBoardComment, QFreeBoardComment>createList("freeBoardComments", FreeBoardComment.class, QFreeBoardComment.class, PathInits.DIRECT2);
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
@@ -39,8 +37,6 @@ public class QFreeBoardPost extends EntityPathBase<FreeBoardPost> {
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> lastModifiedDate = _super.lastModifiedDate;
-
-    public final NumberPath<Integer> num = createNumber("num", Integer.class);
 
     public final NumberPath<Long> origin = createNumber("origin", Long.class);
 
