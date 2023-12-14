@@ -11,6 +11,7 @@ import com.hn.api.diary.dto.freeBoard.FreeBoardCommentWriteDTO;
 import com.hn.api.diary.entity.FreeBoardComment;
 import com.hn.api.diary.entity.FreeBoardPost;
 import com.hn.api.diary.entity.User;
+import com.hn.api.diary.exception.Forbidden;
 import com.hn.api.diary.exception.InvalidValue;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
 import com.hn.api.diary.repository.UserRepository;
@@ -41,6 +42,13 @@ public class FreeBoardCommentService {
         // todo: when deleted origin comment..
         FreeBoardComment freeBoardComment = freeBoardCommentRepository.findById(Long.parseLong(commentId))
                 .orElseThrow(InvalidValue::new);
+
+        // 코멘트 원글이고,
+        if(freeBoardComment.getDepth() == 0){
+            // 자기 외에 origin이 있을 때, 그러니까 답글이 있을 때 삭제할 수 없다.
+            long countReplies = freeBoardCommentRepository.countByOriginWithNoDelete(freeBoardComment.getOrigin());
+            if(countReplies > 1) throw new Forbidden();
+        }
 
         freeBoardComment.setDelete(true);
         freeBoardCommentRepository.save(freeBoardComment);

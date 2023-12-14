@@ -12,6 +12,12 @@ import java.util.List;
 
 public interface FreeBoardCommentRepository extends JpaRepository<FreeBoardComment, Long> {
 
+    @Query("select count(c) from FreeBoardComment c where c.origin = :origin and c.isDelete = false")
+    long countByOriginWithNoDelete(@Param("origin") Long origin);
+
+    @Query("select count(c) from FreeBoardComment c where c.freeBoardPost.id = :postId and c.isDelete = false")
+    long countByFreeBoardPostIdWithNoDelete(@Param("postId") Long postId);
+
     @EntityGraph(attributePaths = {"user", "freeBoardPost"})
     @Query("select c from FreeBoardComment c where c.freeBoardPost.id = :postId and c.isDelete = false")
     List<FreeBoardComment> findByFreeBoardPostId(@Param("postId") Long postId, Pageable pageable);

@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import com.hn.api.diary.entity.FreeBoardComment;
+import com.hn.api.diary.exception.Forbidden;
+import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -29,6 +32,7 @@ import lombok.RequiredArgsConstructor;
 public class FreeBoardPostService {
 
     private final FreeBoardPostRepository freeBoardPostRepository;
+    private final FreeBoardCommentRepository freeBoardCommentRepository;
     private final UserRepository userRepository;
 
     private class BoardPageSize {
@@ -53,6 +57,14 @@ public class FreeBoardPostService {
     }
 
     public void delete(String postId){
+        // origin으로 찾은 게시글이 1개 즉 자기 자신 그 이상 있으면 삭제할 수 없다.
+        long countReplies = freeBoardPostRepository.countByOriginWithNoDelete(Long.parseLong(postId));
+        if(countReplies > 1) throw new Forbidden();
+
+        // 코멘트가 있으면 삭제할 수 없다.
+        long countComments = freeBoardCommentRepository.countByFreeBoardPostIdWithNoDelete(Long.parseLong(postId));
+        if(countComments != 0) throw new Forbidden();
+
         // todo: when deleted origin post..
         // todo: think! Hierarchical board...
         FreeBoardPost freeBoardPost = freeBoardPostRepository.findById(Long.parseLong(postId))
