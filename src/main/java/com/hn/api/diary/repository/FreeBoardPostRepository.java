@@ -15,8 +15,8 @@ public interface FreeBoardPostRepository extends JpaRepository<FreeBoardPost, Lo
     long countByParentIdWithNoDelete(@Param("parentId") Long parentId);
 
     @EntityGraph(attributePaths = {"freeBoardComments", "freeBoardComments.user"})
-    @Query("select p from FreeBoardPost p where p.origin = :origin")
-    List<FreeBoardPost> findByOrigin(@Param("origin") Long origin);
+    @Query("select p from FreeBoardPost p where p.groupId = :groupId")
+    List<FreeBoardPost> findByGroupId(@Param("groupId") Long groupId);
 
     @EntityGraph(attributePaths = {"freeBoardComments", "freeBoardComments.user"})
     @Query("select p from FreeBoardPost p where p.isDelete = false")

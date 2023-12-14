@@ -31,6 +31,8 @@ public class QFreeBoardComment extends EntityPathBase<FreeBoardComment> {
 
     public final QFreeBoardPost freeBoardPost;
 
+    public final NumberPath<Long> groupId = createNumber("groupId", Long.class);
+
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final BooleanPath isDelete = createBoolean("isDelete");
@@ -39,8 +41,6 @@ public class QFreeBoardComment extends EntityPathBase<FreeBoardComment> {
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> lastModifiedDate = _super.lastModifiedDate;
-
-    public final NumberPath<Long> origin = createNumber("origin", Long.class);
 
     public final QUser user;
 

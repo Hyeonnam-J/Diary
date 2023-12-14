@@ -90,10 +90,10 @@ public class FreeBoardPostService {
                 .orElseThrow(InvalidValue::new);
 
         // 답글의 대상 글 num 이후의 post에 num + 1
-        List<FreeBoardPost> freeBoardPosts = freeBoardPostRepository.findByOrigin(originFreeBoardPost.getOrigin());
+        List<FreeBoardPost> freeBoardPosts = freeBoardPostRepository.findByGroupId(originFreeBoardPost.getGroupId());
         freeBoardPosts.stream()
                 .peek(p -> {
-                    if(p.getNum() > originFreeBoardPost.getNum()) p.setNum(p.getNum()+1);
+                    if(p.getGroupNo() > originFreeBoardPost.getGroupNo()) p.setGroupNo(p.getGroupNo()+1);
                 })
                 .collect(Collectors.toList());
         freeBoardPostRepository.saveAll(freeBoardPosts);
@@ -102,8 +102,8 @@ public class FreeBoardPostService {
                 .title(freeBoardPostReplyDTO.getTitle())
                 .content(freeBoardPostReplyDTO.getContent())
                 .user(user)
-                .origin(originFreeBoardPost.getOrigin())
-                .num(originFreeBoardPost.getNum()+1)
+                .groupId(originFreeBoardPost.getGroupId())
+                .groupNo(originFreeBoardPost.getGroupNo()+1)
                 .depth(originFreeBoardPost.getDepth()+1)
                 .parentId(originFreeBoardPost.getId())
                 .build();
@@ -122,7 +122,7 @@ public class FreeBoardPostService {
 
         freeBoardPostRepository.save(freeBoardPost);
 
-        freeBoardPost.setOrigin(freeBoardPost.getId());
+        freeBoardPost.setGroupId(freeBoardPost.getId());
         freeBoardPostRepository.save(freeBoardPost);
     }
 
@@ -132,13 +132,13 @@ public class FreeBoardPostService {
         switch (sort) {
             case BoardSort.BASIC:
                 pageable = PageRequest.of(page, BoardPageSize.BASIC,
-                        Sort.by("origin").descending()
-                                .and(Sort.by("num").ascending()));
+                        Sort.by("groupId").descending()
+                                .and(Sort.by("groupNo").ascending()));
                 break;
 
             default:
                 pageable = PageRequest.of(page, BoardPageSize.BASIC,
-                        Sort.by("origin").descending().and(Sort.by("num")));
+                        Sort.by("groupId").descending().and(Sort.by("groupNo")));
                 break;
         }
 

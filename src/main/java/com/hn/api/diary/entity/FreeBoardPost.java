@@ -26,28 +26,30 @@ public class FreeBoardPost extends DateColumn {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private User user;
 
-    private Long origin;
-    private Long parentId;
-    private Integer num;
+    private Long groupId;
+    private Integer groupNo;
     private Integer depth;
+    private Long parentId;
 
     @Builder
-    public FreeBoardPost(String title, String content, User user, Long origin, Long parentId, Integer num, Integer depth) {
+    public FreeBoardPost(String title, String content, User user, Long groupId, Long parentId, Integer groupNo, Integer depth) {
         this.title = title;
         this.content = content;
         this.user = user;
-        this.origin = origin;
-
-        this.parentId = parentId == null ? 0 : parentId;
-        this.num = num == null ? 0 : num;
+        this.groupId = groupId;
+        this.groupNo = groupNo == null ? 0 : groupNo;
         this.depth = depth == null ? 0 : depth;
-
+        this.parentId = parentId == null ? 0 : parentId;
         this.viewCount = 0L;
         this.isDelete = false;
     }
 
-    public void setOrigin(Long origin){
-        this.origin = origin;
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
+
+    public void setGroupNo(Integer groupNo) {
+        this.groupNo = groupNo;
     }
 
     public void setTitle(String title) {
@@ -60,10 +62,6 @@ public class FreeBoardPost extends DateColumn {
 
     public void setDelete(boolean delete) {
         isDelete = delete;
-    }
-
-    public void setNum(Integer num) {
-        this.num = num;
     }
 
     @JsonIgnore
