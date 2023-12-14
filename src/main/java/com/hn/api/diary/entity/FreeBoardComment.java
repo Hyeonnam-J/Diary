@@ -26,15 +26,17 @@ public class FreeBoardComment extends DateColumn {
     private boolean isDelete;
 
     private Long origin;
+    private boolean isParent;
 
     @Builder
-    public FreeBoardComment(FreeBoardPost freeBoardPost, User user, String content, Long origin) {
+    public FreeBoardComment(FreeBoardPost freeBoardPost, User user, String content, Long origin, boolean isParent) {
         this.freeBoardPost = freeBoardPost;
         this.user = user;
         this.content = content;
 
         this.isDelete = false;
         this.origin = origin;
+        this.isParent = isParent;   // null이면 false
     }
 
     public void setOrigin(Long origin) {

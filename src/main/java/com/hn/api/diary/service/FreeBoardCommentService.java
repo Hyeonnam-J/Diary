@@ -1,30 +1,28 @@
 package com.hn.api.diary.service;
 
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
 import com.hn.api.diary.dto.freeBoard.FreeBoardBoardCommentReplyDTO;
 import com.hn.api.diary.dto.freeBoard.FreeBoardCommentUpdateDTO;
 import com.hn.api.diary.dto.freeBoard.FreeBoardCommentWriteDTO;
+import com.hn.api.diary.dto.freeBoard.FreeBoardCommentsDTO;
 import com.hn.api.diary.entity.FreeBoardComment;
 import com.hn.api.diary.entity.FreeBoardPost;
 import com.hn.api.diary.entity.User;
 import com.hn.api.diary.exception.Forbidden;
 import com.hn.api.diary.exception.InvalidValue;
+import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
 import com.hn.api.diary.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.hn.api.diary.dto.freeBoard.FreeBoardCommentsDTO;
-import com.hn.api.diary.repository.FreeBoardCommentRepository;
-
-import lombok.RequiredArgsConstructor;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @RequiredArgsConstructor
 @Service
@@ -38,22 +36,22 @@ public class FreeBoardCommentService {
         private static final int BASIC = 10;
     }
 
-    public void delete(String commentId){
+    public void delete(String commentId) {
         FreeBoardComment freeBoardComment = freeBoardCommentRepository.findById(Long.parseLong(commentId))
                 .orElseThrow(InvalidValue::new);
 
         // 코멘트 원글이고,
-        if(freeBoardComment.getId() == freeBoardComment.getOrigin()){
+        if (freeBoardComment.getId() == freeBoardComment.getOrigin()) {
             // 자기 외에 origin이 있을 때, 그러니까 답글이 있을 때 삭제할 수 없다.
             long countReplies = freeBoardCommentRepository.countByOriginWithNoDelete(freeBoardComment.getOrigin());
-            if(countReplies > 1) throw new Forbidden();
+            if (countReplies > 1) throw new Forbidden();
         }
 
         freeBoardComment.setDelete(true);
         freeBoardCommentRepository.save(freeBoardComment);
     }
 
-    public void update(FreeBoardCommentUpdateDTO freeBoardCommentUpdateDTO){
+    public void update(FreeBoardCommentUpdateDTO freeBoardCommentUpdateDTO) {
         FreeBoardComment freeBoardComment = freeBoardCommentRepository.findById(Long.parseLong(freeBoardCommentUpdateDTO.getCommentId()))
                 .orElseThrow(InvalidValue::new);
 
@@ -61,7 +59,7 @@ public class FreeBoardCommentService {
         freeBoardCommentRepository.save(freeBoardComment);
     }
 
-    public void write(FreeBoardCommentWriteDTO freeBoardCommentWriteDTO, String userId){
+    public void write(FreeBoardCommentWriteDTO freeBoardCommentWriteDTO, String userId) {
         User user = userRepository.findById(Long.parseLong(userId))
                 .orElseThrow(InvalidValue::new);
 
@@ -72,6 +70,7 @@ public class FreeBoardCommentService {
                 .freeBoardPost(freeBoardPost)
                 .user(user)
                 .content(freeBoardCommentWriteDTO.getContent())
+                .isParent(true)
                 .build();
 
         freeBoardCommentRepository.save(freeBoardComment);
@@ -80,7 +79,7 @@ public class FreeBoardCommentService {
         freeBoardCommentRepository.save(freeBoardComment);
     }
 
-    public void reply(FreeBoardBoardCommentReplyDTO boardCommentReplyDTO, String userId){
+    public void reply(FreeBoardBoardCommentReplyDTO boardCommentReplyDTO, String userId) {
         User user = userRepository.findById(Long.parseLong(userId))
                 .orElseThrow(InvalidValue::new);
 
@@ -97,9 +96,14 @@ public class FreeBoardCommentService {
         freeBoardCommentRepository.save(freeBoardComment_save);
     }
 
-    public List<FreeBoardCommentsDTO> getComments(Long postId, int page){
+    public List<FreeBoardCommentsDTO> getComments(Long postId, int page) {
         Pageable pageable = PageRequest.of(page, CommentPageSize.BASIC,
-                Sort.by("origin").ascending().and(Sort.by("createdDate").ascending()));
+                Sort.by("origin").ascending()
+                        .and(Sort.by("isParent").descending()
+                                .and(Sort.by("createdDate").ascending()
+                                )
+                        )
+        );
 
         Iterable<FreeBoardComment> iterableComments = freeBoardCommentRepository.findByFreeBoardPostId(postId, pageable);
 
@@ -119,7 +123,7 @@ public class FreeBoardCommentService {
                 .collect(Collectors.toList());
     }
 
-    public int getTotalCount(Long postId){
+    public int getTotalCount(Long postId) {
         return (int) freeBoardCommentRepository.getTotalCount(postId);
     }
 }
