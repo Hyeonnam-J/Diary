@@ -72,7 +72,7 @@ const SignIn = () => {
                             <input type="checkbox" name="staySignedIn" />
                             <p>Stay signed in</p>
                         </label>
-                        <p id='findMy'>Find email / password</p>
+                        <p id='findPassword'>Find password</p>
                     </div>
                 </div>
 

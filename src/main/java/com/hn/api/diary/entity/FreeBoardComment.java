@@ -25,22 +25,22 @@ public class FreeBoardComment extends DateColumn {
     private String content;
     private boolean isDelete;
 
-    private Long origin;
+    private Long groupId;
     private boolean isParent;
 
     @Builder
-    public FreeBoardComment(FreeBoardPost freeBoardPost, User user, String content, Long origin, boolean isParent) {
+    public FreeBoardComment(FreeBoardPost freeBoardPost, User user, String content, Long groupId, boolean isParent) {
         this.freeBoardPost = freeBoardPost;
         this.user = user;
         this.content = content;
 
         this.isDelete = false;
-        this.origin = origin;
+        this.groupId = groupId;
         this.isParent = isParent;   // null이면 false
     }
 
-    public void setOrigin(Long origin) {
-        this.origin = origin;
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
     }
 
     public void setContent(String content){

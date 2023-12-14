@@ -41,9 +41,9 @@ public class FreeBoardCommentService {
                 .orElseThrow(InvalidValue::new);
 
         // 코멘트 원글이고,
-        if (freeBoardComment.getId() == freeBoardComment.getOrigin()) {
+        if (freeBoardComment.getId() == freeBoardComment.getGroupId()) {
             // 자기 외에 origin이 있을 때, 그러니까 답글이 있을 때 삭제할 수 없다.
-            long countReplies = freeBoardCommentRepository.countByOriginWithNoDelete(freeBoardComment.getOrigin());
+            long countReplies = freeBoardCommentRepository.countByGroupIdWithNoDelete(freeBoardComment.getGroupId());
             if (countReplies > 1) throw new Forbidden();
         }
 
@@ -75,7 +75,7 @@ public class FreeBoardCommentService {
 
         freeBoardCommentRepository.save(freeBoardComment);
 
-        freeBoardComment.setOrigin(freeBoardComment.getId());
+        freeBoardComment.setGroupId(freeBoardComment.getId());
         freeBoardCommentRepository.save(freeBoardComment);
     }
 
@@ -89,7 +89,7 @@ public class FreeBoardCommentService {
         FreeBoardComment freeBoardComment_save = FreeBoardComment.builder()
                 .user(user)
                 .freeBoardPost(freeBoardComment.getFreeBoardPost())
-                .origin(freeBoardComment.getOrigin())
+                .groupId(freeBoardComment.getGroupId())
                 .content(boardCommentReplyDTO.getContent())
                 .build();
 
@@ -98,7 +98,7 @@ public class FreeBoardCommentService {
 
     public List<FreeBoardCommentsDTO> getComments(Long postId, int page) {
         Pageable pageable = PageRequest.of(page, CommentPageSize.BASIC,
-                Sort.by("origin").ascending()
+                Sort.by("groupId").ascending()
                         .and(Sort.by("isParent").descending()
                                 .and(Sort.by("createdDate").ascending()
                                 )
