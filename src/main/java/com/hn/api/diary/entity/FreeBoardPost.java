@@ -27,13 +27,20 @@ public class FreeBoardPost extends DateColumn {
     private User user;
 
     private Long origin;
+    private Long parentId;
+    private Integer num;
+    private Integer depth;
 
     @Builder
-    public FreeBoardPost(String title, String content, User user, Long origin) {
+    public FreeBoardPost(String title, String content, User user, Long origin, Long parentId, Integer num, Integer depth) {
         this.title = title;
         this.content = content;
         this.user = user;
         this.origin = origin;
+        this.parentId = parentId;
+
+        this.num = num == null ? 0 : num;
+        this.depth = depth == null ? 0 : depth;
 
         this.viewCount = 0L;
         this.isDelete = false;
@@ -53,6 +60,14 @@ public class FreeBoardPost extends DateColumn {
 
     public void setDelete(boolean delete) {
         isDelete = delete;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
     }
 
     @JsonIgnore

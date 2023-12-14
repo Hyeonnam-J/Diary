@@ -92,11 +92,23 @@ public class FreeBoardPostService {
         FreeBoardPost originFreeBoardPost = freeBoardPostRepository.findById(Long.parseLong(freeBoardPostReplyDTO.getPostId()))
                 .orElseThrow(InvalidValue::new);
 
+        // 답글의 대상 글 num 이후의 post에 num + 1
+        List<FreeBoardPost> freeBoardPosts = freeBoardPostRepository.findByOrigin(originFreeBoardPost.getOrigin());
+        freeBoardPosts.stream()
+                .peek(p -> {
+                    if(p.getNum() > originFreeBoardPost.getNum()) p.setNum(p.getNum()+1);
+                })
+                .collect(Collectors.toList());
+        freeBoardPostRepository.saveAll(freeBoardPosts);
+
         FreeBoardPost freeBoardPost = FreeBoardPost.builder()
                 .title(freeBoardPostReplyDTO.getTitle())
                 .content(freeBoardPostReplyDTO.getContent())
                 .user(user)
                 .origin(originFreeBoardPost.getOrigin())
+                .num(originFreeBoardPost.getNum()+1)
+                .depth(originFreeBoardPost.getDepth()+1)
+                .parentId(originFreeBoardPost.getId())
                 .build();
         freeBoardPostRepository.save(freeBoardPost);
     }
@@ -114,6 +126,7 @@ public class FreeBoardPostService {
         freeBoardPostRepository.save(freeBoardPost);
 
         freeBoardPost.setOrigin(freeBoardPost.getId());
+        freeBoardPost.setParentId(freeBoardPost.getId());
         freeBoardPostRepository.save(freeBoardPost);
     }
 
@@ -123,7 +136,8 @@ public class FreeBoardPostService {
         switch (sort) {
             case BoardSort.BASIC:
                 pageable = PageRequest.of(page, BoardPageSize.BASIC,
-                        Sort.by("origin").descending().and(Sort.by("createdDate").ascending()));
+                        Sort.by("origin").descending()
+                                .and(Sort.by("num").ascending()));
                 break;
 
             default:

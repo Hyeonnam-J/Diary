@@ -106,10 +106,8 @@ const FreeBoard = () => {
                         </thead>
                         <tbody>
                             {posts.map((post) => {
-                                const isOrigin = post.id === post.origin;
-
-                                const prefixTitle = isOrigin ? '' : '└ ';
-                                const paddingLeft = isOrigin ? 0 : 10;
+                                const prefixTitle = post.depth == 0 ? '' : '└ ';
+                                const paddingLeft = 10 * post.depth;
 
                                 return (
                                     <tr key={post.id}>
