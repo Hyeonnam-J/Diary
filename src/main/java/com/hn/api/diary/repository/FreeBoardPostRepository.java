@@ -11,6 +11,9 @@ import java.util.List;
 
 public interface FreeBoardPostRepository extends JpaRepository<FreeBoardPost, Long> {
 
+    @Query("select count(p) from FreeBoardPost p where p.parentId = :parentId and p.isDelete = false")
+    long countByParentIdWithNoDelete(@Param("parentId") Long parentId);
+
     @Query("select count(p) from FreeBoardPost p where p.origin = :origin and p.isDelete = false")
     long countByOriginWithNoDelete(@Param("origin") Long origin);
 
