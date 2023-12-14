@@ -58,18 +58,23 @@ const SignIn = () => {
         <SignLayout>
             <div id='signInFrame' className={Layout.centerFrame}>
 
-            <div id="signInFrame-inputs">
-                <p>Email</p>
-                <input type="text" name="email"></input>
-                <p>Password</p>
-                <input type="text" name="password"></input>
-            </div>
+                <div id="signInFrame-inputs">
+                    <p>Email</p>
+                    <input type="text" name="email"></input>
+                    <p>Password</p>
+                    <input type="text" name="password"></input>
+                </div>
 
-            <div id='signInFrame-btns'>
-                <button className={ Button.primary } onClick={ requestSignIn }>Sign In</button>
-                <button className={ Button.primaryOutline }>Naver</button>
-                <button className={ Button.primaryOutline }>Kakao</button>
-            </div>
+                <div id='signInFrame-btns'>
+                    <button className={ Button.primary } onClick={ requestSignIn }>Sign In</button>
+                    <div id='signInFrame-sub'>
+                        <label id='staySignIn-label'>
+                            <input type="checkbox" name="staySignedIn" />
+                            <p>Stay signed in</p>
+                        </label>
+                        <p id='findMy'>Find email / password</p>
+                    </div>
+                </div>
 
             </div>
         </SignLayout>

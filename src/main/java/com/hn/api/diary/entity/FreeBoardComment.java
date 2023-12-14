@@ -21,7 +21,7 @@ public class FreeBoardComment extends DateColumn {
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     private User user;
-
+    
     private String content;
     private boolean isDelete;
 

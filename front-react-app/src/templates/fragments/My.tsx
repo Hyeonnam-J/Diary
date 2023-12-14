@@ -52,11 +52,13 @@ const My: React.FC = () => {
                 <div id='my-contents-box' style={{ display: isDropdownVisible ? 'flex' : 'none' }}>
                     <ul className='my-contents' style={{ display: !isSignedIn ? 'block' : 'none' }}>
                         <li><Link to="/">Home</Link></li>
+                        <span className='separator'></span>
                         <li><Link to="/signIn">Sign In</Link></li>
                         <li><Link to="/signUp">Sign Up</Link></li>
                     </ul>
                     <ul className='my-contents' style={{ display: isSignedIn ? 'block' : 'none' }}>
                         <li><Link to="/">Home</Link></li>
+                        <span className='separator'></span>
                         <li>{nick}</li>
                         <li onClick={signOut}>sign out</li>
                     </ul>

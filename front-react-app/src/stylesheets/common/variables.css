@@ -8,7 +8,11 @@
     --nav-contents-width: 300px;
     --nav-contents-width-minus: -300px;
 
-    --signIn-frame-height: 500px;
+    --my-contents-box-width: 150px;
+    --my-contents-box-height: 200px;
+
+    --signIn-frame-width: 500px;
+    --signIn-frame-height: 400px;
     --signUp-frame-width: 300px;
     --signUp-frame-height: 900px;
 
