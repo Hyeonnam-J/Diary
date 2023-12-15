@@ -37,8 +37,8 @@ const My: React.FC = () => {
         localStorage.removeItem('userId');
         localStorage.removeItem('email');
         localStorage.removeItem('nick');
-        setEmail('');
-        setNick('');
+        localStorage.removeItem('isStay');
+
         setSignedIn(!isSignedIn);
         setDropdownVisible(!isDropdownVisible);
 

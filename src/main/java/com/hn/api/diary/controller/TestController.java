@@ -19,8 +19,8 @@ public class TestController {
     @Autowired private FreeBoardCommentRepository freeBoardCommentRepository;
 
     @GetMapping(value = "/test")
-    public String test(){
-        System.out.println("테스트");
+    public String test(String stay){
+        System.out.println(stay);
         return "테스트";
     }
 }
