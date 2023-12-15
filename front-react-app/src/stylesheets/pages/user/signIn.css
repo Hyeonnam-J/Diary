@@ -51,11 +51,6 @@
     font-size: 1rem;
 }
 
-#signInFrame-sub p:hover{
-    text-decoration: underline;
-    cursor: pointer;
-}
-
 #staySignIn-label {
     flex-direction: row;
 }
@@ -71,4 +66,9 @@
 
 #findPassword {
     align-items: end;
+}
+
+#findPassword:hover{
+    text-decoration: underline;
+    cursor: pointer;
 }
