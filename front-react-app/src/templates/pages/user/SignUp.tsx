@@ -156,9 +156,15 @@ const SignUp = () => {
         try{
             const emailInput = document.querySelector('input[name="email"]') as HTMLInputElement;
             const passwordInput = document.querySelector('input[name="password"]') as HTMLInputElement;
+            const passwordConfirmInput = document.querySelector('input[name="passwordConfirm"]') as HTMLInputElement;
             const userNamedInput = document.querySelector('input[name="userName"]') as HTMLInputElement;
             const nickInput = document.querySelector('input[name="nick"]') as HTMLInputElement;
             const phoneNumberInput = document.querySelector('input[name="phoneNumber"]') as HTMLInputElement;
+
+            if(passwordInput.value != passwordConfirmInput.value){
+                alert('check your password confirm');
+                return;
+            }
 
             const data = {
                 email: emailInput.value,
@@ -261,8 +267,14 @@ const SignUp = () => {
 
                     <label className={inputValidations.password ? 'valid' : 'invalid'}>
                         <p>* Password</p>
-                        <input name='password' value={password} onChange={handleInputChange}></input>
+                        <input type='password' name='password' value={password} onChange={handleInputChange}></input>
                         <span>{getInputValidationMessage('password')}</span>
+                    </label>
+
+                    <label>
+                        <p>* Password confirm</p>
+                        <input type='password' name='passwordConfirm'></input>
+                        <span />
                     </label>
 
                     <label className={inputValidations.userName ? 'valid' : 'invalid'}>
