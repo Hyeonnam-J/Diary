@@ -6,14 +6,7 @@ function App() {
 
     useEffect(() => {
         const handleBeforeUnload = (event: BeforeUnloadEvent) => {
-            const isStay = localStorage.getItem('isStay');
-            if(isStay == "false"){
-                localStorage.removeItem('accessToken');
-                localStorage.removeItem('userId');
-                localStorage.removeItem('email');
-                localStorage.removeItem('nick');
-                localStorage.removeItem('isStay');
-            }
+            
         };
 
         window.addEventListener('beforeunload', handleBeforeUnload);
