@@ -42,14 +42,22 @@ const SignIn = () => {
                 accessToken = accessToken || '';
                 const decodedAccessToken = parseJwt(accessToken);
 
-                localStorage.setItem('accessToken', accessToken);
-                localStorage.setItem('userId', decodedAccessToken.userId);
-                localStorage.setItem('email', decodedAccessToken.email);
-                localStorage.setItem('nick', decodedAccessToken.nick);
-
                 const isStayInput = document.querySelector('input[name="staySignedIn"]') as HTMLInputElement;
-                localStorage.setItem('isStay', isStayInput.checked.toString());
+                const isStay = isStayInput.checked.toString();
+                localStorage.setItem('isStay', isStay);
 
+                if(isStay === "true"){
+                    localStorage.setItem('accessToken', accessToken);
+                    localStorage.setItem('userId', decodedAccessToken.userId);
+                    localStorage.setItem('email', decodedAccessToken.email);
+                    localStorage.setItem('nick', decodedAccessToken.nick);
+                }else{
+                    sessionStorage.setItem('accessToken', accessToken);
+                    sessionStorage.setItem('userId', decodedAccessToken.userId);
+                    sessionStorage.setItem('email', decodedAccessToken.email);
+                    sessionStorage.setItem('nick', decodedAccessToken.nick);
+                }
+                
                 navigate('/');
             }
         })

@@ -21,8 +21,19 @@ const My: React.FC = () => {
     const [nick, setNick] = useState('');
 
     useEffect(() => {
-        const email = localStorage.getItem('email');
-        const nick = localStorage.getItem('nick');
+        let email;
+        let nick;
+
+        const isStay = localStorage.getItem('isStay');
+
+        if(isStay === "true"){
+            email = localStorage.getItem('email');
+            nick = localStorage.getItem('nick');
+        }else{
+            email = sessionStorage.getItem('email');
+            nick = sessionStorage.getItem('nick');
+        }
+        
         setSignedIn(!!email);
         setEmail(email || '');
         setNick(nick || '');
@@ -33,11 +44,10 @@ const My: React.FC = () => {
     };
 
     const signOut = () => {
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('userId');
-        localStorage.removeItem('email');
-        localStorage.removeItem('nick');
-        localStorage.removeItem('isStay');
+        const isStay = localStorage.getItem('isStay');
+
+        if(isStay === "true") localStorage.clear();
+        else sessionStorage.clear(); 
 
         setSignedIn(!isSignedIn);
         setDropdownVisible(!isDropdownVisible);
