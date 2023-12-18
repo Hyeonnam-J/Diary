@@ -45,7 +45,7 @@ const SignIn = () => {
                 const isStayInput = document.querySelector('input[name="staySignedIn"]') as HTMLInputElement;
                 const isStay = isStayInput.checked.toString();
                 localStorage.setItem('isStay', isStay);
-
+                
                 if(isStay === "true"){
                     localStorage.setItem('accessToken', accessToken);
                     localStorage.setItem('userId', decodedAccessToken.userId);
