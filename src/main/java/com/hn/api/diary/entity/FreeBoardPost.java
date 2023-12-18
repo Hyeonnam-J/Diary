@@ -19,6 +19,8 @@ public class FreeBoardPost extends DateColumn {
     private Long id;
 
     private String title;
+
+    @Lob
     private String content;
     private Long viewCount;
     private boolean isDelete;
