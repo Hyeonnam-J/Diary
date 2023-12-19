@@ -37,7 +37,6 @@
 
 #post-content {
     margin: 30px 0;
-    white-space: pre-line;
 }
 
 #read-footer {
@@ -55,13 +54,14 @@
 }
 
 .read-comment-container {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .read-comment-header {
     height: var(--freeBoard-comment-header-height);
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10px;
 }
 
 .read-comment-userContainer {
@@ -88,7 +88,6 @@
 .read-comment-content {
     max-height: var(--freeBoard-comment-content-max-height);
     text-align: left;
-    white-space: pre-line;
 }
 
 .read-comment-reply > textarea {
