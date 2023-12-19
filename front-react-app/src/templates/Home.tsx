@@ -1,9 +1,10 @@
+import { LayoutRouteProps } from "react-router-dom";
 import DefaultLayout from './layouts/DefaultLayout';
 
-function Home() {
+const Home: React.FC<LayoutRouteProps> = (props) => {
     return (
         <DefaultLayout>
-            
+            {props.children}
         </DefaultLayout>
     );
 }
