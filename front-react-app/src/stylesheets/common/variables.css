@@ -55,4 +55,6 @@
     --text-ref-color: #CCCCCC;
     --thead-color: rgba(230, 230, 230, 0.5);
     --seperator-color: rgba(200, 200, 200, 0.5);
+
+    --input-size-text: 1.1rem;
 }

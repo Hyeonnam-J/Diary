@@ -42,6 +42,7 @@ input, textarea:focus {
 
 textarea {
     resize: none;
+    font-size: var(--input-size-text);
 }
 
 .pagination {
