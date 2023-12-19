@@ -19,6 +19,7 @@
 
 #write-title {
     height: 5%;
+    font-size: var(--input-size-text);
 }
 
 /* #write-custom {
