@@ -41,7 +41,7 @@ out/
 *.iml
 *.ipr
 *.iws
-#*.jar
+*.jar
 *.sw?
 *~
 .#*
