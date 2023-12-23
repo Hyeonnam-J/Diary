@@ -50,9 +50,9 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           aws deploy create-deployment \
-          application-name <diary-api-codeDeploy> \
-          deployment-group-name <diary-api-deploy-group> \
-          file-exists-behavior OVERWRITE \
-          s3-location bucket=<diary-api>,bundleType=zip,key=<diary-api>.zip \
-          region ap-northeast-2
+          --application-name diary-api-codeDeploy \
+          --deployment-group-name diary-api-deploy-group \
+          --file-exists-behavior OVERWRITE \
+          --s3-location bucket=diary-api,bundleType=zip,key=diary-api.zip \
+          --region ap-northeast-2
 
