@@ -45,7 +45,8 @@ jobs:
         run: aws s3 cp --region ap-northeast-2 ./deploy.zip s3://diary-api/deploy.zip
 
       - name: deploy
-        run: aws deploy create-deployment \
+        run: |
+          aws deploy create-deployment \
           --application-name diary-api-codeDeploy \
           --deployment-group-name diary-api-codeDeploy-group \
           --file-exists-behavior OVERWRITE \
