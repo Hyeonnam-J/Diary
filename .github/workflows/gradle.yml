@@ -48,6 +48,7 @@ jobs:
         run: |
           aws deploy create-deployment \
           --application-name diary-api-codeDeploy \
+          --deployment-config-name CodeDeployDefault.OneAtATime
           --deployment-group-name diary-api-codeDeploy-group \
           --file-exists-behavior OVERWRITE \
           --s3-location bucket=diary-api,bundleType=zip,key=deploy.zip \
