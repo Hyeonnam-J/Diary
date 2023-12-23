@@ -48,8 +48,8 @@ jobs:
         run: |
           aws deploy create-deployment \
           --application-name diary-api-codeDeploy \
-          --deployment-group-name diary-api-deploy-group \
+          --deployment-group-name diary-api-codeDeploy-group \
           --file-exists-behavior OVERWRITE \
-          --s3-location bucket=diary-api,key=deploy.zip,bundleType=zip
-          
+          --s3-location bucket=diary-api,bundleType=zip,key=deploy.zip \
+          --region ap-northeast-2
 
