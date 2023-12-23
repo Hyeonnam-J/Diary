@@ -41,18 +41,18 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-2
 
-      # - name: upload s3
-      #   run: aws s3 cp --region ap-northeast-2 ./deploy.zip s3://diary-api/deploy.zip
+      - name: upload s3
+        run: aws s3 cp --region ap-northeast-2 ./deploy.zip s3://diary-api/deploy.zip
 
-      - name: deploy
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: |
-          aws deploy create-deployment \
-          --application-name diary-api-codeDeploy \
-          --deployment-group-name diary-api-deploy-group \
-          --file-exists-behavior OVERWRITE \
-          --s3-location bucket=diary-api,bundleType=zip,key=deploy.zip \
-          --region ap-northeast-2
+      # - name: deploy
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #   run: |
+      #     aws deploy create-deployment \
+      #     --application-name diary-api-codeDeploy \
+      #     --deployment-group-name diary-api-deploy-group \
+      #     --file-exists-behavior OVERWRITE \
+      #     --s3-location bucket=diary-api,bundleType=zip,key=deploy.zip \
+      #     --region ap-northeast-2
 
