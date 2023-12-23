@@ -52,4 +52,3 @@ jobs:
           --file-exists-behavior OVERWRITE \
           --s3-location bucket=diary-api,bundleType=zip,key=deploy.zip \
           --region ap-northeast-2
-
