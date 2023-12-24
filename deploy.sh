@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 REPOSITORY=/home/ec2-user
 cd $REPOSITORY
