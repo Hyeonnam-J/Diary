@@ -1,16 +1,14 @@
 #!/bin/bash
 
-REPOSITORY=/home/ec2-user
-cd $REPOSITORY
+REPOSITORY=/home/ec2-user/deploy
+# cd $REPOSITORY -- 수정!
+cd deploy
+
+# JAR_NAME=$(ls $REPOSITORY | grep '.jar' | tail -n 1) -- 수정!
+JAR_NAME=$(ls | grep '.jar' | tail -n 1)
+# JAR_PATH=$REPOSITORY/$JAR_NAME
 
 APP_NAME=diary-api
-JAR_NAME=$(ls $REPOSITORY | grep '.jar' | tail -n 1)
-JAR_PATH=$REPOSITORY/$JAR_NAME
-
-
-# =====================================
-# 현재 구동 중인 application pid 확인
-# =====================================
 CURRENT_PID=$(pgrep -fl diary-api | grep java | awk '{print $1}')
 
 if [ -z "$CURRENT_PID" ]; then
@@ -21,5 +19,6 @@ else
     sleep 5
 fi
 
-echo "> $JAR_PATH 배포"
-nohup java -jar $JAR_PATH > /dev/null 2> /dev/null < /dev/null &
+# echo "> $JAR_PATH 배포"
+echo "> 실행"
+nohup java -jar $JAR_NAME > /dev/null 2> /dev/null < /dev/null &
