@@ -25,17 +25,15 @@ jobs:
         run: ./gradlew build
         shell: bash
 
-      - name: make a directory
-        run: mkdir -p deploy
+      # - name: make a directory
+      #   run: mkdir -p deploy
 
-      - name: copy jar
-        run: cp ./build/libs/*.jar ./deploy
-
-      - name: copy appspec
-        run: cp ./appspec.yml ./deploy
+      # - name: copy jar
+      #   run: cp ./build/libs/*.jar ./deploy
 
       - name: make zip file
-        run: zip -r ./deploy.zip ./deploy
+        run: zip -r ./deploy.zip
+        shell: bash
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
