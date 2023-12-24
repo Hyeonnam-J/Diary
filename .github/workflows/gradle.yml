@@ -31,8 +31,11 @@ jobs:
       # - name: copy jar
       #   run: cp ./build/libs/*.jar ./deploy
 
+      # - name: make zip file
+      #   run: zip -r ./deploy.zip ./deploy
+
       - name: make zip file
-        run: zip -r ./deploy.zip
+        run: zip -r ./deploy.zip ./deploy
         shell: bash
 
       - name: Configure AWS credentials
