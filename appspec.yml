@@ -1,13 +1,10 @@
 version: 0.0
 os: linux
-
 files:
   - source: /
-    destination: /home/ec2-user
-    overwrite: yes
-
+    destination: /home/ec2-user/deploy
 hooks: 
   ApplicationStart: 
     - location: deploy.sh
-      timeout: 60 # 스크립트 실행 60초 이상 수행되면 실패가 됩니다.
-      runas: ec2-user
+      timeout: 60
+      runas: root

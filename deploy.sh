@@ -1,17 +1,15 @@
 #!/bin/bash
 
-REPOSITORY=/home/ec2-user
-cd $REPOSITORY
+REPOSITORY=/home/ec2-user/deploy
+cd $REPOSITORY 
+# cd deploy
 
-APP_NAME=demo
-JAR_NAME=$(ls $REPOSITORY/build/libs/ | grep '.jar' | tail -n 1)
-JAR_PATH=$REPOSITORY/build/libs/$JAR_NAME
+JAR_NAME=$(ls $REPOSITORY | grep '.jar' | tail -n 1) 
+# JAR_NAME=$(ls | grep '.jar' | tail -n 1)
+JAR_PATH=$REPOSITORY/$JAR_NAME
 
-
-# =====================================
-# 현재 구동 중인 application pid 확인
-# =====================================
-CURRENT_PID=$(pgrep -fl demo | grep java | awk '{print $1}')
+APP_NAME=diary-api
+CURRENT_PID=$(pgrep -fl diary-api | grep java | awk '{print $1}')
 
 if [ -z "$CURRENT_PID" ]; then
     echo "NOT RUNNING"
@@ -21,5 +19,6 @@ else
     sleep 5
 fi
 
-echo "> $JAR_PATH 배포"
+# echo "> $JAR_PATH 배포"
+echo "> 실행"
 nohup java -jar $JAR_PATH > /dev/null 2> /dev/null < /dev/null &
