@@ -2,10 +2,8 @@
 
 REPOSITORY=/home/ec2-user/deploy
 cd $REPOSITORY 
-# cd deploy
 
 JAR_NAME=$(ls $REPOSITORY | grep '.jar' | tail -n 1) 
-# JAR_NAME=$(ls | grep '.jar' | tail -n 1)
 JAR_PATH=$REPOSITORY/$JAR_NAME
 
 APP_NAME=diary-api
@@ -19,6 +17,5 @@ else
     sleep 5
 fi
 
-# echo "> $JAR_PATH 배포"
-echo "> 실행"
+echo "> $JAR_PATH 배포"
 nohup java -jar $JAR_PATH > /dev/null 2> /dev/null < /dev/null &
