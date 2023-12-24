@@ -51,4 +51,4 @@ jobs:
           --deployment-config-name CodeDeployDefault.OneAtATime \
           --deployment-group-name diary-api-codedeploy-deploygroup \
           --file-exists-behavior OVERWRITE \
-          --s3-location bucket=diary-api,bundleType=zip,key=deploy/deploy.zip \
+          --s3-location bucket=diary-api,bundleType=zip,key=deploy.zip \
