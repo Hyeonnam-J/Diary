@@ -66,7 +66,4 @@ public class FreeBoardPost extends DateColumn {
         isDelete = delete;
     }
 
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "freeBoardPost")
-    List<FreeBoardComment> freeBoardComments = new ArrayList<>();
 }

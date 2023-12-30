@@ -142,7 +142,7 @@ public class FreeBoardPostService {
                 break;
         }
 
-        Iterable<FreeBoardPost> iterablePosts = freeBoardPostRepository.findAllWithComments(pageable);
+        Iterable<FreeBoardPost> iterablePosts = freeBoardPostRepository.findAllWithNotDelete(pageable);
         List<FreeBoardPost> freeBoardPosts = StreamSupport.stream(iterablePosts.spliterator(), false)
                 .collect(Collectors.toList());
 

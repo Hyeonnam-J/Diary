@@ -31,8 +31,6 @@ public class QFreeBoardPost extends EntityPathBase<FreeBoardPost> {
 
     public final NumberPath<Integer> depth = createNumber("depth", Integer.class);
 
-    public final ListPath<FreeBoardComment, QFreeBoardComment> freeBoardComments = this.<FreeBoardComment, QFreeBoardComment>createList("freeBoardComments", FreeBoardComment.class, QFreeBoardComment.class, PathInits.DIRECT2);
-
     public final NumberPath<Long> groupId = createNumber("groupId", Long.class);
 
     public final NumberPath<Integer> groupNo = createNumber("groupNo", Integer.class);
