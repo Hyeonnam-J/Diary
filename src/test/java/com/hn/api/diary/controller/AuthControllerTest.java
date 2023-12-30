@@ -46,7 +46,7 @@ public class AuthControllerTest {
                 .password("!@#123QWEqwe")
                 .userName("jhn")
                 .nick("hn")
-                .role("user")
+                .role("USER")
                 .build();
         userRepository.save(user1);
 
@@ -55,7 +55,7 @@ public class AuthControllerTest {
                 .password("!@#123QWEqwe")
                 .userName("jhn")
                 .nick("hn")
-                .role("admin")
+                .role("ADMIN")
                 .build();
         userRepository.save(user2);
 
@@ -102,7 +102,7 @@ public class AuthControllerTest {
                 .password("!@#123QWEqwe")
                 .userName("jhn")
                 .nick("hn")
-                .role("user")
+                .role("USER")
                 .build();
         userRepository.save(user1);
 
@@ -111,7 +111,7 @@ public class AuthControllerTest {
                 .password("!@#123QWEqwe")
                 .userName("jhn")
                 .nick("hn")
-                .role("admin")
+                .role("ADMIN")
                 .build();
         userRepository.save(user2);
 
