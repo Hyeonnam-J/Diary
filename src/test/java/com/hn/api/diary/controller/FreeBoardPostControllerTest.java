@@ -68,18 +68,17 @@ public class FreeBoardPostControllerTest {
 
         // freeBoardPost start ****
         List<FreeBoardPost> freeBoardPostList = new ArrayList<>();
-        User user1ForFreeBoard = userRepository.findById(user1.getId()).orElseThrow();
 
         FreeBoardPost freeBoardPost1 = FreeBoardPost.builder()
                 .title("title")
                 .content("content")
-                .user(user1ForFreeBoard)
+                .user(user1)
                 .build();
 
         FreeBoardPost freeBoardPost2 = FreeBoardPost.builder()
                 .title("title")
                 .content("content")
-                .user(user1ForFreeBoard)
+                .user(user1)
                 .build();
 
         freeBoardPostList.add(freeBoardPost1);
@@ -88,26 +87,26 @@ public class FreeBoardPostControllerTest {
         freeBoardPostRepository.saveAll(freeBoardPostList);
         // freeBoardPost end ****
 
-//        // freeBoardComment start ****
-//        List<FreeBoardComment> freeBoardCommentList = new ArrayList<>();
-//
-//        FreeBoardComment freeBoardComment1 = FreeBoardComment.builder()
-//                .freeBoardPost(freeBoardPost1)
-//                .user(user1)
-//                .content("content")
-//                .build();
-//
-//        FreeBoardComment freeBoardComment2 = FreeBoardComment.builder()
-//                .freeBoardPost(freeBoardPost1)
-//                .user(user1)
-//                .content("content")
-//                .build();
-//
-//        freeBoardCommentList.add(freeBoardComment1);
-//        freeBoardCommentList.add(freeBoardComment2);
-//
-//        freeBoardCommentRepository.saveAll(freeBoardCommentList);
-//        // freeBoardComment end ****
+        // freeBoardComment start ****
+        List<FreeBoardComment> freeBoardCommentList = new ArrayList<>();
+
+        FreeBoardComment freeBoardComment1 = FreeBoardComment.builder()
+                .freeBoardPost(freeBoardPost1)
+                .user(user1)
+                .content("content")
+                .build();
+
+        FreeBoardComment freeBoardComment2 = FreeBoardComment.builder()
+                .freeBoardPost(freeBoardPost1)
+                .user(user1)
+                .content("content")
+                .build();
+
+        freeBoardCommentList.add(freeBoardComment1);
+        freeBoardCommentList.add(freeBoardComment2);
+
+        freeBoardCommentRepository.saveAll(freeBoardCommentList);
+        // freeBoardComment end ****
     }
 
     @Test
