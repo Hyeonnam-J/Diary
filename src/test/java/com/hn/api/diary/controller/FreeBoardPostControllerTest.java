@@ -10,7 +10,6 @@ import com.hn.api.diary.exception.InvalidValue;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
 import com.hn.api.diary.repository.UserRepository;
-import com.hn.api.diary.response.PlainDataResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -18,14 +17,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -44,14 +39,21 @@ public class FreeBoardPostControllerTest {
         freeBoardCommentRepository.deleteAll();
         freeBoardPostRepository.deleteAll();
         userRepository.deleteAll();
+        given();
     }
 
-    HashMap<String, Object> given() {
-        HashMap<String, Object> map = new HashMap<>();
-
+    /**
+     * user1: role is user.
+     * user2: role is user.
+     *
+     * post_1: two comment.
+     * post_2: nothing.
+     * post_3: one reply.
+     *
+     * user1 write all posts and comments
+     */
+    void given() {
         // user start ****
-        List<User> userList = new ArrayList<>();
-
         User user1 = User.builder()
                 .email("nami0879@naver.com")
                 .password("!@#123QWEqwe")
@@ -68,38 +70,51 @@ public class FreeBoardPostControllerTest {
                 .nick("hn")
                 .build();
 
-        userList.add(user1);
-        userList.add(user2);
-
-        userRepository.saveAll(userList);
-        map.put("userList", userList);
+        userRepository.save(user1);
+        userRepository.save(user2);
         // user end ****
 
         // freeBoardPost start ****
-        List<FreeBoardPost> freeBoardPostList = new ArrayList<>();
-
         FreeBoardPost freeBoardPost1 = FreeBoardPost.builder()
                 .title("title")
                 .content("content")
                 .user(user1)
                 .build();
+        freeBoardPostRepository.save(freeBoardPost1);
+        freeBoardPost1.setGroupId(freeBoardPost1.getId());
+        freeBoardPostRepository.save(freeBoardPost1);
 
         FreeBoardPost freeBoardPost2 = FreeBoardPost.builder()
                 .title("title")
                 .content("content")
                 .user(user1)
                 .build();
+        freeBoardPostRepository.save(freeBoardPost2);
+        freeBoardPost2.setGroupId(freeBoardPost2.getId());
+        freeBoardPostRepository.save(freeBoardPost2);
 
-        freeBoardPostList.add(freeBoardPost1);
-        freeBoardPostList.add(freeBoardPost2);
+        FreeBoardPost freeBoardPost3 = FreeBoardPost.builder()
+                .title("title")
+                .content("content")
+                .user(user1)
+                .build();
+        freeBoardPostRepository.save(freeBoardPost3);
+        freeBoardPost3.setGroupId(freeBoardPost3.getId());
+        freeBoardPostRepository.save(freeBoardPost3);
 
-        freeBoardPostRepository.saveAll(freeBoardPostList);
-        map.put("freeBoardPostList", freeBoardPostList);
+        FreeBoardPost freeBoardPost3_reply = FreeBoardPost.builder()
+                .title("title-reply")
+                .content("content-reply")
+                .groupId(freeBoardPost3.getGroupId())
+                .groupNo(freeBoardPost3.getGroupNo()+1)
+                .depth(freeBoardPost3.getDepth()+1)
+                .parentId(freeBoardPost3.getId())
+                .user(user1)
+                .build();
+        freeBoardPostRepository.save(freeBoardPost3_reply);
         // freeBoardPost end ****
 
         // freeBoardComment start ****
-        List<FreeBoardComment> freeBoardCommentList = new ArrayList<>();
-
         FreeBoardComment freeBoardComment1 = FreeBoardComment.builder()
                 .freeBoardPost(freeBoardPost1)
                 .user(user1)
@@ -112,29 +127,21 @@ public class FreeBoardPostControllerTest {
                 .content("content")
                 .build();
 
-        freeBoardCommentList.add(freeBoardComment1);
-        freeBoardCommentList.add(freeBoardComment2);
-
-        freeBoardCommentRepository.saveAll(freeBoardCommentList);
-        map.put("freeBoardCommentList", freeBoardCommentList);
+        freeBoardCommentRepository.save(freeBoardComment1);
+        freeBoardCommentRepository.save(freeBoardComment2);
         // freeBoardComment end ****
-
-        return map;
     }
 
     @Test
     @DisplayName("freeBoardPost - read")
     void read() throws Exception {
         // [given]
-        HashMap<String, Object> map = given();
-        List<User> userList = (List) map.get("userList");
-        List<FreeBoardPost> freeBoardPostList = (List) map.get("freeBoardPostList");
-        List<FreeBoardComment> freeBoardCommentList = (List) map.get("freeBoardCommentList");
+        List<FreeBoardPost> freeBoardPosts = freeBoardPostRepository.findAll();
+        int randNo = new Random().nextInt(freeBoardPosts.size());
+        FreeBoardPost freeBoardPost = freeBoardPosts.get(randNo);
+        long randPostId = freeBoardPost.getId();
 
         // [when]
-        int randNo = new Random().nextInt(freeBoardPostList.size());
-        FreeBoardPost randFreeBoardPost = freeBoardPostList.get(randNo);
-        long randPostId = randFreeBoardPost.getId();
         ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/freeBoard/post/read/"+randPostId));
 
         String json = resultActions.andReturn().getResponse().getContentAsString();
@@ -147,4 +154,27 @@ public class FreeBoardPostControllerTest {
         Assertions.assertEquals(randPostId, freeBoardPostReadDTO.getId());
     }
 
+    @Test
+    @DisplayName("freeBoardPost - delete")
+    void delete() throws Exception {
+        // [given]
+        List<FreeBoardPost> freeBoardPosts = freeBoardPostRepository.findAll();
+        FreeBoardPost freeBoardPost_1 = freeBoardPosts.get(0);
+        FreeBoardPost freeBoardPost_2 = freeBoardPosts.get(1);
+        FreeBoardPost freeBoardPost_3 = freeBoardPosts.get(2);
+
+        // [when]
+        ResultActions resultActions_1 = mockMvc.perform(MockMvcRequestBuilders.delete("/freeBoard/post/delete/"+freeBoardPost_1.getId()));
+        ResultActions resultActions_2 = mockMvc.perform(MockMvcRequestBuilders.delete("/freeBoard/post/delete/"+freeBoardPost_2.getId()));
+        ResultActions resultActions_3 = mockMvc.perform(MockMvcRequestBuilders.delete("/freeBoard/post/delete/"+freeBoardPost_3.getId()));
+
+        // [then]
+        FreeBoardPost afterDeleteFreeBoardPost_1 = freeBoardPostRepository.findById(freeBoardPost_1.getId()).orElseThrow();
+        FreeBoardPost afterDeleteFreeBoardPost_2 = freeBoardPostRepository.findById(freeBoardPost_2.getId()).orElseThrow();
+        FreeBoardPost afterDeleteFreeBoardPost_3 = freeBoardPostRepository.findById(freeBoardPost_3.getId()).orElseThrow();
+
+        Assertions.assertEquals(afterDeleteFreeBoardPost_1.isDelete(), false);
+        Assertions.assertEquals(afterDeleteFreeBoardPost_2.isDelete(), true);
+        Assertions.assertEquals(afterDeleteFreeBoardPost_3.isDelete(), false);
+    }
 }
