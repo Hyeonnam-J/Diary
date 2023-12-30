@@ -145,7 +145,6 @@ public class FreeBoardPostControllerTest {
 
         // [then]
         Assertions.assertEquals(randPostId, freeBoardPostReadDTO.getId());
-
     }
 
 }
