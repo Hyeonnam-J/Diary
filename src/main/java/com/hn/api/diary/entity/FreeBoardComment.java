@@ -16,10 +16,10 @@ public class FreeBoardComment extends DateColumn {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private FreeBoardPost freeBoardPost;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private User user;
 
     @Lob

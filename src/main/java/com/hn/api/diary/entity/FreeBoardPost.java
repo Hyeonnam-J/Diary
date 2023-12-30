@@ -25,7 +25,7 @@ public class FreeBoardPost extends DateColumn {
     private Long viewCount;
     private boolean isDelete;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private User user;
 
     private Long groupId;

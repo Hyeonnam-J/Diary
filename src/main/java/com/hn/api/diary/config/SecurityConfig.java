@@ -86,8 +86,8 @@ public class SecurityConfig {
                 .cors(withDefaults())
                 .authorizeHttpRequests((req) ->
                         req
-                                .requestMatchers(AntPathRequestMatcher.antMatcher("/user")).hasAnyRole("user", "admin")
-                                .requestMatchers(AntPathRequestMatcher.antMatcher("/admin")).hasRole("admin")
+                                .requestMatchers(AntPathRequestMatcher.antMatcher("/user")).hasAnyRole("USER", "ADMIN")
+                                .requestMatchers(AntPathRequestMatcher.antMatcher("/admin")).hasRole("ADMIN")
 
                                 .requestMatchers(AntPathRequestMatcher.antMatcher("/signUp/**")).permitAll()
                                 .requestMatchers(AntPathRequestMatcher.antMatcher("/freeBoard/**")).permitAll()
