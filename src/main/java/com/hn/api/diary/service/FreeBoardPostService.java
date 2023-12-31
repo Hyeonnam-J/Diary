@@ -44,8 +44,8 @@ public class FreeBoardPostService {
     }
 
     public FreeBoardPostReadDTO read(Long postId) {
-        FreeBoardPost freeBoardPost = freeBoardPostRepository.findById(postId)
-                .orElseThrow(InvalidValue::new);
+        FreeBoardPost freeBoardPost = freeBoardPostRepository.findByIdWithNotDelete(postId);
+        if(freeBoardPost == null) throw new InvalidValue();
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy. MM. dd. HH:mm:ss");
         String formattedCreatedDate = freeBoardPost.getCreatedDate().format(dateTimeFormatter);
@@ -65,16 +65,16 @@ public class FreeBoardPostService {
         long countChildPosts = freeBoardPostRepository.countByParentIdWithNoDelete(Long.parseLong(postId));
         if(countChildPosts != 0) throw new Forbidden();
 
-        FreeBoardPost freeBoardPost = freeBoardPostRepository.findById(Long.parseLong(postId))
-                .orElseThrow(InvalidValue::new);
+        FreeBoardPost freeBoardPost = freeBoardPostRepository.findByIdWithNotDelete(Long.parseLong(postId));
+        if(freeBoardPost == null) throw new InvalidValue();
 
         freeBoardPost.setDelete(true);
         freeBoardPostRepository.save(freeBoardPost);
     }
 
     public void update(FreeBoardPostUpdateDTO freeBoardPostUpdateDTO) {
-        FreeBoardPost freeBoardPost = freeBoardPostRepository.findById(Long.parseLong(freeBoardPostUpdateDTO.getPostId()))
-                .orElseThrow(InvalidValue::new);
+        FreeBoardPost freeBoardPost = freeBoardPostRepository.findByIdWithNotDelete(Long.parseLong(freeBoardPostUpdateDTO.getPostId()));
+        if(freeBoardPost == null) throw new InvalidValue();
 
         freeBoardPost.setTitle(freeBoardPostUpdateDTO.getTitle());
         freeBoardPost.setContent(freeBoardPostUpdateDTO.getContent());
@@ -86,8 +86,8 @@ public class FreeBoardPostService {
         User user = userRepository.findById(Long.parseLong(userId))
                 .orElseThrow(InvalidValue::new);
 
-        FreeBoardPost originFreeBoardPost = freeBoardPostRepository.findById(Long.parseLong(freeBoardPostReplyDTO.getPostId()))
-                .orElseThrow(InvalidValue::new);
+        FreeBoardPost originFreeBoardPost = freeBoardPostRepository.findByIdWithNotDelete(Long.parseLong(freeBoardPostReplyDTO.getPostId()));
+        if(originFreeBoardPost == null) throw new InvalidValue();
 
         // 답글의 대상 글 num 이후의 post에 num + 1
         List<FreeBoardPost> freeBoardPosts = freeBoardPostRepository.findByGroupId(originFreeBoardPost.getGroupId());

@@ -1,6 +1,5 @@
 package com.hn.api.diary.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hn.api.diary.dto.user.CheckDuplicationDTO;
 import com.hn.api.diary.dto.user.SessionDTO;

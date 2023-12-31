@@ -11,6 +11,9 @@ import java.util.List;
 
 public interface FreeBoardPostRepository extends JpaRepository<FreeBoardPost, Long> {
 
+    @Query("select p from FreeBoardPost p where p.id = :postId and p.isDelete = false")
+    FreeBoardPost findByIdWithNotDelete(@Param("postId") Long postId);
+
     @Query("select count(p) from FreeBoardPost p where p.parentId = :parentId and p.isDelete = false")
     long countByParentIdWithNoDelete(@Param("parentId") Long parentId);
 
@@ -19,6 +22,9 @@ public interface FreeBoardPostRepository extends JpaRepository<FreeBoardPost, Lo
 
     @Query("select p from FreeBoardPost p where p.isDelete = false")
     List<FreeBoardPost> findAllWithNotDelete(Pageable pageable);
+
+    @Query("select p from FreeBoardPost p where p.isDelete = false")
+    List<FreeBoardPost> findAllWithNotDelete();
 
     @Query("select count(p) from FreeBoardPost p where p.isDelete = false")
     long getTotalCount();

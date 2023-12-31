@@ -18,7 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootTest
-class UserServiceTest {
+class UserTestServiceTest {
 
     @Autowired
     private ObjectMapper objectMapper;
