@@ -152,7 +152,7 @@ public class FreeBoardPostControllerTest {
         // freeBoardComment end ****
     }
 
-    public HashMap<String, Object> signIn() throws Exception {
+    HashMap<String, Object> signIn() throws Exception {
         List<User> users = userRepository.findAll();
         User user = users.get( new Random().nextInt(users.size()) );
 
