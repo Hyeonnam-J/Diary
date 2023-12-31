@@ -1,6 +1,7 @@
 package com.hn.api.diary.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hn.api.diary.controller.FreeBoardPostControllerTest;
 import com.hn.api.diary.dto.freeBoard.FreeBoardPostReplyDTO;
 import com.hn.api.diary.dto.freeBoard.FreeBoardPostWriteDTO;
 import com.hn.api.diary.entity.FreeBoardComment;
