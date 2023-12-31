@@ -1,50 +1,42 @@
-package com.hn.api.diary.controller;
+package com.hn.api.diary.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hn.api.diary.dto.freeBoard.FreeBoardPostReplyDTO;
-import com.hn.api.diary.dto.freeBoard.FreeBoardPostUpdateDTO;
 import com.hn.api.diary.dto.freeBoard.FreeBoardPostWriteDTO;
-import com.hn.api.diary.dto.user.SignInDTO;
 import com.hn.api.diary.entity.FreeBoardComment;
 import com.hn.api.diary.entity.FreeBoardPost;
 import com.hn.api.diary.entity.User;
+import com.hn.api.diary.exception.Forbidden;
+import com.hn.api.diary.exception.InvalidValue;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
 import com.hn.api.diary.repository.UserRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-@AutoConfigureMockMvc
 @SpringBootTest
-public class FreeBoardPostControllerTest {
+public class FreeBoardPostServiceTest {
 
-    @Autowired
-    private MockMvc mockMvc;
     @Autowired
     private ObjectMapper objectMapper;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private FreeBoardPostService freeBoardPostService;
     @Autowired
     private FreeBoardPostRepository freeBoardPostRepository;
     @Autowired
     private FreeBoardCommentRepository freeBoardCommentRepository;
 
     @BeforeEach
-    void clean() {
+    void clean(){
         freeBoardCommentRepository.deleteAll();
         freeBoardPostRepository.deleteAll();
         userRepository.deleteAll();
@@ -152,111 +144,90 @@ public class FreeBoardPostControllerTest {
         // freeBoardComment end ****
     }
 
-    public HashMap<String, Object> signIn() throws Exception {
-        List<User> users = userRepository.findAll();
-        User user = users.get( new Random().nextInt(users.size()) );
-
-        SignInDTO signInDTO = SignInDTO.builder()
-                .email(user.getEmail())
-                .password(user.getPassword())
-                .build();
-        String signIn_json = objectMapper.writeValueAsString(signInDTO);
-
-        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(signIn_json)
-        );
-        String token = resultActions.andReturn().getResponse().getHeader(HttpHeaders.AUTHORIZATION);
-
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("user", user);
-        map.put("token", token);
-
-        return map;
-    }
-
     @Test
     @DisplayName("freeBoardPost - read / success")
     void read_success() throws Exception {
-        // [given]
+        // do
         List<FreeBoardPost> freeBoardPosts = freeBoardPostRepository.findAllWithNotDelete();
         int randNo = new Random().nextInt(freeBoardPosts.size());
-        FreeBoardPost freeBoardPost = freeBoardPosts.get(randNo);
-        long randPostId = freeBoardPost.getId();
+        FreeBoardPost randPost = freeBoardPosts.get(randNo);
+        long randPostId = randPost.getId();
 
-        // [when]
-        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/freeBoard/post/read/" + randPostId));
+        FreeBoardPost findPost = freeBoardPostRepository.findByIdWithNotDelete(randPostId);
 
-        // [then]
-        resultActions.andExpect(MockMvcResultMatchers.status().isOk());
+        // expect
+        Assertions.assertEquals(randPost.getId(), findPost.getId());
     }
 
     @Test
     @DisplayName("freeBoardPost - read / invalidValue")
     void read_invalidValue() throws Exception {
-        // [given]
+        // given
         List<FreeBoardPost> freeBoardPosts = freeBoardPostRepository.findAll();
-        long deletedPostId= freeBoardPosts.stream()
+        long deletedPostId = freeBoardPosts.stream()
                 .filter(FreeBoardPost::isDelete)
                 .findFirst()
                 .map(FreeBoardPost::getId)
                 .orElse(0L);
 
-        // [when]
-        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/freeBoard/post/read/" + deletedPostId));
-
-        // [then]
-        resultActions.andExpect(MockMvcResultMatchers.status().isNotFound());
+        // expect
+        Assertions.assertThrows(InvalidValue.class, () -> {
+            FreeBoardPost freeBoardPost = freeBoardPostRepository.findByIdWithNotDelete(deletedPostId);
+            if (freeBoardPost == null) {
+                throw new InvalidValue();
+            }
+        });
     }
 
     @Test
     @DisplayName("freeBoardPost - delete")
     void delete() throws Exception {
-        // [given]
+        // given
         List<FreeBoardPost> freeBoardPosts = freeBoardPostRepository.findAll();
         FreeBoardPost freeBoardPost_1 = freeBoardPosts.get(0);
         FreeBoardPost freeBoardPost_2 = freeBoardPosts.get(1);
         FreeBoardPost freeBoardPost_3 = freeBoardPosts.get(2);
 
-        // [when]
-        ResultActions actions_1 = mockMvc.perform(MockMvcRequestBuilders.delete("/freeBoard/post/delete/" + freeBoardPost_1.getId()));
-        ResultActions actions_2 = mockMvc.perform(MockMvcRequestBuilders.delete("/freeBoard/post/delete/" + freeBoardPost_2.getId()));
-        ResultActions actions_3 = mockMvc.perform(MockMvcRequestBuilders.delete("/freeBoard/post/delete/" + freeBoardPost_3.getId()));
+        // expect
+        Assertions.assertThrows(Forbidden.class, () -> {
+            freeBoardPostService.delete(freeBoardPost_1.getId().toString());
+        });
 
-        // [then]
-        actions_1.andExpect(MockMvcResultMatchers.status().isForbidden());
-        actions_2.andExpect(MockMvcResultMatchers.status().isOk());
-        actions_3.andExpect(MockMvcResultMatchers.status().isForbidden());
+        Assertions.assertDoesNotThrow(() -> {
+            freeBoardPostService.delete(freeBoardPost_2.getId().toString());
+        });
+
+        Assertions.assertThrows(Forbidden.class, () -> {
+            freeBoardPostService.delete(freeBoardPost_3.getId().toString());
+        });
     }
 
     @Test
     @DisplayName("freeBoardPost - update")
     void update() throws Exception {
-        // [given]
-        List<FreeBoardPost> freeBoardPosts = freeBoardPostRepository.findAllWithNotDelete();
-        FreeBoardPost freeBoardPost = freeBoardPosts.get( new Random().nextInt(freeBoardPosts.size()) );
+        // do
+        List<FreeBoardPost> posts = freeBoardPostRepository.findAllWithNotDelete();
+        FreeBoardPost postBeforeUpdate = posts.get( new Random().nextInt(posts.size()) );
 
-        // [when]
-        FreeBoardPostUpdateDTO freeBoardPostUpdateDTO = FreeBoardPostUpdateDTO.builder()
-                .postId(freeBoardPost.getId().toString())
-                .title("updateTitle")
-                .content("updateContent")
-                .build();
-        String json = objectMapper.writeValueAsString(freeBoardPostUpdateDTO);
+        String updateTitle = "updateTitle";
+        String updateContent = "updateContent";
 
-        ResultActions actions = mockMvc.perform(MockMvcRequestBuilders.put("/freeBoard/post/update")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(json)
-        );
+        postBeforeUpdate.setTitle(updateTitle);
+        postBeforeUpdate.setContent(updateContent);
 
-        // [then]
-        actions.andExpect(MockMvcResultMatchers.status().isOk());
+        freeBoardPostRepository.save(postBeforeUpdate);
+
+        // expect
+        FreeBoardPost postAfterUpdate = freeBoardPostRepository.findByIdWithNotDelete(postBeforeUpdate.getId());
+
+        Assertions.assertEquals(updateTitle, postAfterUpdate.getTitle());
+        Assertions.assertEquals(updateContent, postAfterUpdate.getContent());
     }
 
     @Test
     @DisplayName("freeBoardPost - reply")
     void reply() throws Exception {
-        // [given]
+        // given
         Random random = new Random();
 
         // 랜덤한 게시물
@@ -265,77 +236,52 @@ public class FreeBoardPostControllerTest {
         // 랜덤한 게시물의 그룹
         List<FreeBoardPost> groupListBeforeReply = freeBoardPostRepository.findByGroupId(freeBoardPost.getGroupId());
 
-        HashMap<String, Object> map = signIn();
-        User user = (User) map.get("user");
-        String token = (String) map.get("token");
+        // 랜덤한 유저
+        List<User> users = userRepository.findAll();
+        User user = users.get( random.nextInt(users.size()) );
 
-        // [when]
         FreeBoardPostReplyDTO freeBoardPostReplyDTO = FreeBoardPostReplyDTO.builder()
                 .postId(freeBoardPost.getId().toString())
                 .title("reply-title")
                 .content("reply-content")
                 .build();
-        String reply_json = objectMapper.writeValueAsString(freeBoardPostReplyDTO);
 
-        ResultActions actions = mockMvc.perform(MockMvcRequestBuilders.post("/freeBoard/post/reply")
-                .header("userId", user.getId())
-                .header(HttpHeaders.AUTHORIZATION, token)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(reply_json)
-        );
+        // when
+        freeBoardPostService.reply(freeBoardPostReplyDTO, user.getId().toString());
 
-        // [then]
-        actions.andExpect(MockMvcResultMatchers.status().isOk());
+        // then
+        Assertions.assertEquals(groupListBeforeReply.size() + 1, freeBoardPostRepository.findByGroupId(freeBoardPost.getGroupId()).size() );
     }
 
     @Test
     @DisplayName("freeBoardPost - write")
     void write() throws Exception {
-        // [given]
-        HashMap<String, Object> map = signIn();
-        User user = (User) map.get("user");
-        String token = (String) map.get("token");
+        // do
+        List<User> users = userRepository.findAll();
+        User user = users.get( new Random().nextInt(users.size()) );
 
-        long postCountBeforeWrite = freeBoardPostRepository.count();
+        long countBeforeWrite = freeBoardPostRepository.count();
 
-        // [when]
         FreeBoardPostWriteDTO freeBoardPostWriteDTO = FreeBoardPostWriteDTO.builder()
                 .title("title-write")
                 .content("content-write")
                 .build();
-        String write_json = objectMapper.writeValueAsString(freeBoardPostWriteDTO);
 
-        ResultActions actions = mockMvc.perform(MockMvcRequestBuilders.post("/freeBoard/post/write")
-                .header("userId", user.getId())
-                .header(HttpHeaders.AUTHORIZATION, token)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(write_json)
-        );
+        freeBoardPostService.write(freeBoardPostWriteDTO, user.getId().toString());
 
-        // [then]
-        actions.andExpect(MockMvcResultMatchers.status().isOk());
+        // expect
+        Assertions.assertEquals(countBeforeWrite + 1, freeBoardPostRepository.count());
     }
 
     @Test
     @DisplayName("freeBoardPost - getPosts")
     void getPosts() throws Exception{
-        // do
-        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/freeBoard/posts")
-                .param("page", "1")
-                .param("sort", "basic")
-        );
-
-        // expect
-        resultActions.andExpect(MockMvcResultMatchers.status().isOk());
+        Assertions.assertDoesNotThrow(() -> freeBoardPostService.getPosts(1, "basic"));
     }
 
     @Test
     @DisplayName("freeBoardPost - getTotalCount")
     void getTotalCount() throws Exception {
-        // [when]
-        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/freeBoard/posts/totalCount"));
-
-        // [then]
-        resultActions.andExpect(MockMvcResultMatchers.status().isOk());
+        Assertions.assertDoesNotThrow(() -> freeBoardPostService.getTotalCount());
     }
 }
