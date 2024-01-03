@@ -82,3 +82,4 @@ secrets.yml
 ### Private ###
 # application.yml
 log
+src/main/generated
