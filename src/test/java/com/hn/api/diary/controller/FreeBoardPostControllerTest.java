@@ -4,8 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hn.api.diary.dto.freeBoard.FreeBoardPostReplyDTO;
 import com.hn.api.diary.dto.freeBoard.FreeBoardPostUpdateDTO;
 import com.hn.api.diary.dto.freeBoard.FreeBoardPostWriteDTO;
-import com.hn.api.diary.dto.user.SignInDTO;
-import com.hn.api.diary.entity.FreeBoardComment;
 import com.hn.api.diary.entity.FreeBoardPost;
 import com.hn.api.diary.entity.User;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
@@ -72,7 +70,7 @@ public class FreeBoardPostControllerTest {
     void read_invalidValue() throws Exception {
         // [given]
         List<FreeBoardPost> freeBoardPosts = freeBoardPostRepository.findAll();
-        long deletedPostId= freeBoardPosts.stream()
+        long deletedPostId = freeBoardPosts.stream()
                 .filter(FreeBoardPost::isDelete)
                 .findFirst()
                 .map(FreeBoardPost::getId)
@@ -136,25 +134,54 @@ public class FreeBoardPostControllerTest {
     @Test
     @DisplayName("freeBoardPost - update")
     void update() throws Exception {
-        // [given]
-        List<FreeBoardPost> freeBoardPosts = freeBoardPostRepository.findAllWithNotDelete();
-        FreeBoardPost freeBoardPost = freeBoardPosts.get( new Random().nextInt(freeBoardPosts.size()) );
+        // given
+        HashMap map = new FreeBoardTestData().signIn(userRepository, objectMapper, mockMvc);
+        User user = (User) map.get("user");
+        String token = (String) map.get("token");
 
-        // [when]
-        FreeBoardPostUpdateDTO freeBoardPostUpdateDTO = FreeBoardPostUpdateDTO.builder()
-                .postId(freeBoardPost.getId().toString())
+        List<FreeBoardPost> freeBoardPosts = freeBoardPostRepository.findAllWithNotDelete();
+        FreeBoardPost post1 = freeBoardPosts.stream()
+                .filter(p -> p.getUser().getId() == user.getId())
+                .findFirst()
+                .orElseThrow();
+
+        FreeBoardPost post2 = freeBoardPosts.stream()
+                .filter(p -> p.getUser().getId() != user.getId())
+                .findFirst()
+                .orElseThrow();
+
+        // when
+        FreeBoardPostUpdateDTO dto1 = FreeBoardPostUpdateDTO.builder()
+                .postId(post1.getId().toString())
                 .title("updateTitle")
                 .content("updateContent")
                 .build();
-        String json = objectMapper.writeValueAsString(freeBoardPostUpdateDTO);
+        String json1 = objectMapper.writeValueAsString(dto1);
 
-        ResultActions actions = mockMvc.perform(MockMvcRequestBuilders.put("/freeBoard/post/update")
+        ResultActions actions1 = mockMvc.perform(MockMvcRequestBuilders.put("/freeBoard/post/update")
+                .header("userId", user.getId())
+                .header(HttpHeaders.AUTHORIZATION, token)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(json)
+                .content(json1)
         );
 
-        // [then]
-        actions.andExpect(MockMvcResultMatchers.status().isOk());
+        FreeBoardPostUpdateDTO dto2 = FreeBoardPostUpdateDTO.builder()
+                .postId(post2.getId().toString())
+                .title("updateTitle")
+                .content("updateContent")
+                .build();
+        String json2 = objectMapper.writeValueAsString(dto2);
+
+        ResultActions actions2 = mockMvc.perform(MockMvcRequestBuilders.put("/freeBoard/post/update")
+                .header("userId", user.getId())
+                .header(HttpHeaders.AUTHORIZATION, token)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json2)
+        );
+
+        // then
+        actions1.andExpect(MockMvcResultMatchers.status().isOk());
+        actions2.andExpect(MockMvcResultMatchers.status().isForbidden());
     }
 
     @Test
@@ -165,7 +192,7 @@ public class FreeBoardPostControllerTest {
 
         // 랜덤한 게시물
         List<FreeBoardPost> freeBoardPosts = freeBoardPostRepository.findAllWithNotDelete();
-        FreeBoardPost freeBoardPost = freeBoardPosts.get( random.nextInt(freeBoardPosts.size()) );
+        FreeBoardPost freeBoardPost = freeBoardPosts.get(random.nextInt(freeBoardPosts.size()));
         // 랜덤한 게시물의 그룹
         List<FreeBoardPost> groupListBeforeReply = freeBoardPostRepository.findByGroupId(freeBoardPost.getGroupId());
 
@@ -222,7 +249,7 @@ public class FreeBoardPostControllerTest {
 
     @Test
     @DisplayName("freeBoardPost - getPosts")
-    void getPosts() throws Exception{
+    void getPosts() throws Exception {
         // do
         ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/freeBoard/posts")
                 .param("page", "1")

@@ -47,17 +47,17 @@ public class FreeBoardCommentService {
         }
 
         // 코멘트 작성자가 아니면 삭제 불가.
-        User user = userRepository.findById(Long.parseLong(userId))
-                .orElseThrow(InvalidValue::new);
-        if(user.getId() != freeBoardComment.getUser().getId()) throw new Forbidden();
+        if(freeBoardComment.getUser().getId() != Long.parseLong(userId)) throw new Forbidden();
 
         freeBoardComment.setDelete(true);
         freeBoardCommentRepository.save(freeBoardComment);
     }
 
-    public void update(FreeBoardCommentUpdateDTO freeBoardCommentUpdateDTO) {
+    public void update(FreeBoardCommentUpdateDTO freeBoardCommentUpdateDTO, String userId) {
         FreeBoardComment freeBoardComment = freeBoardCommentRepository.findByIdWithNotDelete(Long.parseLong(freeBoardCommentUpdateDTO.getCommentId()));
         if (freeBoardComment == null) throw new InvalidValue();
+
+        if( freeBoardComment.getUser().getId() != Long.parseLong(userId) ) throw new Forbidden();
 
         freeBoardComment.setContent(freeBoardCommentUpdateDTO.getContent());
         freeBoardCommentRepository.save(freeBoardComment);
