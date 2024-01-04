@@ -45,107 +45,6 @@ public class FreeBoardPostServiceTest {
         new FreeBoardTestData().given(userRepository, freeBoardPostRepository, freeBoardCommentRepository);
     }
 
-    /**
-     * user1: role is user.
-     * user2: role is user.
-     *
-     * post_1: two comment.
-     * post_2: nothing.
-     * post_3: one reply.
-     * post_4: isDelete true.
-     *
-     * user1 write all posts and comments
-     */
-//    void given() {
-//        // user start ****
-//        User user1 = User.builder()
-//                .email("nami0879@naver.com")
-//                .password("!@#123QWEqwe")
-//                .role("user")
-//                .userName("jhn")
-//                .nick("hn")
-//                .build();
-//
-//        User user2 = User.builder()
-//                .email("nami0878@naver.com")
-//                .password("!@#123QWEqwe")
-//                .role("user")
-//                .userName("jhn")
-//                .nick("hn")
-//                .build();
-//
-//        userRepository.save(user1);
-//        userRepository.save(user2);
-//        // user end ****
-//
-//        // freeBoardPost start ****
-//        FreeBoardPost freeBoardPost1 = FreeBoardPost.builder()
-//                .title("title")
-//                .content("content")
-//                .user(user1)
-//                .build();
-//        freeBoardPostRepository.save(freeBoardPost1);
-//        freeBoardPost1.setGroupId(freeBoardPost1.getId());
-//        freeBoardPostRepository.save(freeBoardPost1);
-//
-//        FreeBoardPost freeBoardPost2 = FreeBoardPost.builder()
-//                .title("title")
-//                .content("content")
-//                .user(user1)
-//                .build();
-//        freeBoardPostRepository.save(freeBoardPost2);
-//        freeBoardPost2.setGroupId(freeBoardPost2.getId());
-//        freeBoardPostRepository.save(freeBoardPost2);
-//
-//        FreeBoardPost freeBoardPost3 = FreeBoardPost.builder()
-//                .title("title")
-//                .content("content")
-//                .user(user1)
-//                .build();
-//        freeBoardPostRepository.save(freeBoardPost3);
-//        freeBoardPost3.setGroupId(freeBoardPost3.getId());
-//        freeBoardPostRepository.save(freeBoardPost3);
-//
-//        FreeBoardPost freeBoardPost3_reply = FreeBoardPost.builder()
-//                .title("title-reply")
-//                .content("content-reply")
-//                .groupId(freeBoardPost3.getGroupId())
-//                .groupNo(freeBoardPost3.getGroupNo() + 1)
-//                .depth(freeBoardPost3.getDepth() + 1)
-//                .parentId(freeBoardPost3.getId())
-//                .user(user1)
-//                .build();
-//        freeBoardPostRepository.save(freeBoardPost3_reply);
-//
-//        FreeBoardPost freeBoardPost4 = FreeBoardPost.builder()
-//                .title("title")
-//                .content("content")
-//                .user(user1)
-//                .build();
-//        freeBoardPostRepository.save(freeBoardPost4);
-//        freeBoardPost4.setGroupId(freeBoardPost4.getId());
-//        freeBoardPost4.setDelete(true);
-//        freeBoardPostRepository.save(freeBoardPost4);
-//        // freeBoardPost end ****
-//
-//        // freeBoardComment start ****
-//        FreeBoardComment freeBoardComment1 = FreeBoardComment.builder()
-//                .freeBoardPost(freeBoardPost1)
-//                .user(user1)
-//                .content("content")
-//                .build();
-//
-//        FreeBoardComment freeBoardComment2 = FreeBoardComment.builder()
-//                .freeBoardPost(freeBoardPost1)
-//                .user(user1)
-//                .content("content")
-//                .build();
-//
-//        freeBoardCommentRepository.save(freeBoardComment1);
-//        freeBoardCommentRepository.save(freeBoardComment2);
-//        // freeBoardComment end ****
-//    }
-
     @Test
     @DisplayName("freeBoardPost - read / success")
     void read_success() throws Exception {
@@ -185,22 +84,35 @@ public class FreeBoardPostServiceTest {
     @DisplayName("freeBoardPost - delete")
     void delete() throws Exception {
         // given
-        List<FreeBoardPost> freeBoardPosts = freeBoardPostRepository.findAll();
-        FreeBoardPost freeBoardPost_1 = freeBoardPosts.get(0);
-        FreeBoardPost freeBoardPost_2 = freeBoardPosts.get(1);
-        FreeBoardPost freeBoardPost_3 = freeBoardPosts.get(2);
+        List<User> users = userRepository.findAll();
+        User user = users.get(0);
+
+        List<FreeBoardPost> posts = freeBoardPostRepository.findAllWithNotDelete();
+        FreeBoardPost post1 = posts.get(0);
+        FreeBoardPost post2 = posts.get(1);
+        FreeBoardPost post3 = posts.get(2);
+        FreeBoardPost post5 = posts.get(3);
+        FreeBoardPost post6 = posts.get(4);
 
         // expect
         Assertions.assertThrows(Forbidden.class, () -> {
-            freeBoardPostService.delete(freeBoardPost_1.getId().toString());
+            freeBoardPostService.delete(post1.getId().toString(), user.getId().toString());
         });
 
         Assertions.assertDoesNotThrow(() -> {
-            freeBoardPostService.delete(freeBoardPost_2.getId().toString());
+            freeBoardPostService.delete(post2.getId().toString(), user.getId().toString());
         });
 
         Assertions.assertThrows(Forbidden.class, () -> {
-            freeBoardPostService.delete(freeBoardPost_3.getId().toString());
+            freeBoardPostService.delete(post3.getId().toString(), user.getId().toString());
+        });
+
+        Assertions.assertThrows(Forbidden.class, () -> {
+            freeBoardPostService.delete(post5.getId().toString(), user.getId().toString());
+        });
+
+        Assertions.assertDoesNotThrow(() -> {
+            freeBoardPostService.delete(post6.getId().toString(), user.getId().toString());
         });
     }
 

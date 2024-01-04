@@ -56,7 +56,7 @@ public class FreeBoardPostService {
         return dto;
     }
 
-    public void delete(String postId){
+    public void delete(String postId, String userId){
         // 코멘트가 있으면 삭제할 수 없다.
         long countComments = freeBoardCommentRepository.countByFreeBoardPostIdWithNoDelete(Long.parseLong(postId));
         if(countComments != 0) throw new Forbidden();
@@ -67,6 +67,11 @@ public class FreeBoardPostService {
 
         FreeBoardPost freeBoardPost = freeBoardPostRepository.findByIdWithNotDelete(Long.parseLong(postId));
         if(freeBoardPost == null) throw new InvalidValue();
+
+        // 글쓴이가 아니면 삭제할 수 없다.
+        User user = userRepository.findById(Long.parseLong(userId))
+                .orElseThrow(InvalidValue::new);
+        if( freeBoardPost.getUser().getId() != user.getId() ) throw new Forbidden();
 
         freeBoardPost.setDelete(true);
         freeBoardPostRepository.save(freeBoardPost);
