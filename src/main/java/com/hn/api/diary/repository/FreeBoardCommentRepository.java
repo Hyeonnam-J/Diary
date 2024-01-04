@@ -26,6 +26,9 @@ public interface FreeBoardCommentRepository extends JpaRepository<FreeBoardComme
     @Query("select c from FreeBoardComment c where c.freeBoardPost.id = :postId and c.isDelete = false")
     List<FreeBoardComment> findByFreeBoardPostId(@Param("postId") Long postId, Pageable pageable);
 
+    @Query("select c from FreeBoardComment c where c.isDelete = false")
+    List<FreeBoardComment> findAllWithNotDelete();
+
     @Query("select count(c) from FreeBoardComment c where c.freeBoardPost.id = :postId and c.isDelete = false")
     long getTotalCount(@Param("postId") Long postId);
 }

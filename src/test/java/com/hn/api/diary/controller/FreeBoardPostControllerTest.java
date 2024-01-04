@@ -88,21 +88,49 @@ public class FreeBoardPostControllerTest {
     @Test
     @DisplayName("freeBoardPost - delete")
     void delete() throws Exception {
-        // [given]
-        List<FreeBoardPost> freeBoardPosts = freeBoardPostRepository.findAll();
-        FreeBoardPost freeBoardPost_1 = freeBoardPosts.get(0);
-        FreeBoardPost freeBoardPost_2 = freeBoardPosts.get(1);
-        FreeBoardPost freeBoardPost_3 = freeBoardPosts.get(2);
+        // given
+        HashMap map = new FreeBoardTestData().signIn(userRepository, objectMapper, mockMvc);
+        User user = (User) map.get("user");
+        String token = (String) map.get("token");
 
-        // [when]
-        ResultActions actions_1 = mockMvc.perform(MockMvcRequestBuilders.delete("/freeBoard/post/delete/" + freeBoardPost_1.getId()));
-        ResultActions actions_2 = mockMvc.perform(MockMvcRequestBuilders.delete("/freeBoard/post/delete/" + freeBoardPost_2.getId()));
-        ResultActions actions_3 = mockMvc.perform(MockMvcRequestBuilders.delete("/freeBoard/post/delete/" + freeBoardPost_3.getId()));
+        List<FreeBoardPost> posts = freeBoardPostRepository.findAllWithNotDelete();
+        FreeBoardPost post1 = posts.get(0);
+        FreeBoardPost post2 = posts.get(1);
+        FreeBoardPost post3 = posts.get(2);
+        FreeBoardPost post5 = posts.get(3);
+        FreeBoardPost post6 = posts.get(4);
 
-        // [then]
+        // when
+        ResultActions actions_1 = mockMvc.perform(MockMvcRequestBuilders.delete("/freeBoard/post/delete/" + post1.getId())
+                .header("userId", user.getId())
+                .header(HttpHeaders.AUTHORIZATION, token)
+        );
+        ResultActions actions_2 = mockMvc.perform(MockMvcRequestBuilders.delete("/freeBoard/post/delete/" + post2.getId())
+                .header("userId", user.getId())
+                .header(HttpHeaders.AUTHORIZATION, token)
+        );
+
+        ResultActions actions_3 = mockMvc.perform(MockMvcRequestBuilders.delete("/freeBoard/post/delete/" + post3.getId())
+                .header("userId", user.getId())
+                .header(HttpHeaders.AUTHORIZATION, token)
+        );
+
+        ResultActions actions_5 = mockMvc.perform(MockMvcRequestBuilders.delete("/freeBoard/post/delete/" + post5.getId())
+                .header("userId", user.getId())
+                .header(HttpHeaders.AUTHORIZATION, token)
+        );
+
+        ResultActions actions_6 = mockMvc.perform(MockMvcRequestBuilders.delete("/freeBoard/post/delete/" + post6.getId())
+                .header("userId", user.getId())
+                .header(HttpHeaders.AUTHORIZATION, token)
+        );
+
+        // then
         actions_1.andExpect(MockMvcResultMatchers.status().isForbidden());
         actions_2.andExpect(MockMvcResultMatchers.status().isOk());
         actions_3.andExpect(MockMvcResultMatchers.status().isForbidden());
+        actions_5.andExpect(MockMvcResultMatchers.status().isForbidden());
+        actions_6.andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
