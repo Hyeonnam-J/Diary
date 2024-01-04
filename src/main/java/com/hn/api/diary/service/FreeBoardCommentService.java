@@ -1,6 +1,6 @@
 package com.hn.api.diary.service;
 
-import com.hn.api.diary.dto.freeBoard.FreeBoardBoardCommentReplyDTO;
+import com.hn.api.diary.dto.freeBoard.FreeBoardCommentReplyDTO;
 import com.hn.api.diary.dto.freeBoard.FreeBoardCommentUpdateDTO;
 import com.hn.api.diary.dto.freeBoard.FreeBoardCommentWriteDTO;
 import com.hn.api.diary.dto.freeBoard.FreeBoardCommentsDTO;
@@ -40,8 +40,8 @@ public class FreeBoardCommentService {
         FreeBoardComment freeBoardComment = freeBoardCommentRepository.findByIdWithNotDelete(Long.parseLong(commentId));
 
         // 코멘트 원글이고,
-        if (freeBoardComment.getId() == freeBoardComment.getGroupId()) {
-            // 답글이 있을 때 삭제할 수 없다.
+        if (freeBoardComment.isParent()) {
+            // 답글이 있을 때 삭제할 수 없다. 그룹에 삭제하려는 코멘트 외에 더 존재하면 삭제할 수 없다.
             long countReplies = freeBoardCommentRepository.countByGroupIdWithNoDelete(freeBoardComment.getGroupId());
             if (countReplies > 1) throw new Forbidden();
         }
@@ -83,7 +83,7 @@ public class FreeBoardCommentService {
         freeBoardCommentRepository.save(freeBoardComment);
     }
 
-    public void reply(FreeBoardBoardCommentReplyDTO boardCommentReplyDTO, String userId) {
+    public void reply(FreeBoardCommentReplyDTO boardCommentReplyDTO, String userId) {
         User user = userRepository.findById(Long.parseLong(userId))
                 .orElseThrow(InvalidValue::new);
 
