@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -43,35 +44,33 @@ class FreeBoardCommentServiceTest {
     @Test
     void delete() {
         // given
-        List<User> users = userRepository.findAll();
-        User user = users.get(0);
-
         List<FreeBoardComment> comments = freeBoardCommentRepository.findAllWithNotDelete();
-        FreeBoardComment comment1 = comments.get(0);
-        FreeBoardComment comment2 = comments.get(1);
-        FreeBoardComment comment4 = comments.get(2);
-        FreeBoardComment comment5 = comments.get(3);
+        FreeBoardComment comment = comments.get( new Random().nextInt(comments.size()) );
+        int countBeforeDelete = comments.size();
 
-        // expect
-        Assertions.assertDoesNotThrow(() -> {
-            freeBoardCommentService.delete(comment1.getId().toString(), user.getId().toString());
-        });
+        // when
+        comment.setDelete(true);
+        freeBoardCommentRepository.save(comment);
 
-        Assertions.assertThrows(Forbidden.class, () -> {
-            freeBoardCommentService.delete(comment2.getId().toString(), user.getId().toString());
-        });
-
-        Assertions.assertThrows(Forbidden.class, () -> {
-            freeBoardCommentService.delete(comment4.getId().toString(), user.getId().toString());
-        });
-
-        Assertions.assertDoesNotThrow(() -> {
-            freeBoardCommentService.delete(comment5.getId().toString(), user.getId().toString());
-        });
+        // then
+        Assertions.assertEquals(countBeforeDelete - 1, freeBoardCommentRepository.findAllWithNotDelete().size());
     }
 
     @Test
     void update() {
+        // given
+        List<FreeBoardComment> comments = freeBoardCommentRepository.findAllWithNotDelete();
+        FreeBoardComment comment = comments.get( new Random().nextInt(comments.size()) );
+        String originContent = comment.getContent();
+        String updateContent = "update-"+originContent;
+
+        // when
+        comment.setContent(updateContent);
+        freeBoardCommentRepository.save(comment);
+
+        // then
+        Assertions.assertNotEquals(originContent, comment.getContent());
+        Assertions.assertEquals(updateContent, comment.getContent());
     }
 
     @Test

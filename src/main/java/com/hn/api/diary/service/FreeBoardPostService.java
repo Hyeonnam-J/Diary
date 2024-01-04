@@ -69,17 +69,17 @@ public class FreeBoardPostService {
         if(freeBoardPost == null) throw new InvalidValue();
 
         // 글쓴이가 아니면 삭제할 수 없다.
-        User user = userRepository.findById(Long.parseLong(userId))
-                .orElseThrow(InvalidValue::new);
-        if( freeBoardPost.getUser().getId() != user.getId() ) throw new Forbidden();
+        if( freeBoardPost.getUser().getId() != Long.parseLong(userId) ) throw new Forbidden();
 
         freeBoardPost.setDelete(true);
         freeBoardPostRepository.save(freeBoardPost);
     }
 
-    public void update(FreeBoardPostUpdateDTO freeBoardPostUpdateDTO) {
+    public void update(FreeBoardPostUpdateDTO freeBoardPostUpdateDTO, String userId) {
         FreeBoardPost freeBoardPost = freeBoardPostRepository.findByIdWithNotDelete(Long.parseLong(freeBoardPostUpdateDTO.getPostId()));
         if(freeBoardPost == null) throw new InvalidValue();
+
+        if((freeBoardPost.getUser().getId() != Long.parseLong(userId))) throw new Forbidden();
 
         freeBoardPost.setTitle(freeBoardPostUpdateDTO.getTitle());
         freeBoardPost.setContent(freeBoardPostUpdateDTO.getContent());

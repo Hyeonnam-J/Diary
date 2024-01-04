@@ -53,8 +53,9 @@ public class FreeBoardPostController {
     }
 
     @PutMapping(value = "/freeBoard/post/update")
-    public void update(@RequestBody FreeBoardPostUpdateDTO freeBoardPostUpdateDTO){
-        freeBoardPostService.update(freeBoardPostUpdateDTO);
+    public void update(@RequestBody FreeBoardPostUpdateDTO freeBoardPostUpdateDTO, HttpServletRequest request){
+        String userId = String.valueOf(request.getAttribute("userId"));
+        freeBoardPostService.update(freeBoardPostUpdateDTO, userId);
     }
 
     @PostMapping(value = "/freeBoard/post/reply")

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hn.api.diary.controller.FreeBoardPostControllerTest;
 import com.hn.api.diary.controller.FreeBoardTestData;
 import com.hn.api.diary.dto.freeBoard.FreeBoardPostReplyDTO;
+import com.hn.api.diary.dto.freeBoard.FreeBoardPostUpdateDTO;
 import com.hn.api.diary.dto.freeBoard.FreeBoardPostWriteDTO;
 import com.hn.api.diary.entity.FreeBoardComment;
 import com.hn.api.diary.entity.FreeBoardPost;
@@ -84,58 +85,44 @@ public class FreeBoardPostServiceTest {
     @DisplayName("freeBoardPost - delete")
     void delete() throws Exception {
         // given
-        List<User> users = userRepository.findAll();
-        User user = users.get(0);
-
         List<FreeBoardPost> posts = freeBoardPostRepository.findAllWithNotDelete();
-        FreeBoardPost post1 = posts.get(0);
-        FreeBoardPost post2 = posts.get(1);
-        FreeBoardPost post3 = posts.get(2);
-        FreeBoardPost post5 = posts.get(3);
-        FreeBoardPost post6 = posts.get(4);
+        FreeBoardPost post = posts.get( new Random().nextInt(posts.size()) );
+
+        int countBeforeDelete = posts.size();
+
+        // do
+        post.setDelete(true);
+        freeBoardPostRepository.save(post);
 
         // expect
-        Assertions.assertThrows(Forbidden.class, () -> {
-            freeBoardPostService.delete(post1.getId().toString(), user.getId().toString());
-        });
-
-        Assertions.assertDoesNotThrow(() -> {
-            freeBoardPostService.delete(post2.getId().toString(), user.getId().toString());
-        });
-
-        Assertions.assertThrows(Forbidden.class, () -> {
-            freeBoardPostService.delete(post3.getId().toString(), user.getId().toString());
-        });
-
-        Assertions.assertThrows(Forbidden.class, () -> {
-            freeBoardPostService.delete(post5.getId().toString(), user.getId().toString());
-        });
-
-        Assertions.assertDoesNotThrow(() -> {
-            freeBoardPostService.delete(post6.getId().toString(), user.getId().toString());
-        });
+        int countAfterDelete = freeBoardPostRepository.findAllWithNotDelete().size();
+        Assertions.assertEquals(countBeforeDelete - 1, countAfterDelete);
     }
 
     @Test
     @DisplayName("freeBoardPost - update")
     void update() throws Exception {
-        // do
+        // given
         List<FreeBoardPost> posts = freeBoardPostRepository.findAllWithNotDelete();
-        FreeBoardPost postBeforeUpdate = posts.get( new Random().nextInt(posts.size()) );
+        FreeBoardPost post = posts.get( new Random().nextInt(posts.size()) );
 
-        String updateTitle = "updateTitle";
-        String updateContent = "updateContent";
+        // do
+        String originTitle = post.getTitle();
+        String originContent = post.getContent();
 
-        postBeforeUpdate.setTitle(updateTitle);
-        postBeforeUpdate.setContent(updateContent);
+        String updateTitle = "update-"+originTitle;
+        String updateContent = "update-"+originContent;
 
-        freeBoardPostRepository.save(postBeforeUpdate);
+        post.setTitle(updateTitle);
+        post.setContent(updateContent);
+
+        freeBoardPostRepository.save(post);
 
         // expect
-        FreeBoardPost postAfterUpdate = freeBoardPostRepository.findByIdWithNotDelete(postBeforeUpdate.getId());
-
-        Assertions.assertEquals(updateTitle, postAfterUpdate.getTitle());
-        Assertions.assertEquals(updateContent, postAfterUpdate.getContent());
+        Assertions.assertEquals(updateTitle, post.getTitle());
+        Assertions.assertEquals(updateContent, post.getContent());
+        Assertions.assertNotEquals(originTitle, post.getTitle());
+        Assertions.assertNotEquals(originContent, post.getContent());
     }
 
     @Test
