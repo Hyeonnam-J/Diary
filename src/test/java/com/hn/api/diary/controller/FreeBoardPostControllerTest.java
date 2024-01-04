@@ -48,131 +48,7 @@ public class FreeBoardPostControllerTest {
         freeBoardCommentRepository.deleteAll();
         freeBoardPostRepository.deleteAll();
         userRepository.deleteAll();
-        given();
-    }
-
-    /**
-     * user1: role is user.
-     * user2: role is user.
-     *
-     * post_1: two comment.
-     * post_2: nothing.
-     * post_3: one reply.
-     * post_4: isDelete true.
-     *
-     * user1 write all posts and comments
-     */
-    void given() {
-        // user start ****
-        User user1 = User.builder()
-                .email("nami0879@naver.com")
-                .password("!@#123QWEqwe")
-                .role("user")
-                .userName("jhn")
-                .nick("hn")
-                .build();
-
-        User user2 = User.builder()
-                .email("nami0878@naver.com")
-                .password("!@#123QWEqwe")
-                .role("user")
-                .userName("jhn")
-                .nick("hn")
-                .build();
-
-        userRepository.save(user1);
-        userRepository.save(user2);
-        // user end ****
-
-        // freeBoardPost start ****
-        FreeBoardPost freeBoardPost1 = FreeBoardPost.builder()
-                .title("title")
-                .content("content")
-                .user(user1)
-                .build();
-        freeBoardPostRepository.save(freeBoardPost1);
-        freeBoardPost1.setGroupId(freeBoardPost1.getId());
-        freeBoardPostRepository.save(freeBoardPost1);
-
-        FreeBoardPost freeBoardPost2 = FreeBoardPost.builder()
-                .title("title")
-                .content("content")
-                .user(user1)
-                .build();
-        freeBoardPostRepository.save(freeBoardPost2);
-        freeBoardPost2.setGroupId(freeBoardPost2.getId());
-        freeBoardPostRepository.save(freeBoardPost2);
-
-        FreeBoardPost freeBoardPost3 = FreeBoardPost.builder()
-                .title("title")
-                .content("content")
-                .user(user1)
-                .build();
-        freeBoardPostRepository.save(freeBoardPost3);
-        freeBoardPost3.setGroupId(freeBoardPost3.getId());
-        freeBoardPostRepository.save(freeBoardPost3);
-
-        FreeBoardPost freeBoardPost3_reply = FreeBoardPost.builder()
-                .title("title-reply")
-                .content("content-reply")
-                .groupId(freeBoardPost3.getGroupId())
-                .groupNo(freeBoardPost3.getGroupNo() + 1)
-                .depth(freeBoardPost3.getDepth() + 1)
-                .parentId(freeBoardPost3.getId())
-                .user(user1)
-                .build();
-        freeBoardPostRepository.save(freeBoardPost3_reply);
-
-        FreeBoardPost freeBoardPost4 = FreeBoardPost.builder()
-                .title("title")
-                .content("content")
-                .user(user1)
-                .build();
-        freeBoardPostRepository.save(freeBoardPost4);
-        freeBoardPost4.setGroupId(freeBoardPost4.getId());
-        freeBoardPost4.setDelete(true);
-        freeBoardPostRepository.save(freeBoardPost4);
-        // freeBoardPost end ****
-
-        // freeBoardComment start ****
-        FreeBoardComment freeBoardComment1 = FreeBoardComment.builder()
-                .freeBoardPost(freeBoardPost1)
-                .user(user1)
-                .content("content")
-                .build();
-
-        FreeBoardComment freeBoardComment2 = FreeBoardComment.builder()
-                .freeBoardPost(freeBoardPost1)
-                .user(user1)
-                .content("content")
-                .build();
-
-        freeBoardCommentRepository.save(freeBoardComment1);
-        freeBoardCommentRepository.save(freeBoardComment2);
-        // freeBoardComment end ****
-    }
-
-    HashMap<String, Object> signIn() throws Exception {
-        List<User> users = userRepository.findAll();
-        User user = users.get( new Random().nextInt(users.size()) );
-
-        SignInDTO signInDTO = SignInDTO.builder()
-                .email(user.getEmail())
-                .password(user.getPassword())
-                .build();
-        String signIn_json = objectMapper.writeValueAsString(signInDTO);
-
-        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(signIn_json)
-        );
-        String token = resultActions.andReturn().getResponse().getHeader(HttpHeaders.AUTHORIZATION);
-
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("user", user);
-        map.put("token", token);
-
-        return map;
+        new FreeBoardTestData().given(userRepository, freeBoardPostRepository, freeBoardCommentRepository);
     }
 
     @Test
@@ -265,7 +141,7 @@ public class FreeBoardPostControllerTest {
         // 랜덤한 게시물의 그룹
         List<FreeBoardPost> groupListBeforeReply = freeBoardPostRepository.findByGroupId(freeBoardPost.getGroupId());
 
-        HashMap<String, Object> map = signIn();
+        HashMap<String, Object> map = new FreeBoardTestData().signIn(userRepository, objectMapper, mockMvc);
         User user = (User) map.get("user");
         String token = (String) map.get("token");
 
@@ -292,7 +168,7 @@ public class FreeBoardPostControllerTest {
     @DisplayName("freeBoardPost - write")
     void write() throws Exception {
         // [given]
-        HashMap<String, Object> map = signIn();
+        HashMap<String, Object> map = new FreeBoardTestData().signIn(userRepository, objectMapper, mockMvc);
         User user = (User) map.get("user");
         String token = (String) map.get("token");
 
