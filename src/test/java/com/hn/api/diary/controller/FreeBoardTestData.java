@@ -29,6 +29,10 @@ public class FreeBoardTestData {
      * post_3: one reply.
      * post_4: isDelete true.
      *
+     * comment_1: post_1, no reply.
+     * comment_2: post_1, one reply.
+     * comment_3: post_1, isDelete true.
+     *
      * user1 write all posts and comments
      */
     public void given(UserRepository userRepository, FreeBoardPostRepository freeBoardPostRepository, FreeBoardCommentRepository freeBoardCommentRepository) {
@@ -109,15 +113,36 @@ public class FreeBoardTestData {
                 .user(user1)
                 .content("content")
                 .build();
+        freeBoardCommentRepository.save(freeBoardComment1);
+        freeBoardComment1.setGroupId(freeBoardComment1.getId());
+        freeBoardCommentRepository.save(freeBoardComment1);
 
         FreeBoardComment freeBoardComment2 = FreeBoardComment.builder()
                 .freeBoardPost(freeBoardPost1)
                 .user(user1)
                 .content("content")
                 .build();
-
-        freeBoardCommentRepository.save(freeBoardComment1);
         freeBoardCommentRepository.save(freeBoardComment2);
+        freeBoardComment2.setGroupId(freeBoardComment2.getId());
+        freeBoardCommentRepository.save(freeBoardComment2);
+
+        FreeBoardComment freeBoardComment2_reply = FreeBoardComment.builder()
+                .freeBoardPost(freeBoardPost1)
+                .user(user1)
+                .content("content-reply")
+                .groupId(freeBoardComment2.getGroupId())
+                .build();
+        freeBoardCommentRepository.save(freeBoardComment2_reply);
+
+        FreeBoardComment freeBoardComment3 = FreeBoardComment.builder()
+                .freeBoardPost(freeBoardPost1)
+                .user(user1)
+                .content("content")
+                .build();
+        freeBoardCommentRepository.save(freeBoardComment3);
+        freeBoardComment3.setGroupId(freeBoardComment3.getId());
+        freeBoardComment3.setDelete(true);
+        freeBoardCommentRepository.save(freeBoardComment3);
         // freeBoardComment end ****
     }
 
