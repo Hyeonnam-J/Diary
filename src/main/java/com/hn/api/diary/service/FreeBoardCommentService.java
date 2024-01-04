@@ -37,8 +37,8 @@ public class FreeBoardCommentService {
     }
 
     public void delete(String commentId) {
-        FreeBoardComment freeBoardComment = freeBoardCommentRepository.findById(Long.parseLong(commentId))
-                .orElseThrow(InvalidValue::new);
+        FreeBoardComment freeBoardComment = freeBoardCommentRepository.findByIdWithNotDelete(Long.parseLong(commentId));
+
 
         // 코멘트 원글이고,
         if (freeBoardComment.getId() == freeBoardComment.getGroupId()) {
@@ -52,8 +52,8 @@ public class FreeBoardCommentService {
     }
 
     public void update(FreeBoardCommentUpdateDTO freeBoardCommentUpdateDTO) {
-        FreeBoardComment freeBoardComment = freeBoardCommentRepository.findById(Long.parseLong(freeBoardCommentUpdateDTO.getCommentId()))
-                .orElseThrow(InvalidValue::new);
+        FreeBoardComment freeBoardComment = freeBoardCommentRepository.findByIdWithNotDelete(Long.parseLong(freeBoardCommentUpdateDTO.getCommentId()));
+        if(freeBoardComment == null) throw new InvalidValue();
 
         freeBoardComment.setContent(freeBoardCommentUpdateDTO.getContent());
         freeBoardCommentRepository.save(freeBoardComment);
@@ -63,8 +63,8 @@ public class FreeBoardCommentService {
         User user = userRepository.findById(Long.parseLong(userId))
                 .orElseThrow(InvalidValue::new);
 
-        FreeBoardPost freeBoardPost = freeBoardPostRepository.findById(Long.parseLong(freeBoardCommentWriteDTO.getPostId()))
-                .orElseThrow(InvalidValue::new);
+        FreeBoardPost freeBoardPost = freeBoardPostRepository.findByIdWithNotDelete(Long.parseLong(freeBoardCommentWriteDTO.getPostId()));
+        if(freeBoardPost == null) throw new InvalidValue();
 
         FreeBoardComment freeBoardComment = FreeBoardComment.builder()
                 .freeBoardPost(freeBoardPost)
@@ -83,8 +83,8 @@ public class FreeBoardCommentService {
         User user = userRepository.findById(Long.parseLong(userId))
                 .orElseThrow(InvalidValue::new);
 
-        FreeBoardComment freeBoardComment = freeBoardCommentRepository.findById(Long.parseLong(boardCommentReplyDTO.getCommentId()))
-                .orElseThrow(InvalidValue::new);
+        FreeBoardComment freeBoardComment = freeBoardCommentRepository.findByIdWithNotDelete(Long.parseLong(boardCommentReplyDTO.getCommentId()));
+        if(freeBoardComment == null) throw new InvalidValue();
 
         FreeBoardComment freeBoardComment_save = FreeBoardComment.builder()
                 .user(user)

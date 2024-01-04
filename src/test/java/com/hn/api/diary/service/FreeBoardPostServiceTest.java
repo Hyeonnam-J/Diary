@@ -2,6 +2,7 @@ package com.hn.api.diary.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hn.api.diary.controller.FreeBoardPostControllerTest;
+import com.hn.api.diary.controller.FreeBoardTestData;
 import com.hn.api.diary.dto.freeBoard.FreeBoardPostReplyDTO;
 import com.hn.api.diary.dto.freeBoard.FreeBoardPostWriteDTO;
 import com.hn.api.diary.entity.FreeBoardComment;
@@ -41,7 +42,7 @@ public class FreeBoardPostServiceTest {
         freeBoardCommentRepository.deleteAll();
         freeBoardPostRepository.deleteAll();
         userRepository.deleteAll();
-        given();
+        new FreeBoardTestData().given(userRepository, freeBoardPostRepository, freeBoardCommentRepository);
     }
 
     /**
@@ -55,95 +56,95 @@ public class FreeBoardPostServiceTest {
      *
      * user1 write all posts and comments
      */
-    void given() {
-        // user start ****
-        User user1 = User.builder()
-                .email("nami0879@naver.com")
-                .password("!@#123QWEqwe")
-                .role("user")
-                .userName("jhn")
-                .nick("hn")
-                .build();
-
-        User user2 = User.builder()
-                .email("nami0878@naver.com")
-                .password("!@#123QWEqwe")
-                .role("user")
-                .userName("jhn")
-                .nick("hn")
-                .build();
-
-        userRepository.save(user1);
-        userRepository.save(user2);
-        // user end ****
-
-        // freeBoardPost start ****
-        FreeBoardPost freeBoardPost1 = FreeBoardPost.builder()
-                .title("title")
-                .content("content")
-                .user(user1)
-                .build();
-        freeBoardPostRepository.save(freeBoardPost1);
-        freeBoardPost1.setGroupId(freeBoardPost1.getId());
-        freeBoardPostRepository.save(freeBoardPost1);
-
-        FreeBoardPost freeBoardPost2 = FreeBoardPost.builder()
-                .title("title")
-                .content("content")
-                .user(user1)
-                .build();
-        freeBoardPostRepository.save(freeBoardPost2);
-        freeBoardPost2.setGroupId(freeBoardPost2.getId());
-        freeBoardPostRepository.save(freeBoardPost2);
-
-        FreeBoardPost freeBoardPost3 = FreeBoardPost.builder()
-                .title("title")
-                .content("content")
-                .user(user1)
-                .build();
-        freeBoardPostRepository.save(freeBoardPost3);
-        freeBoardPost3.setGroupId(freeBoardPost3.getId());
-        freeBoardPostRepository.save(freeBoardPost3);
-
-        FreeBoardPost freeBoardPost3_reply = FreeBoardPost.builder()
-                .title("title-reply")
-                .content("content-reply")
-                .groupId(freeBoardPost3.getGroupId())
-                .groupNo(freeBoardPost3.getGroupNo() + 1)
-                .depth(freeBoardPost3.getDepth() + 1)
-                .parentId(freeBoardPost3.getId())
-                .user(user1)
-                .build();
-        freeBoardPostRepository.save(freeBoardPost3_reply);
-
-        FreeBoardPost freeBoardPost4 = FreeBoardPost.builder()
-                .title("title")
-                .content("content")
-                .user(user1)
-                .build();
-        freeBoardPostRepository.save(freeBoardPost4);
-        freeBoardPost4.setGroupId(freeBoardPost4.getId());
-        freeBoardPost4.setDelete(true);
-        freeBoardPostRepository.save(freeBoardPost4);
-        // freeBoardPost end ****
-
-        // freeBoardComment start ****
-        FreeBoardComment freeBoardComment1 = FreeBoardComment.builder()
-                .freeBoardPost(freeBoardPost1)
-                .user(user1)
-                .content("content")
-                .build();
-
-        FreeBoardComment freeBoardComment2 = FreeBoardComment.builder()
-                .freeBoardPost(freeBoardPost1)
-                .user(user1)
-                .content("content")
-                .build();
-
-        freeBoardCommentRepository.save(freeBoardComment1);
-        freeBoardCommentRepository.save(freeBoardComment2);
-        // freeBoardComment end ****
-    }
+//    void given() {
+//        // user start ****
+//        User user1 = User.builder()
+//                .email("nami0879@naver.com")
+//                .password("!@#123QWEqwe")
+//                .role("user")
+//                .userName("jhn")
+//                .nick("hn")
+//                .build();
+//
+//        User user2 = User.builder()
+//                .email("nami0878@naver.com")
+//                .password("!@#123QWEqwe")
+//                .role("user")
+//                .userName("jhn")
+//                .nick("hn")
+//                .build();
+//
+//        userRepository.save(user1);
+//        userRepository.save(user2);
+//        // user end ****
+//
+//        // freeBoardPost start ****
+//        FreeBoardPost freeBoardPost1 = FreeBoardPost.builder()
+//                .title("title")
+//                .content("content")
+//                .user(user1)
+//                .build();
+//        freeBoardPostRepository.save(freeBoardPost1);
+//        freeBoardPost1.setGroupId(freeBoardPost1.getId());
+//        freeBoardPostRepository.save(freeBoardPost1);
+//
+//        FreeBoardPost freeBoardPost2 = FreeBoardPost.builder()
+//                .title("title")
+//                .content("content")
+//                .user(user1)
+//                .build();
+//        freeBoardPostRepository.save(freeBoardPost2);
+//        freeBoardPost2.setGroupId(freeBoardPost2.getId());
+//        freeBoardPostRepository.save(freeBoardPost2);
+//
+//        FreeBoardPost freeBoardPost3 = FreeBoardPost.builder()
+//                .title("title")
+//                .content("content")
+//                .user(user1)
+//                .build();
+//        freeBoardPostRepository.save(freeBoardPost3);
+//        freeBoardPost3.setGroupId(freeBoardPost3.getId());
+//        freeBoardPostRepository.save(freeBoardPost3);
+//
+//        FreeBoardPost freeBoardPost3_reply = FreeBoardPost.builder()
+//                .title("title-reply")
+//                .content("content-reply")
+//                .groupId(freeBoardPost3.getGroupId())
+//                .groupNo(freeBoardPost3.getGroupNo() + 1)
+//                .depth(freeBoardPost3.getDepth() + 1)
+//                .parentId(freeBoardPost3.getId())
+//                .user(user1)
+//                .build();
+//        freeBoardPostRepository.save(freeBoardPost3_reply);
+//
+//        FreeBoardPost freeBoardPost4 = FreeBoardPost.builder()
+//                .title("title")
+//                .content("content")
+//                .user(user1)
+//                .build();
+//        freeBoardPostRepository.save(freeBoardPost4);
+//        freeBoardPost4.setGroupId(freeBoardPost4.getId());
+//        freeBoardPost4.setDelete(true);
+//        freeBoardPostRepository.save(freeBoardPost4);
+//        // freeBoardPost end ****
+//
+//        // freeBoardComment start ****
+//        FreeBoardComment freeBoardComment1 = FreeBoardComment.builder()
+//                .freeBoardPost(freeBoardPost1)
+//                .user(user1)
+//                .content("content")
+//                .build();
+//
+//        FreeBoardComment freeBoardComment2 = FreeBoardComment.builder()
+//                .freeBoardPost(freeBoardPost1)
+//                .user(user1)
+//                .content("content")
+//                .build();
+//
+//        freeBoardCommentRepository.save(freeBoardComment1);
+//        freeBoardCommentRepository.save(freeBoardComment2);
+//        // freeBoardComment end ****
+//    }
 
     @Test
     @DisplayName("freeBoardPost - read / success")
