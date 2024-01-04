@@ -49,15 +49,16 @@ public class FreeBoardPostServiceTest {
     @Test
     @DisplayName("freeBoardPost - read / success")
     void read_success() throws Exception {
-        // do
+        // given
         List<FreeBoardPost> freeBoardPosts = freeBoardPostRepository.findAllWithNotDelete();
         int randNo = new Random().nextInt(freeBoardPosts.size());
         FreeBoardPost randPost = freeBoardPosts.get(randNo);
         long randPostId = randPost.getId();
 
+        // when
         FreeBoardPost findPost = freeBoardPostRepository.findByIdWithNotDelete(randPostId);
 
-        // expect
+        // then
         Assertions.assertEquals(randPost.getId(), findPost.getId());
     }
 
@@ -157,7 +158,7 @@ public class FreeBoardPostServiceTest {
     @Test
     @DisplayName("freeBoardPost - write")
     void write() throws Exception {
-        // do
+        // given
         List<User> users = userRepository.findAll();
         User user = users.get( new Random().nextInt(users.size()) );
 
@@ -168,9 +169,10 @@ public class FreeBoardPostServiceTest {
                 .content("content-write")
                 .build();
 
+        // when
         freeBoardPostService.write(freeBoardPostWriteDTO, user.getId().toString());
 
-        // expect
+        // then
         Assertions.assertEquals(countBeforeWrite + 1, freeBoardPostRepository.count());
     }
 

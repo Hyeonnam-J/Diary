@@ -3,7 +3,7 @@ package com.hn.api.diary.controller;
 import java.net.HttpURLConnection;
 import java.util.List;
 
-import com.hn.api.diary.dto.freeBoard.FreeBoardBoardCommentReplyDTO;
+import com.hn.api.diary.dto.freeBoard.FreeBoardCommentReplyDTO;
 import com.hn.api.diary.dto.freeBoard.FreeBoardCommentUpdateDTO;
 import com.hn.api.diary.dto.freeBoard.FreeBoardCommentWriteDTO;
 import com.hn.api.diary.dto.freeBoard.FreeBoardCommentsDTO;
@@ -42,7 +42,7 @@ public class FreeBoardCommentController {
     }
 
     @PostMapping(value = "/freeBoard/comment/reply")
-    public void reply(@RequestBody FreeBoardBoardCommentReplyDTO boardCommentReplyDTO, HttpServletRequest request){
+    public void reply(@RequestBody FreeBoardCommentReplyDTO boardCommentReplyDTO, HttpServletRequest request){
         String userId = String.valueOf(request.getAttribute("userId"));
         freeBoardCommentService.reply(boardCommentReplyDTO, userId);
     }

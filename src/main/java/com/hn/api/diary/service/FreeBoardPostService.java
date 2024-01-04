@@ -35,11 +35,11 @@ public class FreeBoardPostService {
     private final FreeBoardCommentRepository freeBoardCommentRepository;
     private final UserRepository userRepository;
 
-    private class BoardPageSize {
+    private class PostPageSize {
         private static final int BASIC = 10;
     }
 
-    private class BoardSort {
+    private class PostSort {
         private static final String BASIC = "basic";
     }
 
@@ -62,6 +62,7 @@ public class FreeBoardPostService {
         if(countComments != 0) throw new Forbidden();
 
         // 답글이 있으면 삭제할 수 없다.
+        // 삭제하려는 게시글의 아이디를 부모 아이디로 가지고 있는지 검사.
         long countChildPosts = freeBoardPostRepository.countByParentIdWithNoDelete(Long.parseLong(postId));
         if(countChildPosts != 0) throw new Forbidden();
 
@@ -135,15 +136,16 @@ public class FreeBoardPostService {
         Pageable pageable;
 
         switch (sort) {
-            case BoardSort.BASIC:
-                pageable = PageRequest.of(page, BoardPageSize.BASIC,
+            case PostSort.BASIC:
+                pageable = PageRequest.of(page, PostPageSize.BASIC,
                         Sort.by("groupId").descending()
                                 .and(Sort.by("groupNo").ascending()));
                 break;
 
             default:
-                pageable = PageRequest.of(page, BoardPageSize.BASIC,
-                        Sort.by("groupId").descending().and(Sort.by("groupNo")));
+                pageable = PageRequest.of(page, PostPageSize.BASIC,
+                        Sort.by("groupId").descending()
+                                .and(Sort.by("groupNo").ascending()));
                 break;
         }
 

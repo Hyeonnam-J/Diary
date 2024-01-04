@@ -123,6 +123,7 @@ public class FreeBoardTestData {
                 .freeBoardPost(post1)
                 .user(user1)
                 .content("content")
+                .isParent(true)
                 .build();
         freeBoardCommentRepository.save(comment1);
         comment1.setGroupId(comment1.getId());
@@ -132,6 +133,7 @@ public class FreeBoardTestData {
                 .freeBoardPost(post1)
                 .user(user1)
                 .content("content")
+                .isParent(true)
                 .build();
         freeBoardCommentRepository.save(comment2);
         comment2.setGroupId(comment2.getId());
@@ -141,6 +143,7 @@ public class FreeBoardTestData {
                 .freeBoardPost(post1)
                 .user(user1)
                 .content("content")
+                .isParent(true)
                 .build();
         freeBoardCommentRepository.save(comment3);
         comment3.setGroupId(comment3.getId());
@@ -151,6 +154,7 @@ public class FreeBoardTestData {
                 .freeBoardPost(post1)
                 .user(user2)
                 .content("content")
+                .isParent(true)
                 .build();
         freeBoardCommentRepository.save(comment4);
         comment4.setGroupId(comment4.getId());
@@ -160,6 +164,7 @@ public class FreeBoardTestData {
                 .freeBoardPost(post1)
                 .user(user1)
                 .content("content-reply")
+                .isParent(false)
                 .groupId(comment2.getGroupId())
                 .build();
         freeBoardCommentRepository.save(comment5_replyComment2);

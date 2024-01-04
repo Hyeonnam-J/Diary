@@ -6,13 +6,13 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Getter
-public class FreeBoardCommentWriteDTO {
-    private String postId;
+public class FreeBoardCommentReplyDTO {
+    private String commentId;
     private String content;
 
     @Builder
-    public FreeBoardCommentWriteDTO(String postId, String content) {
-        this.postId = postId;
+    public FreeBoardCommentReplyDTO(String commentId, String content) {
+        this.commentId = commentId;
         this.content = content;
     }
 }

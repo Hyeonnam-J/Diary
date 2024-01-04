@@ -1,7 +1,9 @@
 package com.hn.api.diary.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hn.api.diary.dto.freeBoard.FreeBoardCommentReplyDTO;
 import com.hn.api.diary.dto.freeBoard.FreeBoardCommentUpdateDTO;
+import com.hn.api.diary.dto.freeBoard.FreeBoardCommentWriteDTO;
 import com.hn.api.diary.entity.FreeBoardComment;
 import com.hn.api.diary.entity.FreeBoardPost;
 import com.hn.api.diary.entity.User;
@@ -17,14 +19,12 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.HashMap;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Random;
 
 @AutoConfigureMockMvc
 @SpringBootTest
@@ -140,18 +140,85 @@ class FreeBoardCommentControllerTest {
     }
 
     @Test
-    void write() {
+    void write() throws Exception {
+        // given
+        HashMap<String, Object> map = new FreeBoardTestData().signIn(userRepository, objectMapper, mockMvc);
+        User user = (User) map.get("user");
+        String token = (String) map.get("token");
+
+        List<FreeBoardPost> posts = freeBoardPostRepository.findAllWithNotDelete();
+        FreeBoardPost post = posts.get( new Random().nextInt(posts.size()) );
+
+        FreeBoardCommentWriteDTO dto = FreeBoardCommentWriteDTO.builder()
+                .postId(post.getId().toString())
+                .content("content")
+                .build();
+        String json = objectMapper.writeValueAsString(dto);
+
+        // when
+        ResultActions actions = mockMvc.perform(MockMvcRequestBuilders.post("/freeBoard/comment/write")
+                .header("userId", user.getId())
+                .header(HttpHeaders.AUTHORIZATION, token)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json)
+        );
+
+        // then
+        actions.andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
-    void reply() {
+    void reply() throws Exception {
+        // given
+        HashMap<String, Object> map = new FreeBoardTestData().signIn(userRepository, objectMapper, mockMvc);
+        User user = (User) map.get("user");
+        String token = (String) map.get("token");
+
+        List<FreeBoardComment> comments = freeBoardCommentRepository.findAllWithNotDelete();
+        FreeBoardComment comment = comments.get( new Random().nextInt(comments.size()) );
+
+        FreeBoardCommentReplyDTO dto = FreeBoardCommentReplyDTO.builder()
+                .commentId(comment.getId().toString())
+                .content("reply")
+                .build();
+        String json = objectMapper.writeValueAsString(dto);
+
+        // when
+        ResultActions actions = mockMvc.perform(MockMvcRequestBuilders.post("/freeBoard/comment/reply")
+                .header("userId", user.getId())
+                .header(HttpHeaders.AUTHORIZATION, token)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json)
+        );
+
+        // then
+        actions.andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
-    void getComments() {
+    void getComments() throws Exception {
+        // given
+        List<FreeBoardPost> posts = freeBoardPostRepository.findAllWithNotDelete();
+        FreeBoardPost post = posts.get( new Random().nextInt(posts.size()) );
+
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/freeBoard/comments/"+post.getId())
+                .param("page", "1")
+        );
+
+        // expect
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
-    void getTotalCount() {
+    void getTotalCount() throws Exception {
+        // given
+        List<FreeBoardPost> posts = freeBoardPostRepository.findAllWithNotDelete();
+        FreeBoardPost post = posts.get( new Random().nextInt(posts.size()) );
+
+        // when
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/freeBoard/comments/totalCount/"+post.getId()));
+
+        // then
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

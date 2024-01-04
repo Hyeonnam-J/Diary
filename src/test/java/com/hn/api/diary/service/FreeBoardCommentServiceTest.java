@@ -2,9 +2,11 @@ package com.hn.api.diary.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hn.api.diary.controller.FreeBoardTestData;
+import com.hn.api.diary.dto.freeBoard.FreeBoardCommentReplyDTO;
+import com.hn.api.diary.dto.freeBoard.FreeBoardCommentWriteDTO;
 import com.hn.api.diary.entity.FreeBoardComment;
+import com.hn.api.diary.entity.FreeBoardPost;
 import com.hn.api.diary.entity.User;
-import com.hn.api.diary.exception.Forbidden;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
 import com.hn.api.diary.repository.UserRepository;
@@ -16,8 +18,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 import java.util.Random;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class FreeBoardCommentServiceTest {
@@ -75,17 +75,68 @@ class FreeBoardCommentServiceTest {
 
     @Test
     void write() {
+        //given
+        Random random = new Random();
+
+        List<User> users = userRepository.findAll();
+        User user = users.get( random.nextInt(users.size()) );
+
+        List<FreeBoardPost> posts = freeBoardPostRepository.findAllWithNotDelete();
+        FreeBoardPost post = posts.get( random.nextInt(posts.size()) );
+
+        long countBeforeWrite = freeBoardCommentRepository.count();
+
+        FreeBoardCommentWriteDTO dto = FreeBoardCommentWriteDTO.builder()
+                .postId(post.getId().toString())
+                .content("write")
+                .build();
+
+        // when
+        freeBoardCommentService.write(dto, user.getId().toString());
+
+        // then
+        Assertions.assertEquals(countBeforeWrite + 1, freeBoardCommentRepository.count());
     }
 
     @Test
     void reply() {
+        // given
+        List<User> users = userRepository.findAll();
+        User user = users.get( new Random().nextInt(users.size()) );
+
+        List<FreeBoardComment> comments = freeBoardCommentRepository.findAllWithNotDelete();
+        FreeBoardComment comment = comments.stream()
+                .filter(c -> c.isParent() == true)
+                .findFirst()
+                .orElseThrow();
+
+        long countBeforeReply = freeBoardCommentRepository.countByGroupIdWithNoDelete(comment.getGroupId());
+
+        FreeBoardCommentReplyDTO dto = FreeBoardCommentReplyDTO.builder()
+                .commentId(comment.getId().toString())
+                .content("reply")
+                .build();
+
+        // when
+        freeBoardCommentService.reply(dto, user.getId().toString());
+
+        // then
+        Assertions.assertEquals(countBeforeReply + 1, freeBoardCommentRepository.countByGroupIdWithNoDelete(comment.getGroupId()));
     }
 
     @Test
     void getComments() {
+        List<FreeBoardPost> posts = freeBoardPostRepository.findAllWithNotDelete();
+        FreeBoardPost post = posts.get( new Random().nextInt(posts.size()) );
+
+        Assertions.assertDoesNotThrow(() -> freeBoardCommentService.getComments(post.getId(), 1));
     }
 
     @Test
     void getTotalCount() {
+        List<FreeBoardPost> posts = freeBoardPostRepository.findAllWithNotDelete();
+        FreeBoardPost post = posts.get( new Random().nextInt(posts.size()) );
+
+        Assertions.assertDoesNotThrow(() -> freeBoardCommentService.getTotalCount(post.getId()));
     }
 }

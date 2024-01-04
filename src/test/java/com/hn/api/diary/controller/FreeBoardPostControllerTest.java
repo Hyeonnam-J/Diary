@@ -144,33 +144,32 @@ public class FreeBoardPostControllerTest {
                 .filter(p -> p.getUser().getId() == user.getId())
                 .findFirst()
                 .orElseThrow();
-
         FreeBoardPost post2 = freeBoardPosts.stream()
                 .filter(p -> p.getUser().getId() != user.getId())
                 .findFirst()
                 .orElseThrow();
 
-        // when
         FreeBoardPostUpdateDTO dto1 = FreeBoardPostUpdateDTO.builder()
                 .postId(post1.getId().toString())
                 .title("updateTitle")
                 .content("updateContent")
                 .build();
-        String json1 = objectMapper.writeValueAsString(dto1);
+        FreeBoardPostUpdateDTO dto2 = FreeBoardPostUpdateDTO.builder()
+                .postId(post2.getId().toString())
+                .title("updateTitle")
+                .content("updateContent")
+                .build();
 
+        String json1 = objectMapper.writeValueAsString(dto1);
+        String json2 = objectMapper.writeValueAsString(dto2);
+
+        // when
         ResultActions actions1 = mockMvc.perform(MockMvcRequestBuilders.put("/freeBoard/post/update")
                 .header("userId", user.getId())
                 .header(HttpHeaders.AUTHORIZATION, token)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json1)
         );
-
-        FreeBoardPostUpdateDTO dto2 = FreeBoardPostUpdateDTO.builder()
-                .postId(post2.getId().toString())
-                .title("updateTitle")
-                .content("updateContent")
-                .build();
-        String json2 = objectMapper.writeValueAsString(dto2);
 
         ResultActions actions2 = mockMvc.perform(MockMvcRequestBuilders.put("/freeBoard/post/update")
                 .header("userId", user.getId())
@@ -187,20 +186,16 @@ public class FreeBoardPostControllerTest {
     @Test
     @DisplayName("freeBoardPost - reply")
     void reply() throws Exception {
-        // [given]
+        // given
         Random random = new Random();
 
-        // 랜덤한 게시물
         List<FreeBoardPost> freeBoardPosts = freeBoardPostRepository.findAllWithNotDelete();
         FreeBoardPost freeBoardPost = freeBoardPosts.get(random.nextInt(freeBoardPosts.size()));
-        // 랜덤한 게시물의 그룹
-        List<FreeBoardPost> groupListBeforeReply = freeBoardPostRepository.findByGroupId(freeBoardPost.getGroupId());
 
         HashMap<String, Object> map = new FreeBoardTestData().signIn(userRepository, objectMapper, mockMvc);
         User user = (User) map.get("user");
         String token = (String) map.get("token");
 
-        // [when]
         FreeBoardPostReplyDTO freeBoardPostReplyDTO = FreeBoardPostReplyDTO.builder()
                 .postId(freeBoardPost.getId().toString())
                 .title("reply-title")
@@ -208,6 +203,7 @@ public class FreeBoardPostControllerTest {
                 .build();
         String reply_json = objectMapper.writeValueAsString(freeBoardPostReplyDTO);
 
+        // when
         ResultActions actions = mockMvc.perform(MockMvcRequestBuilders.post("/freeBoard/post/reply")
                 .header("userId", user.getId())
                 .header(HttpHeaders.AUTHORIZATION, token)
@@ -226,8 +222,6 @@ public class FreeBoardPostControllerTest {
         HashMap<String, Object> map = new FreeBoardTestData().signIn(userRepository, objectMapper, mockMvc);
         User user = (User) map.get("user");
         String token = (String) map.get("token");
-
-        long postCountBeforeWrite = freeBoardPostRepository.count();
 
         // [when]
         FreeBoardPostWriteDTO freeBoardPostWriteDTO = FreeBoardPostWriteDTO.builder()
@@ -263,10 +257,7 @@ public class FreeBoardPostControllerTest {
     @Test
     @DisplayName("freeBoardPost - getTotalCount")
     void getTotalCount() throws Exception {
-        // [when]
         ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/freeBoard/posts/totalCount"));
-
-        // [then]
         resultActions.andExpect(MockMvcResultMatchers.status().isOk());
     }
 }
