@@ -21,6 +21,8 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.Map;
+
 @AutoConfigureMockMvc
 @SpringBootTest
 public class AuthControllerTest {
@@ -76,26 +78,20 @@ public class AuthControllerTest {
         ResultActions user1_signInResultActions = mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(user1_signInDTO_json));
-        String user1_token = "";
-        Cookie[] user1_cookies = user1_signInResultActions.andReturn().getResponse().getCookies();
-        for(Cookie cookie: user1_cookies){
-            if(cookie.getName() == "jws") user1_token = cookie.getValue();
-        }
+        String user1_strCookie = user1_signInResultActions.andReturn().getResponse().getHeader("Set-Cookie");
+        Map<String, String> user1_cookieMap = FreeBoardTestData.parseCookie(user1_strCookie);
 
         ResultActions user2_signInResultActions = mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(user2_signInDTO_json));
-        String user2_token = "";
-        Cookie[] user2_cookies = user2_signInResultActions.andReturn().getResponse().getCookies();
-        for(Cookie cookie: user2_cookies){
-            if(cookie.getName() == "jws") user2_token = cookie.getValue();
-        }
+        String user2_strCookie = user2_signInResultActions.andReturn().getResponse().getHeader("Set-Cookie");
+        Map<String, String> user2_cookieMap = FreeBoardTestData.parseCookie(user2_strCookie);
 
         ResultActions user1_userResultActions = mockMvc.perform(MockMvcRequestBuilders.get("/user")
-                .header(HttpHeaders.AUTHORIZATION, user1_token));
+                .header(HttpHeaders.AUTHORIZATION, user1_cookieMap.get("jws")));
 
         ResultActions user2_userResultActions = mockMvc.perform(MockMvcRequestBuilders.get("/user")
-                .header(HttpHeaders.AUTHORIZATION, user2_token));
+                .header(HttpHeaders.AUTHORIZATION, user2_cookieMap.get("jws")));
 
         // [then]
         user1_userResultActions.andExpect(MockMvcResultMatchers.status().isOk());
@@ -140,26 +136,20 @@ public class AuthControllerTest {
         ResultActions user1_signInResultActions = mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(user1_signInDTO_json));
-        String user1_token = "";
-        Cookie[] user1_cookies = user1_signInResultActions.andReturn().getResponse().getCookies();
-        for(Cookie cookie: user1_cookies){
-            if(cookie.getName() == "jws") user1_token = cookie.getValue();
-        }
+        String user1_strCookie = user1_signInResultActions.andReturn().getResponse().getHeader("Set-Cookie");
+        Map<String, String> user1_cookieMap = FreeBoardTestData.parseCookie(user1_strCookie);
 
         ResultActions user2_signInResultActions = mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(user2_signInDTO_json));
-        String user2_token = "";
-        Cookie[] user2_cookies = user2_signInResultActions.andReturn().getResponse().getCookies();
-        for(Cookie cookie: user2_cookies){
-            if(cookie.getName() == "jws") user2_token = cookie.getValue();
-        }
+        String user2_strCookie = user2_signInResultActions.andReturn().getResponse().getHeader("Set-Cookie");
+        Map<String, String> user2_cookieMap = FreeBoardTestData.parseCookie(user2_strCookie);
 
         ResultActions user1_userResultActions = mockMvc.perform(MockMvcRequestBuilders.get("/admin")
-                .header(HttpHeaders.AUTHORIZATION, user1_token));
+                .header(HttpHeaders.AUTHORIZATION, user1_cookieMap.get("jws")));
 
         ResultActions user2_userResultActions = mockMvc.perform(MockMvcRequestBuilders.get("/admin")
-                .header(HttpHeaders.AUTHORIZATION, user2_token));
+                .header(HttpHeaders.AUTHORIZATION, user2_cookieMap.get("jws")));
 
         // [then]
         user1_userResultActions.andExpect(MockMvcResultMatchers.status().isUnauthorized());

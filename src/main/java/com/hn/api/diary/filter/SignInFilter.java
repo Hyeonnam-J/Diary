@@ -2,10 +2,10 @@ package com.hn.api.diary.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hn.api.diary.dto.user.MyUserDetails;
-import com.hn.api.diary.util.JwsKey;
 import com.hn.api.diary.dto.user.SessionDTO;
 import com.hn.api.diary.dto.user.SignInDTO;
 import com.hn.api.diary.response.SessionResponse;
+import com.hn.api.diary.util.JwsKey;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -13,8 +13,8 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseCookie;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -31,7 +31,8 @@ import java.util.stream.Collectors;
 
 public class SignInFilter extends AbstractAuthenticationProcessingFilter {
 
-    @Autowired private ObjectMapper objectMapper;
+    @Autowired
+    private ObjectMapper objectMapper;
 
     private static final AntPathRequestMatcher SIGN_IN_REQUEST_MATCHER
             = new AntPathRequestMatcher("/signIn", "POST");
@@ -88,10 +89,13 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
                 .compact();
 
         // 쿠키 추가
-        Cookie cookie = new Cookie("jws", jws);
-        cookie.setMaxAge((int) (expireDate.getTime() - generateDate.getTime()) / 1000);
-        cookie.setPath("/");
-        response.addCookie(cookie);
+        ResponseCookie cookie = ResponseCookie.from("jws", jws)
+                .path("/")
+                .sameSite("None")
+                .maxAge((int) (expireDate.getTime() - generateDate.getTime()) / 1000)
+                .secure(true)
+                .build();
+        response.setHeader("Set-Cookie", cookie.toString());
 
         response.setStatus(HttpServletResponse.SC_OK);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);

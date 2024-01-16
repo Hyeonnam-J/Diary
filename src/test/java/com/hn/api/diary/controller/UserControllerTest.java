@@ -30,6 +30,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.Map;
+
 @AutoConfigureMockMvc
 @SpringBootTest
 class UserControllerTest {
@@ -213,18 +215,14 @@ class UserControllerTest {
         ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(signInDTO_json));
-        MvcResult mvcResult = resultActions.andReturn();
 
-        String jws = "";
-        Cookie[] cookies = mvcResult.getResponse().getCookies();
-        for(Cookie cookie: cookies){
-            if(cookie.getName() == "jws") jws = cookie.getValue();
-        }
+        String strCookie = resultActions.andReturn().getResponse().getHeader("Set-Cookie");
+        Map<String, String> cookieMap = FreeBoardTestData.parseCookie(strCookie);
 
         String jwtSubject = Jwts.parser()
                 .verifyWith(JwsKey.getJwsSecretKey())
                 .build()
-                .parseSignedClaims(jws)
+                .parseSignedClaims(cookieMap.get("jws"))
                 .getPayload()
                 .getSubject();
 
