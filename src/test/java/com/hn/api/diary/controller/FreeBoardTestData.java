@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class FreeBoardTestData {
@@ -190,17 +191,32 @@ public class FreeBoardTestData {
                 .content(signIn_json)
         );
 
-        Cookie[] cookies = resultActions.andReturn().getResponse().getCookies();
-
-        String token = "";
-        for(Cookie cookie: cookies){
-            if(cookie.getName() == "jws") token = cookie.getValue();
-        }
+        String strCookie = resultActions.andReturn().getResponse().getHeader("Set-Cookie");
+        Map<String, String> cookieMap = parseCookie(strCookie);
 
         HashMap<String, Object> map = new HashMap<>();
         map.put("user", user);
-        map.put("token", token);
+        map.put("token", cookieMap.get("jws"));
 
         return map;
+    }
+
+    public static Map<String, String> parseCookie(String cookieString) {
+        Map<String, String> cookieMap = new HashMap<>();
+
+        // 세미콜론을 기준으로 쿠키를 분할
+        String[] cookieSegments = cookieString.split(";");
+
+        // 각 세그먼트에서 이름과 값을 추출하여 맵에 저장
+        for (String segment : cookieSegments) {
+            String[] nameValuePair = segment.trim().split("=");
+            if (nameValuePair.length == 2) {
+                String name = nameValuePair[0];
+                String value = nameValuePair[1];
+                cookieMap.put(name, value);
+            }
+        }
+
+        return cookieMap;
     }
 }
