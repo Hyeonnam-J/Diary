@@ -9,6 +9,7 @@ import com.hn.api.diary.response.SessionResponse;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,13 +87,17 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
                 .expiration(expireDate)
                 .compact();
 
+        // 쿠키 추가
+        Cookie cookie = new Cookie("jws", jws);
+        cookie.setMaxAge((int) (expireDate.getTime() - generateDate.getTime()) / 1000);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+
         response.setStatus(HttpServletResponse.SC_OK);
-        response.addHeader(HttpHeaders.AUTHORIZATION, jws);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 
         String body = objectMapper.writeValueAsString(SessionResponse.builder()
                 .status(HttpURLConnection.HTTP_OK)
-                .accessToken(jws)
                 .build()
         );
         response.getWriter().write(body);
