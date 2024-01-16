@@ -8,6 +8,7 @@ import com.hn.api.diary.entity.User;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
 import com.hn.api.diary.repository.UserRepository;
+import jakarta.servlet.http.Cookie;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -188,7 +189,13 @@ public class FreeBoardTestData {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(signIn_json)
         );
-        String token = resultActions.andReturn().getResponse().getHeader(HttpHeaders.AUTHORIZATION);
+
+        Cookie[] cookies = resultActions.andReturn().getResponse().getCookies();
+
+        String token = "";
+        for(Cookie cookie: cookies){
+            if(cookie.getName() == "jws") token = cookie.getValue();
+        }
 
         HashMap<String, Object> map = new HashMap<>();
         map.put("user", user);

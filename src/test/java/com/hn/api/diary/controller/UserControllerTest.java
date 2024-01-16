@@ -13,6 +13,7 @@ import com.hn.api.diary.exception.InvalidValue;
 import com.hn.api.diary.repository.UserRepository;
 import com.hn.api.diary.service.UserService;
 import io.jsonwebtoken.Jwts;
+import jakarta.servlet.http.Cookie;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -214,8 +215,11 @@ class UserControllerTest {
                         .content(signInDTO_json));
         MvcResult mvcResult = resultActions.andReturn();
 
-        // 헤더의 Authorization의 토큰 파싱.
-        String jws = mvcResult.getResponse().getHeader(HttpHeaders.AUTHORIZATION);
+        String jws = "";
+        Cookie[] cookies = mvcResult.getResponse().getCookies();
+        for(Cookie cookie: cookies){
+            if(cookie.getName() == "jws") jws = cookie.getValue();
+        }
 
         String jwtSubject = Jwts.parser()
                 .verifyWith(JwsKey.getJwsSecretKey())

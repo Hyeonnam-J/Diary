@@ -7,6 +7,7 @@ import com.hn.api.diary.entity.User;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
 import com.hn.api.diary.repository.UserRepository;
+import jakarta.servlet.http.Cookie;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -75,12 +76,20 @@ public class AuthControllerTest {
         ResultActions user1_signInResultActions = mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(user1_signInDTO_json));
-        String user1_token = user1_signInResultActions.andReturn().getResponse().getHeader(HttpHeaders.AUTHORIZATION);
+        String user1_token = "";
+        Cookie[] user1_cookies = user1_signInResultActions.andReturn().getResponse().getCookies();
+        for(Cookie cookie: user1_cookies){
+            if(cookie.getName() == "jws") user1_token = cookie.getValue();
+        }
 
         ResultActions user2_signInResultActions = mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(user2_signInDTO_json));
-        String user2_token = user2_signInResultActions.andReturn().getResponse().getHeader(HttpHeaders.AUTHORIZATION);
+        String user2_token = "";
+        Cookie[] user2_cookies = user2_signInResultActions.andReturn().getResponse().getCookies();
+        for(Cookie cookie: user2_cookies){
+            if(cookie.getName() == "jws") user2_token = cookie.getValue();
+        }
 
         ResultActions user1_userResultActions = mockMvc.perform(MockMvcRequestBuilders.get("/user")
                 .header(HttpHeaders.AUTHORIZATION, user1_token));
@@ -131,12 +140,20 @@ public class AuthControllerTest {
         ResultActions user1_signInResultActions = mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(user1_signInDTO_json));
-        String user1_token = user1_signInResultActions.andReturn().getResponse().getHeader(HttpHeaders.AUTHORIZATION);
+        String user1_token = "";
+        Cookie[] user1_cookies = user1_signInResultActions.andReturn().getResponse().getCookies();
+        for(Cookie cookie: user1_cookies){
+            if(cookie.getName() == "jws") user1_token = cookie.getValue();
+        }
 
         ResultActions user2_signInResultActions = mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(user2_signInDTO_json));
-        String user2_token = user2_signInResultActions.andReturn().getResponse().getHeader(HttpHeaders.AUTHORIZATION);
+        String user2_token = "";
+        Cookie[] user2_cookies = user2_signInResultActions.andReturn().getResponse().getCookies();
+        for(Cookie cookie: user2_cookies){
+            if(cookie.getName() == "jws") user2_token = cookie.getValue();
+        }
 
         ResultActions user1_userResultActions = mockMvc.perform(MockMvcRequestBuilders.get("/admin")
                 .header(HttpHeaders.AUTHORIZATION, user1_token));
