@@ -16,6 +16,7 @@ public class WebConfig implements WebMvcConfigurer {
 //                .allowedOrigins("http://localhost:3000")
                 .allowedOrigins("https://main.du6t0lf6rbu8z.amplifyapp.com")
                 .allowCredentials(true)
-                .allowedHeaders("*");    // 클라이언트가 요청할 때 허용되는 헤더.
+                .exposedHeaders("Set-Cookie")   // 클라이언트가 받을 수 있는,
+                .allowedHeaders("Authorization");   // 클라이언트가 요청할 수 있는,
     }
 }
