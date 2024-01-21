@@ -17,7 +17,6 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedOrigins("http://localhost:3000")
                 .allowCredentials(true)
-//                .exposedHeaders("Set-Cookie")
                 .allowedHeaders("Authorization", "Content-Type");
     }
 }
