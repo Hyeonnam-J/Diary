@@ -16,7 +16,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
 //                .allowedOrigins("http://localhost:3000")
-                .allowedOrigins("https://main.d254dqkktrfqg0.amplifyapp.com/")
+                .allowedOrigins("http://222.102.59.219:3000")
                 .allowCredentials(true)
                 .allowedHeaders("Authorization", "Content-Type");
     }
