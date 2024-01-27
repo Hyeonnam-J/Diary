@@ -95,7 +95,6 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
                 .sameSite("None")
                 .maxAge((int) (expireDate.getTime() - generateDate.getTime()) / 1000)
                 .secure(true)
-                .domain(WebConfig.CLIENT_IP)
                 .build();
         response.setHeader("Set-Cookie", cookie.toString());
 
