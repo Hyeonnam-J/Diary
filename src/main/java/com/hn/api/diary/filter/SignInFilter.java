@@ -1,6 +1,7 @@
 package com.hn.api.diary.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hn.api.diary.config.WebConfig;
 import com.hn.api.diary.dto.user.MyUserDetails;
 import com.hn.api.diary.dto.user.SessionDTO;
 import com.hn.api.diary.dto.user.SignInDTO;
@@ -94,6 +95,7 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
                 .sameSite("None")
                 .maxAge((int) (expireDate.getTime() - generateDate.getTime()) / 1000)
                 .secure(true)
+                .domain(WebConfig.CLIENT_IP)
                 .build();
         response.setHeader("Set-Cookie", cookie.toString());
 
