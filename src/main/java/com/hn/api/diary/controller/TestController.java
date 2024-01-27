@@ -22,6 +22,6 @@ public class TestController {
     public String test(){
 //        new Test().test();
 //        logger.info("jhn test controller class ...");
-        return "테스트22";
+        return "테스트8";
     }
 }
