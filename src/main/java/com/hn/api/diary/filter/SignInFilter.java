@@ -92,7 +92,7 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
         // 쿠키 추가
         ResponseCookie cookie = ResponseCookie.from("jws", jws)
                 .path("/")
-//                .sameSite("None")
+                .sameSite("Strict")
                 .maxAge((int) (expireDate.getTime() - generateDate.getTime()) / 1000)
 //                .secure(true)
                 .build();
