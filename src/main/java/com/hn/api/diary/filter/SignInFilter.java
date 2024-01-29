@@ -92,10 +92,9 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
         // 쿠키 추가
         ResponseCookie cookie = ResponseCookie.from("jws", jws)
                 .path("/")
-                .sameSite("None")
+//                .sameSite("None")
                 .maxAge((int) (expireDate.getTime() - generateDate.getTime()) / 1000)
-                .secure(true)
-                .domain("api.my-diary.life")
+//                .secure(true)
                 .build();
         response.setHeader("Set-Cookie", cookie.toString());
 
