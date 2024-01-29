@@ -1,7 +1,6 @@
 package com.hn.api.diary.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hn.api.diary.config.WebConfig;
 import com.hn.api.diary.dto.user.MyUserDetails;
 import com.hn.api.diary.dto.user.SessionDTO;
 import com.hn.api.diary.dto.user.SignInDTO;
@@ -10,7 +9,6 @@ import com.hn.api.diary.util.JwsKey;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,7 +93,6 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
                 .sameSite("Strict")
                 .maxAge((int) (expireDate.getTime() - generateDate.getTime()) / 1000)
                 .domain(".my-diary.life")
-//                .secure(true)
                 .build();
         response.setHeader("Set-Cookie", cookie.toString());
 
