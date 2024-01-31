@@ -10,6 +10,7 @@ import com.hn.api.diary.entity.User;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
 import com.hn.api.diary.repository.UserRepository;
+import jakarta.servlet.http.Cookie;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,9 +53,8 @@ class FreeBoardCommentControllerTest {
     @Test
     void delete() throws Exception {
         // given
-        HashMap map = new FreeBoardTestData().signIn(userRepository, objectMapper, mockMvc);
-        User user = (User) map.get("user");
-        String token = (String) map.get("token");
+        HashMap<String, Object> map = new FreeBoardTestData().signIn(userRepository, objectMapper, mockMvc);
+        Cookie[] cookies = (Cookie[]) map.get("cookies");
 
         List<FreeBoardComment> comments = freeBoardCommentRepository.findAllWithNotDelete();
         FreeBoardComment comment1 = comments.get(0);
@@ -63,24 +63,16 @@ class FreeBoardCommentControllerTest {
         FreeBoardComment comment5 = comments.get(3);
 
         ResultActions actions_1 = mockMvc.perform(MockMvcRequestBuilders.delete("/freeBoard/comment/delete/"+comment1.getId())
-                .header("userId", String.valueOf(user.getId()))
-                .header(HttpHeaders.AUTHORIZATION, token)
-        );
+                .cookie(cookies));
 
         ResultActions actions_2 = mockMvc.perform(MockMvcRequestBuilders.delete("/freeBoard/comment/delete/"+comment2.getId())
-                .header("userId", String.valueOf(user.getId()))
-                .header(HttpHeaders.AUTHORIZATION, token)
-        );
+                .cookie(cookies));
 
         ResultActions actions_4 = mockMvc.perform(MockMvcRequestBuilders.delete("/freeBoard/comment/delete/"+comment4.getId())
-                .header("userId", String.valueOf(user.getId()))
-                .header(HttpHeaders.AUTHORIZATION, token)
-        );
+                .cookie(cookies));
 
         ResultActions actions_5 = mockMvc.perform(MockMvcRequestBuilders.delete("/freeBoard/comment/delete/"+comment5.getId())
-                .header("userId", String.valueOf(user.getId()))
-                .header(HttpHeaders.AUTHORIZATION, token)
-        );
+                .cookie(cookies));
 
         // then
         actions_1.andExpect(MockMvcResultMatchers.status().isOk());
@@ -92,9 +84,9 @@ class FreeBoardCommentControllerTest {
     @Test
     void update() throws Exception {
         // given
-        HashMap map = new FreeBoardTestData().signIn(userRepository, objectMapper, mockMvc);
+        HashMap<String, Object> map = new FreeBoardTestData().signIn(userRepository, objectMapper, mockMvc);
         User user = (User) map.get("user");
-        String token = (String) map.get("token");
+        Cookie[] cookies = (Cookie[]) map.get("cookies");
 
         List<FreeBoardComment> comments = freeBoardCommentRepository.findAllWithNotDelete();
         Long commentId_1 = comments.stream()
@@ -122,14 +114,12 @@ class FreeBoardCommentControllerTest {
 
         // when
         ResultActions actions1 = mockMvc.perform(MockMvcRequestBuilders.put("/freeBoard/comment/update")
-                .header("userId", user.getId())
-                .header(HttpHeaders.AUTHORIZATION, token)
+                .cookie(cookies)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json1)
         );
         ResultActions actions2 = mockMvc.perform(MockMvcRequestBuilders.put("/freeBoard/comment/update")
-                .header("userId", user.getId())
-                .header(HttpHeaders.AUTHORIZATION, token)
+                .cookie(cookies)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json2)
         );
@@ -143,8 +133,7 @@ class FreeBoardCommentControllerTest {
     void write() throws Exception {
         // given
         HashMap<String, Object> map = new FreeBoardTestData().signIn(userRepository, objectMapper, mockMvc);
-        User user = (User) map.get("user");
-        String token = (String) map.get("token");
+        Cookie[] cookies = (Cookie[]) map.get("cookies");
 
         List<FreeBoardPost> posts = freeBoardPostRepository.findAllWithNotDelete();
         FreeBoardPost post = posts.get( new Random().nextInt(posts.size()) );
@@ -157,8 +146,7 @@ class FreeBoardCommentControllerTest {
 
         // when
         ResultActions actions = mockMvc.perform(MockMvcRequestBuilders.post("/freeBoard/comment/write")
-                .header("userId", user.getId())
-                .header(HttpHeaders.AUTHORIZATION, token)
+                .cookie(cookies)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json)
         );
@@ -172,7 +160,7 @@ class FreeBoardCommentControllerTest {
         // given
         HashMap<String, Object> map = new FreeBoardTestData().signIn(userRepository, objectMapper, mockMvc);
         User user = (User) map.get("user");
-        String token = (String) map.get("token");
+        Cookie[] cookies = (Cookie[]) map.get("cookies");
 
         List<FreeBoardComment> comments = freeBoardCommentRepository.findAllWithNotDelete();
         FreeBoardComment comment = comments.get( new Random().nextInt(comments.size()) );
@@ -185,8 +173,7 @@ class FreeBoardCommentControllerTest {
 
         // when
         ResultActions actions = mockMvc.perform(MockMvcRequestBuilders.post("/freeBoard/comment/reply")
-                .header("userId", user.getId())
-                .header(HttpHeaders.AUTHORIZATION, token)
+                .cookie(cookies)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json)
         );

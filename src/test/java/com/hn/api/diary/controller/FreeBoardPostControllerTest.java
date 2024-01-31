@@ -9,6 +9,7 @@ import com.hn.api.diary.entity.User;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
 import com.hn.api.diary.repository.UserRepository;
+import jakarta.servlet.http.Cookie;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -88,8 +89,7 @@ public class FreeBoardPostControllerTest {
     void delete() throws Exception {
         // given
         HashMap map = new FreeBoardTestData().signIn(userRepository, objectMapper, mockMvc);
-        User user = (User) map.get("user");
-        String token = (String) map.get("token");
+        Cookie[] cookies = (Cookie[]) map.get("cookies");
 
         List<FreeBoardPost> posts = freeBoardPostRepository.findAllWithNotDelete();
         FreeBoardPost post1 = posts.get(0);
@@ -100,27 +100,22 @@ public class FreeBoardPostControllerTest {
 
         // when
         ResultActions actions_1 = mockMvc.perform(MockMvcRequestBuilders.delete("/freeBoard/post/delete/" + post1.getId())
-                .header("userId", user.getId())
-                .header(HttpHeaders.AUTHORIZATION, token)
+                .cookie(cookies)
         );
         ResultActions actions_2 = mockMvc.perform(MockMvcRequestBuilders.delete("/freeBoard/post/delete/" + post2.getId())
-                .header("userId", user.getId())
-                .header(HttpHeaders.AUTHORIZATION, token)
+                .cookie(cookies)
         );
 
         ResultActions actions_3 = mockMvc.perform(MockMvcRequestBuilders.delete("/freeBoard/post/delete/" + post3.getId())
-                .header("userId", user.getId())
-                .header(HttpHeaders.AUTHORIZATION, token)
+                .cookie(cookies)
         );
 
         ResultActions actions_5 = mockMvc.perform(MockMvcRequestBuilders.delete("/freeBoard/post/delete/" + post5.getId())
-                .header("userId", user.getId())
-                .header(HttpHeaders.AUTHORIZATION, token)
+                .cookie(cookies)
         );
 
         ResultActions actions_6 = mockMvc.perform(MockMvcRequestBuilders.delete("/freeBoard/post/delete/" + post6.getId())
-                .header("userId", user.getId())
-                .header(HttpHeaders.AUTHORIZATION, token)
+                .cookie(cookies)
         );
 
         // then
@@ -137,7 +132,7 @@ public class FreeBoardPostControllerTest {
         // given
         HashMap map = new FreeBoardTestData().signIn(userRepository, objectMapper, mockMvc);
         User user = (User) map.get("user");
-        String token = (String) map.get("token");
+        Cookie[] cookies = (Cookie[]) map.get("cookies");
 
         List<FreeBoardPost> freeBoardPosts = freeBoardPostRepository.findAllWithNotDelete();
         FreeBoardPost post1 = freeBoardPosts.stream()
@@ -165,15 +160,13 @@ public class FreeBoardPostControllerTest {
 
         // when
         ResultActions actions1 = mockMvc.perform(MockMvcRequestBuilders.put("/freeBoard/post/update")
-                .header("userId", user.getId())
-                .header(HttpHeaders.AUTHORIZATION, token)
+                .cookie(cookies)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json1)
         );
 
         ResultActions actions2 = mockMvc.perform(MockMvcRequestBuilders.put("/freeBoard/post/update")
-                .header("userId", user.getId())
-                .header(HttpHeaders.AUTHORIZATION, token)
+                .cookie(cookies)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json2)
         );
@@ -193,8 +186,7 @@ public class FreeBoardPostControllerTest {
         FreeBoardPost freeBoardPost = freeBoardPosts.get(random.nextInt(freeBoardPosts.size()));
 
         HashMap<String, Object> map = new FreeBoardTestData().signIn(userRepository, objectMapper, mockMvc);
-        User user = (User) map.get("user");
-        String token = (String) map.get("token");
+        Cookie[] cookies = (Cookie[]) map.get("cookies");
 
         FreeBoardPostReplyDTO freeBoardPostReplyDTO = FreeBoardPostReplyDTO.builder()
                 .postId(freeBoardPost.getId().toString())
@@ -205,8 +197,7 @@ public class FreeBoardPostControllerTest {
 
         // when
         ResultActions actions = mockMvc.perform(MockMvcRequestBuilders.post("/freeBoard/post/reply")
-                .header("userId", user.getId())
-                .header(HttpHeaders.AUTHORIZATION, token)
+                .cookie(cookies)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(reply_json)
         );
@@ -220,8 +211,7 @@ public class FreeBoardPostControllerTest {
     void write() throws Exception {
         // [given]
         HashMap<String, Object> map = new FreeBoardTestData().signIn(userRepository, objectMapper, mockMvc);
-        User user = (User) map.get("user");
-        String token = (String) map.get("token");
+        Cookie[] cookies = (Cookie[]) map.get("cookies");
 
         // [when]
         FreeBoardPostWriteDTO freeBoardPostWriteDTO = FreeBoardPostWriteDTO.builder()
@@ -231,8 +221,7 @@ public class FreeBoardPostControllerTest {
         String write_json = objectMapper.writeValueAsString(freeBoardPostWriteDTO);
 
         ResultActions actions = mockMvc.perform(MockMvcRequestBuilders.post("/freeBoard/post/write")
-                .header("userId", user.getId())
-                .header(HttpHeaders.AUTHORIZATION, token)
+                .cookie(cookies)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(write_json)
         );
