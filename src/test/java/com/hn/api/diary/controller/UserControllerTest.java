@@ -216,13 +216,13 @@ class UserControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(signInDTO_json));
 
-        String strCookie = resultActions.andReturn().getResponse().getHeader("Set-Cookie");
-        Map<String, String> cookieMap = FreeBoardTestData.parseCookie(strCookie);
+        Cookie[] cookies = resultActions.andReturn().getResponse().getCookies();
+        String jws = cookies[0].getValue();
 
         String jwtSubject = Jwts.parser()
                 .verifyWith(JwsKey.getJwsSecretKey())
                 .build()
-                .parseSignedClaims(cookieMap.get("jws"))
+                .parseSignedClaims(jws)
                 .getPayload()
                 .getSubject();
 

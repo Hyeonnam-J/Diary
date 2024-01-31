@@ -191,32 +191,12 @@ public class FreeBoardTestData {
                 .content(signIn_json)
         );
 
-        String strCookie = resultActions.andReturn().getResponse().getHeader("Set-Cookie");
-        Map<String, String> cookieMap = parseCookie(strCookie);
+        Cookie[] Cookies = resultActions.andReturn().getResponse().getCookies();
 
         HashMap<String, Object> map = new HashMap<>();
         map.put("user", user);
-        map.put("token", cookieMap.get("jws"));
+        map.put("cookies", Cookies);
 
         return map;
-    }
-
-    public static Map<String, String> parseCookie(String cookieString) {
-        Map<String, String> cookieMap = new HashMap<>();
-
-        // 세미콜론을 기준으로 쿠키를 분할
-        String[] cookieSegments = cookieString.split(";");
-
-        // 각 세그먼트에서 이름과 값을 추출하여 맵에 저장
-        for (String segment : cookieSegments) {
-            String[] nameValuePair = segment.trim().split("=");
-            if (nameValuePair.length == 2) {
-                String name = nameValuePair[0];
-                String value = nameValuePair[1];
-                cookieMap.put(name, value);
-            }
-        }
-
-        return cookieMap;
     }
 }
