@@ -8,6 +8,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.SignatureException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +36,8 @@ public class AccessFilter extends OncePerRequestFilter {
             return;
         }
 
-        String userId = request.getHeader("userId");
-        String jws = request.getHeader(HttpHeaders.AUTHORIZATION);
+        Cookie[] cookies = request.getCookies();
+        String jws = (cookies != null && cookies.length > 0) ? cookies[0].getValue() : "";
 
         try {
             Claims claims = Jwts.parser()
@@ -51,7 +52,7 @@ public class AccessFilter extends OncePerRequestFilter {
             String jwtSubject = claims.getSubject();
             SessionDTO sessionDTO = objectMapper.readValue(jwtSubject, SessionDTO.class);
 
-            setSecurityContextHolder(request, response, filterChain, userId, sessionDTO.getEmail(), sessionDTO.getRole());
+            setSecurityContextHolder(request, response, filterChain, sessionDTO.getUserId().toString(), sessionDTO.getEmail(), sessionDTO.getRole());
         }catch (IllegalArgumentException e){
             // jws == null,
             setSecurityContextHolder(request, response, filterChain, "NONE", "NONE");
