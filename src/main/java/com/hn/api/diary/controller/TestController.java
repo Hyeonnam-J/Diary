@@ -6,6 +6,8 @@ import com.hn.api.diary.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.data.util.ParameterTypes;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,10 +20,14 @@ public class TestController {
 
     static final Logger logger = LoggerFactory.getLogger(TestController.class);
 
+    static String test = "test 10";
+
     @GetMapping(value = "/test")
-    public String test(){
+    public String test(@Param("tp") String tp){
 //        new Test().test();
 //        logger.info("jhn test controller class ...");
-        return "테스트10";
+//        System.out.println(test);
+        System.out.println(tp);
+        return test;
     }
 }
