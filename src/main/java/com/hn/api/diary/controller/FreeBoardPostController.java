@@ -1,30 +1,18 @@
 package com.hn.api.diary.controller;
 
-import java.net.HttpURLConnection;
-import java.util.List;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.hn.api.diary.dto.freeBoard.FreeBoardPostReadDTO;
-import com.hn.api.diary.dto.freeBoard.FreeBoardPostReplyDTO;
-import com.hn.api.diary.dto.freeBoard.FreeBoardPostUpdateDTO;
-import com.hn.api.diary.dto.freeBoard.FreeBoardPostWriteDTO;
-import com.hn.api.diary.dto.freeBoard.FreeBoardPostsDTO;
+import com.hn.api.diary.dto.freeBoard.*;
 import com.hn.api.diary.response.ListDataResponse;
 import com.hn.api.diary.response.PlainDataResponse;
 import com.hn.api.diary.service.FreeBoardPostService;
-
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.net.HttpURLConnection;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -54,19 +42,19 @@ public class FreeBoardPostController {
     }
 
     @PutMapping(value = "/freeBoard/post/update")
-    public void update(@RequestBody FreeBoardPostUpdateDTO freeBoardPostUpdateDTO, HttpServletRequest request){
+    public void update(@RequestBody @Valid FreeBoardPostUpdateDTO freeBoardPostUpdateDTO, HttpServletRequest request){
         String userId = String.valueOf(request.getAttribute("userId"));
         freeBoardPostService.update(freeBoardPostUpdateDTO, userId);
     }
 
     @PostMapping(value = "/freeBoard/post/reply")
-    public void reply(@RequestBody FreeBoardPostReplyDTO freeBoardPostReplyDTO, HttpServletRequest request){
+    public void reply(@RequestBody @Valid FreeBoardPostReplyDTO freeBoardPostReplyDTO, HttpServletRequest request){
         String userId = String.valueOf(request.getAttribute("userId"));
         freeBoardPostService.reply(freeBoardPostReplyDTO, userId);
     }
 
     @PostMapping(value = "/freeBoard/post/write")
-    public void write(@RequestBody FreeBoardPostWriteDTO freeBoardPostWriteDTO, HttpServletRequest request){
+    public void write(@RequestBody @Valid FreeBoardPostWriteDTO freeBoardPostWriteDTO, HttpServletRequest request){
         String userId = String.valueOf(request.getAttribute("userId"));
         freeBoardPostService.write(freeBoardPostWriteDTO, userId);
     }
