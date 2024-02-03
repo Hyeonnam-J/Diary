@@ -1,5 +1,6 @@
 package com.hn.api.diary.dto.freeBoard;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class FreeBoardPostReplyDTO {
 
     private String postId;
+    @NotBlank(message = "Enter the title")
     private String title;
     private String content;
 

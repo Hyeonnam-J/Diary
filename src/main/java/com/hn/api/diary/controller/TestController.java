@@ -23,11 +23,10 @@ public class TestController {
     static String test = "test 10";
 
     @GetMapping(value = "/test")
-    public String test(@Param("tp") String tp){
+    public String test(){
 //        new Test().test();
 //        logger.info("jhn test controller class ...");
-//        System.out.println(test);
-        System.out.println(tp);
+        System.out.println(test);
         return test;
     }
 }
