@@ -20,12 +20,12 @@ public class TestController {
 
     static final Logger logger = LoggerFactory.getLogger(TestController.class);
 
-    static String test = "test 10";
+    static String test = "test 11";
 
     @GetMapping(value = "/test")
     public String test(){
-//        new Test().test();
-//        logger.info("jhn test controller class ...");
+        new Test().test();
+        logger.info("jhn test controller class ...");
         System.out.println(test);
         return test;
     }

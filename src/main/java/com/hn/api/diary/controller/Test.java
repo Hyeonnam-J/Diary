@@ -5,10 +5,10 @@ import org.slf4j.LoggerFactory;
 
 public class Test {
 
-//     static final Logger logger = LoggerFactory.getLogger(Test.class);
+     static final Logger logger = LoggerFactory.getLogger(Test.class);
 
-//    public void test(){
-//        logger.info("jhn test class...");
-//    }
+    public void test(){
+        logger.info("jhn test class...");
+    }
 
 }
