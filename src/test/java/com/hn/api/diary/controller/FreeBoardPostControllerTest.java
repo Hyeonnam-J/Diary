@@ -8,7 +8,7 @@ import com.hn.api.diary.entity.FreeBoardPost;
 import com.hn.api.diary.entity.Member;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
-import com.hn.api.diary.repository.UserRepository;
+import com.hn.api.diary.repository.MemberRepository;
 import jakarta.servlet.http.Cookie;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -35,7 +35,7 @@ public class FreeBoardPostControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
     @Autowired
-    private UserRepository userRepository;
+    private MemberRepository memberRepository;
     @Autowired
     private FreeBoardPostRepository freeBoardPostRepository;
     @Autowired
@@ -45,8 +45,8 @@ public class FreeBoardPostControllerTest {
     void clean() {
         freeBoardCommentRepository.deleteAll();
         freeBoardPostRepository.deleteAll();
-        userRepository.deleteAll();
-        new FreeBoardTestData().given(userRepository, freeBoardPostRepository, freeBoardCommentRepository);
+        memberRepository.deleteAll();
+        new FreeBoardTestData().given(memberRepository, freeBoardPostRepository, freeBoardCommentRepository);
     }
 
     @Test
@@ -87,7 +87,7 @@ public class FreeBoardPostControllerTest {
     @DisplayName("freeBoardPost - delete")
     void delete() throws Exception {
         // given
-        HashMap map = new FreeBoardTestData().signIn(userRepository, objectMapper, mockMvc);
+        HashMap map = new FreeBoardTestData().signIn(memberRepository, objectMapper, mockMvc);
         Cookie[] cookies = (Cookie[]) map.get("cookies");
 
         List<FreeBoardPost> posts = freeBoardPostRepository.findAllWithNotDelete();
@@ -129,7 +129,7 @@ public class FreeBoardPostControllerTest {
     @DisplayName("freeBoardPost - update")
     void update() throws Exception {
         // given
-        HashMap map = new FreeBoardTestData().signIn(userRepository, objectMapper, mockMvc);
+        HashMap map = new FreeBoardTestData().signIn(memberRepository, objectMapper, mockMvc);
         Member member = (Member) map.get("user");
         Cookie[] cookies = (Cookie[]) map.get("cookies");
 
@@ -184,7 +184,7 @@ public class FreeBoardPostControllerTest {
         List<FreeBoardPost> freeBoardPosts = freeBoardPostRepository.findAllWithNotDelete();
         FreeBoardPost freeBoardPost = freeBoardPosts.get(random.nextInt(freeBoardPosts.size()));
 
-        HashMap<String, Object> map = new FreeBoardTestData().signIn(userRepository, objectMapper, mockMvc);
+        HashMap<String, Object> map = new FreeBoardTestData().signIn(memberRepository, objectMapper, mockMvc);
         Cookie[] cookies = (Cookie[]) map.get("cookies");
 
         FreeBoardPostReplyDTO freeBoardPostReplyDTO = FreeBoardPostReplyDTO.builder()
@@ -209,7 +209,7 @@ public class FreeBoardPostControllerTest {
     @DisplayName("freeBoardPost - write")
     void write() throws Exception {
         // [given]
-        HashMap<String, Object> map = new FreeBoardTestData().signIn(userRepository, objectMapper, mockMvc);
+        HashMap<String, Object> map = new FreeBoardTestData().signIn(memberRepository, objectMapper, mockMvc);
         Cookie[] cookies = (Cookie[]) map.get("cookies");
 
         // [when]

@@ -9,7 +9,7 @@ import com.hn.api.diary.entity.Member;
 import com.hn.api.diary.exception.InvalidValue;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
-import com.hn.api.diary.repository.UserRepository;
+import com.hn.api.diary.repository.MemberRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -26,7 +26,7 @@ public class FreeBoardPostServiceTest {
     @Autowired
     private ObjectMapper objectMapper;
     @Autowired
-    private UserRepository userRepository;
+    private MemberRepository memberRepository;
     @Autowired
     private FreeBoardPostService freeBoardPostService;
     @Autowired
@@ -38,8 +38,8 @@ public class FreeBoardPostServiceTest {
     void clean(){
         freeBoardCommentRepository.deleteAll();
         freeBoardPostRepository.deleteAll();
-        userRepository.deleteAll();
-        new FreeBoardTestData().given(userRepository, freeBoardPostRepository, freeBoardCommentRepository);
+        memberRepository.deleteAll();
+        new FreeBoardTestData().given(memberRepository, freeBoardPostRepository, freeBoardCommentRepository);
     }
 
     @Test
@@ -135,7 +135,7 @@ public class FreeBoardPostServiceTest {
         List<FreeBoardPost> groupListBeforeReply = freeBoardPostRepository.findByGroupId(freeBoardPost.getGroupId());
 
         // 랜덤한 유저
-        List<Member> members = userRepository.findAll();
+        List<Member> members = memberRepository.findAll();
         Member member = members.get( random.nextInt(members.size()) );
 
         FreeBoardPostReplyDTO freeBoardPostReplyDTO = FreeBoardPostReplyDTO.builder()
@@ -155,7 +155,7 @@ public class FreeBoardPostServiceTest {
     @DisplayName("freeBoardPost - write")
     void write() throws Exception {
         // given
-        List<Member> members = userRepository.findAll();
+        List<Member> members = memberRepository.findAll();
         Member member = members.get( new Random().nextInt(members.size()) );
 
         long countBeforeWrite = freeBoardPostRepository.count();

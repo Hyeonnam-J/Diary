@@ -5,7 +5,7 @@ import com.hn.api.diary.dto.member.SignInDTO;
 import com.hn.api.diary.entity.Member;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
-import com.hn.api.diary.repository.UserRepository;
+import com.hn.api.diary.repository.MemberRepository;
 import jakarta.servlet.http.Cookie;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -28,7 +28,7 @@ public class AuthControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
     @Autowired
-    private UserRepository userRepository;
+    private MemberRepository memberRepository;
     @Autowired
     private FreeBoardPostRepository freeBoardPostRepository;
     @Autowired
@@ -38,7 +38,7 @@ public class AuthControllerTest {
     void clean() {
         freeBoardCommentRepository.deleteAll();
         freeBoardPostRepository.deleteAll();
-        userRepository.deleteAll();
+        memberRepository.deleteAll();
     }
 
     @Test
@@ -52,7 +52,7 @@ public class AuthControllerTest {
                 .nick("hn")
                 .role("USER")
                 .build();
-        userRepository.save(member1);
+        memberRepository.save(member1);
 
         Member member2 = Member.builder()
                 .email("nami0878@naver.com")
@@ -61,7 +61,7 @@ public class AuthControllerTest {
                 .nick("hn")
                 .role("ADMIN")
                 .build();
-        userRepository.save(member2);
+        memberRepository.save(member2);
 
         SignInDTO user1_signInDTO = SignInDTO.builder()
                 .email(member1.getEmail())
@@ -108,7 +108,7 @@ public class AuthControllerTest {
                 .nick("hn")
                 .role("USER")
                 .build();
-        userRepository.save(member1);
+        memberRepository.save(member1);
 
         Member member2 = Member.builder()
                 .email("nami0878@naver.com")
@@ -117,7 +117,7 @@ public class AuthControllerTest {
                 .nick("hn")
                 .role("ADMIN")
                 .build();
-        userRepository.save(member2);
+        memberRepository.save(member2);
 
         SignInDTO user1_signInDTO = SignInDTO.builder()
                 .email(member1.getEmail())

@@ -11,7 +11,7 @@ import com.hn.api.diary.exception.Forbidden;
 import com.hn.api.diary.exception.InvalidValue;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
-import com.hn.api.diary.repository.UserRepository;
+import com.hn.api.diary.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
@@ -30,7 +30,7 @@ public class FreeBoardCommentService {
 
     private final FreeBoardCommentRepository freeBoardCommentRepository;
     private final FreeBoardPostRepository freeBoardPostRepository;
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
 
     private class CommentPageSize {
         private static final int BASIC = 10;
@@ -64,7 +64,7 @@ public class FreeBoardCommentService {
     }
 
     public void write(FreeBoardCommentWriteDTO freeBoardCommentWriteDTO, String userId) {
-        Member member = userRepository.findById(Long.parseLong(userId))
+        Member member = memberRepository.findById(Long.parseLong(userId))
                 .orElseThrow(InvalidValue::new);
 
         FreeBoardPost freeBoardPost = freeBoardPostRepository.findByIdWithNotDelete(Long.parseLong(freeBoardCommentWriteDTO.getPostId()));
@@ -84,7 +84,7 @@ public class FreeBoardCommentService {
     }
 
     public void reply(FreeBoardCommentReplyDTO boardCommentReplyDTO, String userId) {
-        Member member = userRepository.findById(Long.parseLong(userId))
+        Member member = memberRepository.findById(Long.parseLong(userId))
                 .orElseThrow(InvalidValue::new);
 
         FreeBoardComment freeBoardComment = freeBoardCommentRepository.findByIdWithNotDelete(Long.parseLong(boardCommentReplyDTO.getCommentId()));

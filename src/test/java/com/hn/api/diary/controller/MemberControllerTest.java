@@ -6,12 +6,12 @@ import com.hn.api.diary.dto.member.SessionDTO;
 import com.hn.api.diary.entity.Member;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
+import com.hn.api.diary.repository.MemberRepository;
 import com.hn.api.diary.util.JwsKey;
 import com.hn.api.diary.dto.member.SignInDTO;
 import com.hn.api.diary.dto.member.SignUpDTO;
 import com.hn.api.diary.exception.InvalidValue;
-import com.hn.api.diary.repository.UserRepository;
-import com.hn.api.diary.service.UserService;
+import com.hn.api.diary.service.MemberService;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.http.Cookie;
 import org.junit.jupiter.api.Assertions;
@@ -34,8 +34,8 @@ class MemberControllerTest {
 
     @Autowired private MockMvc mockMvc;
     @Autowired private ObjectMapper objectMapper;
-    @Autowired private UserService userService;
-    @Autowired private UserRepository userRepository;
+    @Autowired private MemberService memberService;
+    @Autowired private MemberRepository memberRepository;
     @Autowired private FreeBoardPostRepository freeBoardPostRepository;
     @Autowired private FreeBoardCommentRepository freeBoardCommentRepository;
 
@@ -43,7 +43,7 @@ class MemberControllerTest {
     void clean(){
         freeBoardCommentRepository.deleteAll();
         freeBoardPostRepository.deleteAll();
-        userRepository.deleteAll();
+        memberRepository.deleteAll();
     }
 
     // signUp() - start
@@ -70,9 +70,9 @@ class MemberControllerTest {
         resultActions.andExpect(MockMvcResultMatchers.status().isOk())
                         .andDo(MockMvcResultHandlers.print());
 
-        Assertions.assertEquals(1, userRepository.count());
+        Assertions.assertEquals(1, memberRepository.count());
 
-        Member member = userRepository.findAll().iterator().next();
+        Member member = memberRepository.findAll().iterator().next();
         Assertions.assertEquals(signUpDTO.getEmail(), member.getEmail());
     }
 
@@ -85,7 +85,7 @@ class MemberControllerTest {
                 .password("!@#QWE123qwe")
                 .nick("testNick")
                 .build();
-        userRepository.save(member);
+        memberRepository.save(member);
 
         CheckDuplicationDTO checkDuplicationDTO = CheckDuplicationDTO.builder()
                 .item("email")
@@ -112,7 +112,7 @@ class MemberControllerTest {
                 .password("!@#QWE123qwe")
                 .nick("testNick")
                 .build();
-        userRepository.save(member);
+        memberRepository.save(member);
 
         CheckDuplicationDTO checkDuplicationDTO = CheckDuplicationDTO.builder()
                 .item("nick")
@@ -139,7 +139,7 @@ class MemberControllerTest {
                 .password("!@#QWE123qwe")
                 .nick("testNick")
                 .build();
-        userRepository.save(member);
+        memberRepository.save(member);
 
         CheckDuplicationDTO checkDuplicationDTO = CheckDuplicationDTO.builder()
                 .item("email")
@@ -166,7 +166,7 @@ class MemberControllerTest {
                 .password("!@#QWE123qwe")
                 .nick("testNick")
                 .build();
-        userRepository.save(member);
+        memberRepository.save(member);
 
         CheckDuplicationDTO checkDuplicationDTO = CheckDuplicationDTO.builder()
                 .item("nick")
@@ -198,7 +198,7 @@ class MemberControllerTest {
                 .password("test")
                 .userName("test")
                 .build();
-        userService.signUp(signUpDTO);
+        memberService.signUp(signUpDTO);
 
         // mockMvc를 통해서 보낼 파라미터 생성.
         SignInDTO signInDTO = SignInDTO.builder()
@@ -225,7 +225,7 @@ class MemberControllerTest {
         SessionDTO sessionDTO = objectMapper.readValue(jwtSubject, SessionDTO.class);
 
         // 토큰 파싱 후 값 비교를 위해.
-        Member member = userRepository.findByEmail(signUpDTO.getEmail())
+        Member member = memberRepository.findByEmail(signUpDTO.getEmail())
                         .orElseThrow(InvalidValue::new);
 
         // [then]

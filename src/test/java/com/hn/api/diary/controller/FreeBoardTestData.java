@@ -7,7 +7,7 @@ import com.hn.api.diary.entity.FreeBoardPost;
 import com.hn.api.diary.entity.Member;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
-import com.hn.api.diary.repository.UserRepository;
+import com.hn.api.diary.repository.MemberRepository;
 import jakarta.servlet.http.Cookie;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -36,7 +36,7 @@ public class FreeBoardTestData {
      * comment_4: written by user2, post_1.
      * comment_5: written by user1, post_1. reply comment_2.
      */
-    public void given(UserRepository userRepository, FreeBoardPostRepository freeBoardPostRepository, FreeBoardCommentRepository freeBoardCommentRepository) {
+    public void given(MemberRepository memberRepository, FreeBoardPostRepository freeBoardPostRepository, FreeBoardCommentRepository freeBoardCommentRepository) {
         // user start ****
         Member member1 = Member.builder()
                 .email("nami0879@naver.com")
@@ -54,8 +54,8 @@ public class FreeBoardTestData {
                 .nick("user2")
                 .build();
 
-        userRepository.save(member1);
-        userRepository.save(member2);
+        memberRepository.save(member1);
+        memberRepository.save(member2);
         // user end ****
 
         // freeBoardPost start ****
@@ -173,8 +173,8 @@ public class FreeBoardTestData {
     /**
      * return user1.
      */
-    public HashMap<String, Object> signIn(UserRepository userRepository, ObjectMapper objectMapper, MockMvc mockMvc) throws Exception {
-        List<Member> members = userRepository.findAll();
+    public HashMap<String, Object> signIn(MemberRepository memberRepository, ObjectMapper objectMapper, MockMvc mockMvc) throws Exception {
+        List<Member> members = memberRepository.findAll();
         Member member = members.get(0);
 
         SignInDTO signInDTO = SignInDTO.builder()

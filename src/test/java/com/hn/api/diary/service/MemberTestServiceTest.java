@@ -8,7 +8,7 @@ import com.hn.api.diary.exception.AlreadyReported;
 import com.hn.api.diary.exception.InvalidValue;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
-import com.hn.api.diary.repository.UserRepository;
+import com.hn.api.diary.repository.MemberRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -25,9 +25,9 @@ class MemberTestServiceTest {
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
-    private UserService userService;
+    private MemberService memberService;
     @Autowired
-    private UserRepository userRepository;
+    private MemberRepository memberRepository;
     @Autowired
     private FreeBoardPostRepository freeBoardPostRepository;
     @Autowired
@@ -37,7 +37,7 @@ class MemberTestServiceTest {
     void clean() {
         freeBoardCommentRepository.deleteAll();
         freeBoardPostRepository.deleteAll();
-        userRepository.deleteAll();
+        memberRepository.deleteAll();
     }
 
     // signUp() - start
@@ -53,7 +53,7 @@ class MemberTestServiceTest {
                 .password("any")
                 .userName("userName")
                 .build();
-        userRepository.save(member);
+        memberRepository.save(member);
 
         // signUp 로직을 실행하기 위한 파라미터 생성.
         SignUpDTO signUpDTO = SignUpDTO.builder()
@@ -63,7 +63,7 @@ class MemberTestServiceTest {
                 .build();
 
         // [expected]
-        Assertions.assertThrows(AlreadyReported.class, () -> userService.signUp(signUpDTO));
+        Assertions.assertThrows(AlreadyReported.class, () -> memberService.signUp(signUpDTO));
     }
 
     @Test
@@ -77,10 +77,10 @@ class MemberTestServiceTest {
                 .password("isEncrypted")
                 .userName("userName")
                 .build();
-        userService.signUp(signUpDTO);
+        memberService.signUp(signUpDTO);
 
         // 저장된 데이터를 가져온다.
-        Member member = userRepository.findByEmail("any")
+        Member member = memberRepository.findByEmail("any")
                 .orElseThrow(InvalidValue::new);
 
         // [expected]
@@ -96,7 +96,7 @@ class MemberTestServiceTest {
                 .password("!@#123QWEqwe")
                 .nick("nick")
                 .build();
-        userRepository.save(member);
+        memberRepository.save(member);
 
         CheckDuplicationDTO checkDuplicationDTO_1 = CheckDuplicationDTO.builder()
                 .item("email")
@@ -108,8 +108,8 @@ class MemberTestServiceTest {
                 .build();
 
         // [expected]
-        Assertions.assertThrows(AlreadyReported.class, () -> userService.checkDuplication(checkDuplicationDTO_1));
-        Assertions.assertThrows(AlreadyReported.class, () -> userService.checkDuplication(checkDuplicationDTO_2));
+        Assertions.assertThrows(AlreadyReported.class, () -> memberService.checkDuplication(checkDuplicationDTO_1));
+        Assertions.assertThrows(AlreadyReported.class, () -> memberService.checkDuplication(checkDuplicationDTO_2));
     }
     /* ********************************************************************************* */
     // signUp() - end

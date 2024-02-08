@@ -3,6 +3,7 @@ package com.hn.api.diary.config;
 import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
 import static org.springframework.security.config.Customizer.withDefaults;
 
+import com.hn.api.diary.repository.MemberRepository;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,7 +29,6 @@ import com.hn.api.diary.exception.AccessDeniedHandler;
 import com.hn.api.diary.exception.InvalidValue;
 import com.hn.api.diary.filter.AccessFilter;
 import com.hn.api.diary.filter.SignInFilter;
-import com.hn.api.diary.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -37,7 +37,7 @@ import lombok.RequiredArgsConstructor;
 @Configuration
 public class SecurityConfig {
 
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
 
     //    @Bean
 //    public CorsConfigurationSource corsConfigurationSource(){
@@ -137,7 +137,7 @@ public class SecurityConfig {
         return new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-                Member member = userRepository.findByEmail(email)
+                Member member = memberRepository.findByEmail(email)
                         .orElseThrow(InvalidValue::new);
 
                 UserDetails userDetails = org.springframework.security.core.userdetails.User.builder()

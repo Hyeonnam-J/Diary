@@ -9,7 +9,7 @@ import com.hn.api.diary.entity.FreeBoardPost;
 import com.hn.api.diary.entity.Member;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
-import com.hn.api.diary.repository.UserRepository;
+import com.hn.api.diary.repository.MemberRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ class FreeBoardCommentServiceTest {
     @Autowired
     private ObjectMapper objectMapper;
     @Autowired
-    private UserRepository userRepository;
+    private MemberRepository memberRepository;
     @Autowired
     private FreeBoardCommentService freeBoardCommentService;
     @Autowired
@@ -37,8 +37,8 @@ class FreeBoardCommentServiceTest {
     void clean(){
         freeBoardCommentRepository.deleteAll();
         freeBoardPostRepository.deleteAll();
-        userRepository.deleteAll();
-        new FreeBoardTestData().given(userRepository, freeBoardPostRepository, freeBoardCommentRepository);
+        memberRepository.deleteAll();
+        new FreeBoardTestData().given(memberRepository, freeBoardPostRepository, freeBoardCommentRepository);
     }
 
     @Test
@@ -78,7 +78,7 @@ class FreeBoardCommentServiceTest {
         //given
         Random random = new Random();
 
-        List<Member> members = userRepository.findAll();
+        List<Member> members = memberRepository.findAll();
         Member member = members.get( random.nextInt(members.size()) );
 
         List<FreeBoardPost> posts = freeBoardPostRepository.findAllWithNotDelete();
@@ -101,7 +101,7 @@ class FreeBoardCommentServiceTest {
     @Test
     void reply() {
         // given
-        List<Member> members = userRepository.findAll();
+        List<Member> members = memberRepository.findAll();
         Member member = members.get( new Random().nextInt(members.size()) );
 
         List<FreeBoardComment> comments = freeBoardCommentRepository.findAllWithNotDelete();
