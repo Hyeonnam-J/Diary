@@ -14,7 +14,7 @@ public class FreeBoardPostsDTO {
     private String title;
     private Long viewCount;
     private String createdDate;
-    private MemberDTO user;   // modelMapper에서 변수명을 참조하기 때문에 user여야 한다.
+    private MemberDTO member;   // modelMapper에서 변수명을 참조하기 때문에 user여야 한다.
     private Integer depth;
 
 }

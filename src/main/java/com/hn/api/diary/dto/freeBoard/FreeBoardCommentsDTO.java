@@ -11,7 +11,7 @@ import lombok.Setter;
 public class FreeBoardCommentsDTO {
 
     private Long id;
-    private MemberDTO user;
+    private MemberDTO member;
     private FreeBoardPostDTO post;
     private String content;
     private String createdDate;

@@ -8,14 +8,14 @@ import lombok.NoArgsConstructor;
 @Getter
 public class SessionDTO {
 
-    private Long userId;
+    private Long memberId;
     private String email;
     private String nick;
     private String role;
 
     @Builder
-    public SessionDTO(Long userId, String email, String nick, String role) {
-        this.userId = userId;
+    public SessionDTO(Long memberId, String email, String nick, String role) {
+        this.memberId = memberId;
         this.email = email;
         this.nick = nick;
         this.role = role;

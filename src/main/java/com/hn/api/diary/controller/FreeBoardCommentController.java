@@ -25,26 +25,26 @@ public class FreeBoardCommentController {
 
     @DeleteMapping(value = "/freeBoard/comment/delete/{commentId}")
     public void delete(@PathVariable String commentId, HttpServletRequest request){
-        String userId = String.valueOf(request.getAttribute("userId"));
-        freeBoardCommentService.delete(commentId, userId);
+        String memberId = String.valueOf(request.getAttribute("memberId"));
+        freeBoardCommentService.delete(commentId, memberId);
     }
 
     @PutMapping(value = "/freeBoard/comment/update")
     public void update(@RequestBody FreeBoardCommentUpdateDTO freeBoardCommentUpdateDTO, HttpServletRequest request){
-        String userId = String.valueOf(request.getAttribute("userId"));
-        freeBoardCommentService.update(freeBoardCommentUpdateDTO, userId);
+        String memberId = String.valueOf(request.getAttribute("memberId"));
+        freeBoardCommentService.update(freeBoardCommentUpdateDTO, memberId);
     }
 
     @PostMapping(value = "/freeBoard/comment/write")
     public void write(@RequestBody FreeBoardCommentWriteDTO freeBoardCommentWriteDTO, HttpServletRequest request){
-        String userId = String.valueOf(request.getAttribute("userId"));
-        freeBoardCommentService.write(freeBoardCommentWriteDTO, userId);
+        String memberId = String.valueOf(request.getAttribute("memberId"));
+        freeBoardCommentService.write(freeBoardCommentWriteDTO, memberId);
     }
 
     @PostMapping(value = "/freeBoard/comment/reply")
     public void reply(@RequestBody FreeBoardCommentReplyDTO boardCommentReplyDTO, HttpServletRequest request){
-        String userId = String.valueOf(request.getAttribute("userId"));
-        freeBoardCommentService.reply(boardCommentReplyDTO, userId);
+        String memberId = String.valueOf(request.getAttribute("memberId"));
+        freeBoardCommentService.reply(boardCommentReplyDTO, memberId);
     }
 
     @GetMapping(value = "/freeBoard/comments/{postId}")

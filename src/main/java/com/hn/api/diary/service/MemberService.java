@@ -20,8 +20,8 @@ public class MemberService {
 
     public void signUp(SignUpDTO signUpDTO){
 
-        Optional<Member> optionalUser = memberRepository.findByEmailOrNick(signUpDTO.getEmail(), signUpDTO.getNick());
-        if(optionalUser.isPresent()){
+        Optional<Member> optionalMember = memberRepository.findByEmailOrNick(signUpDTO.getEmail(), signUpDTO.getNick());
+        if(optionalMember.isPresent()){
             throw new AlreadyReported();
         }
 
@@ -40,19 +40,19 @@ public class MemberService {
     }
 
     public void checkDuplication(CheckDuplicationDTO checkDuplicationDTO){
-        Optional<Member> optionalUser = Optional.empty();
+        Optional<Member> optionalMember = Optional.empty();
 
         switch (checkDuplicationDTO.getItem()){
             case "email":
-                optionalUser = memberRepository.findByEmail(checkDuplicationDTO.getValue());
+                optionalMember = memberRepository.findByEmail(checkDuplicationDTO.getValue());
                 break;
             case "nick":
-                optionalUser = memberRepository.findByNick(checkDuplicationDTO.getValue());
+                optionalMember = memberRepository.findByNick(checkDuplicationDTO.getValue());
                 break;
         }
 
         // 중복 값이 존재하면 예외를 발생시키고 중복 값이 없으면 아무 처리도 하지 않아서 브라우저에서 200 반환되게끔.
-        if(optionalUser.isPresent()){
+        if(optionalMember.isPresent()){
             throw new AlreadyReported();
         }
     }

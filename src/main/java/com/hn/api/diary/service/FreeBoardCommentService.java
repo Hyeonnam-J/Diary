@@ -36,7 +36,7 @@ public class FreeBoardCommentService {
         private static final int BASIC = 10;
     }
 
-    public void delete(String commentId, String userId) {
+    public void delete(String commentId, String memberId) {
         FreeBoardComment freeBoardComment = freeBoardCommentRepository.findByIdWithNotDelete(Long.parseLong(commentId));
 
         // 코멘트 원글이고,
@@ -47,24 +47,24 @@ public class FreeBoardCommentService {
         }
 
         // 코멘트 작성자가 아니면 삭제 불가.
-        if(freeBoardComment.getMember().getId() != Long.parseLong(userId)) throw new Forbidden();
+        if(freeBoardComment.getMember().getId() != Long.parseLong(memberId)) throw new Forbidden();
 
         freeBoardComment.setDelete(true);
         freeBoardCommentRepository.save(freeBoardComment);
     }
 
-    public void update(FreeBoardCommentUpdateDTO freeBoardCommentUpdateDTO, String userId) {
+    public void update(FreeBoardCommentUpdateDTO freeBoardCommentUpdateDTO, String memberId) {
         FreeBoardComment freeBoardComment = freeBoardCommentRepository.findByIdWithNotDelete(Long.parseLong(freeBoardCommentUpdateDTO.getCommentId()));
         if (freeBoardComment == null) throw new InvalidValue();
 
-        if( freeBoardComment.getMember().getId() != Long.parseLong(userId) ) throw new Forbidden();
+        if( freeBoardComment.getMember().getId() != Long.parseLong(memberId) ) throw new Forbidden();
 
         freeBoardComment.setContent(freeBoardCommentUpdateDTO.getContent());
         freeBoardCommentRepository.save(freeBoardComment);
     }
 
-    public void write(FreeBoardCommentWriteDTO freeBoardCommentWriteDTO, String userId) {
-        Member member = memberRepository.findById(Long.parseLong(userId))
+    public void write(FreeBoardCommentWriteDTO freeBoardCommentWriteDTO, String memberId) {
+        Member member = memberRepository.findById(Long.parseLong(memberId))
                 .orElseThrow(InvalidValue::new);
 
         FreeBoardPost freeBoardPost = freeBoardPostRepository.findByIdWithNotDelete(Long.parseLong(freeBoardCommentWriteDTO.getPostId()));
@@ -83,8 +83,8 @@ public class FreeBoardCommentService {
         freeBoardCommentRepository.save(freeBoardComment);
     }
 
-    public void reply(FreeBoardCommentReplyDTO boardCommentReplyDTO, String userId) {
-        Member member = memberRepository.findById(Long.parseLong(userId))
+    public void reply(FreeBoardCommentReplyDTO boardCommentReplyDTO, String memberId) {
+        Member member = memberRepository.findById(Long.parseLong(memberId))
                 .orElseThrow(InvalidValue::new);
 
         FreeBoardComment freeBoardComment = freeBoardCommentRepository.findByIdWithNotDelete(Long.parseLong(boardCommentReplyDTO.getCommentId()));

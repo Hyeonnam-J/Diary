@@ -37,26 +37,26 @@ public class FreeBoardPostController {
 
     @DeleteMapping(value = "/freeBoard/post/delete/{postId}")
     public void delete(@PathVariable String postId, HttpServletRequest request){
-        String userId = String.valueOf(request.getAttribute("userId"));
-        freeBoardPostService.delete(postId, userId);
+        String memberId = String.valueOf(request.getAttribute("memberId"));
+        freeBoardPostService.delete(postId, memberId);
     }
 
     @PutMapping(value = "/freeBoard/post/update")
     public void update(@RequestBody @Valid FreeBoardPostUpdateDTO freeBoardPostUpdateDTO, HttpServletRequest request){
-        String userId = String.valueOf(request.getAttribute("userId"));
-        freeBoardPostService.update(freeBoardPostUpdateDTO, userId);
+        String memberId = String.valueOf(request.getAttribute("memberId"));
+        freeBoardPostService.update(freeBoardPostUpdateDTO, memberId);
     }
 
     @PostMapping(value = "/freeBoard/post/reply")
     public void reply(@RequestBody @Valid FreeBoardPostReplyDTO freeBoardPostReplyDTO, HttpServletRequest request){
-        String userId = String.valueOf(request.getAttribute("userId"));
-        freeBoardPostService.reply(freeBoardPostReplyDTO, userId);
+        String memberId = String.valueOf(request.getAttribute("memberId"));
+        freeBoardPostService.reply(freeBoardPostReplyDTO, memberId);
     }
 
     @PostMapping(value = "/freeBoard/post/write")
     public void write(@RequestBody @Valid FreeBoardPostWriteDTO freeBoardPostWriteDTO, HttpServletRequest request){
-        String userId = String.valueOf(request.getAttribute("userId"));
-        freeBoardPostService.write(freeBoardPostWriteDTO, userId);
+        String memberId = String.valueOf(request.getAttribute("memberId"));
+        freeBoardPostService.write(freeBoardPostWriteDTO, memberId);
     }
 
     @GetMapping(value = "/freeBoard/posts")
