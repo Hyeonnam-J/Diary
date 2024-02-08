@@ -6,23 +6,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hn.api.diary.dto.member.CheckDuplicationDTO;
 import com.hn.api.diary.dto.member.SignUpDTO;
-import com.hn.api.diary.service.UserService;
+import com.hn.api.diary.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
-public class UserController {
+public class MemberController {
 
-    private final UserService userService;
+    private final MemberService memberService;
 
     @PostMapping(value = "/signUp")
     public void signUp(@RequestBody SignUpDTO signUpDTO){
-        userService.signUp(signUpDTO);
+        memberService.signUp(signUpDTO);
     }
 
     @PostMapping(value = "/signUp/checkDuplication")
     public void checkDuplication(@RequestBody CheckDuplicationDTO checkDuplicationDTO) {
-        userService.checkDuplication(checkDuplicationDTO);
+        memberService.checkDuplication(checkDuplicationDTO);
     }
 }

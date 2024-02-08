@@ -4,7 +4,7 @@ import com.hn.api.diary.dto.member.CheckDuplicationDTO;
 import com.hn.api.diary.dto.member.SignUpDTO;
 import com.hn.api.diary.entity.Member;
 import com.hn.api.diary.exception.AlreadyReported;
-import com.hn.api.diary.repository.UserRepository;
+import com.hn.api.diary.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,14 +13,14 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
-public class UserService {
+public class MemberService {
 
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
 
     public void signUp(SignUpDTO signUpDTO){
 
-        Optional<Member> optionalUser = userRepository.findByEmailOrNick(signUpDTO.getEmail(), signUpDTO.getNick());
+        Optional<Member> optionalUser = memberRepository.findByEmailOrNick(signUpDTO.getEmail(), signUpDTO.getNick());
         if(optionalUser.isPresent()){
             throw new AlreadyReported();
         }
@@ -36,7 +36,7 @@ public class UserService {
                 .role(signUpDTO.getRole())
                 .build();
 
-        userRepository.save(member);
+        memberRepository.save(member);
     }
 
     public void checkDuplication(CheckDuplicationDTO checkDuplicationDTO){
@@ -44,10 +44,10 @@ public class UserService {
 
         switch (checkDuplicationDTO.getItem()){
             case "email":
-                optionalUser = userRepository.findByEmail(checkDuplicationDTO.getValue());
+                optionalUser = memberRepository.findByEmail(checkDuplicationDTO.getValue());
                 break;
             case "nick":
-                optionalUser = userRepository.findByNick(checkDuplicationDTO.getValue());
+                optionalUser = memberRepository.findByNick(checkDuplicationDTO.getValue());
                 break;
         }
 

@@ -8,6 +8,7 @@ import java.util.stream.StreamSupport;
 import com.hn.api.diary.entity.Member;
 import com.hn.api.diary.exception.Forbidden;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
+import com.hn.api.diary.repository.MemberRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,7 +23,6 @@ import com.hn.api.diary.dto.freeBoard.FreeBoardPostWriteDTO;
 import com.hn.api.diary.entity.FreeBoardPost;
 import com.hn.api.diary.exception.InvalidValue;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
-import com.hn.api.diary.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,7 +33,7 @@ public class FreeBoardPostService {
 
     private final FreeBoardPostRepository freeBoardPostRepository;
     private final FreeBoardCommentRepository freeBoardCommentRepository;
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
 
     private class PostPageSize {
         private static final int BASIC = 10;
@@ -94,7 +94,7 @@ public class FreeBoardPostService {
     }
 
     public void reply(FreeBoardPostReplyDTO freeBoardPostReplyDTO, String userId) {
-        Member member = userRepository.findById(Long.parseLong(userId))
+        Member member = memberRepository.findById(Long.parseLong(userId))
                 .orElseThrow(InvalidValue::new);
 
         FreeBoardPost originFreeBoardPost = freeBoardPostRepository.findByIdWithNotDelete(Long.parseLong(freeBoardPostReplyDTO.getPostId()));
@@ -122,7 +122,7 @@ public class FreeBoardPostService {
     }
 
     public void write(FreeBoardPostWriteDTO freeBoardPostWriteDTO, String userId) {
-        Member member = userRepository.findById(Long.parseLong(userId))
+        Member member = memberRepository.findById(Long.parseLong(userId))
                 .orElseThrow(InvalidValue::new);
 
         FreeBoardPost freeBoardPost = FreeBoardPost.builder()
