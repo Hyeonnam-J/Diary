@@ -14,5 +14,5 @@ public class FreeBoardPostReadDTO {
     private String content;
     private Long viewCount;
     private String createdDate;
-    private MemberDTO user;
+    private MemberDTO member;
 }

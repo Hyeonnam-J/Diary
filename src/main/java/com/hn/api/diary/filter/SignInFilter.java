@@ -66,7 +66,7 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
         String roles = String.join(",", rolesList);
 
         SessionDTO sessionDTO = SessionDTO.builder()
-                .userId(myUserDetails.getUserId())
+                .memberId(myUserDetails.getMemberId())
                 .email(myUserDetails.getUsername())
                 .nick(myUserDetails.getNick())
                 .role(roles)
@@ -79,7 +79,7 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
         // todo: jws -> spring security oauth2
         String jws = Jwts.builder()
                 .subject(jwtSubject)
-                .claim("userId", sessionDTO.getUserId())
+                .claim("memberId", sessionDTO.getMemberId())
                 .claim("email", sessionDTO.getEmail())
                 .claim("nick", myUserDetails.getNick())
                 .signWith(JwsKey.getJwsSecretKey())

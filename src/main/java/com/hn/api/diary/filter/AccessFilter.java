@@ -51,7 +51,7 @@ public class AccessFilter extends OncePerRequestFilter {
             String jwtSubject = claims.getSubject();
             SessionDTO sessionDTO = objectMapper.readValue(jwtSubject, SessionDTO.class);
 
-            setSecurityContextHolder(request, response, filterChain, sessionDTO.getUserId().toString(), sessionDTO.getEmail(), sessionDTO.getRole());
+            setSecurityContextHolder(request, response, filterChain, sessionDTO.getMemberId().toString(), sessionDTO.getEmail(), sessionDTO.getRole());
         }catch (IllegalArgumentException e){
             // jws == null,
             setSecurityContextHolder(request, response, filterChain, "NONE", "NONE");
@@ -68,12 +68,12 @@ public class AccessFilter extends OncePerRequestFilter {
             HttpServletRequest request,
             HttpServletResponse response,
             FilterChain filterChain,
-            String userId,
+            String memberId,
             String principal,
             String... authorityList
             ) throws ServletException, IOException {
 
-        request.setAttribute("userId", userId);
+        request.setAttribute("memberId", memberId);
 
         List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(authorityList);
         Authentication authentication

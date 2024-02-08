@@ -5,17 +5,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 
 public class MyUserDetails extends User {
-    private final Long userId;
+    private final Long memberId;
     private final String nick;
 
     public MyUserDetails(UserDetails userDetails, Long userId, String nick) {
         super(userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
-        this.userId = userId;
+        this.memberId = userId;
         this.nick = nick;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Long getMemberId() {
+        return memberId;
     }
 
     public String getNick() {

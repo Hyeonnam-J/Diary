@@ -61,7 +61,7 @@ public class FreeBoardPostService {
         return dto;
     }
 
-    public void delete(String postId, String userId){
+    public void delete(String postId, String memberId){
         // 코멘트가 있으면 삭제할 수 없다.
         long countComments = freeBoardCommentRepository.countByFreeBoardPostIdWithNoDelete(Long.parseLong(postId));
         if(countComments != 0) throw new Forbidden();
@@ -75,17 +75,17 @@ public class FreeBoardPostService {
         if(freeBoardPost == null) throw new InvalidValue();
 
         // 글쓴이가 아니면 삭제할 수 없다.
-        if( freeBoardPost.getMember().getId() != Long.parseLong(userId) ) throw new Forbidden();
+        if( freeBoardPost.getMember().getId() != Long.parseLong(memberId) ) throw new Forbidden();
 
         freeBoardPost.setDelete(true);
         freeBoardPostRepository.save(freeBoardPost);
     }
 
-    public void update(FreeBoardPostUpdateDTO freeBoardPostUpdateDTO, String userId) {
+    public void update(FreeBoardPostUpdateDTO freeBoardPostUpdateDTO, String memberId) {
         FreeBoardPost freeBoardPost = freeBoardPostRepository.findByIdWithNotDelete(Long.parseLong(freeBoardPostUpdateDTO.getPostId()));
         if(freeBoardPost == null) throw new InvalidValue();
 
-        if((freeBoardPost.getMember().getId() != Long.parseLong(userId))) throw new Forbidden();
+        if((freeBoardPost.getMember().getId() != Long.parseLong(memberId))) throw new Forbidden();
 
         freeBoardPost.setTitle(freeBoardPostUpdateDTO.getTitle());
         freeBoardPost.setContent(freeBoardPostUpdateDTO.getContent());
@@ -93,8 +93,8 @@ public class FreeBoardPostService {
         freeBoardPostRepository.save(freeBoardPost);
     }
 
-    public void reply(FreeBoardPostReplyDTO freeBoardPostReplyDTO, String userId) {
-        Member member = memberRepository.findById(Long.parseLong(userId))
+    public void reply(FreeBoardPostReplyDTO freeBoardPostReplyDTO, String memberId) {
+        Member member = memberRepository.findById(Long.parseLong(memberId))
                 .orElseThrow(InvalidValue::new);
 
         FreeBoardPost originFreeBoardPost = freeBoardPostRepository.findByIdWithNotDelete(Long.parseLong(freeBoardPostReplyDTO.getPostId()));
@@ -121,8 +121,8 @@ public class FreeBoardPostService {
         freeBoardPostRepository.save(freeBoardPost);
     }
 
-    public void write(FreeBoardPostWriteDTO freeBoardPostWriteDTO, String userId) {
-        Member member = memberRepository.findById(Long.parseLong(userId))
+    public void write(FreeBoardPostWriteDTO freeBoardPostWriteDTO, String memberId) {
+        Member member = memberRepository.findById(Long.parseLong(memberId))
                 .orElseThrow(InvalidValue::new);
 
         FreeBoardPost freeBoardPost = FreeBoardPost.builder()
