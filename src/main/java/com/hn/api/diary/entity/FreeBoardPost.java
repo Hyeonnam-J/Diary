@@ -66,4 +66,7 @@ public class FreeBoardPost extends DateColumn {
         isDelete = delete;
     }
 
+    public void setViewCount(Long viewCount) {
+        this.viewCount = viewCount;
+    }
 }
