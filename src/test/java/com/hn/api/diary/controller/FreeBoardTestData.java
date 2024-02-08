@@ -62,7 +62,7 @@ public class FreeBoardTestData {
         FreeBoardPost post1 = FreeBoardPost.builder()
                 .title("title")
                 .content("content")
-                .user(member1)
+                .member(member1)
                 .build();
         freeBoardPostRepository.save(post1);
         post1.setGroupId(post1.getId());
@@ -71,7 +71,7 @@ public class FreeBoardTestData {
         FreeBoardPost post2 = FreeBoardPost.builder()
                 .title("title")
                 .content("content")
-                .user(member1)
+                .member(member1)
                 .build();
         freeBoardPostRepository.save(post2);
         post2.setGroupId(post2.getId());
@@ -80,7 +80,7 @@ public class FreeBoardTestData {
         FreeBoardPost post3 = FreeBoardPost.builder()
                 .title("title")
                 .content("content")
-                .user(member1)
+                .member(member1)
                 .build();
         freeBoardPostRepository.save(post3);
         post3.setGroupId(post3.getId());
@@ -89,7 +89,7 @@ public class FreeBoardTestData {
         FreeBoardPost post4 = FreeBoardPost.builder()
                 .title("title")
                 .content("content")
-                .user(member1)
+                .member(member1)
                 .build();
         freeBoardPostRepository.save(post4);
         post4.setGroupId(post4.getId());
@@ -99,7 +99,7 @@ public class FreeBoardTestData {
         FreeBoardPost post5 = FreeBoardPost.builder()
                 .title("title")
                 .content("content")
-                .user(member2)
+                .member(member2)
                 .build();
         freeBoardPostRepository.save(post5);
         post5.setGroupId(post5.getId());
@@ -112,7 +112,7 @@ public class FreeBoardTestData {
                 .groupNo(post3.getGroupNo() + 1)
                 .depth(post3.getDepth() + 1)
                 .parentId(post3.getId())
-                .user(member1)
+                .member(member1)
                 .build();
         freeBoardPostRepository.save(post6_replyPost3);
         // freeBoardPost end ****
@@ -120,7 +120,7 @@ public class FreeBoardTestData {
         // freeBoardComment start ****
         FreeBoardComment comment1 = FreeBoardComment.builder()
                 .freeBoardPost(post1)
-                .user(member1)
+                .member(member1)
                 .content("content")
                 .isParent(true)
                 .build();
@@ -130,7 +130,7 @@ public class FreeBoardTestData {
 
         FreeBoardComment comment2 = FreeBoardComment.builder()
                 .freeBoardPost(post1)
-                .user(member1)
+                .member(member1)
                 .content("content")
                 .isParent(true)
                 .build();
@@ -140,7 +140,7 @@ public class FreeBoardTestData {
 
         FreeBoardComment comment3 = FreeBoardComment.builder()
                 .freeBoardPost(post1)
-                .user(member1)
+                .member(member1)
                 .content("content")
                 .isParent(true)
                 .build();
@@ -151,7 +151,7 @@ public class FreeBoardTestData {
 
         FreeBoardComment comment4 = FreeBoardComment.builder()
                 .freeBoardPost(post1)
-                .user(member2)
+                .member(member2)
                 .content("content")
                 .isParent(true)
                 .build();
@@ -161,7 +161,7 @@ public class FreeBoardTestData {
 
         FreeBoardComment comment5_replyComment2 = FreeBoardComment.builder()
                 .freeBoardPost(post1)
-                .user(member1)
+                .member(member1)
                 .content("content-reply")
                 .isParent(false)
                 .groupId(comment2.getGroupId())
