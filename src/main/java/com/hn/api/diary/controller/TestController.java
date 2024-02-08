@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
-    @Autowired private UserRepository userRepository;
-    @Autowired private FreeBoardPostRepository freeBoardPostRepository;
-    @Autowired private FreeBoardCommentRepository freeBoardCommentRepository;
+//    @Autowired private UserRepository userRepository;
+//    @Autowired private FreeBoardPostRepository freeBoardPostRepository;
+//    @Autowired private FreeBoardCommentRepository freeBoardCommentRepository;
 
     static final Logger logger = LoggerFactory.getLogger(TestController.class);
 

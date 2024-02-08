@@ -26,6 +26,7 @@ import com.hn.api.diary.repository.FreeBoardPostRepository;
 import com.hn.api.diary.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
@@ -43,14 +44,19 @@ public class FreeBoardPostService {
         private static final String BASIC = "basic";
     }
 
+    @Transactional
     public FreeBoardPostReadDTO read(Long postId) {
         FreeBoardPost freeBoardPost = freeBoardPostRepository.findByIdWithNotDelete(postId);
         if(freeBoardPost == null) throw new InvalidValue();
 
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy. MM. dd. HH:mm:ss");
-        String formattedCreatedDate = freeBoardPost.getCreatedDate().format(dateTimeFormatter);
+        // todo: viewCount db lock & prevent duplicated count
+        freeBoardPost.setViewCount(freeBoardPost.getViewCount() + 1);
+        freeBoardPostRepository.save(freeBoardPost);
 
         FreeBoardPostReadDTO dto = new ModelMapper().map(freeBoardPost, FreeBoardPostReadDTO.class);
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy. MM. dd. HH:mm:ss");
+        String formattedCreatedDate = freeBoardPost.getCreatedDate().format(dateTimeFormatter);
         dto.setCreatedDate(formattedCreatedDate);
 
         return dto;
