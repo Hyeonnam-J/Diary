@@ -22,7 +22,7 @@ public interface FreeBoardCommentRepository extends JpaRepository<FreeBoardComme
     @Query("select count(c) from FreeBoardComment c where c.freeBoardPost.id = :postId and c.isDelete = false")
     long countByFreeBoardPostIdWithNoDelete(@Param("postId") Long postId);
 
-    @EntityGraph(attributePaths = {"user", "freeBoardPost"})
+    @EntityGraph(attributePaths = {"member", "freeBoardPost"})
     @Query("select c from FreeBoardComment c where c.freeBoardPost.id = :postId and c.isDelete = false")
     List<FreeBoardComment> findByFreeBoardPostId(@Param("postId") Long postId, Pageable pageable);
 
