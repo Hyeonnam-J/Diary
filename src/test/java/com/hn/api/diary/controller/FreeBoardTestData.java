@@ -1,15 +1,14 @@
 package com.hn.api.diary.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hn.api.diary.dto.user.SignInDTO;
+import com.hn.api.diary.dto.member.SignInDTO;
 import com.hn.api.diary.entity.FreeBoardComment;
 import com.hn.api.diary.entity.FreeBoardPost;
-import com.hn.api.diary.entity.User;
+import com.hn.api.diary.entity.Member;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
 import com.hn.api.diary.repository.UserRepository;
 import jakarta.servlet.http.Cookie;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -17,8 +16,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 
 public class FreeBoardTestData {
 
@@ -41,7 +38,7 @@ public class FreeBoardTestData {
      */
     public void given(UserRepository userRepository, FreeBoardPostRepository freeBoardPostRepository, FreeBoardCommentRepository freeBoardCommentRepository) {
         // user start ****
-        User user1 = User.builder()
+        Member member1 = Member.builder()
                 .email("nami0879@naver.com")
                 .password("!@#123QWEqwe")
                 .role("user")
@@ -49,7 +46,7 @@ public class FreeBoardTestData {
                 .nick("user1")
                 .build();
 
-        User user2 = User.builder()
+        Member member2 = Member.builder()
                 .email("nami0878@naver.com")
                 .password("!@#123QWEqwe")
                 .role("user")
@@ -57,15 +54,15 @@ public class FreeBoardTestData {
                 .nick("user2")
                 .build();
 
-        userRepository.save(user1);
-        userRepository.save(user2);
+        userRepository.save(member1);
+        userRepository.save(member2);
         // user end ****
 
         // freeBoardPost start ****
         FreeBoardPost post1 = FreeBoardPost.builder()
                 .title("title")
                 .content("content")
-                .user(user1)
+                .user(member1)
                 .build();
         freeBoardPostRepository.save(post1);
         post1.setGroupId(post1.getId());
@@ -74,7 +71,7 @@ public class FreeBoardTestData {
         FreeBoardPost post2 = FreeBoardPost.builder()
                 .title("title")
                 .content("content")
-                .user(user1)
+                .user(member1)
                 .build();
         freeBoardPostRepository.save(post2);
         post2.setGroupId(post2.getId());
@@ -83,7 +80,7 @@ public class FreeBoardTestData {
         FreeBoardPost post3 = FreeBoardPost.builder()
                 .title("title")
                 .content("content")
-                .user(user1)
+                .user(member1)
                 .build();
         freeBoardPostRepository.save(post3);
         post3.setGroupId(post3.getId());
@@ -92,7 +89,7 @@ public class FreeBoardTestData {
         FreeBoardPost post4 = FreeBoardPost.builder()
                 .title("title")
                 .content("content")
-                .user(user1)
+                .user(member1)
                 .build();
         freeBoardPostRepository.save(post4);
         post4.setGroupId(post4.getId());
@@ -102,7 +99,7 @@ public class FreeBoardTestData {
         FreeBoardPost post5 = FreeBoardPost.builder()
                 .title("title")
                 .content("content")
-                .user(user2)
+                .user(member2)
                 .build();
         freeBoardPostRepository.save(post5);
         post5.setGroupId(post5.getId());
@@ -115,7 +112,7 @@ public class FreeBoardTestData {
                 .groupNo(post3.getGroupNo() + 1)
                 .depth(post3.getDepth() + 1)
                 .parentId(post3.getId())
-                .user(user1)
+                .user(member1)
                 .build();
         freeBoardPostRepository.save(post6_replyPost3);
         // freeBoardPost end ****
@@ -123,7 +120,7 @@ public class FreeBoardTestData {
         // freeBoardComment start ****
         FreeBoardComment comment1 = FreeBoardComment.builder()
                 .freeBoardPost(post1)
-                .user(user1)
+                .user(member1)
                 .content("content")
                 .isParent(true)
                 .build();
@@ -133,7 +130,7 @@ public class FreeBoardTestData {
 
         FreeBoardComment comment2 = FreeBoardComment.builder()
                 .freeBoardPost(post1)
-                .user(user1)
+                .user(member1)
                 .content("content")
                 .isParent(true)
                 .build();
@@ -143,7 +140,7 @@ public class FreeBoardTestData {
 
         FreeBoardComment comment3 = FreeBoardComment.builder()
                 .freeBoardPost(post1)
-                .user(user1)
+                .user(member1)
                 .content("content")
                 .isParent(true)
                 .build();
@@ -154,7 +151,7 @@ public class FreeBoardTestData {
 
         FreeBoardComment comment4 = FreeBoardComment.builder()
                 .freeBoardPost(post1)
-                .user(user2)
+                .user(member2)
                 .content("content")
                 .isParent(true)
                 .build();
@@ -164,7 +161,7 @@ public class FreeBoardTestData {
 
         FreeBoardComment comment5_replyComment2 = FreeBoardComment.builder()
                 .freeBoardPost(post1)
-                .user(user1)
+                .user(member1)
                 .content("content-reply")
                 .isParent(false)
                 .groupId(comment2.getGroupId())
@@ -177,12 +174,12 @@ public class FreeBoardTestData {
      * return user1.
      */
     public HashMap<String, Object> signIn(UserRepository userRepository, ObjectMapper objectMapper, MockMvc mockMvc) throws Exception {
-        List<User> users = userRepository.findAll();
-        User user = users.get(0);
+        List<Member> members = userRepository.findAll();
+        Member member = members.get(0);
 
         SignInDTO signInDTO = SignInDTO.builder()
-                .email(user.getEmail())
-                .password(user.getPassword())
+                .email(member.getEmail())
+                .password(member.getPassword())
                 .build();
         String signIn_json = objectMapper.writeValueAsString(signInDTO);
 
@@ -194,7 +191,7 @@ public class FreeBoardTestData {
         Cookie[] Cookies = resultActions.andReturn().getResponse().getCookies();
 
         HashMap<String, Object> map = new HashMap<>();
-        map.put("user", user);
+        map.put("user", member);
         map.put("cookies", Cookies);
 
         return map;

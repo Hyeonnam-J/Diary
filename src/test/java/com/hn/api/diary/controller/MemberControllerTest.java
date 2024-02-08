@@ -1,14 +1,14 @@
 package com.hn.api.diary.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hn.api.diary.dto.user.CheckDuplicationDTO;
-import com.hn.api.diary.dto.user.SessionDTO;
+import com.hn.api.diary.dto.member.CheckDuplicationDTO;
+import com.hn.api.diary.dto.member.SessionDTO;
+import com.hn.api.diary.entity.Member;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
 import com.hn.api.diary.util.JwsKey;
-import com.hn.api.diary.dto.user.SignInDTO;
-import com.hn.api.diary.dto.user.SignUpDTO;
-import com.hn.api.diary.entity.User;
+import com.hn.api.diary.dto.member.SignInDTO;
+import com.hn.api.diary.dto.member.SignUpDTO;
 import com.hn.api.diary.exception.InvalidValue;
 import com.hn.api.diary.repository.UserRepository;
 import com.hn.api.diary.service.UserService;
@@ -21,20 +21,16 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.util.Map;
-
 @AutoConfigureMockMvc
 @SpringBootTest
-class UserControllerTest {
+class MemberControllerTest {
 
     @Autowired private MockMvc mockMvc;
     @Autowired private ObjectMapper objectMapper;
@@ -76,20 +72,20 @@ class UserControllerTest {
 
         Assertions.assertEquals(1, userRepository.count());
 
-        User user = userRepository.findAll().iterator().next();
-        Assertions.assertEquals(signUpDTO.getEmail(), user.getEmail());
+        Member member = userRepository.findAll().iterator().next();
+        Assertions.assertEquals(signUpDTO.getEmail(), member.getEmail());
     }
 
     @Test
     @DisplayName("sign up : duplicated email")
     public void checkEmailDuplicate() throws Exception {
         // [given]
-        User user = User.builder()
+        Member member = Member.builder()
                 .email("test@naver.com")
                 .password("!@#QWE123qwe")
                 .nick("testNick")
                 .build();
-        userRepository.save(user);
+        userRepository.save(member);
 
         CheckDuplicationDTO checkDuplicationDTO = CheckDuplicationDTO.builder()
                 .item("email")
@@ -111,12 +107,12 @@ class UserControllerTest {
     @DisplayName("sign up : duplicated nick")
     public void checkNickDuplicate() throws Exception {
         // [given]
-        User user = User.builder()
+        Member member = Member.builder()
                 .email("test@naver.com")
                 .password("!@#QWE123qwe")
                 .nick("testNick")
                 .build();
-        userRepository.save(user);
+        userRepository.save(member);
 
         CheckDuplicationDTO checkDuplicationDTO = CheckDuplicationDTO.builder()
                 .item("nick")
@@ -138,12 +134,12 @@ class UserControllerTest {
     @DisplayName("sign up : pass duplication email test")
     public void passDuplicationEmailTest() throws Exception {
         // [given]
-        User user = User.builder()
+        Member member = Member.builder()
                 .email("test@naver.com")
                 .password("!@#QWE123qwe")
                 .nick("testNick")
                 .build();
-        userRepository.save(user);
+        userRepository.save(member);
 
         CheckDuplicationDTO checkDuplicationDTO = CheckDuplicationDTO.builder()
                 .item("email")
@@ -165,12 +161,12 @@ class UserControllerTest {
     @DisplayName("sign up : pass duplication nick test")
     public void passDuplicationNickTest() throws Exception {
         // [given]
-        User user = User.builder()
+        Member member = Member.builder()
                 .email("test@naver.com")
                 .password("!@#QWE123qwe")
                 .nick("testNick")
                 .build();
-        userRepository.save(user);
+        userRepository.save(member);
 
         CheckDuplicationDTO checkDuplicationDTO = CheckDuplicationDTO.builder()
                 .item("nick")
@@ -229,14 +225,14 @@ class UserControllerTest {
         SessionDTO sessionDTO = objectMapper.readValue(jwtSubject, SessionDTO.class);
 
         // 토큰 파싱 후 값 비교를 위해.
-        User user = userRepository.findByEmail(signUpDTO.getEmail())
+        Member member = userRepository.findByEmail(signUpDTO.getEmail())
                         .orElseThrow(InvalidValue::new);
 
         // [then]
         resultActions.andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
 
-        Assertions.assertEquals(user.getEmail(), sessionDTO.getEmail());
+        Assertions.assertEquals(member.getEmail(), sessionDTO.getEmail());
     }
     /* ********************************************************************************* */
     // signIn() - end

@@ -5,7 +5,7 @@ import com.hn.api.diary.controller.FreeBoardTestData;
 import com.hn.api.diary.dto.freeBoard.FreeBoardPostReplyDTO;
 import com.hn.api.diary.dto.freeBoard.FreeBoardPostWriteDTO;
 import com.hn.api.diary.entity.FreeBoardPost;
-import com.hn.api.diary.entity.User;
+import com.hn.api.diary.entity.Member;
 import com.hn.api.diary.exception.InvalidValue;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
@@ -135,8 +135,8 @@ public class FreeBoardPostServiceTest {
         List<FreeBoardPost> groupListBeforeReply = freeBoardPostRepository.findByGroupId(freeBoardPost.getGroupId());
 
         // 랜덤한 유저
-        List<User> users = userRepository.findAll();
-        User user = users.get( random.nextInt(users.size()) );
+        List<Member> members = userRepository.findAll();
+        Member member = members.get( random.nextInt(members.size()) );
 
         FreeBoardPostReplyDTO freeBoardPostReplyDTO = FreeBoardPostReplyDTO.builder()
                 .postId(freeBoardPost.getId().toString())
@@ -145,7 +145,7 @@ public class FreeBoardPostServiceTest {
                 .build();
 
         // when
-        freeBoardPostService.reply(freeBoardPostReplyDTO, user.getId().toString());
+        freeBoardPostService.reply(freeBoardPostReplyDTO, member.getId().toString());
 
         // then
         Assertions.assertEquals(groupListBeforeReply.size() + 1, freeBoardPostRepository.findByGroupId(freeBoardPost.getGroupId()).size() );
@@ -155,8 +155,8 @@ public class FreeBoardPostServiceTest {
     @DisplayName("freeBoardPost - write")
     void write() throws Exception {
         // given
-        List<User> users = userRepository.findAll();
-        User user = users.get( new Random().nextInt(users.size()) );
+        List<Member> members = userRepository.findAll();
+        Member member = members.get( new Random().nextInt(members.size()) );
 
         long countBeforeWrite = freeBoardPostRepository.count();
 
@@ -166,7 +166,7 @@ public class FreeBoardPostServiceTest {
                 .build();
 
         // when
-        freeBoardPostService.write(freeBoardPostWriteDTO, user.getId().toString());
+        freeBoardPostService.write(freeBoardPostWriteDTO, member.getId().toString());
 
         // then
         Assertions.assertEquals(countBeforeWrite + 1, freeBoardPostRepository.count());

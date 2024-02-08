@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import com.hn.api.diary.entity.FreeBoardComment;
+import com.hn.api.diary.entity.Member;
 import com.hn.api.diary.exception.Forbidden;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import org.modelmapper.ModelMapper;
@@ -20,7 +20,6 @@ import com.hn.api.diary.dto.freeBoard.FreeBoardPostReplyDTO;
 import com.hn.api.diary.dto.freeBoard.FreeBoardPostUpdateDTO;
 import com.hn.api.diary.dto.freeBoard.FreeBoardPostWriteDTO;
 import com.hn.api.diary.entity.FreeBoardPost;
-import com.hn.api.diary.entity.User;
 import com.hn.api.diary.exception.InvalidValue;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
 import com.hn.api.diary.repository.UserRepository;
@@ -76,7 +75,7 @@ public class FreeBoardPostService {
         if(freeBoardPost == null) throw new InvalidValue();
 
         // 글쓴이가 아니면 삭제할 수 없다.
-        if( freeBoardPost.getUser().getId() != Long.parseLong(userId) ) throw new Forbidden();
+        if( freeBoardPost.getMember().getId() != Long.parseLong(userId) ) throw new Forbidden();
 
         freeBoardPost.setDelete(true);
         freeBoardPostRepository.save(freeBoardPost);
@@ -86,7 +85,7 @@ public class FreeBoardPostService {
         FreeBoardPost freeBoardPost = freeBoardPostRepository.findByIdWithNotDelete(Long.parseLong(freeBoardPostUpdateDTO.getPostId()));
         if(freeBoardPost == null) throw new InvalidValue();
 
-        if((freeBoardPost.getUser().getId() != Long.parseLong(userId))) throw new Forbidden();
+        if((freeBoardPost.getMember().getId() != Long.parseLong(userId))) throw new Forbidden();
 
         freeBoardPost.setTitle(freeBoardPostUpdateDTO.getTitle());
         freeBoardPost.setContent(freeBoardPostUpdateDTO.getContent());
@@ -95,7 +94,7 @@ public class FreeBoardPostService {
     }
 
     public void reply(FreeBoardPostReplyDTO freeBoardPostReplyDTO, String userId) {
-        User user = userRepository.findById(Long.parseLong(userId))
+        Member member = userRepository.findById(Long.parseLong(userId))
                 .orElseThrow(InvalidValue::new);
 
         FreeBoardPost originFreeBoardPost = freeBoardPostRepository.findByIdWithNotDelete(Long.parseLong(freeBoardPostReplyDTO.getPostId()));
@@ -113,7 +112,7 @@ public class FreeBoardPostService {
         FreeBoardPost freeBoardPost = FreeBoardPost.builder()
                 .title(freeBoardPostReplyDTO.getTitle())
                 .content(freeBoardPostReplyDTO.getContent())
-                .user(user)
+                .member(member)
                 .groupId(originFreeBoardPost.getGroupId())
                 .groupNo(originFreeBoardPost.getGroupNo()+1)
                 .depth(originFreeBoardPost.getDepth()+1)
@@ -123,13 +122,13 @@ public class FreeBoardPostService {
     }
 
     public void write(FreeBoardPostWriteDTO freeBoardPostWriteDTO, String userId) {
-        User user = userRepository.findById(Long.parseLong(userId))
+        Member member = userRepository.findById(Long.parseLong(userId))
                 .orElseThrow(InvalidValue::new);
 
         FreeBoardPost freeBoardPost = FreeBoardPost.builder()
                 .title(freeBoardPostWriteDTO.getTitle())
                 .content(freeBoardPostWriteDTO.getContent())
-                .user(user)
+                .member(member)
                 .build();
 
         freeBoardPostRepository.save(freeBoardPost);

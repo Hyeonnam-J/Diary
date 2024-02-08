@@ -6,7 +6,7 @@ import com.hn.api.diary.dto.freeBoard.FreeBoardCommentUpdateDTO;
 import com.hn.api.diary.dto.freeBoard.FreeBoardCommentWriteDTO;
 import com.hn.api.diary.entity.FreeBoardComment;
 import com.hn.api.diary.entity.FreeBoardPost;
-import com.hn.api.diary.entity.User;
+import com.hn.api.diary.entity.Member;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
 import com.hn.api.diary.repository.UserRepository;
@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -85,17 +84,17 @@ class FreeBoardCommentControllerTest {
     void update() throws Exception {
         // given
         HashMap<String, Object> map = new FreeBoardTestData().signIn(userRepository, objectMapper, mockMvc);
-        User user = (User) map.get("user");
+        Member member = (Member) map.get("user");
         Cookie[] cookies = (Cookie[]) map.get("cookies");
 
         List<FreeBoardComment> comments = freeBoardCommentRepository.findAllWithNotDelete();
         Long commentId_1 = comments.stream()
-                .filter(c -> c.getUser().getId() == user.getId())
+                .filter(c -> c.getMember().getId() == member.getId())
                 .findFirst()
                 .map(FreeBoardComment::getId)
                 .orElseThrow();
         Long commentId_2 = comments.stream()
-                .filter(c -> c.getUser().getId() != user.getId())
+                .filter(c -> c.getMember().getId() != member.getId())
                 .findFirst()
                 .map(FreeBoardComment::getId)
                 .orElseThrow();
@@ -159,7 +158,7 @@ class FreeBoardCommentControllerTest {
     void reply() throws Exception {
         // given
         HashMap<String, Object> map = new FreeBoardTestData().signIn(userRepository, objectMapper, mockMvc);
-        User user = (User) map.get("user");
+        Member member = (Member) map.get("user");
         Cookie[] cookies = (Cookie[]) map.get("cookies");
 
         List<FreeBoardComment> comments = freeBoardCommentRepository.findAllWithNotDelete();

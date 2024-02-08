@@ -6,7 +6,7 @@ import com.hn.api.diary.dto.freeBoard.FreeBoardCommentWriteDTO;
 import com.hn.api.diary.dto.freeBoard.FreeBoardCommentsDTO;
 import com.hn.api.diary.entity.FreeBoardComment;
 import com.hn.api.diary.entity.FreeBoardPost;
-import com.hn.api.diary.entity.User;
+import com.hn.api.diary.entity.Member;
 import com.hn.api.diary.exception.Forbidden;
 import com.hn.api.diary.exception.InvalidValue;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
@@ -47,7 +47,7 @@ public class FreeBoardCommentService {
         }
 
         // 코멘트 작성자가 아니면 삭제 불가.
-        if(freeBoardComment.getUser().getId() != Long.parseLong(userId)) throw new Forbidden();
+        if(freeBoardComment.getMember().getId() != Long.parseLong(userId)) throw new Forbidden();
 
         freeBoardComment.setDelete(true);
         freeBoardCommentRepository.save(freeBoardComment);
@@ -57,14 +57,14 @@ public class FreeBoardCommentService {
         FreeBoardComment freeBoardComment = freeBoardCommentRepository.findByIdWithNotDelete(Long.parseLong(freeBoardCommentUpdateDTO.getCommentId()));
         if (freeBoardComment == null) throw new InvalidValue();
 
-        if( freeBoardComment.getUser().getId() != Long.parseLong(userId) ) throw new Forbidden();
+        if( freeBoardComment.getMember().getId() != Long.parseLong(userId) ) throw new Forbidden();
 
         freeBoardComment.setContent(freeBoardCommentUpdateDTO.getContent());
         freeBoardCommentRepository.save(freeBoardComment);
     }
 
     public void write(FreeBoardCommentWriteDTO freeBoardCommentWriteDTO, String userId) {
-        User user = userRepository.findById(Long.parseLong(userId))
+        Member member = userRepository.findById(Long.parseLong(userId))
                 .orElseThrow(InvalidValue::new);
 
         FreeBoardPost freeBoardPost = freeBoardPostRepository.findByIdWithNotDelete(Long.parseLong(freeBoardCommentWriteDTO.getPostId()));
@@ -72,7 +72,7 @@ public class FreeBoardCommentService {
 
         FreeBoardComment freeBoardComment = FreeBoardComment.builder()
                 .freeBoardPost(freeBoardPost)
-                .user(user)
+                .member(member)
                 .content(freeBoardCommentWriteDTO.getContent())
                 .isParent(true)
                 .build();
@@ -84,14 +84,14 @@ public class FreeBoardCommentService {
     }
 
     public void reply(FreeBoardCommentReplyDTO boardCommentReplyDTO, String userId) {
-        User user = userRepository.findById(Long.parseLong(userId))
+        Member member = userRepository.findById(Long.parseLong(userId))
                 .orElseThrow(InvalidValue::new);
 
         FreeBoardComment freeBoardComment = freeBoardCommentRepository.findByIdWithNotDelete(Long.parseLong(boardCommentReplyDTO.getCommentId()));
         if (freeBoardComment == null) throw new InvalidValue();
 
         FreeBoardComment freeBoardComment_save = FreeBoardComment.builder()
-                .user(user)
+                .member(member)
                 .freeBoardPost(freeBoardComment.getFreeBoardPost())
                 .groupId(freeBoardComment.getGroupId())
                 .content(boardCommentReplyDTO.getContent())

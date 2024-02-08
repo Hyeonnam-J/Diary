@@ -1,4 +1,4 @@
-package com.hn.api.diary.dto.user;
+package com.hn.api.diary.dto.member;
 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

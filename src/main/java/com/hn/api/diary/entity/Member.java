@@ -4,7 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jdk.jfr.Name;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor
-public class User extends DateColumn {
+public class Member extends DateColumn {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +25,7 @@ public class User extends DateColumn {
     private String role;
 
     @Builder
-    public User(String email, String password, String userName, String nick, String phoneNumber, String role) {
+    public Member(String email, String password, String userName, String nick, String phoneNumber, String role) {
         this.email = email;
         this.password = password;
         this.userName = userName;

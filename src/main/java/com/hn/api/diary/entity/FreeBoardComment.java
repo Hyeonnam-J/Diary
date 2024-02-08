@@ -20,7 +20,7 @@ public class FreeBoardComment extends DateColumn {
     private FreeBoardPost freeBoardPost;
 
     @ManyToOne
-    private User user;
+    private Member member;
 
     @Lob
     private String content;
@@ -30,9 +30,9 @@ public class FreeBoardComment extends DateColumn {
     private boolean isParent;
 
     @Builder
-    public FreeBoardComment(FreeBoardPost freeBoardPost, User user, String content, Long groupId, boolean isParent) {
+    public FreeBoardComment(FreeBoardPost freeBoardPost, Member member, String content, Long groupId, boolean isParent) {
         this.freeBoardPost = freeBoardPost;
-        this.user = user;
+        this.member = member;
         this.content = content;
 
         this.isDelete = false;
