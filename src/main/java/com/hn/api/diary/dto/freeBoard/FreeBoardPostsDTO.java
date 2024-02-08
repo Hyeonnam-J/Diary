@@ -1,6 +1,6 @@
 package com.hn.api.diary.dto.freeBoard;
 
-import com.hn.api.diary.dto.user.UserDTO;
+import com.hn.api.diary.dto.member.MemberDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +14,7 @@ public class FreeBoardPostsDTO {
     private String title;
     private Long viewCount;
     private String createdDate;
-    private UserDTO user;   // modelMapper에서 변수명을 참조하기 때문에 user여야 한다.
+    private MemberDTO user;   // modelMapper에서 변수명을 참조하기 때문에 user여야 한다.
     private Integer depth;
 
 }

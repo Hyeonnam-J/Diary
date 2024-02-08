@@ -1,9 +1,9 @@
 package com.hn.api.diary.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hn.api.diary.dto.user.CheckDuplicationDTO;
-import com.hn.api.diary.dto.user.SignUpDTO;
-import com.hn.api.diary.entity.User;
+import com.hn.api.diary.dto.member.CheckDuplicationDTO;
+import com.hn.api.diary.dto.member.SignUpDTO;
+import com.hn.api.diary.entity.Member;
 import com.hn.api.diary.exception.AlreadyReported;
 import com.hn.api.diary.exception.InvalidValue;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
@@ -18,7 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootTest
-class UserTestServiceTest {
+class MemberTestServiceTest {
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -48,12 +48,12 @@ class UserTestServiceTest {
         // [given]
 
         // 데이터를 넣어두고,
-        User user = User.builder()
+        Member member = Member.builder()
                 .email("testDuplicated")
                 .password("any")
                 .userName("userName")
                 .build();
-        userRepository.save(user);
+        userRepository.save(member);
 
         // signUp 로직을 실행하기 위한 파라미터 생성.
         SignUpDTO signUpDTO = SignUpDTO.builder()
@@ -80,23 +80,23 @@ class UserTestServiceTest {
         userService.signUp(signUpDTO);
 
         // 저장된 데이터를 가져온다.
-        User user = userRepository.findByEmail("any")
+        Member member = userRepository.findByEmail("any")
                 .orElseThrow(InvalidValue::new);
 
         // [expected]
-        Assertions.assertTrue(passwordEncoder.matches(signUpDTO.getPassword(), user.getPassword()));
+        Assertions.assertTrue(passwordEncoder.matches(signUpDTO.getPassword(), member.getPassword()));
     }
 
     @Test
     @DisplayName("sign up : check duplicated value")
     public void checkDuplicatedValue() {
         // [given]
-        User user = User.builder()
+        Member member = Member.builder()
                 .email("email@naver.com")
                 .password("!@#123QWEqwe")
                 .nick("nick")
                 .build();
-        userRepository.save(user);
+        userRepository.save(member);
 
         CheckDuplicationDTO checkDuplicationDTO_1 = CheckDuplicationDTO.builder()
                 .item("email")

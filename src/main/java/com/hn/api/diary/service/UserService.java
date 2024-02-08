@@ -1,8 +1,8 @@
 package com.hn.api.diary.service;
 
-import com.hn.api.diary.dto.user.CheckDuplicationDTO;
-import com.hn.api.diary.dto.user.SignUpDTO;
-import com.hn.api.diary.entity.User;
+import com.hn.api.diary.dto.member.CheckDuplicationDTO;
+import com.hn.api.diary.dto.member.SignUpDTO;
+import com.hn.api.diary.entity.Member;
 import com.hn.api.diary.exception.AlreadyReported;
 import com.hn.api.diary.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,14 +20,14 @@ public class UserService {
 
     public void signUp(SignUpDTO signUpDTO){
 
-        Optional<User> optionalUser = userRepository.findByEmailOrNick(signUpDTO.getEmail(), signUpDTO.getNick());
+        Optional<Member> optionalUser = userRepository.findByEmailOrNick(signUpDTO.getEmail(), signUpDTO.getNick());
         if(optionalUser.isPresent()){
             throw new AlreadyReported();
         }
 
         String encryptedPassword = passwordEncoder.encode(signUpDTO.getPassword());
 
-        User user = User.builder()
+        Member member = Member.builder()
                 .email(signUpDTO.getEmail())
                 .password(encryptedPassword)
                 .userName(signUpDTO.getUserName())
@@ -36,11 +36,11 @@ public class UserService {
                 .role(signUpDTO.getRole())
                 .build();
 
-        userRepository.save(user);
+        userRepository.save(member);
     }
 
     public void checkDuplication(CheckDuplicationDTO checkDuplicationDTO){
-        Optional<User> optionalUser = Optional.empty();
+        Optional<Member> optionalUser = Optional.empty();
 
         switch (checkDuplicationDTO.getItem()){
             case "email":

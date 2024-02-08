@@ -23,7 +23,7 @@ spring:
 #          format_sql: true
 
   datasource:
-    url: jdbc:h2:mem:diary;NON_KEYWORDS=USER # h2의 예약어 user 사용
+    url: jdbc:h2:mem:diary;
     username: sa
     password:
     driver-class-name: org.h2.Driver

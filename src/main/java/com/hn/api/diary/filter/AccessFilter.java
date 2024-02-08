@@ -2,7 +2,7 @@ package com.hn.api.diary.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hn.api.diary.util.JwsKey;
-import com.hn.api.diary.dto.user.SessionDTO;
+import com.hn.api.diary.dto.member.SessionDTO;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.SignatureException;
@@ -12,7 +12,6 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;

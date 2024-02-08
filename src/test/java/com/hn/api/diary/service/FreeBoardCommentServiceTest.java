@@ -6,7 +6,7 @@ import com.hn.api.diary.dto.freeBoard.FreeBoardCommentReplyDTO;
 import com.hn.api.diary.dto.freeBoard.FreeBoardCommentWriteDTO;
 import com.hn.api.diary.entity.FreeBoardComment;
 import com.hn.api.diary.entity.FreeBoardPost;
-import com.hn.api.diary.entity.User;
+import com.hn.api.diary.entity.Member;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
 import com.hn.api.diary.repository.UserRepository;
@@ -78,8 +78,8 @@ class FreeBoardCommentServiceTest {
         //given
         Random random = new Random();
 
-        List<User> users = userRepository.findAll();
-        User user = users.get( random.nextInt(users.size()) );
+        List<Member> members = userRepository.findAll();
+        Member member = members.get( random.nextInt(members.size()) );
 
         List<FreeBoardPost> posts = freeBoardPostRepository.findAllWithNotDelete();
         FreeBoardPost post = posts.get( random.nextInt(posts.size()) );
@@ -92,7 +92,7 @@ class FreeBoardCommentServiceTest {
                 .build();
 
         // when
-        freeBoardCommentService.write(dto, user.getId().toString());
+        freeBoardCommentService.write(dto, member.getId().toString());
 
         // then
         Assertions.assertEquals(countBeforeWrite + 1, freeBoardCommentRepository.count());
@@ -101,8 +101,8 @@ class FreeBoardCommentServiceTest {
     @Test
     void reply() {
         // given
-        List<User> users = userRepository.findAll();
-        User user = users.get( new Random().nextInt(users.size()) );
+        List<Member> members = userRepository.findAll();
+        Member member = members.get( new Random().nextInt(members.size()) );
 
         List<FreeBoardComment> comments = freeBoardCommentRepository.findAllWithNotDelete();
         FreeBoardComment comment = comments.stream()
@@ -118,7 +118,7 @@ class FreeBoardCommentServiceTest {
                 .build();
 
         // when
-        freeBoardCommentService.reply(dto, user.getId().toString());
+        freeBoardCommentService.reply(dto, member.getId().toString());
 
         // then
         Assertions.assertEquals(countBeforeReply + 1, freeBoardCommentRepository.countByGroupIdWithNoDelete(comment.getGroupId()));

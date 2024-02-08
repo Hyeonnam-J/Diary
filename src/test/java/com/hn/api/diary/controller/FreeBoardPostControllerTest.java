@@ -5,7 +5,7 @@ import com.hn.api.diary.dto.freeBoard.FreeBoardPostReplyDTO;
 import com.hn.api.diary.dto.freeBoard.FreeBoardPostUpdateDTO;
 import com.hn.api.diary.dto.freeBoard.FreeBoardPostWriteDTO;
 import com.hn.api.diary.entity.FreeBoardPost;
-import com.hn.api.diary.entity.User;
+import com.hn.api.diary.entity.Member;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
 import com.hn.api.diary.repository.UserRepository;
@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -131,16 +130,16 @@ public class FreeBoardPostControllerTest {
     void update() throws Exception {
         // given
         HashMap map = new FreeBoardTestData().signIn(userRepository, objectMapper, mockMvc);
-        User user = (User) map.get("user");
+        Member member = (Member) map.get("user");
         Cookie[] cookies = (Cookie[]) map.get("cookies");
 
         List<FreeBoardPost> freeBoardPosts = freeBoardPostRepository.findAllWithNotDelete();
         FreeBoardPost post1 = freeBoardPosts.stream()
-                .filter(p -> p.getUser().getId() == user.getId())
+                .filter(p -> p.getMember().getId() == member.getId())
                 .findFirst()
                 .orElseThrow();
         FreeBoardPost post2 = freeBoardPosts.stream()
-                .filter(p -> p.getUser().getId() != user.getId())
+                .filter(p -> p.getMember().getId() != member.getId())
                 .findFirst()
                 .orElseThrow();
 

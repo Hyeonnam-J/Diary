@@ -1,6 +1,6 @@
 package com.hn.api.diary.dto.freeBoard;
 
-import com.hn.api.diary.dto.user.UserDTO;
+import com.hn.api.diary.dto.member.MemberDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +11,7 @@ import lombok.Setter;
 public class FreeBoardCommentsDTO {
 
     private Long id;
-    private UserDTO user;
+    private MemberDTO user;
     private FreeBoardPostDTO post;
     private String content;
     private String createdDate;

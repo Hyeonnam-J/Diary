@@ -1,4 +1,4 @@
-package com.hn.api.diary.dto.user;
+package com.hn.api.diary.dto.member;
 
 import lombok.Builder;
 import lombok.Getter;

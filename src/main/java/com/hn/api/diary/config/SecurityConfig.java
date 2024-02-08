@@ -22,8 +22,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.hn.api.diary.dto.user.MyUserDetails;
-import com.hn.api.diary.entity.User;
+import com.hn.api.diary.dto.member.MyUserDetails;
+import com.hn.api.diary.entity.Member;
 import com.hn.api.diary.exception.AccessDeniedHandler;
 import com.hn.api.diary.exception.InvalidValue;
 import com.hn.api.diary.filter.AccessFilter;
@@ -137,16 +137,16 @@ public class SecurityConfig {
         return new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-                User user = userRepository.findByEmail(email)
+                Member member = userRepository.findByEmail(email)
                         .orElseThrow(InvalidValue::new);
 
                 UserDetails userDetails = org.springframework.security.core.userdetails.User.builder()
-                        .username(user.getEmail())
-                        .password(user.getPassword())
-                        .roles(user.getRole())
+                        .username(member.getEmail())
+                        .password(member.getPassword())
+                        .roles(member.getRole())
                         .build();
 
-                return new MyUserDetails(userDetails, user.getId(), user.getNick());
+                return new MyUserDetails(userDetails, member.getId(), member.getNick());
             }
         };
     }

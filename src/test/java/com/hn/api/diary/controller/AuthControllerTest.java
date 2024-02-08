@@ -1,8 +1,8 @@
 package com.hn.api.diary.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hn.api.diary.dto.user.SignInDTO;
-import com.hn.api.diary.entity.User;
+import com.hn.api.diary.dto.member.SignInDTO;
+import com.hn.api.diary.entity.Member;
 import com.hn.api.diary.repository.FreeBoardCommentRepository;
 import com.hn.api.diary.repository.FreeBoardPostRepository;
 import com.hn.api.diary.repository.UserRepository;
@@ -13,14 +13,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
-import java.util.Map;
 
 @AutoConfigureMockMvc
 @SpringBootTest
@@ -48,33 +45,33 @@ public class AuthControllerTest {
     @DisplayName("check role with user")
     void user() throws Exception {
         // [given]
-        User user1 = User.builder()
+        Member member1 = Member.builder()
                 .email("nami0879@naver.com")
                 .password("!@#123QWEqwe")
                 .userName("jhn")
                 .nick("hn")
                 .role("USER")
                 .build();
-        userRepository.save(user1);
+        userRepository.save(member1);
 
-        User user2 = User.builder()
+        Member member2 = Member.builder()
                 .email("nami0878@naver.com")
                 .password("!@#123QWEqwe")
                 .userName("jhn")
                 .nick("hn")
                 .role("ADMIN")
                 .build();
-        userRepository.save(user2);
+        userRepository.save(member2);
 
         SignInDTO user1_signInDTO = SignInDTO.builder()
-                .email(user1.getEmail())
-                .password(user1.getPassword())
+                .email(member1.getEmail())
+                .password(member1.getPassword())
                 .build();
         String user1_signInDTO_json = objectMapper.writeValueAsString(user1_signInDTO);
 
         SignInDTO user2_signInDTO = SignInDTO.builder()
-                .email(user2.getEmail())
-                .password(user2.getPassword())
+                .email(member2.getEmail())
+                .password(member2.getPassword())
                 .build();
         String user2_signInDTO_json = objectMapper.writeValueAsString(user2_signInDTO);
 
@@ -104,33 +101,33 @@ public class AuthControllerTest {
     @DisplayName("check role with admin")
     void admin() throws Exception {
         // [given]
-        User user1 = User.builder()
+        Member member1 = Member.builder()
                 .email("nami0879@naver.com")
                 .password("!@#123QWEqwe")
                 .userName("jhn")
                 .nick("hn")
                 .role("USER")
                 .build();
-        userRepository.save(user1);
+        userRepository.save(member1);
 
-        User user2 = User.builder()
+        Member member2 = Member.builder()
                 .email("nami0878@naver.com")
                 .password("!@#123QWEqwe")
                 .userName("jhn")
                 .nick("hn")
                 .role("ADMIN")
                 .build();
-        userRepository.save(user2);
+        userRepository.save(member2);
 
         SignInDTO user1_signInDTO = SignInDTO.builder()
-                .email(user1.getEmail())
-                .password(user1.getPassword())
+                .email(member1.getEmail())
+                .password(member1.getPassword())
                 .build();
         String user1_signInDTO_json = objectMapper.writeValueAsString(user1_signInDTO);
 
         SignInDTO user2_signInDTO = SignInDTO.builder()
-                .email(user2.getEmail())
-                .password(user2.getPassword())
+                .email(member2.getEmail())
+                .password(member2.getPassword())
                 .build();
         String user2_signInDTO_json = objectMapper.writeValueAsString(user2_signInDTO);
 

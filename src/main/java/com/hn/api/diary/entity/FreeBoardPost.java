@@ -1,13 +1,9 @@
 package com.hn.api.diary.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -26,7 +22,7 @@ public class FreeBoardPost extends DateColumn {
     private boolean isDelete;
 
     @ManyToOne
-    private User user;
+    private Member member;
 
     private Long groupId;
     private Integer groupNo;
@@ -34,10 +30,10 @@ public class FreeBoardPost extends DateColumn {
     private Long parentId;
 
     @Builder
-    public FreeBoardPost(String title, String content, User user, Long groupId, Long parentId, Integer groupNo, Integer depth) {
+    public FreeBoardPost(String title, String content, Member member, Long groupId, Long parentId, Integer groupNo, Integer depth) {
         this.title = title;
         this.content = content;
-        this.user = user;
+        this.member = member;
         this.groupId = groupId;
         this.groupNo = groupNo == null ? 0 : groupNo;
         this.depth = depth == null ? 0 : depth;
