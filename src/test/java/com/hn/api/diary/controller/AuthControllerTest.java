@@ -48,7 +48,7 @@ public class AuthControllerTest {
         Member member1 = Member.builder()
                 .email("nami0879@naver.com")
                 .password("!@#123QWEqwe")
-                .userName("jhn")
+                .memberName("jhn")
                 .nick("hn")
                 .role("USER")
                 .build();
@@ -57,7 +57,7 @@ public class AuthControllerTest {
         Member member2 = Member.builder()
                 .email("nami0878@naver.com")
                 .password("!@#123QWEqwe")
-                .userName("jhn")
+                .memberName("jhn")
                 .nick("hn")
                 .role("ADMIN")
                 .build();
@@ -104,7 +104,7 @@ public class AuthControllerTest {
         Member member1 = Member.builder()
                 .email("nami0879@naver.com")
                 .password("!@#123QWEqwe")
-                .userName("jhn")
+                .memberName("jhn")
                 .nick("hn")
                 .role("USER")
                 .build();
@@ -113,7 +113,7 @@ public class AuthControllerTest {
         Member member2 = Member.builder()
                 .email("nami0878@naver.com")
                 .password("!@#123QWEqwe")
-                .userName("jhn")
+                .memberName("jhn")
                 .nick("hn")
                 .role("ADMIN")
                 .build();

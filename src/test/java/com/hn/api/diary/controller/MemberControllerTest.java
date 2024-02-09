@@ -55,7 +55,7 @@ class MemberControllerTest {
         SignUpDTO signUpDTO = SignUpDTO.builder()
                 .email("test-signUp-email")
                 .password("test-signUp-password")
-                .userName("test-signUp-userName")
+                .memberName("test-signUp-userName")
                 .build();
 
         // MockMvc content 파라미터로 String을 보내야 해서 직렬화 로직 추가.
@@ -196,7 +196,7 @@ class MemberControllerTest {
         SignUpDTO signUpDTO = SignUpDTO.builder()
                 .email("test")
                 .password("test")
-                .userName("test")
+                .memberName("test")
                 .build();
         memberService.signUp(signUpDTO);
 

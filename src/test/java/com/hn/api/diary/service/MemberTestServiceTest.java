@@ -51,7 +51,7 @@ class MemberTestServiceTest {
         Member member = Member.builder()
                 .email("testDuplicated")
                 .password("any")
-                .userName("userName")
+                .memberName("userName")
                 .build();
         memberRepository.save(member);
 
@@ -59,7 +59,7 @@ class MemberTestServiceTest {
         SignUpDTO signUpDTO = SignUpDTO.builder()
                 .email("testDuplicated")
                 .password("any")
-                .userName("userName")
+                .memberName("userName")
                 .build();
 
         // [expected]
@@ -75,7 +75,7 @@ class MemberTestServiceTest {
         SignUpDTO signUpDTO = SignUpDTO.builder()
                 .email("any")
                 .password("isEncrypted")
-                .userName("userName")
+                .memberName("userName")
                 .build();
         memberService.signUp(signUpDTO);
 

@@ -1,9 +1,14 @@
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
+    password: 1234
+
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: ${{ secrets.AWS_RDS_URL }}
-    username: ${{ secrets.AWS_RDS_USERNAME }}
-    password: ${{ secrets.AWS_RDS_PASSWORD }}
+    url: ENC(q4b2R4RD9absSE0jhMHwHCyD90MC2qCYwHMy+6ThoPzEhjydVLlsslbPd8rtUY3UasjKNzTnLdeFxEUKn9Ui0sJ9yaVy8VcTPDAJCMxuaqVmYou9q3y3Gq84Wuj7qVySbHma7ITzda0=)
+    username: ENC(sR7hQ/ZR6/yGXfQTBx1FIZV5ODQXzClo)
+    password: ENC(Au3yZuPOkjeyiphJVjkJKat5jUcFTQTh)
 
   jpa:
     database: postgresql
