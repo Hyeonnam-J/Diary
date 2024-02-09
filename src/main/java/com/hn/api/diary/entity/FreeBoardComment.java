@@ -22,7 +22,7 @@ public class FreeBoardComment extends DateColumn {
     @ManyToOne
     private Member member;
 
-    @Lob
+    @Column(columnDefinition = "text")
     private String content;
     private boolean isDelete;
 

@@ -30,7 +30,7 @@ public class MemberService {
         Member member = Member.builder()
                 .email(signUpDTO.getEmail())
                 .password(encryptedPassword)
-                .userName(signUpDTO.getUserName())
+                .memberName(signUpDTO.getMemberName())
                 .nick(signUpDTO.getNick())
                 .phoneNumber(signUpDTO.getPhoneNumber())
                 .role(signUpDTO.getRole())
