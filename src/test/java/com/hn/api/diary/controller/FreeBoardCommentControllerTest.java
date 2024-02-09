@@ -24,6 +24,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Random;
 
 @AutoConfigureMockMvc
@@ -84,7 +85,7 @@ class FreeBoardCommentControllerTest {
     void update() throws Exception {
         // given
         HashMap<String, Object> map = new FreeBoardTestData().signIn(memberRepository, objectMapper, mockMvc);
-        Member member = (Member) map.get("user");
+        Member member = (Member) map.get("member");
         Cookie[] cookies = (Cookie[]) map.get("cookies");
 
         List<FreeBoardComment> comments = freeBoardCommentRepository.findAllWithNotDelete();
@@ -92,12 +93,12 @@ class FreeBoardCommentControllerTest {
                 .filter(c -> c.getMember().getId() == member.getId())
                 .findFirst()
                 .map(FreeBoardComment::getId)
-                .orElseThrow();
+                .orElseThrow(NoSuchElementException::new);
         Long commentId_2 = comments.stream()
                 .filter(c -> c.getMember().getId() != member.getId())
                 .findFirst()
                 .map(FreeBoardComment::getId)
-                .orElseThrow();
+                .orElseThrow(NoSuchElementException::new);
 
         FreeBoardCommentUpdateDTO dto1 = FreeBoardCommentUpdateDTO.builder()
                 .commentId(commentId_1.toString())

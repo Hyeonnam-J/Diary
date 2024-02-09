@@ -130,7 +130,7 @@ public class FreeBoardPostControllerTest {
     void update() throws Exception {
         // given
         HashMap map = new FreeBoardTestData().signIn(memberRepository, objectMapper, mockMvc);
-        Member member = (Member) map.get("user");
+        Member member = (Member) map.get("member");
         Cookie[] cookies = (Cookie[]) map.get("cookies");
 
         List<FreeBoardPost> freeBoardPosts = freeBoardPostRepository.findAllWithNotDelete();
