@@ -191,7 +191,7 @@ public class FreeBoardTestData {
         Cookie[] Cookies = resultActions.andReturn().getResponse().getCookies();
 
         HashMap<String, Object> map = new HashMap<>();
-        map.put("user", member);
+        map.put("member", member);
         map.put("cookies", Cookies);
 
         return map;
