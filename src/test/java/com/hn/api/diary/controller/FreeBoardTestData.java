@@ -42,7 +42,7 @@ public class FreeBoardTestData {
                 .email("nami0879@naver.com")
                 .password("!@#123QWEqwe")
                 .role("user")
-                .userName("user1")
+                .memberName("user1")
                 .nick("user1")
                 .build();
 
@@ -50,7 +50,7 @@ public class FreeBoardTestData {
                 .email("nami0878@naver.com")
                 .password("!@#123QWEqwe")
                 .role("user")
-                .userName("user2")
+                .memberName("user2")
                 .nick("user2")
                 .build();
 
