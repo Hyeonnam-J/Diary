@@ -16,7 +16,7 @@ public class FreeBoardPost extends DateColumn {
 
     private String title;
 
-    @Lob
+    @Column(columnDefinition = "text")
     private String content;
     private Long viewCount;
     private boolean isDelete;

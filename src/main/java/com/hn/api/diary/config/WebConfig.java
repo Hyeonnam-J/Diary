@@ -11,8 +11,8 @@ import java.net.http.HttpHeaders;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-    public static final String CLIENT_IP = "http://localhost:3000";
-//    public static final String CLIENT_IP = "https://my-diary.life";
+//    public static final String CLIENT_IP = "http://localhost:3000";
+    public static final String CLIENT_IP = "https://my-diary.life";
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {

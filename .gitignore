@@ -80,6 +80,5 @@ secrets.yml
 .sts4-cache
 
 ### Private ###
-# application.yml
 log
 src/main/generated

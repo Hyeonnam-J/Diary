@@ -19,16 +19,16 @@ public class Member extends DateColumn {
 
     private String email;
     private String password;
-    private String userName;
+    private String memberName;
     private String nick;
     private String phoneNumber;
     private String role;
 
     @Builder
-    public Member(String email, String password, String userName, String nick, String phoneNumber, String role) {
+    public Member(String email, String password, String memberName, String nick, String phoneNumber, String role) {
         this.email = email;
         this.password = password;
-        this.userName = userName;
+        this.memberName = memberName;
         this.nick = nick;
         this.phoneNumber = phoneNumber;
         this.role = role;
