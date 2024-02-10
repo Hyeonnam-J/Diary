@@ -1,5 +1,6 @@
 package com.hn.api.diary.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hn.api.diary.dto.member.CheckDuplicationDTO;
 import com.hn.api.diary.dto.member.SessionDTO;
@@ -81,7 +82,7 @@ class MemberControllerTest {
 
     @Test
     @DisplayName("sign up : duplicated email")
-    public void checkEmailDuplicate() throws Exception {
+    void checkEmailDuplicate() throws Exception {
         // [given]
         Member member = Member.builder()
                 .email("test@naver.com")
@@ -108,7 +109,7 @@ class MemberControllerTest {
 
     @Test
     @DisplayName("sign up : duplicated nick")
-    public void checkNickDuplicate() throws Exception {
+    void checkNickDuplicate() throws Exception {
         // [given]
         Member member = Member.builder()
                 .email("test@naver.com")
@@ -135,7 +136,7 @@ class MemberControllerTest {
 
     @Test
     @DisplayName("sign up : pass duplication email test")
-    public void passDuplicationEmailTest() throws Exception {
+    void passDuplicationEmailTest() throws Exception {
         // [given]
         Member member = Member.builder()
                 .email("test@naver.com")
@@ -162,7 +163,7 @@ class MemberControllerTest {
 
     @Test
     @DisplayName("sign up : pass duplication nick test")
-    public void passDuplicationNickTest() throws Exception {
+    void passDuplicationNickTest() throws Exception {
         // [given]
         Member member = Member.builder()
                 .email("test@naver.com")
@@ -193,7 +194,7 @@ class MemberControllerTest {
     /* ********************************************************************************* */
     @Test
     @DisplayName("sign in : check accessToken after sign in")
-     void checkAccessTokenAfterSignIn() throws Exception{
+    void checkAccessTokenAfterSignIn() throws Exception{
         // [given]
         // signUp 로직을 통해 암호화 된 데이터를 넣어두고,
         SignUpDTO signUpDTO = SignUpDTO.builder()
@@ -237,6 +238,58 @@ class MemberControllerTest {
 
         Assertions.assertEquals(member.getEmail(), sessionDTO.getEmail());
     }
+
+    @Test
+    @DisplayName("signIn : fail")
+    void fail_signIn() throws Exception {
+        // given
+        SignUpDTO signUpDTO = SignUpDTO.builder()
+                .email("test")
+                .password("test")
+                .memberName("test")
+                .build();
+        memberService.signUp(signUpDTO);
+
+        // valid
+        SignInDTO signInDTO_1 = SignInDTO.builder()
+                .email("test")
+                .password("test")
+                .build();
+        String signInDTO_json_1 = objectMapper.writeValueAsString(signInDTO_1);
+
+        // email does not exist - wrong email
+        SignInDTO signInDTO_2 = SignInDTO.builder()
+                .email("notExistEmail")
+                .password("test")
+                .build();
+        String signInDTO_json_2 = objectMapper.writeValueAsString(signInDTO_2);
+
+        // wrong password
+        SignInDTO signInDTO_3 = SignInDTO.builder()
+                .email("test")
+                .password("wrongPassword")
+                .build();
+        String signInDTO_json_3 = objectMapper.writeValueAsString(signInDTO_3);
+
+        // when
+        ResultActions resultActions_1 = mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(signInDTO_json_1));
+
+        ResultActions resultActions_2 = mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(signInDTO_json_2));
+
+        ResultActions resultActions_3 = mockMvc.perform(MockMvcRequestBuilders.post("/signIn")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(signInDTO_json_3));
+
+        // then
+        resultActions_1.andExpect(MockMvcResultMatchers.status().isOk());
+        resultActions_2.andExpect(MockMvcResultMatchers.status().isUnauthorized());
+        resultActions_3.andExpect(MockMvcResultMatchers.status().isUnauthorized());
+    }
+
     /* ********************************************************************************* */
     // signIn() - end
 }
