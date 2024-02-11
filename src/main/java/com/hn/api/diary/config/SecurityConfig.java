@@ -31,6 +31,11 @@ import com.hn.api.diary.filter.AccessFilter;
 import com.hn.api.diary.filter.SignInFilter;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 @RequiredArgsConstructor
 @EnableWebSecurity(debug = false)
@@ -39,28 +44,22 @@ public class SecurityConfig {
 
     private final MemberRepository memberRepository;
 
-    //    @Bean
-//    public CorsConfigurationSource corsConfigurationSource(){
-//        CorsConfiguration config = new CorsConfiguration();
-//        config.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
-//        config.setAllowedMethods(Arrays.asList("*"));
-//        config.setExposedHeaders(Arrays.asList("Authorization"));
-//
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", config);
-//        return source;
-//    }
+//    static final String CLIENT_IP = "http://localhost:3000";
+    static final String CLIENT_IP = "https://my-diary.life";
 
-    /**
-     * about custom filter chain.
-     *
-     * filter chain: 1. SecurityFilterChain 2. ServletFilterChain
-     * web.ignore() -> SecurityFilterChain
-     * this -> ServletFilterChain
-     *
-     * i did not need SignInFilter setting
-     * maybe the implemented interface is different?
-     */
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource(){
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        config.setAllowedOrigins(Arrays.asList(CLIENT_IP));
+        config.setAllowCredentials(true);
+        config.setAllowedHeaders(Arrays.asList("Content-Type"));
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return source;
+    }
+
     @Bean
     FilterRegistrationBean<AccessFilter> registration(AccessFilter filter) {
         FilterRegistrationBean<AccessFilter> registration = new FilterRegistrationBean<>(filter);
@@ -80,10 +79,7 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
-                // Security - CorsConfigurationSource 대신 MVC - addCorsMappings 사용.
-                // 공식 문서에 .cors(cors -> cors.disable()) 로 통합 설정을 비활성화하고,
-                // CorsConfigurationSource 써도 되는데 설정이 안 먹음.
-                .cors(withDefaults())
+                .cors(c -> c.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests((req) ->
                         req
                                 .requestMatchers(AntPathRequestMatcher.antMatcher("/user")).hasAnyRole("USER", "ADMIN")
