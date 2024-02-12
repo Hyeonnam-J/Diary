@@ -90,7 +90,7 @@ public class AccessFilter extends OncePerRequestFilter {
                     .message(e.getMessage())
                     .build();
 
-            response.setStatus(HttpStatus.BAD_REQUEST.value());
+            response.setStatus(HttpURLConnection.HTTP_BAD_REQUEST);
             response.setContentType(MediaType.APPLICATION_JSON_VALUE);
             objectMapper.writeValue(response.getWriter(), errorResponse);
         } catch (SignatureException e) {
@@ -102,7 +102,7 @@ public class AccessFilter extends OncePerRequestFilter {
                     .message(e.getMessage())
                     .build();
 
-            response.setStatus(HttpStatus.BAD_REQUEST.value());
+            response.setStatus(HttpURLConnection.HTTP_BAD_REQUEST);
             response.setContentType(MediaType.APPLICATION_JSON_VALUE);
             objectMapper.writeValue(response.getWriter(), errorResponse);
         } catch (Exception e) {

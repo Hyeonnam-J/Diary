@@ -99,7 +99,7 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
 
         System.out.println("send cookie : "+cookie);
 
-        response.setStatus(HttpServletResponse.SC_OK);
+        response.setStatus(HttpURLConnection.HTTP_OK);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 
         String body = objectMapper.writeValueAsString(SessionResponse.builder()
