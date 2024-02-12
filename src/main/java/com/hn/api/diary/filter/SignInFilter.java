@@ -12,6 +12,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseCookie;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -95,6 +96,8 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
                 .domain(".my-diary.life")
                 .build();
         response.setHeader("Set-Cookie", cookie.toString());
+
+        System.out.println("send cookie : "+cookie);
 
         response.setStatus(HttpServletResponse.SC_OK);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);

@@ -1,8 +1,8 @@
 package com.hn.api.diary.config;
 
 import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
-import static org.springframework.security.config.Customizer.withDefaults;
 
+import com.hn.api.diary.filter.AccessFilter;
 import com.hn.api.diary.repository.MemberRepository;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -27,7 +27,6 @@ import com.hn.api.diary.dto.member.MyUserDetails;
 import com.hn.api.diary.entity.Member;
 import com.hn.api.diary.exception.AccessDeniedHandler;
 import com.hn.api.diary.exception.InvalidValue;
-import com.hn.api.diary.filter.AccessFilter;
 import com.hn.api.diary.filter.SignInFilter;
 
 import lombok.RequiredArgsConstructor;
@@ -89,9 +88,7 @@ public class SecurityConfig {
                                 .requestMatchers(AntPathRequestMatcher.antMatcher("/freeBoard/**")).permitAll()
                                 .anyRequest().authenticated()
                 )
-                // accessFilter에서 /signIn 요청은 authFilter로 계속 진행되도록 설정.
-                // authFilter에서 계속 진행되도록 설정하지 않아서
-                // UsernamePasswordAuthenticationFilter 로직은 실행되지 않는다.
+                // AccessFilterWithCookie -> AccessFilterWithoutCookie -> SignInFilter
                 .addFilterBefore(signInFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(accessFilter(), SignInFilter.class)
                 .exceptionHandling(handling -> {
