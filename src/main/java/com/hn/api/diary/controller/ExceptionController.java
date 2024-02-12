@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.net.HttpURLConnection;
+
 @ControllerAdvice
 public class ExceptionController {
 
@@ -32,12 +34,12 @@ public class ExceptionController {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> validationExceptionHandler(MethodArgumentNotValidException e) {
         ErrorResponse errorResponse = ErrorResponse.builder()
-                .status(HttpStatus.BAD_REQUEST.value())
+                .status(HttpURLConnection.HTTP_BAD_REQUEST)
                 .message(e.getBindingResult().getFieldError().getDefaultMessage())
                 .build();
 
         ResponseEntity<ErrorResponse> responseEntity
-                = ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(errorResponse);
+                = ResponseEntity.status(HttpURLConnection.HTTP_BAD_REQUEST).body(errorResponse);
 
         return responseEntity;
     }
