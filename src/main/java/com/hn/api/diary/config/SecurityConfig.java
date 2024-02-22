@@ -43,8 +43,8 @@ public class SecurityConfig {
 
     private final MemberRepository memberRepository;
 
-//    static final String CLIENT_IP = "http://localhost:3000";
-    static final String CLIENT_IP = "https://my-diary.life";
+    static final String CLIENT_IP = "http://localhost:3000";
+//    static final String CLIENT_IP = "https://my-diary.life";
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource(){

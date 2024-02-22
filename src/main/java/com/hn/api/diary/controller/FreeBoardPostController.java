@@ -1,12 +1,14 @@
 package com.hn.api.diary.controller;
 
 import com.hn.api.diary.dto.freeBoard.*;
+import com.hn.api.diary.exception.InvalidValue;
 import com.hn.api.diary.response.ListDataResponse;
 import com.hn.api.diary.response.PlainDataResponse;
 import com.hn.api.diary.service.FreeBoardPostService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.HttpURLConnection;
 import java.util.List;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 public class FreeBoardPostController {
@@ -77,7 +80,7 @@ public class FreeBoardPostController {
     @GetMapping(value = "/freeBoard/posts/totalCount")
     public ResponseEntity<PlainDataResponse<Integer>> getTotalCount(){
         int postsCount = freeBoardPostService.getTotalCount();
-        
+
         PlainDataResponse<Integer> plainDataResponse = PlainDataResponse.<Integer>builder()
                 .status(HttpURLConnection.HTTP_OK)
                 .data(postsCount)

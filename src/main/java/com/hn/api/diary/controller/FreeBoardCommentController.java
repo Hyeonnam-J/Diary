@@ -9,6 +9,7 @@ import com.hn.api.diary.dto.freeBoard.FreeBoardCommentWriteDTO;
 import com.hn.api.diary.dto.freeBoard.FreeBoardCommentsDTO;
 import com.hn.api.diary.response.ListDataResponse;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,7 @@ import com.hn.api.diary.service.FreeBoardCommentService;
 
 import lombok.RequiredArgsConstructor;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 public class FreeBoardCommentController {
