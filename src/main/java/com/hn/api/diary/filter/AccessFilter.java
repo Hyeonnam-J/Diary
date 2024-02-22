@@ -13,11 +13,9 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.postgresql.largeobject.BlobOutputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -41,8 +39,8 @@ public class AccessFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        logger.info("accessFilter, ip : " + request.getRemoteAddr());
-        logger.info("accessFilter, uri : " + request.getRequestURI());
+        logger.info("accessFilter, ip : {}", request.getRemoteAddr());
+        logger.info("accessFilter, uri : {}", request.getRequestURI());
 
         // If the uri's logic doesn't require cookies, doFilter()
         if (
