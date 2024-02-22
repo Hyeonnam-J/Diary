@@ -2,23 +2,22 @@ package com.hn.api.diary.controller;
 
 import com.hn.api.diary.exception.MyException;
 import com.hn.api.diary.response.ErrorResponse;
-import org.springframework.http.HttpStatus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.net.HttpURLConnection;
 
 @ControllerAdvice
 public class ExceptionController {
 
+    private static final Logger logger = LoggerFactory.getLogger(ExceptionController.class);
+
     @ExceptionHandler(MyException.class)
     public ResponseEntity<ErrorResponse> diaryExceptionHandler(MyException e){
-
         ErrorResponse errorResponse = ErrorResponse.builder()
                 .status(e.getStatus())
                 .message(e.getMessage())

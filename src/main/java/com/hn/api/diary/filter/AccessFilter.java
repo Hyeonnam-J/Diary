@@ -12,6 +12,10 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
+import org.postgresql.largeobject.BlobOutputStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,14 +31,18 @@ import java.net.HttpURLConnection;
 import java.util.Date;
 import java.util.List;
 
+@Slf4j
 public class AccessFilter extends OncePerRequestFilter {
 
     @Autowired
     private ObjectMapper objectMapper;
 
+    private final static Logger logger = LoggerFactory.getLogger(AccessFilter.class);
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        System.out.println("accessFilter before send next filter : "+request.getRequestURI());
+        logger.info("accessFilter, ip : " + request.getRemoteAddr());
+        logger.info("accessFilter, uri : " + request.getRequestURI());
 
         // If the uri's logic doesn't require cookies, doFilter()
         if (
@@ -52,8 +60,6 @@ public class AccessFilter extends OncePerRequestFilter {
             return;
         }
 
-        System.out.println("accessFilter after send next filter : "+request.getRequestURI());
-
         String jws = "";
         Cookie[] cookies = request.getCookies();
         if(cookies != null && cookies.length > 0){
@@ -64,8 +70,6 @@ public class AccessFilter extends OncePerRequestFilter {
                 }
             }
         }
-
-        System.out.println("receive cookie-jws : "+jws);
 
         try {
             Claims claims = Jwts.parser()
@@ -83,7 +87,7 @@ public class AccessFilter extends OncePerRequestFilter {
             setSecurityContextHolder(request, response, filterChain, sessionDTO.getMemberId().toString(), sessionDTO.getEmail(), sessionDTO.getRole());
         } catch (IllegalArgumentException e) {
             // jws == null,
-            System.out.println("jws IllegalArgumentException");
+            logger.info("accessFilter, jws IllegalArgumentException");
 
             ErrorResponse errorResponse = ErrorResponse.builder()
                     .status(HttpURLConnection.HTTP_BAD_REQUEST)
@@ -95,7 +99,7 @@ public class AccessFilter extends OncePerRequestFilter {
             objectMapper.writeValue(response.getWriter(), errorResponse);
         } catch (SignatureException e) {
             // jwtKey is invalid
-            System.out.println("jws SignatureException");
+            logger.info("accessFilter, jws SignatureException");
 
             ErrorResponse errorResponse = ErrorResponse.builder()
                     .status(HttpURLConnection.HTTP_BAD_REQUEST)
