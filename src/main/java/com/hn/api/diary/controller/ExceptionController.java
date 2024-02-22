@@ -14,8 +14,6 @@ import java.net.HttpURLConnection;
 @ControllerAdvice
 public class ExceptionController {
 
-    private static final Logger logger = LoggerFactory.getLogger(ExceptionController.class);
-
     @ExceptionHandler(MyException.class)
     public ResponseEntity<ErrorResponse> diaryExceptionHandler(MyException e){
         ErrorResponse errorResponse = ErrorResponse.builder()
