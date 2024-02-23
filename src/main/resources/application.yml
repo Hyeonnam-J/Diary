@@ -8,7 +8,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     url: ENC(q4b2R4RD9absSE0jhMHwHCyD90MC2qCYwHMy+6ThoPzEhjydVLlsslbPd8rtUY3UasjKNzTnLdeFxEUKn9Ui0sJ9yaVy8VcTPDAJCMxuaqVmYou9q3y3Gq84Wuj7qVySbHma7ITzda0=)
     username: ENC(sR7hQ/ZR6/yGXfQTBx1FIZV5ODQXzClo)
-    password: ENC(Au3yZuPOkjeyiphJVjkJKat5jUcFTQTh)
+    password: ENC(aEZ2mFp2kkjloVRu5RewQvybVrwFndtN)
 
   jpa:
     database: postgresql
