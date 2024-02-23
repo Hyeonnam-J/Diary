@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo "health.sh"
+
 # start.sh로 실행시킨 프로젝트가 정상적으로 실행됐는지 체크
 ABSPATH=$(readlink -f $0)
 ABSDIR=$(dirname $ABSPATH)

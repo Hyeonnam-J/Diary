@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo "stop.sh"
+
 # 기존 Eginx엔스에 연결되어 있지 않지만, 실행 중이던 스프링 부트 종료
 ABSPATH=$(readlink -f $0)
 ABSDIR=$(dirname $ABSPATH) # 현재 stop.sh가 속해있는 경로

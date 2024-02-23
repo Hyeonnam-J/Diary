@@ -23,6 +23,9 @@ function find_idle_profile()
 #    # bash script는 return 기능이 없기 떄문에,
 #    # echo를 통해서 출력하면 이 값을 클라이언트가 사용할 수 있습니다.
 #    echo "${IDLE_PROFILE}"
+
+    echo "profile.sh-find_idle_profile"
+
     CURRENT_PORT=$(sudo netstat -tnlp | grep LISTEN | awk '{print $4}' | awk -F: '{print $2}' | sort -n | uniq)
 
     if [ ${CURRENT_PORT} -eq 8081 ]
@@ -38,6 +41,8 @@ function find_idle_profile()
 # 쉬고 있는 profile의 port 찾기
 function find_idle_port()
 {
+    echo "profile.sh-find_idle_port"
+
     IDLE_PROFILE=$(find_idle_profile)
 
     if [ ${IDLE_PROFILE} == set1 ]

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo "start.sh"
+
 # 배포할 신규 버전 프로젝트를 stop.sh로 종료한 profile로 실행
 ABSPATH=$(readlink -f $0)
 ABSDIR=$(dirname $ABSPATH)
