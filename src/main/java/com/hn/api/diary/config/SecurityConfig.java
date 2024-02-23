@@ -35,6 +35,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
+import java.util.List;
 
 @RequiredArgsConstructor
 @EnableWebSecurity(debug = false)
@@ -43,16 +44,22 @@ public class SecurityConfig {
 
     private final MemberRepository memberRepository;
 
-    static final String CLIENT_IP = "*";
+//    static final String CLIENT_IP = "*";
 //    static final String CLIENT_IP = "http://localhost:3000";
 //    static final String CLIENT_IP = "https://my-diary.life";
+    static final List<String> CLIENT_IPS = Arrays.asList(
+            "http://localhost",
+//            "http://222.102.59.219",
+            "https://my-diary.life"
+    );
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        config.setAllowedOrigins(Arrays.asList(CLIENT_IP));
-//        config.setAllowCredentials(true);
+//        config.setAllowedOrigins(Arrays.asList(CLIENT_IP));
+        config.setAllowedOrigins(CLIENT_IPS);
+        config.setAllowCredentials(true);
         config.setAllowedHeaders(Arrays.asList("Content-Type"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
