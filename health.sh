@@ -8,25 +8,18 @@ ABSDIR=$(dirname $ABSPATH)
 source ${ABSDIR}/profile.sh
 source ${ABSDIR}/switch.sh
 
-CURRENT_PORT=$(find_current_port)
-
-if [ "$CURRENT_PORT" == "8081" ];
-then
-    REPLACE_PORT="8082"
-else
-    REPLACE_PORT="8081"
-fi
+IDLE_PORT=$(find_idle_port)
 
 echo ">>> Health Check Start!"
-echo ">>> REPLACE_PORT: $REPLACE_PORT"
-echo ">>> curl -s http://localhost:$REPLACE_PORT/profile"
+echo ">>> IDLE_PORT: $IDLE_PORT"
+echo ">>> curl -s http://localhost:$IDLE_PORT/profile"
 sleep 10
 
 # for 문 10번 돌기
 for RETRY_COUNT in {1..10}
 do
     # 현재 문제 없이 잘 실행되고 있는 요청을 보내봅니다.
-    RESPONSE=$(curl -s http://localhost:${REPLACE_PORT}/profile)
+    RESPONSE=$(curl -s http://localhost:${IDLE_PORT}/profile)
     # 해당 결과의 줄 수를 숫자로 리턴합니다.
     UP_COUNT=$(echo ${RESPONSE} | grep 'set' | wc -l)
 
