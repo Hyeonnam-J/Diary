@@ -4,6 +4,8 @@
 # set1이 사용 중이면 set2가 쉬고 있으며, 반대편 set1이 쉬고 있다.
 function find_idle_profile()
 {
+    echo "my >>>>>>>>>>> $(sudo curl -s -o /dev/null -w "%{http_code}" http://localhost/profile)"
+
     RESPONSE_CODE=$(sudo curl -s -o /dev/null -w "%{http_code}" http://localhost/profile)
 
     if [ ${RESPONSE_CODE} -ge 400 ] # 400 보다 크면 (즉, 40x/50x 에러 모두 포함)
