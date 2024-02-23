@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-# 쉬고 있는 profile 찾기
-# set1이 사용 중이면 set2가 쉬고 있으며, 반대편 set1이 쉬고 있다.
-function find_idle_profile()
+function find_current_profile()
 {
 #    RESPONSE_CODE=$(sudo curl -s -o /dev/null -w "%{http_code}" http://localhost/profile)
 #
@@ -24,30 +22,29 @@ function find_idle_profile()
 #    # echo를 통해서 출력하면 이 값을 클라이언트가 사용할 수 있습니다.
 #    echo "${IDLE_PROFILE}"
 
-    echo "profile.sh-find_idle_profile"
+    echo "profile.sh-find_current_profile"
 
     CURRENT_PORT=$(sudo netstat -tnlp | grep LISTEN | awk '{print $4}' | awk -F: '{print $2}' | sort -n | uniq)
 
     if [ ${CURRENT_PORT} -eq 8081 ]
     then
-        IDLE_PROFILE=set2
+        CURRENT_PROFILE=set1
     else
-        IDLE_PROFILE=set1
+        CURRENT_PROFILE=set2
     fi
 
-    echo "${IDLE_PROFILE}"
+    echo "${CURRENT_PROFILE}"
 }
 
-# 쉬고 있는 profile의 port 찾기
-function find_idle_port()
+function find_current_port()
 {
-    echo "profile.sh-find_idle_port"
+    echo "profile.sh-find_current_port"
 
-    IDLE_PROFILE=$(find_idle_profile)
+    CURRENT_PROFILE=$(find_current_profile)
 
-    if [ ${IDLE_PROFILE} == set1 ]
+    if [ ${CURRENT_PROFILE} == set1 ]
     then
-        echo "8081" # 여기도 마찬가지로 return 기능의 느낌
+        echo "8081"
     else
         echo "8082"
     fi

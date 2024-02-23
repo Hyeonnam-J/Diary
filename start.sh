@@ -14,13 +14,17 @@ echo ">>> 새 어플리케이션 배포"
 JAR_NAME=$(ls $REPOSITORY | grep '.jar' | tail -n 1)
 
 echo ">>> $JAR_NAME 실행"
-IDLE_PROFILE=$(find_idle_profile)
+CURRENT_PROFILE=$(find_current_profile)
 
-# 위에서 보았던 것처럼 $IDLE_PROFILE에는 set1 or set2가 반환되는데
-# 반환되는 properties를 실행한다는 뜻.
-echo ">>> $JAR_NAME 를 profile=$IDLE_PROFILE 로 실행합니다."
+if [ "$CURRENT_PROFILE" == "set1" ]; then
+    REPLACE_PROFILE="set2"
+else
+    REPLACE_PROFILE="set1"
+fi
 
-nohup java -jar -Dspring.profiles.active=$IDLE_PROFILE $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
+echo ">>> $JAR_NAME 를 profile=$REPLACE_PROFILE 로 실행합니다."
+
+nohup java -jar -Dspring.profiles.active=$REPLACE_PROFILE $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
 
 ## IDLE_PROFILE 값에 따라 포트 번호 설정
 #if [ "$IDLE_PROFILE" == "set1" ]; then
