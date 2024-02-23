@@ -5,11 +5,19 @@ ABSPATH=$(readlink -f $0)
 ABSDIR=$(dirname $ABSPATH)
 source ${ABSDIR}/profile.sh # 해당 코드로 profile.sh 내의 함수 사용
 
-REPOSITORY=/home/ec2-user/deploy
-cd $REPOSITORY
+REPOSITORY=/home/ec2-user/app/step3
+
+echo ">>> Build 파일 복사"
+echo ">>> cp $REPOSITORY/zip/build/libs/*.jar $REPOSITORY/"
+
+cp $REPOSITORY/zip/build/libs/*.jar $REPOSITORY/
 
 echo ">>> 새 어플리케이션 배포"
-JAR_NAME=$(ls $REPOSITORY | grep '.jar' | tail -n 1)
+JAR_NAME=$(ls -tr $REPOSITORY/*.jar | tail -n 1)    # jar 이름 꺼내오기
+
+echo ">>> JAR Name: $JAR_NAME"
+echo ">>> $JAR_NAME 에 실행 권한 추가"
+chmod +x $JAR_NAME
 
 echo ">>> $JAR_NAME 실행"
 IDLE_PROFILE=$(find_idle_profile)
