@@ -43,15 +43,16 @@ public class SecurityConfig {
 
     private final MemberRepository memberRepository;
 
+    static final String CLIENT_IP = "*";
 //    static final String CLIENT_IP = "http://localhost:3000";
-    static final String CLIENT_IP = "https://my-diary.life";
+//    static final String CLIENT_IP = "https://my-diary.life";
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedOrigins(Arrays.asList(CLIENT_IP));
-        config.setAllowCredentials(true);
+//        config.setAllowCredentials(true);
         config.setAllowedHeaders(Arrays.asList("Content-Type"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -71,6 +72,8 @@ public class SecurityConfig {
         return web -> web.ignoring()
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/favicon.ico"))
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/error"))
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/test"))
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/profile"))
                 .requestMatchers(toH2Console());
     }
 

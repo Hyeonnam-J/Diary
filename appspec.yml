@@ -3,8 +3,28 @@ os: linux
 files:
   - source: /
     destination: /home/ec2-user/deploy
-hooks: 
-  ApplicationStart: 
+hooks:
+  ApplicationStart:
     - location: deploy.sh
       timeout: 60
       runas: root
+
+#version: 0.0
+#os: linux
+#files:
+#  - source:  /
+#    destination: /home/ec2-user/deploy
+#
+#hooks:
+#  AfterInstall:
+#    - location: scripts/stop.sh
+#      timeout: 60
+#      runas: root
+#  ApplicationStart:
+#    - location: scripts/start.sh
+#      timeout: 60
+#      runas: root
+#  ValidateService:
+#    - location: scripts/health.sh
+#      timeout: 60
+#      runas: root
