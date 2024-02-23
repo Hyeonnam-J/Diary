@@ -4,4 +4,4 @@ server:
 spring:
   config:
     activate:
-      on-profile: set2
+      on-profile: set22
