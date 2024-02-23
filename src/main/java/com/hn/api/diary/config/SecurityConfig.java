@@ -45,7 +45,7 @@ public class SecurityConfig {
     private final MemberRepository memberRepository;
 
     static final List<String> CLIENT_IPS = Arrays.asList(
-            "http://localhost",
+//            "http://localhost",
             "https://my-diary.life"
     );
 
