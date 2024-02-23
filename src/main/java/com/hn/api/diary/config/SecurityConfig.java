@@ -44,12 +44,8 @@ public class SecurityConfig {
 
     private final MemberRepository memberRepository;
 
-//    static final String CLIENT_IP = "*";
-//    static final String CLIENT_IP = "http://localhost:3000";
-//    static final String CLIENT_IP = "https://my-diary.life";
     static final List<String> CLIENT_IPS = Arrays.asList(
             "http://localhost",
-//            "http://222.102.59.219",
             "https://my-diary.life"
     );
 
@@ -57,7 +53,6 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-//        config.setAllowedOrigins(Arrays.asList(CLIENT_IP));
         config.setAllowedOrigins(CLIENT_IPS);
         config.setAllowCredentials(true);
         config.setAllowedHeaders(Arrays.asList("Content-Type"));
