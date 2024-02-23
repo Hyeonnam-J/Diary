@@ -4,6 +4,7 @@ import com.hn.api.diary.exception.MyException;
 import com.hn.api.diary.response.ErrorResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -28,6 +29,7 @@ public class ExceptionController {
         return responseEntity;
     }
 
+    @Cacheable("validationExceptionHandler")
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> validationExceptionHandler(MethodArgumentNotValidException e) {
         ErrorResponse errorResponse = ErrorResponse.builder()
