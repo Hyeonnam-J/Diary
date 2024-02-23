@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-echo "switch.sh"
-
 # Ngnix가 바라보는 스프링 부트를 최신 버전으로 변경
 ABSPATH=$(readlink -f $0)
 ABSDIR=$(dirname $ABSPATH)

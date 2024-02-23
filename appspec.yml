@@ -1,36 +1,36 @@
-#version: 0.0
-#os: linux
-#files:
-#  - source: /
-#    destination: /home/ec2-user/deploy
-#hooks:
-#  ApplicationStart:
-#    - location: deploy.sh
-#      timeout: 60
-#      runas: root
-
 version: 0.0
 os: linux
 files:
-  - source:  /
+  - source: /
     destination: /home/ec2-user/deploy
-
-permissions:
-  - object: /
-    pattern: "**"
-    owner: root
-    group: root
-
 hooks:
-  AfterInstall:
-    - location: stop.sh
-      timeout: 60
-      runas: root
   ApplicationStart:
-    - location: start.sh
+    - location: deploy.sh
       timeout: 60
       runas: root
-  ValidateService:
-    - location: health.sh
-      timeout: 60
-      runas: root
+
+#version: 0.0
+#os: linux
+#files:
+#  - source:  /
+#    destination: /home/ec2-user/deploy
+#
+#permissions:
+#  - object: /
+#    pattern: "**"
+#    owner: root
+#    group: root
+#
+#hooks:
+#  AfterInstall:
+#    - location: stop.sh
+#      timeout: 60
+#      runas: root
+#  ApplicationStart:
+#    - location: start.sh
+#      timeout: 60
+#      runas: root
+#  ValidateService:
+#    - location: health.sh
+#      timeout: 60
+#      runas: root
