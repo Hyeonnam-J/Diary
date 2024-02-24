@@ -1,27 +1,3 @@
-#jasypt:
-#  encryptor:
-#    bean: jasyptStringEncryptor
-#    password: 1234
-#
-#spring:
-#  datasource:
-#    driver-class-name: org.postgresql.Driver
-#    url: ENC(FsChA+4lrWDnWYfmCp2yCUQGjnwogd+pIL9WDxa8jYYBddquekUWt3PTXt6C9nBrDFmtRLCsFPqrP/PrWc0+Cf2TD9lVsyJmDjvhFTqoQjYwmArjQT28Xf5XJc1N/vg0j2Hz8tosMkc=)
-#    username: ENC(GoZ2Q+zIELqJYyXk+zb/fRDcBagS96ym)
-#    password: ENC(Nr5O3BzhAvd0FqPjUGfonLoZzhNzuyIa)
-#
-#  jpa:
-#    database: postgresql
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.PostgreSQLDialect
-#
-#  h2:
-#    console:
-#      enabled: true
-#      path: /h2-console
-#      show-sql: true
-
 jasypt:
   encryptor:
     bean: jasyptStringEncryptor
@@ -29,20 +5,49 @@ jasypt:
 
 spring:
   datasource:
-    url: jdbc:h2:mem:diary;
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    driver-class-name: org.postgresql.Driver
+    url: ENC(FsChA+4lrWDnWYfmCp2yCUQGjnwogd+pIL9WDxa8jYYBddquekUWt3PTXt6C9nBrDFmtRLCsFPqrP/PrWc0+Cf2TD9lVsyJmDjvhFTqoQjYwmArjQT28Xf5XJc1N/vg0j2Hz8tosMkc=)
+    username: ENC(GoZ2Q+zIELqJYyXk+zb/fRDcBagS96ym)
+    password: ENC(Nr5O3BzhAvd0FqPjUGfonLoZzhNzuyIa)
 
   profiles:
     group:
       set1: set11
       set2: set22
 
+  jpa:
+    database: postgresql
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
   h2:
     console:
       enabled: true
       path: /h2-console
+      show-sql: true
 
-  jpa:
-    defer-datasource-initialization: true
+#jasypt:
+#  encryptor:
+#    bean: jasyptStringEncryptor
+#    password: 1234
+#
+#spring:
+#  datasource:
+#    url: jdbc:h2:mem:diary;
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+#
+#  profiles:
+#    group:
+#      set1: set11
+#      set2: set22
+#
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2-console
+#
+#  jpa:
+#    defer-datasource-initialization: true
