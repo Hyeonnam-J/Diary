@@ -14,6 +14,9 @@ public class ProfileController {
 
     private final Environment env;
 
+    // deploy.sh,
+    // 포트를 사용하는지 체크해서 진행하면 간단한데,
+    // 이 메서드를 이용하는 게 어떤 이점이 있는지 고민해 볼 것.
     @GetMapping("/profile")
     public String getProfile(){
         List<String> profile = Arrays.asList(env.getActiveProfiles());
