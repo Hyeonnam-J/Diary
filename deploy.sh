@@ -37,8 +37,8 @@ sleep 10
 
 echo ">>> 전환한 port로 nginx 설정 변경"
 echo "set \$service_url http://127.0.0.1:${IDLE_PORT};" | sudo tee /etc/nginx/conf.d/service-url.inc
-echo ">>> restart Nginx"
-sudo service nginx restart
+echo ">>> restart reload"
+sudo service nginx reload
 
 if [ "$IDLE_PORT" == "8081" ]; then
     KILL_TO_PORT="8082"
