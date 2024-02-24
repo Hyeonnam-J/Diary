@@ -14,7 +14,7 @@ public class TestController {
 
     static final Logger logger = LoggerFactory.getLogger(TestController.class);
 
-    static String test = "test-7";
+    static String test = "test-8";
 
     @GetMapping(value = "/test")
     public String test(){
