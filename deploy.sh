@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
+# 포트가 사용 중인지 확인
 port_in_use() {
     sudo lsof -ti :$1
 }
 
+# 쉬고 있는 profile 할당
 if port_in_use 8081; then
     IDLE_PROFILE=set2
 else
@@ -12,6 +14,7 @@ fi
 
 echo ">>> 전환할 profile: $IDLE_PROFILE"
 
+# 쉬고 있는 port
 if [ ${IDLE_PROFILE} == set1 ]
 then
     IDLE_PORT="8081"
@@ -25,14 +28,13 @@ echo ">>> 새 어플리케이션 배포"
 
 REPOSITORY=/home/ec2-user/deploy
 cd $REPOSITORY
-
 JAR_NAME=$(ls $REPOSITORY | grep '.jar' | tail -n 1)
 
-echo ">>> $JAR_NAME 실행"
-echo ">>> $JAR_NAME 를 profile=$IDLE_PROFILE 로 실행."
+echo ">>> $JAR_NAME profile=$IDLE_PROFILE 실행."
 
 nohup java -jar -Dspring.profiles.active=$IDLE_PROFILE $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
 
+# 실행 로딩 기다리기
 sleep 10
 
 echo ">>> 전환한 port로 nginx 설정 변경"
@@ -40,6 +42,7 @@ echo "set \$service_url http://127.0.0.1:${IDLE_PORT};" | sudo tee /etc/nginx/co
 echo ">>> restart reload"
 sudo service nginx reload
 
+# 종료할 포트 설정
 if [ "$IDLE_PORT" == "8081" ]; then
     KILL_TO_PORT="8082"
 elif [ "$IDLE_PORT" == "8082" ]; then
@@ -47,9 +50,10 @@ elif [ "$IDLE_PORT" == "8082" ]; then
 fi
 
 echo ">>> 프로세스 종료할 이전 버전의 port: $KILL_TO_PORT"
-echo ">>> $KILL_TO_PORT PID 확인"
 
+# kill port with pid
 if port_in_use $KILL_TO_PORT; then
+    echo ">>> $KILL_TO_PORT PID 확인"
     KILL_PID=$(sudo lsof -ti tcp:${KILL_TO_PORT})
     echo ">>> kill -15 $KILL_PID"
     kill -15 ${KILL_PID}
