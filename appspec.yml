@@ -22,12 +22,12 @@ permissions:
     group: root
 
 hooks:
-  AfterInstall:
-    - location: stop.sh
-      timeout: 60
-      runas: root
+#  AfterInstall:
+#    - location: stop.sh
+#      timeout: 60
+#      runas: root
   ApplicationStart:
-    - location: start.sh
+    - location: start2.sh
       timeout: 60
       runas: root
 #  ValidateService:
