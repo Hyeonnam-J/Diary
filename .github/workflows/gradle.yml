@@ -39,20 +39,24 @@ jobs:
 #        run: cp ./deploy.sh ./deploy
 
 
-      - name: copy profile.sh
-        run: cp ./profile.sh ./deploy
+#      - name: copy profile.sh
+#        run: cp ./profile.sh ./deploy
+#
+#      - name: copy health.sh
+#        run: cp ./health.sh ./deploy
+#
+#      - name: copy start.sh
+#        run: cp ./start.sh ./deploy
+#
+#      - name: copy stop.sh
+#        run: cp ./stop.sh ./deploy
+#
+#      - name: copy switch.sh
+#        run: cp ./switch.sh ./deploy
 
-      - name: copy health.sh
-        run: cp ./health.sh ./deploy
 
-      - name: copy start.sh
-        run: cp ./start.sh ./deploy
-
-      - name: copy stop.sh
-        run: cp ./stop.sh ./deploy
-
-      - name: copy switch.sh
-        run: cp ./switch.sh ./deploy
+      - name: copy start2.sh
+        run: cp ./start2.sh ./deploy
 
 
       - name: make zip file
