@@ -34,12 +34,26 @@ echo ">>> $JAR_NAME profile=$IDLE_PROFILE 실행."
 
 nohup java -jar -Dspring.profiles.active=$IDLE_PROFILE $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
 
-# 실행 로딩 기다리기
-sleep 10
+# 새로운 포트가 열릴 때까지 대기
+WAIT_TIME=0
+PORT_OPEN=false
+while [ $WAIT_TIME -lt 20 ]; do
+    if port_in_use $IDLE_PORT; then
+        PORT_OPEN=true
+        break
+    fi
+    sleep 3
+    WAIT_TIME=$((WAIT_TIME + 3))
+done
+
+if ! $PORT_OPEN; then
+    echo ">>> 새로운 포트가 열리지 않았습니다. 스크립트를 종료합니다."
+    exit 1
+fi
 
 echo ">>> 전환한 port로 nginx 설정 변경"
 echo "set \$service_url http://127.0.0.1:${IDLE_PORT};" | sudo tee /etc/nginx/conf.d/service-url.inc
-echo ">>> restart reload"
+echo ">>> nginx reload"
 sudo service nginx reload
 
 # 종료할 포트 설정
