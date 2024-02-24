@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 
-CURRENT_PORT=$(sudo netstat -tnlp | grep LISTEN | awk '{print $4}' | awk -F: '{print $2}' | sort -n | uniq)
+#CURRENT_PORT=$(sudo netstat -tnlp | grep LISTEN | awk '{print $4}' | awk -F: '{print $2}' | sort -n | uniq)
+CURRENT_PORT=sudo lsof -ti :diary
 
 
 if [ ${CURRENT_PORT} -eq 8081 ]
