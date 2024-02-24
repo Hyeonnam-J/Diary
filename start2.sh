@@ -2,15 +2,20 @@
 
 
 #CURRENT_PORT=$(sudo netstat -tnlp | grep LISTEN | awk '{print $4}' | awk -F: '{print $2}' | sort -n | uniq)
-CURRENT_PORT=sudo lsof -ti :diary
-
-
-if [ ${CURRENT_PORT} -eq 8081 ]
-then
+#CURRENT_PORT=sudo lsof -ti :diary
+if sudo lsof -ti :8081; then
     IDLE_PROFILE=set2
 else
     IDLE_PROFILE=set1
 fi
+
+
+#if [ ${CURRENT_PORT} -eq 8081 ]
+#then
+#    IDLE_PROFILE=set2
+#else
+#    IDLE_PROFILE=set1
+#fi
 
 
 if [ ${IDLE_PROFILE} == set1 ]
