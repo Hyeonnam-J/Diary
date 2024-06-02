@@ -35,6 +35,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
+import java.util.List;
 
 @RequiredArgsConstructor
 @EnableWebSecurity(debug = false)
@@ -43,14 +44,16 @@ public class SecurityConfig {
 
     private final MemberRepository memberRepository;
 
-    static final String CLIENT_IP = "http://localhost:3000";
-//    static final String CLIENT_IP = "https://my-diary.life";
+    static final List<String> CLIENTS_IP = Arrays.asList(
+            "http://localhost:3000",
+            "https://my-diary.life"
+    );
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        config.setAllowedOrigins(Arrays.asList(CLIENT_IP));
+        config.setAllowedOrigins(CLIENTS_IP);
         config.setAllowCredentials(true);
         config.setAllowedHeaders(Arrays.asList("Content-Type"));
 
@@ -71,6 +74,8 @@ public class SecurityConfig {
         return web -> web.ignoring()
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/favicon.ico"))
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/error"))
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/test"))
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/profile"))
                 .requestMatchers(toH2Console());
     }
 
