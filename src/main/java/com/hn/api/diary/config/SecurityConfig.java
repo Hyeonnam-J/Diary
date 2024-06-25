@@ -93,7 +93,8 @@ public class SecurityConfig {
                                 .requestMatchers(AntPathRequestMatcher.antMatcher("/freeBoard/**")).permitAll()
                                 .anyRequest().authenticated()
                 )
-                // AccessFilterWithCookie -> AccessFilterWithoutCookie -> SignInFilter
+                // AccessFilter에서 쿠키로 받은 토큰을 검증하지 않는 로직들은 다음 signInFilter로 넘김.
+                // signInFilter에서는 signIn 요청만 처리하고 나머지는 다음 필터로 넘김.
                 .addFilterBefore(signInFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(accessFilter(), SignInFilter.class)
                 .exceptionHandling(handling -> {

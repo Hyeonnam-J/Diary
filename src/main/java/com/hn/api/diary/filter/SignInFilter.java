@@ -92,7 +92,7 @@ public class SignInFilter extends AbstractAuthenticationProcessingFilter {
                 .path("/")
                 .sameSite("Strict")
                 .maxAge((int) (expireDate.getTime() - generateDate.getTime()) / 1000)
-//                .secure(true)
+                .secure(true)
 //                .domain(".my-diary.life")
                 .build();
         response.setHeader("Set-Cookie", cookie.toString());
